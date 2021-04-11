@@ -11,7 +11,9 @@ import Teacher from '../Images/teacher.jpg'
 import Student from '../Images/students.jpg'
 import Graph from '../Images/Graph.jpg'
 import Timetable from '../Images/Timetable.jpg'
-import Continue from '../Images/continue.jpg'
+// import Continue from '../Images/continue.jpg'
+import Continue from '../Images/Continue'
+import Rectangler from '../Images/Rectangle'
 const AdminDashboard = ({navigation}) => {
   // const [text, setText] = useState('');
   return (
@@ -73,7 +75,11 @@ const AdminDashboard = ({navigation}) => {
     </View>
     </View>
     <View>
-
+{/* <TouchableOpacity>
+  <View>
+  <Rectangler/>
+  </View>
+</TouchableOpacity> */}
     <TouchableOpacity 
     style={{
       width:328,
@@ -136,7 +142,12 @@ const AdminDashboard = ({navigation}) => {
         fontSize:14,
         textAlign:'center'
         }}>View Timetable
-      <Image source={Continue} style={{marginLeft:10}}></Image>
+        <View 
+        style={{marginLeft:10}}
+        >
+        <Continue />
+        </View>
+      {/* <Image source={Continue} style={{marginLeft:10}}></Image> */}
       </Text>
       </TouchableOpacity>
     </View>
