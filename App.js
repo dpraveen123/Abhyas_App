@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import auth from '@react-native-firebase/auth';
-import PhoneNumber from './screens/PhoneNumber';
-import VerifyCode from './screens/VerifyCode';
-// import VerifyCode from './OtpPage';
+// import PhoneNumber from './screens/PhoneNumber';
+// import VerifyCode from './screens/VerifyCode';
+import VerifyCode from './OtpPage';
 
 import Authenticated from './screens/Authenticated';
-// import PhoneNumber from './Logo/LandingPage';
+import PhoneNumber from './Logo/LandingPage';
 
-// import OtpPage from './OtpPage'
+import OtpPage from './OtpPage'
 // import LandingPage from './Logo/LandingPage'
 // import MyCourses from './Bsharp/mycourses'
 // import Example from './Bsharp/students'
