@@ -24,22 +24,22 @@ import DrawerNav from './Navigation/TopNav/NavBar';
 import BotNav from './Navigation/BottomNav/BotNav';
 import Drawernavi from './Navigation/DrawerNav/DrawerNav';
 import AdminDashboard from './cardss/AdminDashboard'
+import AddNewClassesPage from './ClassesDesign/AddNewClassesPage'
 // import NavBar from './Navigation/Topnav/NavBar'
 import { NavigationContainer } from '@react-navigation/native';
+import ChooseClass from './ClassesDesign/ChooseClass';
 export default function App() {
   return (
     <>
    
     {/* -------------port-8888------------------ */}
         {/*------------- Creating Navigation container----------------------  */}
-        <NavigationContainer>
-          {/* <Drawernavi/> */}
+        {/* <NavigationContainer>
           <DrawerNav/>
-          {/* --------------TopNav----------------- */}
-          {/* <BotNav/> */}
-        </NavigationContainer>
-          {/* <BotNav/> */}
-    </>
+        </NavigationContainer> */}
+        {/* <AddNewClassesPage/> */}
+        <ChooseClass/>
+   </>
   )
 
   const [confirm, setConfirm] = useState(null);

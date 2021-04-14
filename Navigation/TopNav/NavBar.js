@@ -20,7 +20,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 // import BotNav from '../BottomNav/BotNav';
 // import BotNav from '../BottomNav'
 // import Card from '../../Card'
-import Classes from '../../cardss/Classes'
+import AddNewClassesPage from '../../ClassesDesign/AddNewClassesPage'
 import Teachers from '../../cardss/Teachers'
 import Students from'../../cardss/Students'
 import Reports from '../../cardss/Reports'
@@ -28,6 +28,7 @@ import Timetable from '../../cardss/Timetable'
 import BotNav from '../BottomNav/BotNav'
 import DrawerIcon from '../Icons/DrawerIcon';
 import DrawerContent from'../DrawerNav/DrawerContent';
+import ChooseClass from '../../ClassesDesign/ChooseClass';
 const Stack = createStackNavigator();
 
 const NavBar=({navigation})=> {
@@ -60,11 +61,12 @@ const NavBar=({navigation})=> {
                         }
                     }
                         />
-                        <Stack.Screen name="Classes" component={Classes}/>
+                        <Stack.Screen name="Classes" component={AddNewClassesPage}/>
                         <Stack.Screen name="Teachers" component={Teachers}/>
                         <Stack.Screen name="Reports" component={Reports}/>
                         <Stack.Screen name="Students" component={Students}/>
                         <Stack.Screen name="Timetable" component={Timetable}/>
+                        {/* <Stack.Screen name="ChooseClass" component={ChooseClass}/> */}
                     </Stack.Navigator>
     )
 }
