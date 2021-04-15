@@ -8,9 +8,11 @@ import {
     StatusBar,
     TextInput,
     TouchableOpacity,
+    ActivityIndicator,
     Button
 } from 'react-native';
 import Home from './Bulb'
+var Loader = 0
 export default function LandingPage(props) {
     const titl = "send OTP"
     const [text, setText] = useState('+91-');
@@ -38,6 +40,11 @@ export default function LandingPage(props) {
             console.log(color);
         }
     };
+    // const Loader = false
+    onLoader = () => {
+        Loader = 1
+        console.log(Loader);
+    }
     return (
         <View>
             {/* <Text>
@@ -56,28 +63,36 @@ export default function LandingPage(props) {
                 maxLength={14}
             />
 
-            <TouchableOpacity style={{
-                backgroundColor: color,
-                width: 312,
-                height: 40,
-                borderRadius: 4,
-                marginTop: 240,
-                marginLeft: 22,
-                textAlign: 'center',
-                justifyContent: 'center'
-            }} disabled={button}
-                onPress={() => props.onSubmit(text)}>
-                <View
 
-                //    color={text.length < 14 ? 'rgba(29, 161, 242, 0.5)' : '#1DA1F2'}
-                //    style={{backgroundColor:{color}}}
-                >
 
-                    <Text style={styles.otp}>send OTP</Text>
-                </View>
-            </TouchableOpacity>
+            <View >
+                <TouchableOpacity style={{
+                    backgroundColor: color,
+                    width: 312,
+                    height: 40,
+                    borderRadius: 4,
+                    marginTop: 240,
+                    marginLeft: 22,
+                    textAlign: 'center',
+                    justifyContent: 'center'
+                }} disabled={button}
+                    onPress={() => props.onSubmit(text)
+
+                    }>
+                    <View
+                    >
+
+                        <Text style={styles.otp} >send OTP</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
+
+
 
         </View>
+
+
+
     )
 }
 
