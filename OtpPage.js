@@ -34,7 +34,25 @@ const Translator = (props) => {
             </View>
             <View style={{ width: 312, height: 40, marginTop: 20, marginLeft: 38 }}>
                 {/* <Button title="Confirm" ></Button> */}
-                <Button title="Confirm" onPress={() => props.onSubmit(code)} />
+                 <TouchableOpacity style={{
+                    backgroundColor: '#1DA1F2',
+                    width: 312,
+                    height: 40,
+                    borderRadius: 4,
+                    // marginTop: 20,
+                    marginLeft: 22,
+                    textAlign: 'center',
+                    justifyContent: 'center'
+                }}
+                    onPress={() => props.onSubmit(code)
+
+                    }>
+                    <View
+                    >
+
+                        <Text style={{ color: 'white', paddingLeft: 125 }} >Confirm</Text>
+                    </View>
+                </TouchableOpacity>
             </View>
             <View>
                 <Text style={{ fontSize: 14, color: "#657786", marginTop: 24, marginLeft: 85 }}>Didn't receive OTP?<Text style={{ color: "#1DA1F2" }}>Resend OTP</Text></Text>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useState} from 'react'
 import {
     SafeAreaView,
     StyleSheet,
@@ -10,22 +10,43 @@ import {
     TouchableOpacity,
     Button
 } from 'react-native';
+import Modal from 'react-native-modal';
+import ChooseClass from './ChooseClass';
 // import ChooseClass from './ChooseClass'
 function AddNewClassesPage() {
     return (
         <View>
             <Text>hi this is addition of classes</Text>
             <View>
-            <TouchableOpacity style={styles.button} onPress={()=>console.log('hiiii')}>
-                <View>
-                    <Text style={styles.Class}>+ Add new Class</Text>
-                </View>
-                {/* <ChooseClass/> */}
-            </TouchableOpacity>
+            <ModalTester/>
+            {/* <WrapperComponent/> */}
             </View>
         </View>
     )
 }
+function ModalTester() {
+  const [isModalVisible, setModalVisible] = useState(false);
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+    return (
+      <View>
+          
+          <TouchableOpacity style={styles.button} onPress={toggleModal}>
+                <View>
+                    <Text style={styles.Class}>+ Add new Class</Text>
+                </View>
+            </TouchableOpacity>
+           <Modal isVisible={isModalVisible}>
+            {/* <TouchableOpacity > */}
+            <Button title="Hide modal" onPress={toggleModal} />
+           {/* <Text></Text>
+            </TouchableOpacity> */}
+            <ChooseClass/>
+      </Modal>
+      </View>
+    );
+  }
 export default AddNewClassesPage
 const styles=StyleSheet.create({
 button:{
