@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
-import { Button, Text, TextInput, View, StyleSheet } from 'react-native';
+import {
+    SafeAreaView,
+    StyleSheet,
+    ScrollView,
+    View,
+    Text,
+    StatusBar,
+    TextInput,
+    TouchableOpacity,
+    ActivityIndicator,
+    Button
+} from 'react-native';
 import OtpInputs from 'react-native-otp-textinput'
 import Svgpage from './Svg';
 const Translator = (props) => {

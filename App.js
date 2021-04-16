@@ -38,17 +38,17 @@ class App extends React.Component {
         authenticated:false,
     }
    }
-componentDidMount=()=>{
-  auth().onAuthStateChanged((user) => {
-    if (user) {
+// componentDidMount=()=>{
+//   auth().onAuthStateChanged((user) => {
+//     if (user) {
         
-        this.setState({authenticated:true})
-    } else {
+//         this.setState({authenticated:true})
+//     } else {
      
-        this.setState({authenticated:false})
-    }
-})
-}
+//         this.setState({authenticated:false})
+//     }
+// })
+// }
 signIn=(phoneNumber)=> {
    try {
        const confirmation = auth().signInWithPhoneNumber(phoneNumber);
