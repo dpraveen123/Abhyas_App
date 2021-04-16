@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import auth from '@react-native-firebase/auth';
 // import PhoneNumber from './screens/PhoneNumber';
 // import VerifyCode from './screens/VerifyCode';
@@ -6,7 +6,7 @@ import VerifyCode from './OtpPage';
 
 import Authenticated from './screens/Authenticated';
 import PhoneNumber from './Logo/LandingPage';
-
+import ChooseClass from './ClassesDesign/ChooseClass'
 import OtpPage from './OtpPage'
 // import LandingPage from './Logo/LandingPage'
 // import MyCourses from './Bsharp/mycourses'
@@ -41,45 +41,57 @@ import {
 
 // export default App;
 
-export default function Authentication() {
-    // return (
-    //   // <OtpPage />
-    //   <LandingPage />
-    // )
-
-    const [confirm, setConfirm] = useState(null);
-    const [authenticated, setAuthenticated] = useState(false);
-
-    async function signIn(phoneNumber) {
+class  Authentication extends React.Component {
+    constructor(props){
+         super(props);
+         this.state={
+             confirm:null,
+             authenticated:false,
+         }
+        }
+   
+     signIn=(phoneNumber)=> {
         try {
-            const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
-            setConfirm(confirmation);
+            const confirmation = auth().signInWithPhoneNumber(phoneNumber);
+            this.setState({confirm:confirmation})
         } catch (error) {
             alert(error);
         }
     }
-
-    async function confirmVerificationCode(code) {
+    
+     confirmVerificationCode=(code)=> {
         console.log(code);
         try {
-            await confirm.confirm(code);
+             confirm.confirm(code);
             setConfirm(null);
         } catch (error) {
             alert('Invalid code');
         }
     }
+    
+  
+   
 
-    auth().onAuthStateChanged((user) => {
-        if (user) {
-            setAuthenticated(true);
-        } else {
-            setAuthenticated(false);
-        }
-    })
+    
 
-    if (authenticated) return <Authenticated />;
+    render(){
+        auth().onAuthStateChanged((user) => {
+            if (user) {
+                
+                this.setState({authenticated:true})
+            } else {
+             
+                this.setState({authenticated:false})
+            }
+        })
+        if (this.state.authenticated) return <ChooseClass/>;
 
-    if (confirm) return <VerifyCode onSubmit={confirmVerificationCode} />;
+       if (this.state.confirm) return <VerifyCode onSubmit={this.confirmVerificationCode} />;
 
-    return <PhoneNumber onSubmit={signIn} />;
+
+    // return  <PhoneNumber onSubmit={this.signIn} />
+                
+        
+    }
 }
+export default Authentication
