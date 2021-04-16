@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import auth from '@react-native-firebase/auth';
 // import PhoneNumber from './screens/PhoneNumber';
 // import VerifyCode from './screens/VerifyCode';
@@ -6,7 +6,7 @@ import VerifyCode from './OtpPage';
 
 import Authenticated from './screens/Authenticated';
 import PhoneNumber from './Logo/LandingPage';
-import ChooseClass from './ClassesDesign/ChooseClass'
+
 import OtpPage from './OtpPage'
 // import LandingPage from './Logo/LandingPage'
 // import MyCourses from './Bsharp/mycourses'
@@ -24,6 +24,8 @@ import {
     TextInput,
     ScrollView
 } from 'react-native';
+import DrawerNav from './Navigation/TopNav/NavBar'
+import { NavigationContainer } from '@react-navigation/native';
 
 // class App extends React.Component {
 //   render() {
@@ -41,57 +43,51 @@ import {
 
 // export default App;
 
-class Authentication extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            confirm: null,
-            authenticated: false,
-        }
-    }
+export default function Authentication1() {
+    // return (
+    //   // <OtpPage />
+    //   <LandingPage />
+    // )
 
-    signIn = (phoneNumber) => {
+    const [confirm, setConfirm] = useState(null);
+    const [authenticated, setAuthenticated] = useState(false);
+
+    async function signIn(phoneNumber) {
         try {
-            const confirmation = auth().signInWithPhoneNumber(phoneNumber);
-            this.setState({ confirm: confirmation })
+            const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
+            setConfirm(confirmation);
         } catch (error) {
             alert(error);
         }
     }
 
-    confirmVerificationCode = (code) => {
+    async function confirmVerificationCode(code) {
         console.log(code);
         try {
-            confirm.confirm(code);
+            await confirm.confirm(code);
             setConfirm(null);
         } catch (error) {
             alert('Invalid code');
         }
     }
 
+    auth().onAuthStateChanged((user) => {
+        if (user) {
+            setAuthenticated(true);
+        } else {
+            setAuthenticated(false);
+        }
+    })
+
+    if (authenticated) return (
+        <NavigationContainer>
 
 
+            <DrawerNav />
+        </NavigationContainer>
+    );
 
+    if (confirm) return <VerifyCode onSubmit={confirmVerificationCode} />;
 
-
-    render() {
-        auth().onAuthStateChanged((user) => {
-            if (user) {
-
-                this.setState({ authenticated: true })
-            } else {
-
-                this.setState({ authenticated: false })
-            }
-        })
-        if (this.state.authenticated) return <ChooseClass />;
-
-        if (this.state.confirm) return <VerifyCode onSubmit={this.confirmVerificationCode} />;
-
-
-        // return  <PhoneNumber onSubmit={this.signIn} />
-
-
-    }
+    return <PhoneNumber onSubmit={signIn} />;
 }
-export default Authentication
