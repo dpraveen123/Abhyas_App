@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { Component } from 'react'
 import {
     SafeAreaView,
     StyleSheet,
@@ -9,49 +9,133 @@ import {
     TextInput,
     TouchableOpacity,
     Button,
+    Image,
     Picker
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
-// const addSection=0
-export default function ChooseClass () {
-    const [Button, setButton] = useState(true)
-    const [color, setcolor] = useState('rgba(29, 161, 242, 0.5)')
-    const [addSection, setaddSection] = useState(false)
-    // const [value, setvalue] = useState('')
-    const onValueChange=(value)=>{
-        setButton(false)
-        setcolor('#1F85FF')
-        setaddSection(true)
-        // setAddSection(true)
+import Page from './NoSectionsAdded'
+export default class ChooseClass extends Component {
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+             button:true,
+             color:'rgba(29, 161, 242, 0.5)',
+             addSection:false,
+             addAnotherSectionTitle:false,
+             addAnotherSection:false,
+             
+        }
     }
+    
+onValueChange=()=>{
+    this.setState({
+        button:false,
+        color:'#1F85FF',
+        addSection:true,
+        addAnotherSectionTitle:true,
+    })
+} 
+AddSection=()=>{
+    console.log(this.state.addSection);
+    if(this.state.addSection)
+    {
+    return(
+        <View>
+          <Text style={styles.ChooseClass}>Add sections</Text>
+          <TextInput style={styles.InputStyle}
+                placeholder="Enter section name"  
+          ></TextInput>
+                 
+        </View> 
+    )
+    }  
+    else{
+        <View>
+            <Text></Text>
+        </View>
+    }
+} 
+AddAnotherSection=()=>{
+    this.setState({
+        addAnotherSection:true
+    })
+}
+AddAnotherSectionTitle=()=>{
+    if(this.state.addAnotherSectionTitle)
+    {
+        return(
+           <View>
+             <TouchableOpacity
+             onPress={()=>
+                // console.log('another section added')
+                this.AddAnotherSection()
+            }
+             >
+               <Text style={styles.aText} 
+               >Add another section</Text>    
+             </TouchableOpacity>  
+           </View> 
+        )
+    }
+    else{
+        return(
+            <View>
+
+            </View>
+        )
+    }
+}
+
+AnotherSection=()=>{
+    {console.log('another guy added');}
+    if(this.state.addAnotherSection)
+    {
+    return(
+        <>
+        {console.log('ssss')}
+    <View>
+        {/* <Text style={{backgroundColor:'black'}}>hello</Text> */}
+          <TextInput 
+          style={styles.InputStyle}
+                placeholder="Enter section name"  
+          ></TextInput> 
+    </View>
+    </>
+    )
+}
+    else{
+        <View>
+            <Text></Text>
+        </View>
+    }
+}
+    render() {
         return (
-            <View >
+            <View>
                  <View 
-                style={styles.PopUp}
-                >
+                    style={styles.PopUp}>  
                  <Text  style={styles.AddClass}>Add Classes</Text>
+                 <Text style={styles.ChooseClass}>Choose class</Text>
                  <TouchableOpacity 
-                //  style={styles.button}
                 style={{
                     position:'absolute',
                     width:328,
                     height:36,
                     opacity:50,
-                    backgroundColor: color,
+                    backgroundColor:this.state.color,
                     borderRadius:4,
                     marginLeft:16,
                     marginTop:480
                 }}
-                  disabled={Button}>
+                  disabled={this.state.button}>
                     <Text style={styles.buttonTxt}>Add Class</Text>
                  </TouchableOpacity>
-                <Text style={styles.ChooseClass}>Choose class</Text>
-                <View   
-                style={styles.InputStyle}
-                >    
-                <RNPickerSelect
+                 <RNPickerSelect
                  placeholder={{label:'Select class'}}
-                 onValueChange={(value) =>onValueChange(value)}
+                 onValueChange={(value) =>
+                   this.onValueChange()
+                 }
                  items={[
                 { label:"1st Class" ,value:"1st Class" },
                 { label:"2nd Class" ,value:"2nd Class" },
@@ -65,56 +149,19 @@ export default function ChooseClass () {
                 { label:"10th Class",value:"10th Class" },
                 ]}
                 />
-                </View>
-                {/* {{if(AddSection){
-
-                }} */}
-                <AddSection/>
-                {/* <AnotherSection/> */}
+                <Text>
+                    {this.AddSection()}
+                </Text>
+                <Text>
+                    {this.AnotherSection()}
+                </Text>
+                <Text>
+                    {this.AddAnotherSectionTitle()}
+                </Text>
                 </View>
             </View>
         )
-
     }
-function AddSection(){
-    if(addSection)
-    {
-    return(
-        <View>
-            <Text>hi addsection</Text>
-                {/* <Text style={styles.ChooseClass}>Add sections</Text>
-                <TextInput style={styles.InputStyle}
-                placeholder="Enter section name"  
-                >
-                </TextInput> */}
-        </View>       
-    )
-    }
-    else{
-        return(
-            <View><Text>bye addsection</Text></View>
-        )
-    }
-}
-function AnotherSection(){
-    return(
-        <View>
-            {/* <AnothersectionInput/> */}
-                <TouchableOpacity>
-                <Text style={styles.aText}>Add another section</Text>    
-                </TouchableOpacity>  
-        </View>
-    )
-}
-function AnothersectionInput(){
-    return(
-        <View>
-                <TextInput style={styles.InputStyle}
-                placeholder="Enter section name"  
-                >
-                </TextInput>
-        </View>
-    )
 }
 const styles=StyleSheet.create({
     Page:{
@@ -178,11 +225,4 @@ const styles=StyleSheet.create({
       marginLeft:16,
       marginTop:15
     },
-    picker:{
-        // paddingTop:10
-        // paddingBottom:150
-        // marginBottom:20
-    //    paddingLeft:12
-    }
 })
- 

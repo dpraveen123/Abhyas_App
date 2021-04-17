@@ -4,7 +4,7 @@ import auth from '@react-native-firebase/auth';
 // import PhoneNumber from './screens/PhoneNumber';
 // import VerifyCode from './screens/VerifyCode';
 import VerifyCode from './OtpPage';
-import ChooseClass from './ClassesDesign/ChooseClass'
+import ChooseClass from './ClassesDesign/ChooseClass-2'
 import Authenticated from './screens/Authenticated';
 import PhoneNumber from './Logo/LandingPage';
 import { NavigationContainer } from '@react-navigation/native';
@@ -15,7 +15,7 @@ import DrawerNav from './Navigation/TopNav/NavBar'
 // import Example from './Bsharp/students'
 // import Hello from './Bsharp/Cards'
 // import SwitchExample from './Bsharp/dropdown'
-import Authentication from './Authentication'
+import Authentication1 from './Authentication1'
 import {
   AppRegistry,
   StyleSheet,
@@ -29,61 +29,65 @@ import {
 } from 'react-native';
 
 import Translator from './OtpPage'
+import Page from './ClassesDesign/NoSectionsAdded';
 
 class App extends React.Component {
-  constructor(props){
-    super(props);
-    this.state={
-        confirm:null,
-        authenticated:false,
-    }
-   }
-// componentDidMount=()=>{
-//   auth().onAuthStateChanged((user) => {
-//     if (user) {
-        
-//         this.setState({authenticated:true})
-//     } else {
-     
-//         this.setState({authenticated:false})
-//     }
-// })
-// }
-signIn=(phoneNumber)=> {
-   try {
-       const confirmation = auth().signInWithPhoneNumber(phoneNumber);
-       this.setState({confirm:confirmation})
-   } catch (error) {
-       alert(error);
-   }
-}
+  //   constructor(props){
+  //     super(props);
+  //     this.state={
+  //         confirm:null,
+  //         authenticated:false,
+  //     }
+  //    }
+  // componentDidMount=()=>{
+  //   auth().onAuthStateChanged((user) => {
+  //     if (user) {
 
-confirmVerificationCode=(code)=> {
-   console.log(code);
-   try {
-        confirm.confirm(code);
-       setConfirm(null);
-   } catch (error) {
-       alert('Invalid code');
-   }
-}
+  //         this.setState({authenticated:true})
+  //     } else {
+
+  //         this.setState({authenticated:false})
+  //     }
+  // })
+  // }
+  // signIn=(phoneNumber)=> {
+  //    try {
+  //        const confirmation = auth().signInWithPhoneNumber(phoneNumber);
+  //        this.setState({confirm:confirmation})
+  //    } catch (error) {
+  //        alert(error);
+  //    }
+  // }
+
+  // confirmVerificationCode=(code)=> {
+  //    console.log(code);
+  //    try {
+  //         confirm.confirm(code);
+  //        setConfirm(null);
+  //    } catch (error) {
+  //        alert('Invalid code');
+  //    }
+  // }
 
   render() {
-    
-      
-     
-    if (this.state.authenticated) return (
-      <NavigationContainer>
-       <DrawerNav/>
-      </NavigationContainer>
-    );
-
-   if (this.state.confirm) return <VerifyCode onSubmit={this.confirmVerificationCode} />;
+    return (
+      <Authentication1 />
+    )
 
 
-return  <PhoneNumber onSubmit={this.signIn} />
-        
-    
+
+    //     if (this.state.authenticated) return (
+    // <NavigationContainer>
+    //  <DrawerNav/>
+    // </NavigationContainer>
+    //     );
+
+    //    if (this.state.confirm) return <VerifyCode onSubmit={this.confirmVerificationCode} />;
+
+
+    // return  <PhoneNumber onSubmit={this.signIn} />
+
+
   }
 }
 

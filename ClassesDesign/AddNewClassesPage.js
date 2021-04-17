@@ -11,8 +11,9 @@ import {
     Button
 } from 'react-native';
 import Modal from 'react-native-modal';
-import ChooseClass from './ChooseClass';
-// import ChooseClass from './ChooseClass'
+import Info from '../Navigation/Icons/Info';
+import ChooseClass from './ChooseClass'
+import Page from './NoSectionsAdded'
 function AddNewClassesPage() {
     return (
         <View>
@@ -38,11 +39,10 @@ function ModalTester() {
                 </View>
             </TouchableOpacity>
            <Modal isVisible={isModalVisible}>
-            {/* <TouchableOpacity > */}
             <Button title="Hide modal" onPress={toggleModal} />
-           {/* <Text></Text>
-            </TouchableOpacity> */}
-            <ChooseClass/>
+          <ChooseClass/>
+            {/* <Page/> */}
+            {/* <Info/> */}
       </Modal>
       </View>
     );

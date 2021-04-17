@@ -17,6 +17,8 @@ export default function LandingPage(props) {
     const titl = "send OTP"
     const [text, setText] = useState('+91-');
     const [button, setButton] = useState(true);
+    const [loader, setLoader] = useState(false);
+
     const [color, setcolor] = useState('rgba(29, 161, 242, 0.5)')
     const onChangeText = (text1) => {
         console.log(`hi text ${text1}`);
@@ -46,7 +48,8 @@ export default function LandingPage(props) {
         console.log(Loader);
     }
     return (
-        <View>
+        <ScrollView>
+
             {/* <Text>
                 hi pap's
             </Text> */}
@@ -76,20 +79,32 @@ export default function LandingPage(props) {
                     textAlign: 'center',
                     justifyContent: 'center'
                 }} disabled={button}
-                    onPress={() => props.onSubmit(text)
-
+                    onPress={() => {
+                        setLoader(true)
+                        props.onSubmit(text)
+                    }
                     }>
-                    <View
-                    >
+                    <View>
 
-                        <Text style={styles.otp} >send OTP</Text>
+                        {
+                            loader === false ? <Text style={styles.otp} >send OTP</Text>
+                                :
+                                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                                    <ActivityIndicator
+                                        color="white"
+                                        size="small"
+                                    /><Text style={{ color: 'white' }} >Sending OTP</Text>
+                                </View>
+
+                        }
+
                     </View>
                 </TouchableOpacity>
             </View>
 
 
 
-        </View>
+        </ScrollView>
 
 
 
