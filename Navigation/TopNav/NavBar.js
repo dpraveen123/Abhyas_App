@@ -28,7 +28,7 @@ import Timetable from '../../cardss/Timetable'
 import BotNav from '../BottomNav/BotNav'
 import DrawerIcon from '../Icons/DrawerIcon';
 import DrawerContent from '../DrawerNav/DrawerContent';
-import ChooseClass from '../../ClassesDesign/ChooseClass';
+import ChooseClass from '../../ClassesDesign/ChooseClass-2';
 const Stack = createStackNavigator();
 
 const NavBar = ({ navigation }) => {

@@ -26,6 +26,8 @@ import {
 } from 'react-native';
 import DrawerNav from './Navigation/TopNav/NavBar'
 import { NavigationContainer } from '@react-navigation/native';
+import AddNewClassesPage from './ClassesDesign/AddNewClassesPage';
+import ChooseClass from './ClassesDesign/ChooseClass-2';
 
 // class App extends React.Component {
 //   render() {
@@ -80,11 +82,11 @@ export default function Authentication1() {
     })
 
     if (authenticated) return (
-        <NavigationContainer>
-
-
-            <DrawerNav />
-        </NavigationContainer>
+        // <NavigationContainer>
+        //     <DrawerNav />
+        // </NavigationContainer>
+        <AddNewClassesPage/>
+        // <ChooseClass/>
     );
 
     if (confirm) return <VerifyCode onSubmit={confirmVerificationCode} />;

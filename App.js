@@ -4,7 +4,7 @@ import auth from '@react-native-firebase/auth';
 // import PhoneNumber from './screens/PhoneNumber';
 // import VerifyCode from './screens/VerifyCode';
 import VerifyCode from './OtpPage';
-import ChooseClass from './ClassesDesign/ChooseClass'
+import ChooseClass from './ClassesDesign/ChooseClass-2'
 import Authenticated from './screens/Authenticated';
 import PhoneNumber from './Logo/LandingPage';
 import { NavigationContainer } from '@react-navigation/native';
@@ -29,7 +29,8 @@ import {
 } from 'react-native';
 
 import Translator from './OtpPage'
-// import CreateDate from './createdata'
+import Page from './ClassesDesign/NoSectionsAdded';
+
 class App extends React.Component {
   //   constructor(props){
   //     super(props);
@@ -70,10 +71,7 @@ class App extends React.Component {
 
   render() {
     return (
-
       <Authentication1 />
-      // <CreateData/>
-
     )
 
 
