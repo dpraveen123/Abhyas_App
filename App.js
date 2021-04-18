@@ -29,7 +29,7 @@ import {
 } from 'react-native';
 
 import Translator from './OtpPage'
-
+// import CreateDate from './createdata'
 class App extends React.Component {
   //   constructor(props){
   //     super(props);
@@ -72,6 +72,7 @@ class App extends React.Component {
     return (
 
       <Authentication1 />
+      // <CreateData/>
 
     )
 
