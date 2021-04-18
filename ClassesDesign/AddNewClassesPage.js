@@ -38,8 +38,14 @@ function ModalTester() {
                     <Text style={styles.Class}>+ Add new Class</Text>
                 </View>
             </TouchableOpacity>
-           <Modal isVisible={isModalVisible}>
-            <Button title="Hide modal" onPress={toggleModal} />
+           <Modal isVisible={isModalVisible}
+           onRequestClose={() => {
+            // Alert.alert("Modal has been closed.");
+           setModalVisible(!isModalVisible);
+          }}
+           >
+            {/* <Button title="Hide modal" onPress={toggleModal} /> */}
+
           <ChooseClass/>
             {/* <Page/> */}
             {/* <Info/> */}
