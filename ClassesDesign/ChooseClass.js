@@ -26,17 +26,20 @@ export default class ChooseClass extends Component {
              addAnotherSectionTitle:false,
              addAnotherSection:false,
              m:0,
-             n:[]
+             n:[],pickervalue:''
              
         }
     }
     
-onValueChange=()=>{
+onValueChange=(e)=>{
+    console.log(e," is picker value")
+    
     this.setState({
         button:false,
         color:'#1F85FF',
         addSection:true,
         addAnotherSectionTitle:true,
+        pickervalue:e,
     })
 } 
 AddSection=()=>{
@@ -148,11 +151,17 @@ AddAnotherSectionTitle=()=>{
                   disabled={this.state.button}>
                     <Text style={styles.buttonTxt}>Add Class</Text>
                  </TouchableOpacity>
+                 <View   style={{borderWidth:1,borderColor:'#E1E8ED',width:328,height:40,marginLeft:16,borderRadius:4}}>
                  <RNPickerSelect
+            
                  placeholder={{label:'Select class'}}
-                 onValueChange={(value) =>
-                   this.onValueChange()
+                 onValueChange={(value1) =>
+                   {
+                       console.log(value1)
+                    this.onValueChange(value1)
+                   }
                  }
+                 selectedValue={this.state.pickervalue}
                  items={[
                 { label:"1st Class" ,value:"1st Class" },
                 { label:"2nd Class" ,value:"2nd Class" },
@@ -166,6 +175,7 @@ AddAnotherSectionTitle=()=>{
                 { label:"10th Class",value:"10th Class" },
                 ]}
                 />
+                 </View>
                 <Text>
                     {this.AddSection()}
                 </Text>
