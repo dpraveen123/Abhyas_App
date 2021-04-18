@@ -8,7 +8,7 @@ import Authenticated from './screens/Authenticated';
 import PhoneNumber from './Logo/LandingPage';
 
 import OtpPage from './OtpPage'
-// import LandingPage from './Logo/LandingPage'
+ import LandingPage from './Logo/LandingPage'
 // import MyCourses from './Bsharp/mycourses'
 // import Example from './Bsharp/students'
 // import Hello from './Bsharp/Cards'
@@ -24,6 +24,8 @@ import {
   TextInput,
   ScrollView
 } from 'react-native';
+ import Profile from './mywork/Profile';
+
 
 // class App extends React.Component {
 //   render() {
@@ -42,44 +44,45 @@ import {
 // export default App;
 
 export default function App() {
-  // return (
+   return (
   //   // <OtpPage />
-  //   <LandingPage />
-  // )
+   <Profile />
+  
+   )
 
-  const [confirm, setConfirm] = useState(null);
-  const [authenticated, setAuthenticated] = useState(false);
+  // const [confirm, setConfirm] = useState(null);
+  // const [authenticated, setAuthenticated] = useState(false);
 
-  async function signIn(phoneNumber) {
-    try {
-      const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
-      setConfirm(confirmation);
-    } catch (error) {
-      alert(error);
-    }
-  }
+  // async function signIn(phoneNumber) {
+  //   try {
+  //     const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
+  //     setConfirm(confirmation);
+  //   } catch (error) {
+  //     alert(error);
+  //   }
+  // }
 
-  async function confirmVerificationCode(code) {
-    console.log(code);
-    try {
-      await confirm.confirm(code);
-      setConfirm(null);
-    } catch (error) {
-      alert('Invalid code');
-    }
-  }
+  // async function confirmVerificationCode(code) {
+  //   console.log(code);
+  //   try {
+  //     await confirm.confirm(code);
+  //     setConfirm(null);
+  //   } catch (error) {
+  //     alert('Invalid code');
+  //   }
+  // }
 
-  auth().onAuthStateChanged((user) => {
-    if (user) {
-      setAuthenticated(true);
-    } else {
-      setAuthenticated(false);
-    }
-  })
+  // auth().onAuthStateChanged((user) => {
+  //   if (user) {
+  //     setAuthenticated(true);
+  //   } else {
+  //     setAuthenticated(false);
+  //   }
+  // })
 
-  if (authenticated) return <Authenticated />;
+  // if (authenticated) return <Authenticated />;
 
-  if (confirm) return <VerifyCode onSubmit={confirmVerificationCode} />;
+  // if (confirm) return <VerifyCode onSubmit={confirmVerificationCode} />;
 
-  return <PhoneNumber onSubmit={signIn} />;
+  // return <PhoneNumber onSubmit={signIn} />;
 }
