@@ -12,7 +12,7 @@ class Page extends Component {
     render() {
         return (
             <View style={{flex:1}}>
-                <Text style={{color:"white",fontSize:30,marginLeft:95,marginTop:250}}>Normalscreen</Text>
+                {/* <Text style={{color:"white",fontSize:30,marginLeft:95}}>Normalscreen</Text> */}
                 <View style={{marginTop:8,marginLeft:92}}>
                 <Button title="show popup" onPress={()=>{this.setState({show:true})}}></Button></View>
                 <Modal

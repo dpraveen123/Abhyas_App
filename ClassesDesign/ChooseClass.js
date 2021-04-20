@@ -10,9 +10,11 @@ import {
     TouchableOpacity,
     Button,
     Image,
-    Picker
+    Picker,
+    Modal
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
+import AfterClassPage from './AfterClassPage';
 var i=0;
 import Page from './NoSectionsAdded'
 export default class ChooseClass extends Component {
@@ -26,13 +28,17 @@ export default class ChooseClass extends Component {
              addAnotherSectionTitle:false,
              addAnotherSection:false,
              m:0,
-             n:[],pickervalue:''
-             
+             n:[],
+             pickervalue:'',
+             value:false,
+             noSectionAdded:[],
+             show:false,
+             visibility:false
         }
     }
     
 onValueChange=(e)=>{
-    console.log(e," is picker value")
+    // console.log(e," is picker value")
     
     this.setState({
         button:false,
@@ -40,16 +46,26 @@ onValueChange=(e)=>{
         addSection:true,
         addAnotherSectionTitle:true,
         pickervalue:e,
+        
     })
 } 
 AddSection=()=>{
-    console.log(this.state.addSection);
+    // console.log(this.state.addSection);
     if(this.state.addSection)
     {
     return(
         <View>
           <Text style={styles.ChooseClass}>Add sections</Text>
           <TextInput style={styles.InputStyle}
+              onChangeText={(value)=>{
+              console.log('value is',value)
+              this.state.value=true
+              this.state.show=false
+              console.log('this is show in addsection',this.state.show);
+              console.log('this.state.value page Addsection',this.state.value);
+              this.state.noSectionAdded[this.state.l]=value
+            //   console.log('this.state.noSectionAdded',this.state.noSectionAdded[this.state.l]);
+          }}
                 placeholder="Enter section name"  
           ></TextInput>
                  
@@ -66,7 +82,7 @@ AddAnotherSection=()=>{
     this.state.m=this.state.m+1;
     this.state.n=this.state.n.concat(this.state.m)
     this.setState({n:this.state.n})
-    console.log("m is",this.state.m)
+    // console.log("n is",this.state.n)
     this.setState({
         addAnotherSection:true,m:this.state.m
     })
@@ -100,43 +116,70 @@ AddAnotherSectionTitle=()=>{
         )
     }
 }
+NoSectionsAdded=()=>{
+    console.log(this.state.noSectionAdded);
+    if(this.state.noSectionAdded[this.state.l]!='')
+    {
+    return(
+        <>
+        {console.log(this.state.noSectionAdded)}
+    <Page/>
+    </>
+    )
+    }
+    else{
+      return(
+          <View></View>
+      )
+    }
+    
+}
+page=()=>{
+    console.log('hi this.page');
+    if(!this.state.value)
+    {
+        console.log('this is page true');
+        return(
+            <Page/>
+        )
+    }
+    else{
+        console.log('this is page false');
+        return(
+            <View></View>
+        )
+    }
+}
+ShowPage=()=>{
+   if (!this.state.value) 
+   {
+       this.setState({
+           show:true
+           
+        })
+   }
+   else{
+       this.setState({show:false})
+   }
+}  
+afterClassPage=()=>{
 
-// AnotherSection=()=>{
-//     {console.log('another guy added',this.state.m);}
-//     if(this.state.addAnotherSection)
-//     {
-//         console.log(" m length s",this.state.m)
-//         var i=0;
-//         this.state.n.map(l=>{
-//             console.log("l is ",l)
-//             return(
-//             <View>
-//                  <View>
-//                 {/* <Text style={{backgroundColor:'black'}}>hello</Text> */}
-//                   <TextInput 
-//                   style={styles.InputStyle}
-//                         placeholder="Enter section name"  
-//                   ></TextInput> 
-//             </View>
-//             </View>
-//             )
-//         })
-        
-// //    }
-// }
-//     else{
-//         <View>
-//             <Text></Text>
-//         </View>
-//     }
-// }
-    render() {
+}
+render() {
         return (
             <View>
+                 
                  <View 
                     style={styles.PopUp}>  
                  <Text  style={styles.AddClass}>Add Classes</Text>
                  <Text style={styles.ChooseClass}>Choose class</Text>
+                 {/* <Text>
+                    {this.page()}
+                </Text> */}
+                 {console.log('checking page',this.state.value)}
+                 {/* <Text>
+                    {this.NoSectionsAdded()}
+                </Text> */}
                  <TouchableOpacity 
                 style={{
                     position:'absolute',
@@ -149,7 +192,13 @@ AddAnotherSectionTitle=()=>{
                     marginTop:480
                 }}
                   disabled={this.state.button}>
-                    <Text style={styles.buttonTxt}>Add Class</Text>
+                    <Text style={styles.buttonTxt} 
+                    onPress={()=>this.ShowPage()}
+                    // onPress={()=>{
+                        //  console.log('this.state.value add class',this.state.value);
+                        // console.log('displaying the no sevtion added value',this.state.noSectionAdded);
+                    // }}
+                    >Add Class</Text>
                  </TouchableOpacity>
                  <View   style={{borderWidth:1,borderColor:'#E1E8ED',width:328,height:40,marginLeft:16,borderRadius:4}}>
                  <RNPickerSelect
@@ -157,7 +206,7 @@ AddAnotherSectionTitle=()=>{
                  placeholder={{label:'Select class'}}
                  onValueChange={(value1) =>
                    {
-                       console.log(value1)
+                    //    console.log(value1)
                     this.onValueChange(value1)
                    }
                  }
@@ -176,32 +225,83 @@ AddAnotherSectionTitle=()=>{
                 ]}
                 />
                  </View>
+                
                 <Text>
                     {this.AddSection()}
                 </Text>
+               
                 <Text>
                 {/* {this.AddAnotherSection()} */}
                    {
                     this.state.n.map(l=>{
-            console.log("l is ",l)
+            // console.log("l is ",l)
             return(
             <View>
                  <View>
                 {/* <Text style={{backgroundColor:'black'}}>hello</Text> */}
                   <TextInput 
                   style={styles.InputStyle}
-                        placeholder="Enter section name"  
+                        placeholder="Enter section name"
+                        value={this.state.noSectionAdded}
+                        onChangeText={(value)=>{
+                            console.log(value);
+                            this.state.value=true,
+                            this.state.show=false
+                            console.log('this is show in addanothersection',this.state.show);
+                            console.log('this.state.value page addanothersection',this.state.value);
+                           this.state.noSectionAdded[this.state.l]=value
+                            // console.log('this.state.noSectionAdded',this.state.noSectionAdded[this.state.l]);
+                        }}  
                   ></TextInput> 
             </View>
+            
             </View>
             )
         })
                    }
                 </Text>
+                {/* --------------------------------------After AddClass Page---------------------------------------------------- */}
+                  {/* <View 
+                  
+                //   visible=false
+                  >
+                  <AfterClassPage 
+                  style={{visibility: 'hidden' }}
+                  />
+                  </View> */}
                 <Text>
                     {this.AddAnotherSectionTitle()}
                 </Text>
+                
                 </View>
+                
+{/* ---------------------------------Modal for no sections added popup---------------------------- */}
+               <Modal
+                 transparent={true}
+                 visible={this.state.show}
+                 >
+                    <View style={{backgroundColor:"#000000aa",flex:1}}>
+                        <View style={{backgroundColor:"#ffffff",margin:30,width:340,height:230.25,borderRadius:8,marginTop:208.75,marginLeft:22,marginRight:16}}>
+                            <View style={{marginTop:24.25,marginLeft:147.33}}>
+                            {/* <Info/> */}
+                            </View>
+                            {/* <Image source={Info} style={{marginTop:24.25,marginLeft:147.33}}></Image> */}
+                            <Text style={{textAlign:'center',fontSize:20,marginTop:19.33}}>No Sections Added!</Text>
+                            <Text style={{color:"#657786",textAlign:'center',marginTop:8}}>create class without section?</Text>
+                            <View>
+                                <View  style={{ flexDirection: "row" }}>
+                                 <TouchableOpacity style={{width:136,height:42,borderRadius:8,backgroundColor:"#e1e8e8",marginTop:24,marginLeft:20}}>
+                                     <Text style={{fontSize:16,color:"#657786",marginTop:9,marginLeft:20}} onPress={()=>{this.setState({show:false})}}>Add Sections</Text>
+                                     </TouchableOpacity>  
+                                     <TouchableOpacity style={{width:136,height:42,borderRadius:8,backgroundColor:"#1f85ff",marginTop:24,marginLeft:20}}>
+                                     <Text style={{fontSize:16,color:"white",marginTop:10,marginLeft:35.5}} onPress={()=>{this.setState({show:false})}}>Continue</Text>
+                                     </TouchableOpacity>   
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
+    
             </View>
         )
     }
@@ -214,7 +314,7 @@ const styles=StyleSheet.create({
         backgroundColor:'white',
         height:540,
         width:357,
-        marginTop:88,
+        marginTop:-88,
         marginLeft:-17,
         borderTopLeftRadius:16,
         borderTopRightRadius:16
