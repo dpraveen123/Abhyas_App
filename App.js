@@ -16,6 +16,9 @@ import DrawerNav from './Navigation/TopNav/NavBar'
 // import Hello from './Bsharp/Cards'
 // import SwitchExample from './Bsharp/dropdown'
 import Authentication1 from './Authentication1'
+import CreateData from './createdata'
+import Schools from './Schools'
+
 import {
   AppRegistry,
   StyleSheet,
@@ -70,8 +73,9 @@ class App extends React.Component {
 
   render() {
     return (
-
-      <Authentication1 />
+      // <CreateData />
+      <Schools />
+      // <Authentication1 />
 
     )
 
