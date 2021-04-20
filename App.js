@@ -24,7 +24,9 @@ import {
   TextInput,
   ScrollView
 } from 'react-native';
-import Hello from './profile/Card';
+import Hello from './profile/Hello';
+import Addclass from './profile/Addclass';
+import Profile from './profile/Stack'
 
 
 
@@ -36,6 +38,8 @@ class App extends React.Component {
       
         {/* <PhoneNumber /> */}
         <Hello />
+        {/* <Profile /> */}
+        {/* <Addclass /> */}
         {/* <MyCourses /> */}
         {/* <SwitchExample /> */}
         {/* <Example /> */}
