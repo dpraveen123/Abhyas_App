@@ -26,13 +26,16 @@ import {
 } from 'react-native';
 import Hello from './profile/Card';
 
+
+
 class App extends React.Component {
   render() {
     return (
       <View>
-        <Hello />
+      
+      
         {/* <PhoneNumber /> */}
-        {/* <Hello /> */}
+        <Hello />
         {/* <MyCourses /> */}
         {/* <SwitchExample /> */}
         {/* <Example /> */}
