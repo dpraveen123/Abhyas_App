@@ -37,15 +37,16 @@ export default class ChooseClass extends Component {
         }
     }
     
-onValueChange=(e)=>{
-    // console.log(e," is picker value")
+onValueChange=(value1)=>{
+    console.log(value1," is picker value")
     
     this.setState({
+        pickervalue:value1,
         button:false,
         color:'#1F85FF',
         addSection:true,
         addAnotherSectionTitle:true,
-        pickervalue:e,
+       
         
     })
 } 
@@ -201,31 +202,21 @@ render() {
                     >Add Class</Text>
                  </TouchableOpacity>
                  <View   style={{borderWidth:1,borderColor:'#E1E8ED',width:328,height:40,marginLeft:16,borderRadius:4}}>
-                 <RNPickerSelect
-            
-                 placeholder={{label:'Select class'}}
-                 onValueChange={(value1) =>
-                   {
-                    //    console.log(value1)
-                    this.onValueChange(value1)
-                   }
-                 }
-                 selectedValue={this.state.pickervalue}
-                 items={[
-                { label:"1st Class" ,value:"1st Class" },
-                { label:"2nd Class" ,value:"2nd Class" },
-                { label:"3rd Class" ,value:"3rd Class" },
-                { label:"4th Class" ,value:"4th Class" },
-                { label:"5th Class" ,value:"5th Class" },
-                { label:"6th Class" ,value:"6th Class" },
-                { label:"7th Class" ,value:"7th Class" },
-                { label:"8th Class" ,value:"8th Class" },
-                { label:"9th Class" ,value:"9th Class" },
-                { label:"10th Class",value:"10th Class" },
-                ]}
-                />
-                 </View>
-                
+                 
+                <Picker  onValueChange={(value1) =>{this.onValueChange(value1)}}>
+                    <Picker.Item label="Select class" value="0"/>
+                    <Picker.Item label="1st class" value="1st class"/>
+                    <Picker.Item label="2nd class" value="2nd class"/>
+                    <Picker.Item label="3rd class" value="3rd class"/>
+                    <Picker.Item label="4th class" value="4th class"/>
+                    <Picker.Item label="5th class" value="5th class"/>
+                    <Picker.Item label="6th class" value="6th class"/>
+                    <Picker.Item label="7th class" value="7th class"/>
+                    <Picker.Item label="8th class" value="8th class"/>
+                    <Picker.Item label="9th class" value="9th class"/>
+                    <Picker.Item label="10th class" value="10th class"/>
+                </Picker>
+                </View>
                 <Text>
                     {this.AddSection()}
                 </Text>
@@ -369,3 +360,35 @@ const styles=StyleSheet.create({
       marginTop:15
     },
 })
+{/* <RNPickerSelect
+                 placeholder={{label:'Select class'}}
+                // value='hiii'
+                style={{color:'black'}}
+                 onValueChange={(value1) =>
+                   {
+                    
+                       this.setState=({
+                          pickervalue:value1
+                       })
+                       console.log('value1 is',value1);
+                    //    console.log('selectedValue is',this.state.pickervalue)
+                    this.onValueChange(value1)
+                   }}
+                //  selectedValue={selectedValue}
+                 selectedValue={this.state.pickervalue}
+
+                //  console.log()
+                 items={[
+                { label:"1st Class" ,value:"1st Class" },
+                { label:"2nd Class" ,value:"2nd Class" },
+                { label:"3rd Class" ,value:"3rd Class" },
+                { label:"4th Class" ,value:"4th Class" },
+                { label:"5th Class" ,value:"5th Class" },
+                { label:"6th Class" ,value:"6th Class" },
+                { label:"7th Class" ,value:"7th Class" },
+                { label:"8th Class" ,value:"8th Class" },
+                { label:"9th Class" ,value:"9th Class" },
+                { label:"10th Class",value:"10th Class" },
+                ]}
+                /> */}
+                 

@@ -82,10 +82,10 @@ export default function Authentication1() {
     })
 
     if (authenticated) return (
-        // <NavigationContainer>
-        //     <DrawerNav />
-        // </NavigationContainer>
-        <AddNewClassesPage/>
+        <NavigationContainer>
+            <DrawerNav />
+        </NavigationContainer>
+        // <AddNewClassesPage/>
         // <ChooseClass/>
     );
 
