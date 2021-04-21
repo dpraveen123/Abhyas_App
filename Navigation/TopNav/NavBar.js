@@ -29,6 +29,7 @@ import BotNav from '../BottomNav/BotNav'
 import DrawerIcon from '../Icons/DrawerIcon';
 import DrawerContent from '../DrawerNav/DrawerContent';
 import ChooseClass from '../../ClassesDesign/ChooseClass';
+import Profile from '../../mywork/Profile'
 const Stack = createStackNavigator();
 
 const NavBar = ({ navigation }) => {
@@ -66,6 +67,7 @@ const NavBar = ({ navigation }) => {
             <Stack.Screen name="Reports" component={Reports} />
             <Stack.Screen name="Students" component={Students} />
             <Stack.Screen name="Timetable" component={Timetable} />
+            <Stack.Screen name="addteachers" component={Profile} />
             {/* <Stack.Screen name="ChooseClass" component={ChooseClass}/> */}
         </Stack.Navigator>
     )
