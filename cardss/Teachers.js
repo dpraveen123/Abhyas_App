@@ -3,12 +3,13 @@ import { View, Text } from 'react-native'
 import Teacher from '../teacher'
 
 
-function Teachers() {
+function Teachers({navigation}) {
+    // console.log(navigation,"i am from captal Teachers")
     return (
-        <View>
-            <Teacher /> 
-            {/* <Text>Teachers?????????????????????????????...............</Text> */}
-        </View>
+        // <View>
+            <Teacher props={navigation}/> 
+            // {/* <Text>Teachers?????????????????????????????...............</Text> */}
+        // </View>
     )
 }
 export default Teachers

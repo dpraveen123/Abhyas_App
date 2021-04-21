@@ -3,15 +3,6 @@ import React, { useState } from 'react';
 // import auth from '@react-native-firebase/auth';
 // import PhoneNumber from './screens/PhoneNumber';
 // import VerifyCode from './screens/VerifyCode';
-<<<<<<< HEAD
-import VerifyCode from './OtpPage';
-import ChooseClass from './ClassesDesign/ChooseClass-2'
-import Authenticated from './screens/Authenticated';
-import PhoneNumber from './Logo/LandingPage';
-import { NavigationContainer } from '@react-navigation/native';
-import OtpPage from './OtpPage'
-import DrawerNav from './Navigation/TopNav/NavBar'
-=======
 // import VerifyCode from './OtpPage';
 // import ChooseClass from './ClassesDesign/ChooseClass'
 // import Authenticated from './screens/Authenticated';
@@ -20,7 +11,6 @@ import DrawerNav from './Navigation/TopNav/NavBar'
 // import OtpPage from './OtpPage'
 // import DrawerNav from './Navigation/TopNav/NavBar'
 // import LandingPage from './Logo/LandingPage'
->>>>>>> 527bbdcb1b04c280fe810c6340115803571a9ce9
 // import LandingPage from './Logo/LandingPage'
 // import MyCourses from './Bsharp/mycourses'
 // import Example from './Bsharp/students'
@@ -45,12 +35,7 @@ import {
 // import Profile from './mywork/Profile';
 import Teacher from './teacher'
 
-<<<<<<< HEAD
-import Translator from './OtpPage'
-import Page from './ClassesDesign/NoSectionsAdded';
-=======
 // import Translator from './OtpPage'
->>>>>>> 527bbdcb1b04c280fe810c6340115803571a9ce9
 
 class App extends React.Component {
   //   constructor(props){
@@ -92,14 +77,11 @@ class App extends React.Component {
 
   render() {
     return (
-<<<<<<< HEAD
-=======
       // <CreateData />
       // <Schools />
       // <Profile />
       // <Teacher />
 
->>>>>>> 527bbdcb1b04c280fe810c6340115803571a9ce9
       <Authentication1 />
     )
 

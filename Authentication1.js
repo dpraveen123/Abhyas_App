@@ -46,6 +46,7 @@ import ChooseClass from './ClassesDesign/ChooseClass-2';
 // export default App;
 
 export default function Authentication1() {
+    // console.log("hloooooo")
     // return (
     //   // <OtpPage />
     //   <LandingPage />
@@ -82,10 +83,10 @@ export default function Authentication1() {
     })
 
     if (authenticated) return (
-        // <NavigationContainer>
-        //     <DrawerNav />
-        // </NavigationContainer>
-        <AddNewClassesPage/>
+        <NavigationContainer>
+            <DrawerNav />
+        </NavigationContainer>
+        // <AddNewClassesPage/>
         // <ChooseClass/>
     );
 
