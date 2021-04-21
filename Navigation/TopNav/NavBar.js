@@ -28,7 +28,12 @@ import Timetable from '../../cardss/Timetable'
 import BotNav from '../BottomNav/BotNav'
 import DrawerIcon from '../Icons/DrawerIcon';
 import DrawerContent from '../DrawerNav/DrawerContent';
+<<<<<<< HEAD
 import ChooseClass from '../../ClassesDesign/ChooseClass-2';
+=======
+import ChooseClass from '../../ClassesDesign/ChooseClass';
+import Profile from '../../mywork/Profile'
+>>>>>>> 527bbdcb1b04c280fe810c6340115803571a9ce9
 const Stack = createStackNavigator();
 
 const NavBar = ({ navigation }) => {
@@ -66,6 +71,7 @@ const NavBar = ({ navigation }) => {
             <Stack.Screen name="Reports" component={Reports} />
             <Stack.Screen name="Students" component={Students} />
             <Stack.Screen name="Timetable" component={Timetable} />
+            <Stack.Screen name="addteachers" component={Profile} />
             {/* <Stack.Screen name="ChooseClass" component={ChooseClass}/> */}
         </Stack.Navigator>
     )

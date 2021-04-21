@@ -184,6 +184,7 @@ AddAnotherSectionTitle=()=>{
                    {
                     this.state.n.map(l=>{
             console.log("l is ",l)
+            
             return(
             <View>
                  <View>
