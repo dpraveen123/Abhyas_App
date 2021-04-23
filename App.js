@@ -26,7 +26,8 @@ import {
 } from 'react-native';
 import Hello from './profile/Hello';
 import Addclass from './profile/Addclass';
-import Profile from './profile/Stack'
+import Profile from './profile/Stack';
+import AllClasses from './profile/Classes';
 
 
 
@@ -37,7 +38,8 @@ class App extends React.Component {
       
       
         {/* <PhoneNumber /> */}
-        <Hello />
+        <AllClasses />
+        {/* <Hello /> */}
         {/* <Profile /> */}
         {/* <Addclass /> */}
         {/* <MyCourses /> */}
