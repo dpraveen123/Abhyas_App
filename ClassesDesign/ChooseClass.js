@@ -17,6 +17,11 @@ import RNPickerSelect from 'react-native-picker-select';
 import AfterClassPage from './AfterClassPage';
 var i=0;
 import Page from './NoSectionsAdded'
+import functions from '@react-native-firebase/functions';
+functions()
+.httpsCallable('listProducts')({a:"helllllloooooooo"}).then(res=>{
+    console.log(res,"from functions")
+})
 export default class ChooseClass extends Component {
     constructor(props) {
         super(props)
@@ -166,6 +171,9 @@ ShowPage=()=>{
 afterClassPage=()=>{
 
 }
+// onValueChange=(e)=>{
+
+// }
 render() {
         return (
             <View>
