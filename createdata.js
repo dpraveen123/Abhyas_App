@@ -21,7 +21,8 @@ class CreateData extends React.Component {
         });
     }
     componentDidMount = () => {
-        this.state.phonenumber = 9515794253
+        // this.state.phonenumber = '+919515794253'
+        this.state.phonenumber = '+918688696792'
         this.setState({ phonenumber: this.state.phonenumber })
         console.log(this.state.phonenumber, typeof (`${this.state.phonenumber}`))
         firestore()
@@ -30,7 +31,7 @@ class CreateData extends React.Component {
                 principalName: 'nagaraju',
                 schoolName: 'nagschool',
                 uuid: this.uuidv4(),
-                phoneno: '8688696792',
+                phoneno: '+918688696792',
             })
             .then(() => {
                 console.log('User added!');
