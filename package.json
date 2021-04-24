@@ -12,8 +12,9 @@
   "dependencies": {
     "@react-native-community/checkbox": "^0.5.7",
     "@react-native-community/picker": "^1.8.1",
-    "@react-native-firebase/app": "^11.2.0",
+    "@react-native-firebase/app": "^11.3.3",
     "@react-native-firebase/auth": "^11.2.0",
+    "@react-native-firebase/firestore": "^11.3.2",
     "@react-navigation/bottom-tabs": "^5.11.10",
     "@react-navigation/drawer": "^5.12.5",
     "@react-navigation/material-top-tabs": "^5.3.15",
