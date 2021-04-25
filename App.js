@@ -13,7 +13,7 @@ import DrawerNav from './Navigation/TopNav/NavBar'
 // import LandingPage from './Logo/LandingPage'
 // import MyCourses from './Bsharp/mycourses'
 // import Example from './Bsharp/students'
-// import Hello from './Bsharp/Cards'
+// // import Hello from './Bsharp/Cards'
 // import SwitchExample from './Bsharp/dropdown'
 import Authentication1 from './Authentication1'
 import {
@@ -30,6 +30,10 @@ import {
 
 import Translator from './OtpPage'
 import Page from './ClassesDesign/NoSectionsAdded';
+import Edit from './assets/edit'
+import Editpick from './profile/Editpick'
+import Addclass from './profile/Addclass'
+import AllClasses from './profile/Classes'
 // -----------------port-8081---------------------------
 class App extends React.Component {
   //   constructor(props){
@@ -71,6 +75,10 @@ class App extends React.Component {
 
   render() {
     return (
+      // <Edit/>
+      // <Editpick/>
+      // <Addclass/>
+      // <AllClasses/>
       <Authentication1 />
     )
 
