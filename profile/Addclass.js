@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -26,13 +26,23 @@ import { Linking } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 import CheckBox from '@react-native-community/checkbox';
 import firestore from '@react-native-firebase/firestore';
+import functions from '@react-native-firebase/functions';
+
 
 // import { black } from 'react-native-paper/lib/typescript/styles/colors';
 
 
 export default function Addclass() {
 
-
+  // useEffect(() => {
+  //   firestore()
+  //     .collection('Schools')
+  //     .get()
+  //     .then(response => {
+  //       console.log("hii", response.data());
+  //     })
+  //   console.log("hello this is from componentdidmount");
+  // });
 
 
   // const [isSelected, setSelection] = useState(false);
@@ -48,18 +58,35 @@ export default function Addclass() {
   // console.log(isSelected, onChangeName, onChangeNumber, onChangeNumber, onChangeSection, onChangeSubject)
 
   storeData = () => {
-    firestore()
-      .collection('Schools').doc('5a027b11-470c-4fb5-9355-989036cade8c').collection('Teachers').doc(`${onChangeNumber}`)
-      .set({
-        TeacherName: onChangeName,
-        TeacherPhoneno: onChangeNumber,
-        Class: onChangeClass,
-        section: onChangeSection,
-        subject: onChangeSubject,
-        classTeacher: isSelected
-      })
-      .then(() => {
-        console.log('User added!');
+    // firestore()
+    //   .collection('Schools').doc('5a027b11-470c-4fb5-9355-989036cade8c').collection('Teachers').doc(`${onChangeNumber}`)
+    //   .set({
+    //     TeacherName: onChangeName,
+    //     TeacherPhoneno: onChangeNumber,
+    //     Class: onChangeClass,
+    //     section: onChangeSection,
+    //     subject: onChangeSubject,
+    //     classTeacher: isSelected
+    //   })
+    //   .then(() => {
+    //     console.log('User added!');
+    //   });
+
+    var details = {
+      TeacherName: onChangeName,
+      TeacherPhoneno: onChangeNumber,
+      Class: onChangeClass,
+      section: onChangeSection,
+      subject: onChangeSubject,
+      classTeacher: isSelected
+    }
+
+
+
+    functions()
+      .httpsCallable('addingTeachers')(details)
+      .then((response) => {
+        console.log("sucsesfully added a new Teacher dudee to fire functions", response.data())
       });
   }
   return (

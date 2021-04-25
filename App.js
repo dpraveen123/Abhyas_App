@@ -17,9 +17,11 @@ import React, { useState } from 'react';
 // import Hello from './Bsharp/Cards'
 // import SwitchExample from './Bsharp/dropdown'
 import Authentication1 from './Authentication1'
-// import CreateData from './createdata'
-// import Schools from './Schools'
+import CreateData from './createdata'
+import Schools from './Schools'
 // import AdminDashboard from './cardss/AdminDashboard'
+import { Provider } from 'react-redux';
+import store from './redux';
 
 import {
   AppRegistry,
@@ -51,7 +53,10 @@ class App extends React.Component {
       // <Teacher />
       // <TeacherData />
 
-      <Authentication1 />
+     
+      <Provider store={store}>
+         <Authentication1 />
+      </Provider>
     )
 
 

@@ -31,8 +31,6 @@ class Schools extends React.Component {
 
                 this.Details()
             })
-
-
     };
 
     Details = () => {

@@ -17,6 +17,10 @@ import RNPickerSelect from 'react-native-picker-select';
 import AfterClassPage from './AfterClassPage';
 var i=0;
 import Page from './NoSectionsAdded'
+import functions from '@react-native-firebase/functions';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+import store from '../redux'
 export default class ChooseClass extends Component {
     constructor(props) {
         super(props)
@@ -36,10 +40,13 @@ export default class ChooseClass extends Component {
              visibility:false
         }
     }
-    
+    componentDidMount=()=>{
+        console.log(store.getState()," i am from choose class bro")
+    }
 onValueChange=(value1)=>{
     console.log(value1," is picker value")
     
+   if(value1!=0){
     this.setState({
         pickervalue:value1,
         button:false,
@@ -49,6 +56,7 @@ onValueChange=(value1)=>{
        
         
     })
+   }
 } 
 AddSection=()=>{
     // console.log(this.state.addSection);
@@ -64,8 +72,8 @@ AddSection=()=>{
               this.state.show=false
               console.log('this is show in addsection',this.state.show);
               console.log('this.state.value page Addsection',this.state.value);
-              this.state.noSectionAdded[this.state.l]=value
-            //   console.log('this.state.noSectionAdded',this.state.noSectionAdded[this.state.l]);
+              this.state.noSectionAdded[0]=value
+              console.log('this.state.noSectionAdded',this.state.noSectionAdded[0],this.state.noSectionAdded);
           }}
                 placeholder="Enter section name"  
           ></TextInput>
@@ -151,6 +159,7 @@ page=()=>{
         )
     }
 }
+// ..........................Addingclass to firestore................................./
 ShowPage=()=>{
    if (!this.state.value) 
    {
@@ -161,8 +170,20 @@ ShowPage=()=>{
    }
    else{
        this.setState({show:false})
+       var details={
+           className:this.state.pickervalue,
+           sections:this.state.noSectionAdded,
+           uid:store.getState().authdetails.uuid,
+       }
+       console.log(details,details.sections.length,"these are the details")
+       functions()
+      .httpsCallable('addingClass')(details)
+      .then(response => {
+        console.log("sucsesfully added a new class bro",response.data)
+      });
    }
 }  
+
 afterClassPage=()=>{
 
 }
@@ -181,16 +202,18 @@ render() {
                  {/* <Text>
                     {this.NoSectionsAdded()}
                 </Text> */}
-                 <TouchableOpacity 
+                 <TouchableOpacity  
                 style={{
                     position:'absolute',
                     width:328,
-                    height:36,
+                    height:40,
                     opacity:50,
                     backgroundColor:this.state.color,
                     borderRadius:4,
                     marginLeft:16,
-                    marginTop:480
+                    marginTop:480,
+                    justifyContent:'center',
+                    textAlign:'center'
                 }}
                   disabled={this.state.button}>
                     <Text style={styles.buttonTxt} 
@@ -240,7 +263,8 @@ render() {
                             this.state.show=false
                             console.log('this is show in addanothersection',this.state.show);
                             console.log('this.state.value page addanothersection',this.state.value);
-                           this.state.noSectionAdded[this.state.l]=value
+                           this.state.noSectionAdded[l]=value
+                           console.log( this.state.noSectionAdded[l],l,this.state.noSectionAdded)
                             // console.log('this.state.noSectionAdded',this.state.noSectionAdded[this.state.l]);
                         }}  
                   ></TextInput> 
@@ -272,7 +296,7 @@ render() {
                  visible={this.state.show}
                  >
                     <View style={{backgroundColor:"#000000aa",flex:1}}>
-                        <View style={{backgroundColor:"#ffffff",margin:30,width:340,height:230.25,borderRadius:8,marginTop:208.75,marginLeft:10,marginRight:16}}>
+                        <View style={{backgroundColor:"#ffffff",margin:30,width:340,height:230.25,borderRadius:8,marginTop:208.75,marginLeft:22,marginRight:16}}>
                             <View style={{marginTop:24.25,marginLeft:147.33}}>
                             {/* <Info/> */}
                             </View>
@@ -345,8 +369,9 @@ const styles=StyleSheet.create({
     },
     buttonTxt:{
         color:'white',
-        marginTop:8,
-        marginLeft:148,
+        // marginTop:8,
+        // marginLeft:148,
+        textAlign:'center',
         fontFamily:'Roboto',
         fontSize:14,
         fontWeight:'500'
@@ -391,4 +416,3 @@ const styles=StyleSheet.create({
                 { label:"10th Class",value:"10th Class" },
                 ]}
                 /> */}
-                 
