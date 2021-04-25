@@ -2,13 +2,14 @@ import React from 'react';
 import { StyleSheet, View, Text,TouchableOpacity,Image,Dimensions,ScrollView,SafeAreaView,AppRegistry,
   TextInput,Button,Alert,title,TouchableHighlight} from 'react-native';
 import {Card} from'react-native-elements';
-
+import {Picker} from '@react-native-picker/picker';
 // import Drop from '../assets/dropdown';
 import Classno from '../images/Classno'
 import Edit from '../assets/edit';
 import Arr from '../assets/line';
-// import Pick from '../profile/picker';
-import RNPickerSelect from 'react-native-picker-select';
+import Pick from './Picker';
+import Editpick from './Editpick';
+
 
 import { Menu, MenuProvider, MenuOptions, MenuOption, MenuTrigger} from "react-native-popup-menu";
 // import Dropdown from '../profile/drop';
@@ -24,6 +25,7 @@ class AllClasses extends React.Component {
   artists: [
     {
       image: Classno,
+     
       id: 1,
       name: "1st Class ",
      section:"4 sections"
@@ -97,7 +99,7 @@ class AllClasses extends React.Component {
 
     
     return (
-      <SafeAreaView style={{backgroundColor:'white' }}>
+      <SafeAreaView style={{backgroundColor:'white',position:"relative" }}>
           
     
        <ScrollView>
@@ -126,10 +128,10 @@ class AllClasses extends React.Component {
        <View style={{flexDirection: "column",paddingLeft: 0,paddingTop:1,}}>
                    <Image source={artist.image}
                        style={{
-                          height: 50,
-                          width: 50,
-                          backgroundColor: "#ddd",
-                          borderRadius: 50 / 2}}resizeMode="cover"/>
+                          height: 64,
+                          width: 64,
+                          backgroundColor: "#57D5C3" ,
+                          borderRadius: 4}}resizeMode="cover"/>
                           
                       </View>
 
@@ -156,8 +158,8 @@ class AllClasses extends React.Component {
                      <View style={{ paddingLeft:250,paddingTop:22,position:'absolute',flexDirection:'row', justifyContent: 'space-between'}}>
                       
                     
-                  <View style={{ paddingLeft:250,paddingTop:1,flexDirection:'row',position:'absolute',justifyContent: 'space-between'}}>
-                        {/* <Dropdown />    */}
+                  <View style={{ paddingLeft:250,paddingTop:1,position:'absolute',flexDirection:'row',position:'absolute',justifyContent: 'space-between'}}>
+                      <Pick />
                         </View>                  
                     
                       <View style={{ paddingLeft:285,paddingTop:1,position:'absolute',flexDirection:'row', justifyContent: 'space-between'}}>
@@ -166,8 +168,8 @@ class AllClasses extends React.Component {
                       
                     
 
-                     <View style={{ paddingLeft:300,paddingTop:22,position:'absolute',flexDirection:'row', justifyContent: 'space-between'}}>
-                      <Edit />
+                     <View style={{ paddingLeft:250,paddingTop:10,position:'absolute',flexDirection:'row', justifyContent: 'space-between'}}>
+                     <Editpick />
                       </View>
                       
 
@@ -195,7 +197,7 @@ class AllClasses extends React.Component {
                 </View>
                
                 </ScrollView>
-                <View style={{position:'absolute', marginTop: 650, marginLeft: 104}}>
+                <View style={{position:'absolute', marginTop: 600, marginLeft: 125}}>
                
                
                 <TouchableHighlight style={styles.submit} onPress={() => Alert.alert("Adding new class")} underlayColor='#fff'>
@@ -235,7 +237,7 @@ const styles = StyleSheet.create({
     borderColor:"black"
   },
   submit:{
-    width: 150,
+    width: 140,
      height:80 ,
     
   },

@@ -7,45 +7,51 @@ import VerifyCode from './OtpPage';
 import Authenticated from './screens/Authenticated';
 import PhoneNumber from './Logo/LandingPage';
 
-import OtpPage from './OtpPage'
+// import OtpPage from './OtpPage'
 // import LandingPage from './Logo/LandingPage'
 // import MyCourses from './Bsharp/mycourses'
 // import Example from './Bsharp/students'
-// import Hello from './Bsharp/Cards'
+// // import Hello from './Bsharp/Cards'
 // import SwitchExample from './Bsharp/dropdown'
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  Button,
-  TextInput,
-  ScrollView
-} from 'react-native';
+// import {
+//   AppRegistry,
+//   StyleSheet,
+//   Text,
+//   View,
+//   Image,
+//   TouchableOpacity,
+//   Button,
+//   TextInput,
+//   ScrollView
+// } from 'react-native';
 import Hello from './profile/Hello';
 import Addclass from './profile/Addclass';
 import Profile from './profile/Stack';
 import AllClasses from './profile/Classes';
+import Slider from './profile/Tab';
+import Tab2 from './profile/Editpick'
 
 
 
 class App extends React.Component {
   render() {
     return (
-      <View>
+      // <PickerWithIcon />
+      // <Tab2 />
+      // // <View>
       
       
-        {/* <PhoneNumber /> */}
-        <AllClasses />
-        {/* <Hello /> */}
-        {/* <Profile /> */}
-        {/* <Addclass /> */}
-        {/* <MyCourses /> */}
-        {/* <SwitchExample /> */}
-        {/* <Example /> */}
-      </View>
+      //   {/* <PhoneNumber /> */}
+        // <AllClasses /> 
+         <Slider />
+      //   {/* <Tablet /> */}
+      //   {/* <Hello /> */}
+      //   {/* <Profile /> */}
+      //   {/* <Addclass /> */}
+      //   {/* <MyCourses /> */}
+      //   {/* <SwitchExample /> */}
+      //   {/* <Example /> */}
+      // // </View>
     )
   }
 }
