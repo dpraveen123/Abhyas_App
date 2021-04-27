@@ -29,7 +29,9 @@ import Addclass from './profile/Addclass';
 import Profile from './profile/Stack';
 import AllClasses from './profile/Classes';
 import Slider from './profile/Tab';
-import Tab2 from './profile/Editpick'
+import Editpick from './profile/Editpick';
+
+import Newone from './profile/new1';
 
 
 
@@ -44,6 +46,8 @@ class App extends React.Component {
       //   {/* <PhoneNumber /> */}
         // <AllClasses /> 
          <Slider />
+        // <Newone />
+        // <Editpick />
       //   {/* <Tablet /> */}
       //   {/* <Hello /> */}
       //   {/* <Profile /> */}
