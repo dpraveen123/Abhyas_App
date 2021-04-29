@@ -14,11 +14,12 @@ import React, { useState } from 'react';
 // import LandingPage from './Logo/LandingPage'
 // import MyCourses from './Bsharp/mycourses'
 // import Example from './Bsharp/students'
-// import Hello from './Bsharp/Cards'
+// // import Hello from './Bsharp/Cards'
 // import SwitchExample from './Bsharp/dropdown'
 import Authentication1 from './Authentication1'
 import CreateData from './createdata'
 import Schools from './Schools'
+// import DropDown1 from './dropDown'
 // import AdminDashboard from './cardss/AdminDashboard'
 import { Provider } from 'react-redux';
 import store from './redux';
@@ -37,8 +38,16 @@ import {
 // import Profile from './mywork/Profile';
 import Teacher from './teacher'
 
+import Hello from './profile/Hello';
+import Addclass from './profile/Addclass';
+import Profile from './profile/Stack';
+import AllClasses from './profile/Classes';
+import Slider from './profile/Tab';
+import Tab2 from './profile/Editpick'
+import EditPick from './profile/Editpick'
 import Translator from './OtpPage'
 import Page from './ClassesDesign/NoSectionsAdded';
+import Pick from './profile/Picker'
 // -----------------port-8081---------------------------
 class App extends React.Component {
   //   constructor(props){
@@ -87,7 +96,11 @@ class App extends React.Component {
 
      
       <Provider store={store}>
-         <Authentication1 />
+         <Authentication1 /> 
+         {/* <Slider/> */}
+         {/* <DropDown1/> */}
+         {/* <Pick/> */}
+         {/* <EditPick/> */}
       </Provider>
     )
 
