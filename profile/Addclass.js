@@ -13,6 +13,8 @@ import {
 
 
 } from 'react-native';
+
+import store from '../redux'
 import {
   Header,
   LearnMoreLinks,
@@ -78,15 +80,17 @@ export default function Addclass() {
       Class: onChangeClass,
       section: onChangeSection,
       subject: onChangeSubject,
-      classTeacher: isSelected
-    }
+      classTeacher: isSelected,
+      uid: store.getState().uuid
 
+    }
+    console.log(details);
 
 
     functions()
-      .httpsCallable('addingTeachers')(details)
+      .httpsCallable('addingTeacher')(details)
       .then((response) => {
-        console.log("sucsesfully added a new Teacher dudee to fire functions", response.data())
+        console.log("sucsesfully added a new Teacher dudee to fire functions", response)
       });
   }
   return (
@@ -181,7 +185,7 @@ export default function Addclass() {
             <Text style={{ color: '#1F85FF', fontWeight: "bold", fontSize: 15 }}
             >
               Add Another class
-</Text>
+            </Text>
 
           </View>
         </View>

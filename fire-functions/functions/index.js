@@ -2,6 +2,7 @@ const functions = require("firebase-functions");
 const admin = require('firebase-admin');
 admin.initializeApp();
 const db = admin.firestore();
+
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
@@ -44,8 +45,8 @@ exports.addingClass = functions.https.onCall((data, context) => {
 
 
 exports.addingTeacher = functions.https.onCall((data, context) => {
-  // for(var i=0;i<data.sections.length;i++){
-  db.collection('Schools').doc('5a027b11-470c-4fb5-9355-989036cade8c').collection('Teachers')
+ 
+  db.collection('Schools').doc(data.uid).collection('Teachers')
     .doc(data.TeacherPhoneno).set({
       TeacherName: data.TeacherName,
       TeacherPhoneno: data.TeacherPhoneno,
@@ -55,8 +56,8 @@ exports.addingTeacher = functions.https.onCall((data, context) => {
       classTeacher: data.classTeacher
     }).then((res) => {
       console.log(res, "saved to firestore sucsessfully")
-      // return res.json);
-      return res.status(200).json({});
+     
+      return data;
     })
   // }
   // return data;

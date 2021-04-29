@@ -11,7 +11,9 @@ const INITIAL_STATE = {
       case 'counter/decremented':
         return { value: state.value - 1 }
       case 'authdetails':
-          return{authdetails:action.payload}  
+          return{authdetails:action.payload} 
+      case 'principalnumber':
+          return{} 
       default:
         return state
     }

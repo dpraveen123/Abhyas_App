@@ -45,7 +45,7 @@ import { connect } from 'react-redux';
 
 // export default App;
 
- function Authentication1(props) {
+function Authentication1(props) {
     // console.log("hloooooo")
     // return (
     //   // <OtpPage />
@@ -75,14 +75,17 @@ import { connect } from 'react-redux';
     }
 
     auth().onAuthStateChanged((user) => {
-        console.log(user.phoneNumber,"thse are the user details")
-        firestore().collection('Principals').doc(user.phoneNumber).get().then(res=>{
-            console.log(res.data(),"is res")
-           props.details(res.data())
-        })
+
         // this.props.details(auth())
         if (user) {
-            setAuthenticated(true);
+
+            console.log(user.phoneNumber, "thse are the user details")
+            firestore().collection('Principals').doc(user.phoneNumber).get().then(res => {
+                console.log(res.data(), "is res")
+                props.details(res.data())
+                setAuthenticated(true);
+            })
+
         } else {
             setAuthenticated(false);
         }
@@ -102,12 +105,12 @@ import { connect } from 'react-redux';
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-   
-    //   // dispatching plain actions
-    //   increment: () => dispatch({ type: 'INCREMENT' }),
-    //   decrement: () => dispatch({ type: 'DECREMENT' }),
-    //   reset: () => dispatch({ type: 'RESET' }),
-    details:(l)=>dispatch({type:'authdetails',payload:l})
+
+        //   // dispatching plain actions
+        //   increment: () => dispatch({ type: 'INCREMENT' }),
+        //   decrement: () => dispatch({ type: 'DECREMENT' }),
+        //   reset: () => dispatch({ type: 'RESET' }),
+        details: (l) => dispatch({ type: 'authdetails', payload: l })
     }
-  }
-export default connect(null,mapDispatchToProps)(Authentication1)
+}
+export default connect(null, mapDispatchToProps)(Authentication1)
