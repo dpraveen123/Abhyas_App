@@ -43,23 +43,9 @@ import Addclass from './profile/Addclass';
 import Profile from './profile/Stack';
 import AllClasses from './profile/Classes';
 import Slider from './profile/Tab';
-import Tab2 from './profile/Editpick'
-import EditPick from './profile/Editpick'
-import Translator from './OtpPage'
-import Page from './ClassesDesign/NoSectionsAdded';
-import Pick from './profile/Picker'
-// -----------------port-8081---------------------------
-class App extends React.Component {
-  //   constructor(props){
-  //     super(props);
-  //     this.state={
-  //         confirm:null,
-  //         authenticated:false,
-  //     }
-  //    }
-  // componentDidMount=()=>{
-  //   auth().onAuthStateChanged((user) => {
-  //     if (user) {
+import Editpick from './profile/Editpick';
+// import store from './redux'
+import Newone from './profile/new2';
 
   //         this.setState({authenticated:true})
   //     } else {
@@ -86,7 +72,7 @@ class App extends React.Component {
   //        alert('Invalid code');
   //    }
   // }
-
+class App extends React.Component{
   render() {
     return (
       // <CreateData />
@@ -96,12 +82,37 @@ class App extends React.Component {
 
      
       <Provider store={store}>
-         <Authentication1 /> 
+         {/* <Authentication1 />  */}
          {/* <Slider/> */}
+         {/* <Editpick /> */}
+         {/* <Slider/> */}
+      
+         <Newone />    
          {/* <DropDown1/> */}
          {/* <Pick/> */}
          {/* <EditPick/> */}
       </Provider>
+      // <PickerWithIcon />
+      // <Tab2 />
+      // // <View>
+      
+      
+      //   {/* <PhoneNumber /> */}
+        // <AllClasses /> 
+        // <Provider store={store}>
+        //  <Slider />
+
+        // </Provider>
+        // <Newone />
+        // <Editpick />
+      //   {/* <Tablet /> */}
+      //  <Hello /> 
+      //   {/* <Profile /> */}
+      //   {/* <Addclass /> */}
+      //   {/* <MyCourses /> */}
+      //   {/* <SwitchExample /> */}
+      //   {/* <Example /> */}
+      // // </View>
     )
 
 
