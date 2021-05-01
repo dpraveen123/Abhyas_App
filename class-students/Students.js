@@ -2,18 +2,13 @@ import React from 'react';
 import { StyleSheet, View, Text,TouchableOpacity,Image,Dimensions,ScrollView,SafeAreaView,AppRegistry,
   TextInput,Button,Alert,title,TouchableHighlight} from 'react-native';
 import {Card} from'react-native-elements';
-import {Picker} from '@react-native-picker/picker';
-// import Drop from '../assets/dropdown';
-import Classno from '../images/Classno'
-import Edit from '../assets/edit';
-import Arr from '../assets/line';
-import Pick from './Picker';
-import Editpick from './Editpick';
-
-import Newone from './new1'
+import pic from '../images/pp.jpg';
+import Svgpages from '../assets/Svg';
+import Search from '../assets/Search';
+import Fil from '../assets/fil';
+import Editpickker from './edit';
 
 
-import { Menu, MenuProvider, MenuOptions, MenuOption, MenuTrigger} from "react-native-popup-menu";
 
 
 
@@ -26,66 +21,76 @@ class AllClasses extends React.Component {
   state={
   artists: [
     {
-      image: Classno,
+      image: pic,
      
       id: 1,
-      name: "1st Class ",
-     section:"4 sections"
+      name: "Mike Anderson ",
+     section:"1ST CLASS- A SECTION",
+     rollno:"Roll No. 2"
     },
     {
-      image: Classno,
+      image: pic,
       id: 2,
-      name: "2nd Class ",
-     section:"4 sections"
+      name: "Thomas Edison",
+      section:"1ST CLASS- A SECTION",
+      rollno:"Roll No. 2"
 
     },
     {
-      image: Classno,
+      image: pic,
       id: 3,
-      name: "3rd Class",
-     section:"4 sections"
+      name: "Mounika Kiran",
+     section:"1ST CLASS- A SECTION",
+     rollno:"Roll No. 2"
     },
     {
-        image: Classno,
+        image:pic,
         id: 4,
-      name: "4th Class ",
-     section:"4 sections"
+       name: "Thomas Edison  ",
+       section:"1ST CLASS- A SECTION",
+       rollno:"Roll No. 2"
       },
       {
-        image: Classno,
+        image: pic,
         id: 5,
-      name: "5th Class ",
-     section:"4 sections"
+      name: "Mike Anderson",
+      section:"1ST CLASS- A SECTION",
+      rollno:"Roll No. 2"
       },
       {
-        image: Classno,
+        image: pic,
         id: 6,
-      name: "6th Class",
-     section:"4 sections"
+      name: "Amelia Cleo",
+      section:"1ST CLASS- A SECTION",
+      rollno:"Roll No. 2"
       },
       {
-        image: Classno,
+        image: pic,
         id: 7,
-      name: "7th Class ",
-     section:"4 sections"
+       name: "Cleo ",
+      section:"1ST CLASS- A SECTION",
+      rollno:"Roll No. 2"
       },
       {
-        image: Classno,
+        image: pic,
         id: 8,
-      name: "8th Class ",
-     section:"4 sections "
+      name: "Mike Anderson",
+      section:"1ST CLASS- A SECTION",
+      rollno:"Roll No. 2"
       },
       {
-        image: Classno,
+        image: pic,
         id: 9,
-        name: "9th Class ",
-       section:"4 sections"
+        name: " Yuro Plee ",
+        section:"1ST CLASS- A SECTION",
+        rollno:"Roll No. 2"
       },
       {
-        image: Classno,
+        image: pic,
         id: 10,
-        name: "10th Class ",
-       section:"4 sections"
+        name: "Nachos",
+        section:"1ST CLASS- A SECTION",
+        rollno:"Roll No. 2"
       },
      
   ],
@@ -102,6 +107,19 @@ class AllClasses extends React.Component {
     
     return (
       <SafeAreaView style={{backgroundColor:'white' }}>
+          <View style={{justifyContent:'center',paddingHorizontal:15,flexDirection:'row',paddingTop:10}}>
+         
+         <View style={{height:50,flexDirection:'row',padding:5,alignItems:'center',borderRadius:30,paddingLeft:30, flex: 1,backgroundColor:'#f5f8fa'}}>
+         
+         
+           <Search />
+           <TextInput placeholder="Search Students or roll no" style={{fontSize:14, marginLeft:15,borderRadius:15}}/>
+           </View>
+           
+         </View>
+         
+        
+  
           
     
        <ScrollView>
@@ -122,8 +140,7 @@ class AllClasses extends React.Component {
 
             
             
-
-              <Card >
+              <TouchableOpacity style={styles.card}> 
       
       
 
@@ -134,10 +151,11 @@ class AllClasses extends React.Component {
        <View style={{flexDirection: "column",paddingLeft: 0,paddingTop:1,}}>
                    <Image source={artist.image}
                        style={{
-                          height: 64,
-                          width: 64,
-                          backgroundColor: "#57D5C3" ,
-                          borderRadius: 4}}resizeMode="cover"/>
+                       
+                          height: 50,
+                          width: 50,
+                          backgroundColor: "#ddd",
+                          borderRadius: 50 / 2}}resizeMode="cover"/>
     
                       </View>
 
@@ -151,35 +169,26 @@ class AllClasses extends React.Component {
                         
                         }}>
                         <Text style={{ fontSize: 20,fontFamily:"Roboto",lineHeight:28 }} >{artist.name}</Text>
+                        <Text style={{ fontSize: 14, color: "#657786",fontFamily:"Roboto" }}>{artist.rollno} </Text>
                         
-                        <Text style={{ fontSize: 14, color: "#A7A7A7" }}>{artist.section} </Text>
+                        <Text style={{ fontSize: 14, color: "#A7A7A7",fontFamily:"Roboto" }}>{artist.section} </Text>
                       </View>
 
                                   
                      </View>
-                   
+                     <View style={{ paddingLeft:260,paddingTop:25,position:"absolute"}}>
+                      <View>
+                      <Svgpages  />
+                       </View>
+                    </View>
+                    
                 
                    </View>
-                 
-                   <View >
+                  
                  
                   
-                      </View>
-                    
                    
-                      <View style={{position:'absolute',flexDirection:'row',paddingTop:15}}>
-
-                      {/* <Pick /> */}
-                      {/* <Editpick /> */}
-                      <View style={{position:'absolute'}}>
-                      <Editpick/>
-                      </View>
-                     </View> 
-     
-                       <Newone />
-                       
-                 
-                    </Card>
+                  </TouchableOpacity>
                   
                     
                     
@@ -203,7 +212,7 @@ class AllClasses extends React.Component {
                
                 <TouchableHighlight style={styles.submit} onPress={() => 
                   Alert.alert("Adding new class")}underlayColor='#fff'>
-                  <Text style={styles.submitText}> + Add new Class </Text>
+                  <Text style={styles.submitText}> + Add new Student </Text>
                  </TouchableHighlight>
 
                </View>
@@ -230,6 +239,26 @@ submitText:{
     borderWidth: 1,
     fontWeight:'bold',
     borderColor: '#fff',
+    fontFamily:"Roboto"
+},
+card: {
+  backgroundColor: "#fff",
+  paddingVertical: 10,
+  paddingHorizontal: 15,
+  width: width / 1.1,
+  marginHorizontal: 20,
+  borderRadius: 20,
+
+  height: height / 8,
+
+  shadowColor: "#000",
+  shadowOffset: {
+    width: 2,
+    height: 2,
+  },
+  flex:1,
+  shadowOpacity: 0.3,
+  shadowRadius: 1.5,
 },
 });
 

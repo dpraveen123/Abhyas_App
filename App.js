@@ -33,6 +33,8 @@ import Editpick from './profile/Editpick';
 
 import Newone from './profile/new1';
 
+import Tabnav from './Teachers/Tabnav';
+import Tabnav1 from  './class-students/Tabnav';
 
 
 class App extends React.Component {
@@ -45,7 +47,9 @@ class App extends React.Component {
       
       //   {/* <PhoneNumber /> */}
         // <AllClasses /> 
-         <Slider />
+        //  <Slider />
+        // <Tabnav />
+        <Tabnav1 />
         // <Newone />
         // <Editpick />
       //   {/* <Tablet /> */}

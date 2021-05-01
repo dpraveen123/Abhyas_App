@@ -9,7 +9,7 @@ const IC_ARR_DOWN = require('../assets/dropup.png');
 const IC_ARR_UP = require('../assets/dropdown.png');
 
 
-export default class App extends Component {
+export default class Newone extends React.Component {
 
     constructor(props){
         super(props);
@@ -39,7 +39,7 @@ export default class App extends Component {
                     </View>
                     }>
 
-                       <View>
+             <View>
             {
               dummyData.map((item,index) =>
               {
@@ -53,31 +53,21 @@ export default class App extends Component {
                   }}>
 
 
-                      <TouchableOpacity style={styles.appButtonContainer}>
+                    <TouchableOpacity style={styles.appButtonContainer}>
                     <Text style={{fontSize:15,fontWeight:"bold"}} >{item.name}</Text>
                     </TouchableOpacity>
                    
                   
-                     </View> 
+                  </View> 
                  
                 )
               })
             }
-            
-
-              
-               
-                  
-
-                
-
-  
-            
              </View>
 
 
 
-                  </DropDownItem>
+            </DropDownItem>
 
              
               
@@ -87,6 +77,9 @@ export default class App extends Component {
     );
   }
 }
+
+
+
 const { width, height } = Dimensions.get("screen");
 const styles = StyleSheet.create({
   container: {
@@ -96,7 +89,7 @@ const styles = StyleSheet.create({
     
   },
   header: {
-  paddingVertical: 8,
+    paddingVertical: 8,
     paddingTop:10,
     paddingBottom:10,
     marginTop:5,

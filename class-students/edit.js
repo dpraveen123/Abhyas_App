@@ -7,13 +7,17 @@ import {
   MenuOptions,
   MenuOption,
 } from 'react-native-popup-menu';
-import Edit from '../assets/edit'
-import Drop from '../assets/drop';
-import { TouchableOpacity } from 'react-native'; 
-import New from './new'   ;
+import Edit from '../assets/edit';
+import Svgpages from '../assets/Svg';
 
-export default class Editpick extends React.Component {
-  
+
+
+
+export default class Editpickker extends React.Component {
+  constructor(props, ctx) {
+    super(props, ctx);
+    this.state = { visible: false };
+  }
 
   render() {
     return (
@@ -25,14 +29,14 @@ export default class Editpick extends React.Component {
       <Menu style={styles.Menu} onSelect={value => alert(`Selected number: ${value}`)}>
   {/* <MenuTrigger text='Select option' /> */}
   <MenuTrigger >
-    <Edit />
+    <Svgpages />
   </MenuTrigger>
   
   <MenuOptions   >
-    <MenuOption value={1}  text ='Edit class'/>
+    <MenuOption value={1} onSelect={() => this.setState({ visible: false })} text='Close modal' text='Edit Class' />
     <MenuOption value={2}  text='Delete Class' />
     <MenuOption value={3}  text='Add Section'/>
-    {/* <MenuOption value={4}  text='Add Section'/> */}
+    
 
   </MenuOptions>
 </Menu>
@@ -65,27 +69,3 @@ const styles = StyleSheet.create({
   }
   
 });
-
-
- 
-
-
-
-
-// {/* <Menu onSelect={value => alert(`Selected to ${value}`)}>
-//   {/* <MenuTrigger 
-//   text='Section'
-//    /> */}
-// //    <MenuTrigger>
-// //    <Edit />
-// //    </MenuTrigger>
-// //   <MenuOptions>
-// //     <MenuOption value={"edit"} text='Edit Class' />
-// //     <MenuOption value={"delete"} text='Delete Class' >
-     
-// //     </MenuOption>
-// //     <MenuOption value={"add section"}  text='Add Section' />
-// //   </MenuOptions>
-// // </Menu> */}
-
-
