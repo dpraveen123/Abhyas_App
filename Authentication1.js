@@ -6,7 +6,7 @@ import VerifyCode from './OtpPage';
 
 import Authenticated from './screens/Authenticated';
 import PhoneNumber from './Logo/LandingPage';
-
+import firestore from '@react-native-firebase/firestore';
 import OtpPage from './OtpPage'
 // import LandingPage from './Logo/LandingPage'
 // import MyCourses from './Bsharp/mycourses'
@@ -28,7 +28,8 @@ import DrawerNav from './Navigation/TopNav/NavBar'
 import { NavigationContainer } from '@react-navigation/native';
 import AddNewClassesPage from './ClassesDesign/AddNewClassesPage';
 import ChooseClass from './ClassesDesign/ChooseClass-2';
-
+import { connect } from 'react-redux';
+import TeacherStack from './TEACHERS/TeacherStack';
 // class App extends React.Component {
 //   render() {
 //     return (
@@ -45,7 +46,8 @@ import ChooseClass from './ClassesDesign/ChooseClass-2';
 
 // export default App;
 
-export default function Authentication1() {
+ function Authentication1(props) {
+    // console.log("hloooooo")
     // return (
     //   // <OtpPage />
     //   <LandingPage />
@@ -74,6 +76,12 @@ export default function Authentication1() {
     }
 
     auth().onAuthStateChanged((user) => {
+        console.log(user.phoneNumber,"thse are the user details")
+        firestore().collection('Principals').doc(user.phoneNumber).get().then(res=>{
+            console.log(res.data(),"is res")
+           props.details(res.data())
+        })
+        // this.props.details(auth())
         if (user) {
             setAuthenticated(true);
         } else {
@@ -81,15 +89,33 @@ export default function Authentication1() {
         }
     })
 
-    if (authenticated) return (
+    if (authenticated){ 
+        
+        return (
+        
+        // <NavigationContainer>
+        //     <DrawerNav />
+        // </NavigationContainer>
         <NavigationContainer>
-            <DrawerNav />
+        <TeacherStack/>
         </NavigationContainer>
         // <AddNewClassesPage/>
         // <ChooseClass/>
     );
+    }
 
     if (confirm) return <VerifyCode onSubmit={confirmVerificationCode} />;
 
     return <PhoneNumber onSubmit={signIn} />;
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+   
+    //   // dispatching plain actions
+    //   increment: () => dispatch({ type: 'INCREMENT' }),
+    //   decrement: () => dispatch({ type: 'DECREMENT' }),
+    //   reset: () => dispatch({ type: 'RESET' }),
+    details:(l)=>dispatch({type:'authdetails',payload:l})
+    }
+  }
+export default connect(null,mapDispatchToProps)(Authentication1)

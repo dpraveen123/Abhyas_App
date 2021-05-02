@@ -28,7 +28,10 @@ import Timetable from '../../cardss/Timetable'
 import BotNav from '../BottomNav/BotNav'
 import DrawerIcon from '../Icons/DrawerIcon';
 import DrawerContent from '../DrawerNav/DrawerContent';
-import ChooseClass from '../../ClassesDesign/ChooseClass-2';
+import ChooseClass from '../../ClassesDesign/ChooseClass';
+// import Addclass from '../../profile/Addclass'
+import Addclass from '../../profile/Addclass'
+import TeacherDashboard from '../../TEACHERS/TeacherDashboard'
 const Stack = createStackNavigator();
 
 const NavBar = ({ navigation }) => {
@@ -40,32 +43,51 @@ const NavBar = ({ navigation }) => {
                 component={BotNav}
                 options={{
                     title: 'Telangana ZP High School',
+                    headerStyle:{
+                    elevation:4,
+    borderBottomWidth: 1,
+                },
                     headerTitleStyle: {
                         // height:80,
                         fontSize: 16,
                         fontWeight: "500",
                         marginLeft: 40,
                         fontFamily: 'Roboto',
+                        
                     },
                     headerLeft: () => <View style={styles.direction}>
                         <TouchableOpacity
                             style={styles.Menu}
                             onPress={() => navigation.openDrawer()}
                         ><Menu /></TouchableOpacity>
-                        < SafeAreaView
+                        <SafeAreaView
                             style={styles.Icon}
                         >
                             <Icon />
                         </SafeAreaView>
+
                     </View>
                 }
                 }
+                
+                
             />
-            <Stack.Screen name="Classes" component={AddNewClassesPage} />
-            <Stack.Screen name="Teachers" component={Teachers} />
+            <Stack.Screen name="Classes" component={AddNewClassesPage} options={{ headerStyle:{
+                    elevation:4,
+    borderBottomWidth: 1,
+                },}}/>
+            <Stack.Screen name="Teachers" component={Teachers} options={{ headerStyle:{
+                    elevation:4,
+    borderBottomWidth: 1,
+                }}}/>
             <Stack.Screen name="Reports" component={Reports} />
             <Stack.Screen name="Students" component={Students} />
             <Stack.Screen name="Timetable" component={Timetable} />
+            {/* ...........teachersstacks.............. */}
+            <Stack.Screen name="Add Teachers" component={Addclass} options={{ headerStyle:{
+                    elevation:4,
+    borderBottomWidth: 1,
+                }}} />
             {/* <Stack.Screen name="ChooseClass" component={ChooseClass}/> */}
         </Stack.Navigator>
     )
@@ -87,7 +109,8 @@ function DrawerNav() {
 }
 const styles = StyleSheet.create({
     direction: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        
     },
     Menu: {
         paddingLeft: 15.33,

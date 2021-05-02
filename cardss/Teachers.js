@@ -1,11 +1,16 @@
 import React from 'react'
 import { View, Text } from 'react-native'
+import Teacher from '../teacher'
 
-function Teachers() {
+import Hello from '../profile/Hello'
+function Teachers({navigation}) {
+    // console.log(navigation,"i am from captal Teachers")
     return (
-        <View>
-            <Text>Teachers?????????????????????????????...............</Text>
-        </View>
+        // <View>
+            <Teacher props={navigation}/> 
+            // <Hello/>
+            // {/* <Text>Teachers?????????????????????????????...............</Text> */}
+        // </View>
     )
 }
 export default Teachers
