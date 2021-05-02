@@ -28,7 +28,7 @@ var artists= [
       name: "2nd Class ",
      section:"4 sections"
 
-    },
+    },]
     // {
     //   image: Classno,
     //   id: 3,
@@ -78,7 +78,7 @@ var artists= [
     //    section:"4 sections"
     //   },
      
-  ]
+//   ]
  class App extends Component {
 
     constructor(props){
@@ -179,6 +179,7 @@ var artists= [
 
 <MenuOptions   >
 <MenuOption value={1}  text='Edit Class' onSelect={()=>{
+    // this.props.onPress() 
     this.props.changevisible()
      console.log("visible is",store.getState().changecontentvisbile)
     console.log("here also working bro")}}  />

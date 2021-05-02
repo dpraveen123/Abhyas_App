@@ -97,8 +97,6 @@ class Item extends Component {
   }
 
   render() {
-    
-
 
     return (
       <Animated.View style={[
@@ -115,7 +113,7 @@ class Item extends Component {
         >
           <View
             onLayout={ this.onAnimLayout }
-          >
+          >        
             { this.props.header }
             <Image source={
               this.state.contentVisible
@@ -133,6 +131,8 @@ class Item extends Component {
               styles.contentChild,
             ]}
           >
+        {/* <Text>hiii drop</Text> */}
+
             { this.props.children }
           </View>
         </View>

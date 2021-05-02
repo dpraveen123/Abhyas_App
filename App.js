@@ -36,16 +36,17 @@ import {
   ScrollView
 } from 'react-native';
 // import Profile from './mywork/Profile';
-import Teacher from './teacher'
+// import Teacher from './teacher'
 
-import Hello from './profile/Hello';
-import Addclass from './profile/Addclass';
-import Profile from './profile/Stack';
-import AllClasses from './profile/Classes';
-import Slider from './profile/Tab';
-import Editpick from './profile/Editpick';
-// import store from './redux'
-import Newone from './profile/new2';
+// import Hello from './profile/Hello';
+// import Addclass from './profile/Addclass';
+// import Profile from './profile/Stack';
+// import AllClasses from './profile/Classes';
+// import Slider from './profile/Tab';
+// import Editpick from './profile/Editpick';
+// // import store from './redux'
+// import Newone from './profile/new2';
+// import Testing from './Testing'
 
   //         this.setState({authenticated:true})
   //     } else {
@@ -82,12 +83,13 @@ class App extends React.Component{
 
      
       <Provider store={store}>
-         {/* <Authentication1 />  */}
+         <Authentication1 /> 
          {/* <Slider/> */}
          {/* <Editpick /> */}
          {/* <Slider/> */}
-      
-         <Newone />    
+         {/* <Testing/> */}
+      {/* <Test/> */}  
+         {/* <Newone />   */}
          {/* <DropDown1/> */}
          {/* <Pick/> */}
          {/* <EditPick/> */}

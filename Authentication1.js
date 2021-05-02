@@ -53,6 +53,7 @@ import { connect } from 'react-redux';
     // )
 
     const [confirm, setConfirm] = useState(null);
+    const [Roll, setRoll] = useState(null);
     const [authenticated, setAuthenticated] = useState(false);
 
     async function signIn(phoneNumber) {
@@ -72,29 +73,48 @@ import { connect } from 'react-redux';
         } catch (error) {
             alert('Invalid code');
         }
-    }
+    }   
 
     auth().onAuthStateChanged((user) => {
-        console.log(user.phoneNumber,"thse are the user details")
-        firestore().collection('Principals').doc(user.phoneNumber).get().then(res=>{
-            console.log(res.data(),"is res")
-           props.details(res.data())
-        })
+        
         // this.props.details(auth())
         if (user) {
+            console.log(user.phoneNumber,"thse are the user details")
+        firestore().collection('Users').doc(user.phoneNumber).get().then(res=>{
+            console.log(res.data(),"is res")
+            setRoll(res.data().role)
+
+           props.details(res.data())
+        })
             setAuthenticated(true);
         } else {
+            // setConfirm(false)
             setAuthenticated(false);
         }
     })
 
-    if (authenticated) return (
-        <NavigationContainer>
-            <DrawerNav />
-        </NavigationContainer>
+    if (authenticated) {
+      if(Roll==='Teacher'){
+          return(
+<NavigationContainer>
+               <Text>hiii teacher</Text>
+               <DrawerNav/>
+
+               </NavigationContainer>
+          )
+      }else if(Roll==='Principal'){
+          return(
+<NavigationContainer>
+               <DrawerNav/>
+               </NavigationContainer>
+          )
+      }
+    }
+
+        
         // <AddNewClassesPage/>
         // <ChooseClass/>
-    );
+    
 
     if (confirm) return <VerifyCode onSubmit={confirmVerificationCode} />;
 
