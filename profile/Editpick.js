@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, Alert,View,Text, StyleSheet } from 'react-native';
+import { FlatList, Alert,View,Text, StyleSheet,ScrollView } from 'react-native';
 import {
   MenuProvider,
   Menu,
@@ -26,29 +26,34 @@ import Drop from '../assets/drop';
     
     
 
+
+
 export default class Editpick extends React.Component {
   render() {
     return (
 
       
-      
-      <MenuProvider  style={{paddingTop:10,paddingLeft:50}}>
-      <Menu  onSelect={value => alert(`Selected number: ${value}`)}>
+      <ScrollView>
+      <MenuProvider  
+      style={{paddingTop:10,
+        // paddingright:-0
+      }}
+      >
+      <Menu style={styles.Menu} onSelect={value => alert(`Selected number: ${value}`)}>
   {/* <MenuTrigger text='Select option' /> */}
   <MenuTrigger >
     <Edit />
-
   </MenuTrigger>
-  <MenuOptions style={{height:100,width:200}}>
-    <MenuOption value={1} text='One' />
-    <MenuOption value={2}>
-      <Text >Two</Text>
-    </MenuOption>
-    <MenuOption value={3} disabled={true} text='Three' />
+  <MenuOptions 
+  // style={{height:100,width:200,}}
+  >
+    <MenuOption  value={1} text='Edit Class' />
+    <MenuOption value={2} text='Delete Class' />
+    <MenuOption value={3} text='Add Section'/>    
   </MenuOptions>
 </Menu>
 </MenuProvider>
-
+</ScrollView>
 );
  
   }
@@ -59,6 +64,11 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 20,
   },
+  Menu:{
+    paddingLeft:10,
+    paddingBottom:65,
+    // backgroundColor:'white'
+  }
 });
 
 

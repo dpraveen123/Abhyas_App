@@ -3,7 +3,11 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
+<<<<<<< HEAD
 target 'EducationProject' do
+=======
+target 'AwesomeProject' do
+>>>>>>> 168f98152fafc3f5b33d12499bb5a37a509c635a
   config = use_native_modules!
 
   use_react_native!(
@@ -12,7 +16,11 @@ target 'EducationProject' do
     :hermes_enabled => false
   )
 
+<<<<<<< HEAD
   target 'EducationProjectTests' do
+=======
+  target 'AwesomeProjectTests' do
+>>>>>>> 168f98152fafc3f5b33d12499bb5a37a509c635a
     inherit! :complete
     # Pods for testing
   end
