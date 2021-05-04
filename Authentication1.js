@@ -76,14 +76,15 @@ import TeacherStack from './TEACHERS/TeacherStack';
     }
 
     auth().onAuthStateChanged((user) => {
-        console.log(user.phoneNumber,"thse are the user details")
-        firestore().collection('Principals').doc(user.phoneNumber).get().then(res=>{
-            console.log(res.data(),"is res")
-           props.details(res.data())
-        })
+      
         // this.props.details(auth())
         if (user) {
             setAuthenticated(true);
+            console.log(user.phoneNumber,"thse are the user details")
+            firestore().collection('Principals').doc(user.phoneNumber).get().then(res=>{
+                console.log(res.data(),"is res")
+               props.details(res.data())
+            })
         } else {
             setAuthenticated(false);
         }

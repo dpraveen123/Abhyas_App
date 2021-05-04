@@ -14,11 +14,12 @@ import LinearGradient from 'react-native-linear-gradient';
 import { NavigationContainer } from '@react-navigation/native';
 // import Dropdown from '../profile/drop';
 class AllClasses extends React.Component {
+ 
  constructor(props) {
    super(props)
- 
+   console.log(props);
    this.state = {
-    
+  // navigation:this.props, 
   artists: [
     {
       image: Classno,
@@ -105,6 +106,8 @@ class AllClasses extends React.Component {
   }
 }
   render() {
+    
+ console.log(this.props,'...............');
      return (
       <SafeAreaView style={{backgroundColor:'white',position:"relative" }}>
        <ScrollView>
@@ -139,7 +142,11 @@ class AllClasses extends React.Component {
                           <View>
                           {/* rgba(248, 121, 199, 1) */}
                           <TouchableOpacity 
-          onPress={() => {this.props.navigation.navigate('1st Class')}}
+                          onPress={() => {
+                            console.log(this.props.props.navigation.navigate);
+                            this.props.props.navigation.navigate('1st Class')
+                          }
+                          }
                           // onPress={()=> this.props.navigation('1st Class')}
                           >
                             <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}} colors={[artist.color1,artist.color2]} style={styles.gradient}>

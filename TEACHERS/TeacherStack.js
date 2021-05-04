@@ -7,6 +7,7 @@ import TeacherBotNav from './TeacherBotNav';
 import FirstClass from './FirstClass';
 const Stack = createStackNavigator();
 function TeacherStack() {
+// console.log(props);
   return (
     //   <View>
     //       <Text>hii</Text>

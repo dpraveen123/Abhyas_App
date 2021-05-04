@@ -5,7 +5,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import Timetable from '../Images/Timetable.jpg'
 import Continue from '../Images/Continue'
 import AllClasses from '../profile/Classes'
-const TeacherDashboard=({navigation})=>{
+const TeacherDashboard=(props)=>{
+    console.log(props,"navigation");
     return (
         <View 
         // style={{backgroundColor:'white'}}
@@ -29,7 +30,7 @@ const TeacherDashboard=({navigation})=>{
                         </View>
                         <View style={{paddingLeft:30,paddingTop:30}}>
                         <TouchableOpacity style={styles.continue} 
-              onPress={() => navigation.navigate('TeachersTimeTbl')}
+              onPress={() => props.navigation.navigate('TeachersTimeTbl')}
                             // console.log('timetable was pressed')}
                             >
                             <View style={{flexDirection:'row'}}>
@@ -50,7 +51,7 @@ const TeacherDashboard=({navigation})=>{
             </View>
             <ScrollView>
             <View style={{marginTop:-10}}>
-                <AllClasses/>
+                <AllClasses props={props}/>
             </View>
             </ScrollView>
             </View>
