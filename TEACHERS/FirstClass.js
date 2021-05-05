@@ -11,22 +11,8 @@ const Tab = createMaterialTopTabNavigator();
 function FirstClass({props}) {
     return (
         <View>
-            {/* <Text>hiii</Text> */}
             <Tabnav/>
-            {/* <Tab.Navigator>
-                <
-            </Tab.Navigator> */}
-            {/* <Tab.Navigator>
-                <Tab.Screen name="Subjects" component={Subjects}/>
-            </Tab.Navigator> */}
-            {/* <Text>hiii</Text> */}
-            {/* <Tab.Navigator>
-      <Tab.Screen name="Subjects" component={Subjects} />
-      <Tab.Screen name="Students" component={AllClasses} />
-      <Tab.Screen name="Reports" component={Report} />
-    </Tab.Navigator> */}
-            {/* <Tabnav1/> */}
-            {/* <TeacherSub/> */}
+          
         </View>
     )
 }
