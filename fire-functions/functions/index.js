@@ -26,3 +26,22 @@ exports.addingClass=functions.https.onCall((data,context)=>{
   return data;
 })
 
+exports.getClass=functions.https.onCall((data,context)=>{
+  var a=[],i=55,j=0;
+  db.collection('Schools').doc(data.uid).collection('classes').get()
+  .then(
+    querySnapshot => {
+      // console.log('Total users: ', querySnapshot.size);
+      i=querySnapshot.size;
+      querySnapshot.forEach(documentSnapshot => {
+        // console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
+        var l=documentSnapshot.id;
+        a.push({l:documentSnapshot.data()})
+     j=j+1;
+      });
+    })
+   if(i==j){
+    return a;
+    console.log("a is ",a)
+   }
+})

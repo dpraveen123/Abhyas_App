@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text,TouchableOpacity,Image,Dimensions,ScrollView,SafeAreaView,TextInput,Button,Alert,title,TouchableHighlight } from 'react-native';
-// import pic from '../images/pp.jpg';
+// import pic from '../Images/pp.jpg';
 import pic from '../Images/pp.jpg'
 import Svgpages from '../assets/Svg';
 import Search from '../assets/Search';

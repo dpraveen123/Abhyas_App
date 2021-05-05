@@ -1,11 +1,10 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-function Classes() {
+export default function TeachersTimeTbl() {
     return (
         <View>
-            <Text>Classes...........??????????????###############</Text>
+            <Text>hi this is time table</Text>
         </View>
     )
 }
-export default Classes

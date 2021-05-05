@@ -31,7 +31,7 @@ const AdminDashboard = ({ navigation }) => {
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
                 onPress={() => navigation.navigate('Classes')}
-                style={{ width: "47.09%", height: 130, backgroundColor: "white", borderRadius: 15, elevation: 5, justifyContent: "center", alignItems: "center", border: 5, marginLeft: 7, marginTop: 12, borderWidth: 1, borderColor: "#E1E8ED", shadowColor: "#E1E8ED" }}>
+                style={{ width: "47.09%", height: 130, backgroundColor: "white", borderRadius: 15, elevation: 5, justifyContent: "center", alignItems: "center", border: 5, marginLeft: 7, marginTop: 12, borderWidth: 1, borderColor: "#E1E8ED", shadowColor: "black" }}>
                 <Image source={Classroom} style={{ marginLeft: 5 }}>
                 </Image>
                 <Text style={{ fontSize: 14 }}>Classes</Text>

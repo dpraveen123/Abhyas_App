@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, Alert,View,Text, StyleSheet } from 'react-native';
+import { FlatList, Alert,View,Text, StyleSheet,ScrollView } from 'react-native';
 import {
   MenuProvider,
   Menu,
@@ -15,8 +15,10 @@ import { connect } from 'react-redux';
 import store from '../redux'
 class Editpick extends React.Component {
   render() {
+    console.log('hiii')
     return (
-      <MenuProvider>
+      
+<MenuProvider>
     <View>
         <Menu style={styles.Menu} onSelect={value => {
           if(value===1){
@@ -35,7 +37,7 @@ class Editpick extends React.Component {
     <MenuOption value={2}  text='Delete Class' />
     <MenuOption value={3}  text='Add Section'/>
     {/* <MenuOption value={4}  text='Add Section'/> */}
-
+      
   </MenuOptions>
 </Menu>
     </View>

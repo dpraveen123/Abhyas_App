@@ -14,11 +14,11 @@ import React, { useState } from 'react';
 // import LandingPage from './Logo/LandingPage'
 // import MyCourses from './Bsharp/mycourses'
 // import Example from './Bsharp/students'
-// // import Hello from './Bsharp/Cards'
+// import Hello from './Bsharp/Cards'
 // import SwitchExample from './Bsharp/dropdown'
 import Authentication1 from './Authentication1'
-import CreateData from './createdata'
-import Schools from './Schools'
+// import CreateData from './createdata'
+// import Schools from './Schools'
 // import DropDown1 from './dropDown'
 // import AdminDashboard from './cardss/AdminDashboard'
 import { Provider } from 'react-redux';
@@ -80,7 +80,8 @@ class App extends React.Component{
       // <Schools />
       // <Profile />
       // <Teacher />
-
+//  <AllClasses/> 
+/* <Editpick/> */
      
       <Provider store={store}>
          <Authentication1 /> 
@@ -193,4 +194,3 @@ class App extends React.Component{
 }
 
 export default App;
-

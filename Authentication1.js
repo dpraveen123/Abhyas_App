@@ -29,6 +29,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import AddNewClassesPage from './ClassesDesign/AddNewClassesPage';
 import ChooseClass from './ClassesDesign/ChooseClass-2';
 import { connect } from 'react-redux';
+import TeacherStack from './TEACHERS/TeacherStack';
 // class App extends React.Component {
 //   render() {
 //     return (
@@ -79,14 +80,13 @@ import { connect } from 'react-redux';
         
         // this.props.details(auth())
         if (user) {
+            setAuthenticated(true);
             console.log(user.phoneNumber,"thse are the user details")
         firestore().collection('Users').doc(user.phoneNumber).get().then(res=>{
             console.log(res.data(),"is res")
             setRoll(res.data().role)
-
            props.details(res.data())
         })
-            setAuthenticated(true);
         } else {
             // setConfirm(false)
             setAuthenticated(false);
@@ -97,9 +97,9 @@ import { connect } from 'react-redux';
       if(Roll==='Teacher'){
           return(
 <NavigationContainer>
-               <Text>hiii teacher</Text>
-               <DrawerNav/>
-
+               {/* <Text>hiii teacher</Text> */}
+               {/* <DrawerNav/> */}
+               <TeacherStack/>
                </NavigationContainer>
           )
       }else if(Roll==='Principal'){
@@ -107,6 +107,12 @@ import { connect } from 'react-redux';
 <NavigationContainer>
                <DrawerNav/>
                </NavigationContainer>
+          )
+      }else if(Roll==null){
+          return(
+              <View style={{justifyContent:'center',alignItems:'center'}}>
+                  <Text style={{fontSize:25}}>Laoding...</Text>
+              </View>
           )
       }
     }

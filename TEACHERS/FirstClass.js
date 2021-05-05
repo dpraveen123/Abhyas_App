@@ -1,11 +1,10 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-function Classes() {
+export default function FirstClass() {
     return (
         <View>
-            <Text>Classes...........??????????????###############</Text>
+            <Text>hi first class</Text>
         </View>
     )
 }
-export default Classes
