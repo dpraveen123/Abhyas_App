@@ -9,26 +9,12 @@ import {
 } from 'react-native-popup-menu';
 import Edit from '../assets/edit'
 import Drop from '../assets/drop';
-
-// Menu.debug = true;
-
-// const data = new Array(3)
-//   .fill(0)
-//   .map((a, i) => (
-//     {
-//        key: 1, value: 'section A',
-//        key: 2, value: 'section B',
-//        key: 3, value: 'section C'
-  
-//   }
-   
-
-    
-    
-
-
+import { TouchableOpacity } from 'react-native'; 
+import New from './new'   ;
 
 export default class Editpick extends React.Component {
+
+// export default class Editpick extends React.Component {
   
   render() {
     console.log('hiii')
@@ -63,8 +49,8 @@ export default class Editpick extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingTop: 20,
+    flex: 2,
+    paddingTop: 1,
   },
   Menu:{
     paddingLeft:10,
@@ -72,6 +58,10 @@ const styles = StyleSheet.create({
     // backgroundColor:'white'
   }
 });
+
+
+ 
+
 
 
 

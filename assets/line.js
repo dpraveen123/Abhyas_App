@@ -25,7 +25,7 @@ import Svg, {
       
           return(
               <View style={{borderColor:"black"}}>
-            <Svg width="2" height="56" viewBox="0 0 2 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Svg width="2" height="50" viewBox="0 0 2 56" fill="none" xmlns="http://www.w3.org/2000/svg">
 <Line x1="1" y1="80" x2="1" y2="-2.18557e-08" stroke="#E1E8ED"/>
 </Svg>
 

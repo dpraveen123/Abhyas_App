@@ -110,7 +110,7 @@ class AllClasses extends React.Component {
  console.log(this.props,'...............');
      return (
       <SafeAreaView style={{backgroundColor:'white',position:"relative" }}>
-       <ScrollView>
+       <ScrollView style={{height:330}}>
        <View style={{ borderRadius:80, paddingTop:20,paddingLeft:10}}>
        <View style={{flexDirection:'row'}}>    
           <View
@@ -128,6 +128,7 @@ class AllClasses extends React.Component {
        <Card>
        <View key={artist.id} style={{flexDirection: "row" ,flex:1}} >        
        <View style={{flexDirection:'row',borderRadius:20}}>
+
        <View style={{flexDirection: "column",paddingLeft: 0,paddingTop:1,}}>
                   
                       </View>
@@ -160,6 +161,8 @@ class AllClasses extends React.Component {
                         <Text style={{ fontSize: 14, color: "#A7A7A7" }}>{artist.section} </Text>
                         </View>
                       </View>
+
+                                  
                      </View>
                      <View style={{ paddingLeft:250,paddingTop:22,position:'absolute',flexDirection:'row', justifyContent: 'space-between'}}>
                   <View style={{ paddingLeft:250,paddingTop:1,position:'absolute',flexDirection:'row',position:'absolute',justifyContent: 'space-between'}}>

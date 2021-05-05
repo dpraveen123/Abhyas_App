@@ -9,7 +9,7 @@ const Pick = () => {
       <Picker
          mode="dropdown"
         selectedValue={selectedValue}
-        style={{ height: 50, width:15,paddingLeft:1}}
+        style={{ height: 50, width:50,paddingLeft:7}}
         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
       >
       
@@ -26,94 +26,92 @@ const Pick = () => {
 
 const styles = StyleSheet.create({
   container: {
-   flex:2,
-    paddingTop: 30,
-    paddingLeft:10,
-    paddingTop:1,
+   flex:3,
+    paddingTop: 1,
+    paddingLeft:220,
+  
 
-    
-  }
+    // paddingTop: 30,
+    // paddingLeft:10,
+    // paddingTop:1,
+
+  },
+  pickerContent: {
+    color: "white",
+    backgroundColor: "transparent",
+    paddingLeft:10,
+    paddingBottom:10,
+    width:100,
+    height:10
+ },
 });
 
 export default Pick;
 
-// // import React, { Component } from "react";
-// // import {View,Icon} from 'react-native';
-// //  import {Picker} from '@react-native-picker/picker';
 
+// import React, { Component } from 'react';
+// import { FlatList, Alert,View,Text, StyleSheet } from 'react-native';
+// import {
+//   MenuProvider,
+//   Menu,
+//   MenuTrigger,
+//   MenuOptions,
+//   MenuOption,
+// } from 'react-native-popup-menu';
+// import Edit from '../assets/edit'
+// import Drop from '../assets/drop';
+// import { TouchableOpacity } from 'react-native';    
 
-// // export default class Pick extends Component {
-// //   constructor(props) {
-// //     super(props);
-// //     this.state = {
-// //       selected: "key1"
-// //     };
-// //   }
-// //   onValueChange(value= string) {
-// //     this.setState({
-// //       selected: value
-// //     });
-// //   }
-// //   render() {
-// //     return (
-// //             <View>
-// //             <Picker
-// //               mode="dropdown"
-// //               Icon={<Icon name="arrow-down" />}
-// //               style={{ height: 50, width:15}}
-// //               selectedValue={this.state.selected}
-// //               onValueChange={this.onValueChange.bind(this)}
-// //             >
-// //               <Picker.Item label="Wallet" value="key0" />
-// //               <Picker.Item label="ATM Card" value="key1" />
-// //               <Picker.Item label="Debit Card" value="key2" />
-// //               <Picker.Item label="Credit Card" value="key3" />
-// //               <Picker.Item label="Net Banking" value="key4" />
-// //             </Picker>
-// //             </View>
-          
-// //     );
-// //   }
-// // }
-
-// import React, { Component } from "react";
-// import { Container, Header, Content, Icon, Picker, Form } from "native-base";
-
-// export default class PickerWithIcon extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       selected: "key1"
-//     };
-//   }
-//   onValueChange(value =string) {
-//     this.setState({
-//       selected: value
-//     });
-//   }
+// export default class Pick extends React.Component {
 //   render() {
 //     return (
-//       <Container>
-//         <Header />
-//         <Content>
-//           <Form>
-//             <Picker
-//               mode="dropdown"
-//               iosHeader="Select your SIM"
-//               iosIcon={<Icon name="arrow-down" />}
-//               style={{ width: undefined }}
-//               selectedValue={this.state.selected}
-//               onValueChange={this.onValueChange.bind(this)}
-//             >
-//               <Picker.Item label="Wallet" value="key0" />
-//               <Picker.Item label="ATM Card" value="key1" />
-//               <Picker.Item label="Debit Card" value="key2" />
-//               <Picker.Item label="Credit Card" value="key3" />
-//               <Picker.Item label="Net Banking" value="key4" />
-//             </Picker>
-//           </Form>
-//         </Content>
-//       </Container>
-//     );
+
+    
+       
+     
+//       <MenuProvider  >
+//       <Menu style={styles.Menu} onSelect={value => alert(`Selected number: ${value}`)}>
+//   {/* <MenuTrigger text='Select option' /> */}
+//   <MenuTrigger >
+//   <Drop />
+//   </MenuTrigger>
+  
+//   <MenuOptions   >
+//     <MenuOption value={1}  text='Edit Class' />
+//     <MenuOption value={2}  text='Delete Class' />
+//     <MenuOption value={3}  text='Add Section'/>
+//     <MenuOption value={4}  text='Add Section'/>
+
+//   </MenuOptions>
+// </Menu>
+// </MenuProvider>
+
+
+
+
+// );
+ 
 //   }
 // }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     paddingTop: 1,
+//   },
+//   Menu:{
+//     paddingLeft:180,
+//     paddingBottom:75,
+//     paddingTop:20
+  
+    
+    
+  
+
+//   }
+  
+// });
+
+
+ 
+

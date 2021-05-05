@@ -35,6 +35,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 //var Svgarray = [Svgpage]
 class TeacherSub extends React.Component{
+    
     constructor()
     {
         super();
@@ -137,11 +138,14 @@ class TeacherSub extends React.Component{
   }
     render()
     {
+        console.log('teachersub');
         console.log(this.state.dimensionBio[0],'are dimensions');
         // props={this.width,this.height}
         return(
             <View>
-               <ScrollView> 
+               <ScrollView 
+               style={{height:520}}
+               > 
                 <View style={{ flexDirection: 'row',marginTop:40}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#9363F9','#4a59d8']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
                     <View style={{paddingLeft:20,paddingTop:20}}>
