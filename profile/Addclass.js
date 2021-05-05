@@ -9,7 +9,8 @@ import {
   TextInput,
   Button,
   ToastAndroid,
-  Image
+  Image,
+  TouchableOpacity
 
 
 } from 'react-native';
@@ -32,7 +33,7 @@ import functions from '@react-native-firebase/functions';
 
 
 // import { black } from 'react-native-paper/lib/typescript/styles/colors';
-
+var y = [];
 
 export default function Addclass() {
 
@@ -57,7 +58,45 @@ export default function Addclass() {
   const [onChangeClass, setonChangeClass] = useState('');
   const [onChangeSection, setonChangeSection] = useState('');
   const [onChangeSubject, setonChangeSubject] = useState('');
+  const [onAddClass, setonAddClass] = useState(1);
+  const [mySections, setmySections] = useState([]);
+  const [mySubjects, setmySubjects] = useState([]);
+
   // console.log(isSelected, onChangeName, onChangeNumber, onChangeNumber, onChangeSection, onChangeSubject)
+  AddAnotherClass = () => {
+    setonAddClass(onAddClass + 1);
+    console.log(onAddClass);
+  }
+  addMySubjects = (itemValue) => {
+    setmySubjects(mySubjects.concat(itemValue));
+  }
+  Addclass = (itemvalue) => {
+    console.log("adding classes");
+    firestore()
+      .collection('Schools').doc(store.getState().authdetails.uuid).collection('classes').doc(itemvalue)
+      .get()
+      .then((querySnapshot) => {
+        // querySnapshot.forEach(documentSnapshot => {
+        //   console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
+        // });
+        console.log("itemvalue", itemvalue);
+        console.log('details of classes', querySnapshot.data());
+
+        var x = querySnapshot.data();
+        console.log("x is ", x.sections, Object.keys(x.sections));
+        // mySections=Object.keys(x.sections)
+        // y = Object.keys(x.sections)
+        // console.log(y, " y details");
+        setmySections(Object.keys(x.sections))
+        console.log(mySections, "sections")
+      });
+  }
+  uuidv4 = () => {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
 
   storeData = () => {
     // firestore()
@@ -73,25 +112,47 @@ export default function Addclass() {
     //   .then(() => {
     //     console.log('User added!');
     //   });
+    var subjects = {}
+    // subjects={j:}
+    mySubjects.map((l, i) => {
+      subjects[i] = {
+        // section:onChangeSection,
+        subject: l,
+        Uid: uuidv4()
+      }
+
+      // .subject = l: uuidv4() 
+    })
+
+    // var SecSubject = [{
+    //   onChangeSection: { subjects }
+    // }]
+    console.log("hii", subjects, "subjects");
 
     var details = {
+      MySubjects: subjects,
       TeacherName: onChangeName,
       TeacherPhoneno: onChangeNumber,
       Class: onChangeClass,
       section: onChangeSection,
-      subject: onChangeSubject,
+      subject: subjects,
       classTeacher: isSelected,
-      uid: store.getState().uuid
-
+      role: 'Teacher',
+      uid: store.getState().authdetails.uuid
     }
-    console.log(details);
+    console.log("details from add teacher", details);
 
-
+    functions()
+      .httpsCallable('addingUser')(details)
+      .then((response) => {
+        console.log("sucsesfully added a new Teacher dudee to fire functions from user", response)
+      });
     functions()
       .httpsCallable('addingTeacher')(details)
       .then((response) => {
         console.log("sucsesfully added a new Teacher dudee to fire functions", response)
       });
+
   }
   return (
     <ScrollView style={{ backgroundColor: 'white' }}>
@@ -141,37 +202,64 @@ export default function Addclass() {
             <View style={{ flexDirection: "row" }} >
 
               <Picker
-                onChangeClass={onChangeClass}
+                selectedValue={onChangeClass}
+                // placeholder = {"select class"}
                 style={{ height: 50, width: 150, borderWidth: 1, borderColor: '#E1E8ED' }}
-                onValueChange={(itemValue, itemIndex) => setonChangeClass(itemValue)}
+                onValueChange={(itemValue, itemIndex) => {
+                  // onChangeClass = itemValue
+                  setonChangeClass(itemValue)
+                  // console.log("onchangechangeclass",);
+                  Addclass(itemValue)
+
+
+                }}
 
               >
-                <Picker.Item label="Class 1" value="class 1" />
-                <Picker.Item label="Class 2 " value="class 2" />
-                <Picker.Item label="Class 3 " value="class 3" />
+                <Picker.Item label="Class 1" value="1st class" />
+                <Picker.Item label="Class 2 " value="2nd class" />
+                <Picker.Item label="Class 3 " value="3rd class" />
               </Picker>
 
               <Picker
-                onChangeSection={onChangeSection}
+                selectedValue={onChangeSection}
                 style={{ height: 50, width: 150, borderWidth: 1, borderColor: '#E1E8ED' }}
                 onValueChange={(Value, itemIndex) => setonChangeSection(Value)}
               >
-                <Picker.Item label="A" value="A" />
+                {
+
+                  mySections.map(l => {
+                    return (
+                      <Picker.Item label={l} value={l} />
+
+                    )
+                  })
+                }
+                {/* <Picker.Item label="A" value="A" />
                 <Picker.Item label="B" value="B" />
-                <Picker.Item label="C" value="C" />
+                <Picker.Item label="C" value="C" /> */}
               </Picker>
             </View>
             <Text style={styles.text1}>Subjects</Text>
             <Picker
-              onChangeSubject={onChangeSubject}
+              selectedValue={onChangeSubject}
               style={{ height: 50, width: 328, backgroundColor: "#F5F8FA", color: "#AAB8C2" }}
-              onValueChange={(itemValue, itemIndex) => setonChangeSubject(itemValue)}
-
+              onValueChange={(itemValue, itemIndex) => {
+                addMySubjects(itemValue)
+                setonChangeSubject(itemValue)
+              }}
             >
-              <Picker.Item label="Subject 1" value="Subject 1" />
-              <Picker.Item label="Subject 2 " value="Subject 2" />
-              <Picker.Item label="Subject 3 " value="Subject 3" />
+              <Picker.Item label="Maths" value="Maths" />
+              <Picker.Item label="Physics " value="Physics" />
+              <Picker.Item label="Biology " value="Biology" />
             </Picker>
+          </View>
+          <View>
+            {mySubjects.map(l => {
+              return (
+                <Text>{l}</Text>
+              )
+            })
+            }
           </View>
           <View style={styles.checkboxContainer}>
             <CheckBox
@@ -182,15 +270,28 @@ export default function Addclass() {
             <Text style={styles.label}>Assign as Class teacher</Text>
           </View>
           <View>
-            <Text style={{ color: '#1F85FF', fontWeight: "bold", fontSize: 15 }}
-            >
-              Add Another class
+            <TouchableOpacity onPress={() => AddAnotherClass()}>
+              <Text style={{ color: '#1F85FF', fontWeight: "bold", fontSize: 15 }}
+              >
+                Add Another class
             </Text>
+            </TouchableOpacity>
 
           </View>
         </View>
+
+
+
         <View style={styles.button} >
-          <Button title="Add Teacher" onPress={() => storeData()}></Button>
+
+          <TouchableOpacity style={{ borderRadius: 4, backgroundColor: '#1F85FF', width: 328, height: 40, fontWeight: "500", padding: 12, marginTop: -20, marginLeft: 0, alignContent: 'center' }}
+            onPress={() => storeData()}
+          >
+
+            <Text style={{ fontSize: 16, color: "#FFFFFF", width: 137.75, height: 24, alignItems: "center", left: 100 }}> Add Teacher</Text>
+          </TouchableOpacity>
+
+          {/* <Button title="Add Teacher" onPress={() => storeData()}></Button> */}
         </View>
       </View>
     </ScrollView>
