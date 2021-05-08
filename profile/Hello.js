@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text,TouchableOpacity,Image,Dimensions,ScrollView,SafeAreaView,TextInput,Button,Alert,title,TouchableHighlight } from 'react-native';
-import pic from '../images/pp.jpg';
+// import pic from '../Images/pp.jpg';
+import pic from '../Images/pp.jpg'
 import Svgpages from '../assets/Svg';
 import Search from '../assets/Search';
 import Fil from '../assets/fil';
@@ -130,7 +131,7 @@ class Hello extends React.Component {
          </View>
          <View style={{ height:50,backgroundColor:"white",flexDirection:'row',padding:5,alignItems:'center',borderRadius:30,paddingRight:5}}>
          {/* <Fil /> */}
-         <Image style={styles.Fil}source={require('../images/Filter.png')}/>
+         <Image style={styles.Fil}source={require('../Images/Filter.png')}/>
          <TouchableOpacity  > 
                   <Text style={{fontWeight:"bold",color:"#1e90ff",fontSize:15}}> Filter</Text>
                 </TouchableOpacity> 

@@ -4,13 +4,7 @@ import pic from '../images/pp.jpg';
 import Svgpages from '../assets/Svg';
 import Search from '../assets/Search';
 import Fil from '../assets/fil';
-
-
-
-
 class Hello extends React.Component {
-  
-  
   state={
   artists: [
     {
@@ -101,42 +95,22 @@ class Hello extends React.Component {
   
   ]
   }
-
-
-  render() {
-   
-
-    
+  render() {    
     return (
       <SafeAreaView style={{backgroundColor:'white' }}>
-    
-
-       <View style={{justifyContent:'center',paddingHorizontal:15,flexDirection:'row',paddingTop:9}}>
-         
+       <View style={{justifyContent:'center',paddingHorizontal:15,flexDirection:'row',paddingTop:9}}>       
        <View style={{height:50,flexDirection:'row',padding:5,alignItems:'center',borderRadius:30,paddingLeft:30, flex: 1,backgroundColor:'#f5f8fa'}}>
-       
-       
          <Search />
          <TextInput placeholder="Search Teachers" style={{fontSize:14, marginLeft:15,borderRadius:15}}/>
          </View>
          <View style={{ height:50,backgroundColor:"white",flexDirection:'row',padding:5,alignItems:'center',borderRadius:30,paddingRight:5}}>
-         <Fil />
-         
+         <Fil />  
          </View>
-       </View>
-       
-      
-
-      
-      
-       <ScrollView>
-       <View style={{ borderRadius:80, margin:12}}>
-         
+       </View>          
+      <ScrollView>
+       <View style={{ borderRadius:80, margin:12}}>   
        <Text style={{fontWeight: "bold",paddingLeft:30}}>All Teachers</Text>
-       
        <View style={{flexDirection:'row'}}>
-           
-            
            <View
                style={{
                  backgroundColor: "white",
@@ -146,10 +120,7 @@ class Hello extends React.Component {
                 {this.state.artists.map(artist =>  (
                     <View >
        <TouchableOpacity style={styles.card}>
-      
-
        <View key={artist.id} style={{flexDirection: "row" ,flex:1}} >
-         
        <View style={{flexDirection:'row',borderRadius:20}}>
        <View style={{flexDirection: "column",paddingLeft: 0,paddingTop:1,}}>
                    <Image source={artist.image}
@@ -159,7 +130,6 @@ class Hello extends React.Component {
                           backgroundColor: "#ddd",
                           borderRadius: 50 / 2}}resizeMode="cover"/>
                       </View>
-
                       <View
                         style={{
                           flexDirection: "column",
@@ -167,56 +137,28 @@ class Hello extends React.Component {
                           paddingTop: 7,
                         }}>
                         <Text >{artist.name}</Text>
-                        
                         <Text style={{ fontSize: 14, color: "#A7A7A7" }}>{artist.skills} </Text>
                         <Text style={{ fontSize: 14, color: "#A7A7A7" }}>{artist.student} </Text>
-                          
-                        
                       </View>
                      </View>
-
                      <View style={{ paddingLeft:100,paddingTop:15}}>
                       <View>
                       <Svgpages  />
                        </View>
                     </View>
-      
                    </View>
-         
-
        </TouchableOpacity>
-
-       </View> ))}
-      
-      
-                 
-                </View>
-                
-                
+       </View> ))}                 
+                </View>                
                 </View>
                 </View>
-               
                 </ScrollView>
-                
-                <View style={{ position:'absolute',marginTop: 650, marginLeft: 104}}>
-               
-               
+                <View style={{ position:'absolute',marginTop: 650, marginLeft: 104}}>               
                 <TouchableHighlight style={styles.submit} onPress={() => Alert.alert("Adding new class")} underlayColor='#fff'>
                   <Text style={styles.submitText}>+ Add Class</Text>
                  </TouchableHighlight>
-
-               </View>
-                
-                
-                
-  
-            
-                 
+               </View> 
                 </SafeAreaView>
-                
-    
-    
-    
     );
   }
 }

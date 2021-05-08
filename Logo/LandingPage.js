@@ -8,13 +8,17 @@ import {
     StatusBar,
     TextInput,
     TouchableOpacity,
+    ActivityIndicator,
     Button
 } from 'react-native';
 import Home from './Bulb'
+var Loader = 0
 export default function LandingPage(props) {
     const titl = "send OTP"
     const [text, setText] = useState('+91-');
     const [button, setButton] = useState(true);
+    const [loader, setLoader] = useState(false);
+
     const [color, setcolor] = useState('rgba(29, 161, 242, 0.5)')
     const onChangeText = (text1) => {
         console.log(`hi text ${text1}`);
@@ -38,8 +42,14 @@ export default function LandingPage(props) {
             console.log(color);
         }
     };
+    // const Loader = false
+    onLoader = () => {
+        Loader = 1
+        console.log(Loader);
+    }
     return (
-        <View>
+        <ScrollView>
+
             {/* <Text>
                 hi pap's
             </Text> */}
@@ -56,28 +66,48 @@ export default function LandingPage(props) {
                 maxLength={14}
             />
 
-            <TouchableOpacity style={{
-                backgroundColor: color,
-                width: 312,
-                height: 40,
-                borderRadius: 4,
-                marginTop: 240,
-                marginLeft: 22,
-                textAlign: 'center',
-                justifyContent: 'center'
-            }} disabled={button}
-                onPress={() => props.onSubmit(text)}>
-                <View
 
-                //    color={text.length < 14 ? 'rgba(29, 161, 242, 0.5)' : '#1DA1F2'}
-                //    style={{backgroundColor:{color}}}
-                >
 
-                    <Text style={styles.otp}>send OTP</Text>
-                </View>
-            </TouchableOpacity>
+            <View >
+                <TouchableOpacity style={{
+                    backgroundColor: color,
+                    width: 312,
+                    height: 40,
+                    borderRadius: 4,
+                    marginTop: 240,
+                    marginLeft: 22,
+                    textAlign: 'center',
+                    justifyContent: 'center'
+                }} disabled={button}
+                    onPress={() => {
+                        setLoader(true)
+                        props.onSubmit(text)
+                    }
+                    }>
+                    <View>
 
-        </View>
+                        {
+                            loader === false ? <Text style={styles.otp} >send OTP</Text>
+                                :
+                                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                                    <ActivityIndicator
+                                        color="white"
+                                        size="small"
+                                    /><Text style={{ color: 'white' }} >Sending OTP</Text>
+                                </View>
+
+                        }
+
+                    </View>
+                </TouchableOpacity>
+            </View>
+
+
+
+        </ScrollView>
+
+
+
     )
 }
 

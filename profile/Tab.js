@@ -14,10 +14,10 @@ export default class Slider extends Component {
       <StyleProvider style={getTheme(material)}>
       <Container >
         
-        <Tabs >
+        <Tabs>
           <Tab  heading={ <TabHeading><Text>All Classes</Text></TabHeading>}  >
           <AllClasses />
-          </Tab >
+          </Tab>
          
           <Tab heading={ <TabHeading><Text>My classes</Text></TabHeading>}>
            <Tab1 />

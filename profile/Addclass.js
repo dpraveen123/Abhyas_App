@@ -32,9 +32,10 @@ export default function Addclass(){
 const [selectedValue, setSelectedValue] = useState("select class");
 const [isSelected, setSelection] = useState(false);
         return(
+          <ScrollView style={{backgroundColor:'white'}}>
             <View style={{margin:20,marginTop: 50,}}>
                 <View style={{flex:1,paddingLeft:120}}>  
-                <Image source={require('../images/profile.png')}  style={{
+                <Image source={require('../Images/profile.png')}  style={{
                           height: 80,
                           width: 80,
                           
@@ -43,7 +44,7 @@ const [isSelected, setSelection] = useState(false);
 
 </View>
 
-<View style={{paddingTop:120}}>
+<View style={{paddingTop:59}}>
 <View style>
 <Text style={styles.text1}>Name</Text>
 <TextInput placeholder="Enter your full name" style={styles.textinput}></TextInput>
@@ -64,8 +65,9 @@ const [isSelected, setSelection] = useState(false);
       
       <Picker
         selectedValue={selectedValue}
-        style={{ height: 50, width: 150 }}
+        style={{ height: 50, width: 150 ,borderWidth:1,borderColor:'#E1E8ED'}}
         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+
       >
         <Picker.Item label="class" value="java" />
         <Picker.Item label="JavaScript" value="js" />
@@ -73,7 +75,7 @@ const [isSelected, setSelection] = useState(false);
       
       <Picker
         selectedValue={selectedValue}
-        style={{ height: 50, width: 150}}
+        style={{ height: 50, width: 150,borderWidth:1,borderColor:'#E1E8ED'}}
         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
       >
         <Picker.Item label="Select" value="java" />
@@ -111,6 +113,7 @@ const [isSelected, setSelection] = useState(false);
             <Button title="Add Teacher"></Button>
             </View>
 </View>
+</ScrollView>
         );
     };
     const styles= StyleSheet.create({
@@ -166,6 +169,7 @@ const [isSelected, setSelection] = useState(false);
           },
           label: {
             margin: 8,
+            // marginTop:24,
             fontSize:16,
             color:"gray",
             
@@ -177,6 +181,8 @@ const [isSelected, setSelection] = useState(false);
               borderWidth:1
           },
           checkboxContainer: {
+          marginTop:24,
+
             flexDirection: "row",
             marginBottom: 20,
           },

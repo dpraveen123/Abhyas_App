@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { View,  StyleSheet } from "react-native";
+import { View,  StyleSheet,Text } from "react-native";
 import {Picker} from '@react-native-picker/picker';
 
 const Pick = () => {
   const [selectedValue, setSelectedValue] = useState();
   return (
     <View style={styles.container}>
+    {/* <Text>hlooooooo</Text> */}
       <Picker
          mode="dropdown"
         selectedValue={selectedValue}
