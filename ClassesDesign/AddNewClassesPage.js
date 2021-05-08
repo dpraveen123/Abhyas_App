@@ -27,7 +27,10 @@ function AddNewClassesPage() {
     return (
         // <View>
             // {/* <Text>hi this is addition of classes</Text> */}
-               <Slider/>
+              //  <View>
+                 <Slider/>
+              // {/* <ModalTester/> */}
+              //  </View>/
             // {/* <View> */}
             // {/* <ModalTester/> */}
             // {/* <WrapperComponent/> */}
