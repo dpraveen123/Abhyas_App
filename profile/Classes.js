@@ -9,12 +9,21 @@ import Edit from '../assets/edit';
 import Arr from '../assets/line';
 import Pick from './Picker';
 import Editpick from './Editpick';
+
+import Newone from './new1'
+import { connect } from 'react-redux';
+import store from '../redux'
+import DropDownItem from '../react-native-drop-down-item';
+import functions from '@react-native-firebase/functions';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 import { Menu, MenuProvider, MenuOptions, MenuOption, MenuTrigger} from "react-native-popup-menu";
 import LinearGradient from 'react-native-linear-gradient';
 import { NavigationContainer } from '@react-navigation/native';
+// import store from '../redux'
 // import Dropdown from '../profile/drop';
+
 class AllClasses extends React.Component {
- 
  constructor(props) {
    super(props)
    console.log(props);
@@ -105,107 +114,68 @@ class AllClasses extends React.Component {
   ],
   }
 }
+componentDidMount=()=>{
+  // console.log(store.getState().authdetails," i am from clasess.js")
+  var details={uid:store.getState().authdetails.uuid}
+console.log("details are,",details)
+functions().httpsCallable('getClass')(details)
+.then(response => {
+  console.log("sucsesfully added a new class bro",response.data)
+});
+//    firestore().collection('Schools').doc(details.uid).collection('classes').get()
+//    .then((querySnapshot) =>{
+// // console.log(querySnapshot.size,"data")
+
+//     // querySnapshot.forEach(documentSnapshot => {
+//     //   console.log('User ID: ', documentSnapshot.data());
+//     // });
+//    })
+}
   render() {
-    
- console.log(this.props,'...............');
-     return (
-      <SafeAreaView style={{backgroundColor:'white',position:"relative" }}>
-       <ScrollView style={{height:330}}>
-       <View style={{ borderRadius:80, paddingTop:20,paddingLeft:10}}>
-       <View style={{flexDirection:'row'}}>    
-          <View
-               style={{
-                 backgroundColor: "white",
-                 borderRadius: 20,
-                 flex: 1,
-                 width:300,heigth:45,marginLeft:-10}}>
-                {this.state.artists.map(artist =>  (
-                  <View styles={{flexDirection:'row'}}>
-                   
-                     <View 
-      style={styles.card}
-      > 
-       <Card>
-       <View key={artist.id} style={{flexDirection: "row" ,flex:1}} >        
-       <View style={{flexDirection:'row',borderRadius:20}}>
-
-       <View style={{flexDirection: "column",paddingLeft: 0,paddingTop:1,}}>
-                  
-                      </View>
-                      <View
-                        style={{
-                          flexDirection: "column",
-                          paddingLeft: 13,
-                          paddingTop: 7,
-                          fontWeight:"bold",
-                        }}>
-                          <View style={{flexDirection:'row'}}>
-                          <View>
-                          {/* rgba(248, 121, 199, 1) */}
-                          <TouchableOpacity 
-                          onPress={() => {
-                            console.log(this.props.props.navigation.navigate);
-                            this.props.props.navigation.navigate('1st Class')
-                          }
-                          }
-                          // onPress={()=> this.props.navigation('1st Class')}
-                          >
-                            <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}} colors={[artist.color1,artist.color2]} style={styles.gradient}>
-                              <Text style={styles.name}>{artist.id}</Text>
-                            </LinearGradient>
-                            </TouchableOpacity>
-                            {/* <Text>Rectangle</Text> */}
-                          </View>
-                          <View style={{flexDirection:'column',marginLeft:20}}>
-                        <Text style={{ fontSize: 20,fontFamily:"Roboto",lineHeight:28 }} >{artist.name}</Text>
-                        <Text style={{ fontSize: 14, color: "#A7A7A7" }}>{artist.section} </Text>
-                        </View>
-                      </View>
-
-                                  
-                     </View>
-                     <View style={{ paddingLeft:250,paddingTop:22,position:'absolute',flexDirection:'row', justifyContent: 'space-between'}}>
-                  <View style={{ paddingLeft:250,paddingTop:1,position:'absolute',flexDirection:'row',position:'absolute',justifyContent: 'space-between'}}>
-                      <Pick />
-                    </View>                  
-                      <View style={{ paddingLeft:270,position:'absolute',flexDirection:'row', justifyContent: 'space-between'}}>
-                      <Arr />
-                      </View>
-                      <View style={{marginLeft:30,marginTop:-10}}>
-                      <Editpick/>  
-                      </View> 
-                  </View>
-                  </View>
-              </View>
-       </Card>
-      </View>       
-       </View> ))}
-       
-                </View>
-                </View>
-                </View>
-                </ScrollView>
+    return (
+      // <SafeAreaView style={{backgroundColor:'white' }}>
+       <ScrollView>
+                {this.state.artists.map((artist)=>{
+                  return(
+                    <Card>
+        <Text>hloooo</Text>
+                </Card>
+                  )
+                }
+                   )}
+               
                 <View style={{position:'absolute', marginTop: 600, marginLeft: 125}}>
-                <TouchableHighlight style={styles.submit} onPress={() => Alert.alert("Adding new class")} underlayColor='#fff'>
+               
+               
+                <TouchableHighlight style={styles.submit} onPress={() => 
+                  Alert.alert("Adding new class")}underlayColor='#fff'>
                   <Text style={styles.submitText}> + Add new Class </Text>
                  </TouchableHighlight>
                </View>
-                </SafeAreaView>
+                </ScrollView>
+
+                
+    
+    
+    
     );
   }
 }
 const { width, height } = Dimensions.get("screen");
 const styles = StyleSheet.create({
-  card: {
-    // borderRadius:20
-    // width:358,
-    marginTop:-10
-    // borderRadius:8
-    // height:80
+  container: {
+    flex: 2,
+    paddingTop: 1,
   },
-  submit:{
-    width: 140,
-     height:80 ,
+  Menu:{
+   marginLeft:250,
+    marginBottom:70,
+    // paddingTop:20,
+    // marginLeft:20,
+    elevation:5,
+//     height:300,
+// width:300,
+// position:'absolute'
   },
 submitText:{
     paddingTop:10,
@@ -217,6 +187,7 @@ submitText:{
     borderWidth: 1,
     fontWeight:'bold',
     borderColor: '#fff',
+
 },
 gradient:{
   width:64,
@@ -229,10 +200,19 @@ name:{
   color:'white',
   fontSize:32,
   paddingLeft:25
-
+}})
+const mapDispatchToProps = (dispatch) => {
+  return {
+ 
+  //   // dispatching plain actions
+  //   increment: () => dispatch({ type: 'INCREMENT' }),
+  //   decrement: () => dispatch({ type: 'DECREMENT' }),
+  //   reset: () => dispatch({ type: 'RESET' }),
+  // details:(l)=>dispatch({type:'authdetails',payload:l})
+  changevisible:()=>dispatch({type:'changevisible',payload:''})
+  }
 }
-});
-export default AllClasses;
+export default connect(null,mapDispatchToProps)(AllClasses)
 
 {/* <View style={{ paddingLeft:280,paddingTop:10,position:'absolute',flexDirection:'row', justifyContent: 'space-between'}}>
                      <Editpick 

@@ -31,7 +31,7 @@ import DrawerContent from '../DrawerNav/DrawerContent';
 import ChooseClass from '../../ClassesDesign/ChooseClass';
 // import Addclass from '../../profile/Addclass'
 import Addclass from '../../profile/Addclass'
-import TeacherDashboard from '../../TEACHERS/TeacherDashboard'
+// import TeacherDashboard from '../../TEACHERS/TeacherDashboard'
 const Stack = createStackNavigator();
 
 const NavBar = ({ navigation }) => {
@@ -88,6 +88,7 @@ const NavBar = ({ navigation }) => {
                     elevation:4,
     borderBottomWidth: 1,
                 }}} />
+
             {/* <Stack.Screen name="ChooseClass" component={ChooseClass}/> */}
         </Stack.Navigator>
     )

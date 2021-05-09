@@ -27,11 +27,13 @@ import Physics from './Navigation/Icons/Physics';
 import Maths from './Navigation/Icons/Maths';
 import Social from './Navigation/Icons/Social';
 import Tabnav1 from './class-students/Tabnav';
+import Sheet1 from './BottomSheet/Sheet1'
 // -----------------port-8081---------------------------
 class App extends React.Component {
   render() {
     return (
       <>
+      {/* <Sheet1/> */}
      {/* <Tabnav1/> */}
       <Provider 
       store={store}

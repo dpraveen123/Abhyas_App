@@ -2,7 +2,8 @@ import { createStore } from 'redux'
 const INITIAL_STATE = {
    a:0,
    b:0,
-   authdetails:''
+   authdetails:'',
+   changecontentvisbile:false,
   };
   function counterReducer(state =INITIAL_STATE , action) {
     switch (action.type) {
@@ -11,14 +12,16 @@ const INITIAL_STATE = {
       case 'counter/decremented':
         return { value: state.value - 1 }
       case 'authdetails':
-          return{authdetails:action.payload}  
+          return{authdetails:action.payload} 
+      case 'changevisible':
+          return{changecontentvisbile:!state.changeconentvisbile}     
       default:
         return state
     }
   }
   var store = createStore(counterReducer);
 
-  store.subscribe(() => console.log(store.getState().authdetails,store.getState().authdetails.uuid," i am from redux"))
+  store.subscribe(() => console.log(store.getState().changecontentvisbile," i am from redux"))
 
 
   export default store;

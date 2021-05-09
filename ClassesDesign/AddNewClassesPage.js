@@ -14,15 +14,25 @@ import Modal from 'react-native-modal';
 import Info from '../Navigation/Icons/Info';
 import ChooseClass from './ChooseClass'
 import Page from './NoSectionsAdded'
+import functions from '@react-native-firebase/functions';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+import Slider from '../profile/Tab'
 function AddNewClassesPage() {
+  // functions()
+  //     .httpsCallable('getClass')("hloooo")
+  //     .then(response => {
+  //       console.log("sucsesfully added a new class bro",response.data)
+  //     });
     return (
-        <View>
-            <Text>hi this is addition of classes</Text>
-            <View>
-            <ModalTester/>
-            {/* <WrapperComponent/> */}
-            </View>
-        </View>
+        // <View>
+            // {/* <Text>hi this is addition of classes</Text> */}
+               <Slider/>
+            // {/* <View> */}
+            // {/* <ModalTester/> */}
+            // {/* <WrapperComponent/> */}
+            // </View>
+        // </View>
     )
 }
 function ModalTester() {
@@ -32,6 +42,7 @@ function ModalTester() {
   };
     return (
       <View>
+     
           <TouchableOpacity style={styles.button} onPress={toggleModal}>
                 <View>
                     <Text style={styles.Class}>+ Add new Class</Text>

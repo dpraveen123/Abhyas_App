@@ -160,6 +160,12 @@ page=()=>{
     }
 }
 // ..........................Addingclass to firestore................................./
+uuidv4 = () => {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
 ShowPage=()=>{
    if (!this.state.value) 
    {
@@ -169,13 +175,21 @@ ShowPage=()=>{
         })
    }
    else{
+       var sectionuuids={
+       }
+    //    console.log(this.state.no)
+       this.state.noSectionAdded.map((i,l)=>{
+           console.log(i,l)
+           sectionuuids[i]=this.uuidv4()
+       })
+       console.log("uuids are",sectionuuids,"lenght is",Object.keys(sectionuuids)[0],sectionuuids[Object.keys(sectionuuids)[0]])
        this.setState({show:false})
        var details={
            className:this.state.pickervalue,
-           sections:this.state.noSectionAdded,
+           sections:sectionuuids,
            uid:store.getState().authdetails.uuid,
        }
-       console.log(details,details.sections.length,"these are the details")
+       console.log(details,"these are the details")
        functions()
       .httpsCallable('addingClass')(details)
       .then(response => {

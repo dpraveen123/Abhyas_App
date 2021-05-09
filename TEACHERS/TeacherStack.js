@@ -5,10 +5,11 @@ import TeachersTimeTbl from './TeachersTimeTbl'
 // import TeacherDashboard from './TeacherDashboard';
 import TeacherBotNav from './TeacherBotNav';
 import FirstClass from './FirstClass';
-import Tabnav from '../class-students/Tabnav'
+import Tabnav from '../class-students/Tabnav';
+// import FirstClass from './FirstClass';
 const Stack = createStackNavigator();
-function TeacherStack() {
-// console.log(props);
+function TeacherStack({props}) {
+console.log(props,"instack");
   return (
     //   <View>
     //       <Text>hii</Text>

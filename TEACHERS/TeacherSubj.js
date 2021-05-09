@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text ,Image,Button,TouchableOpacity} from 'react-native';
+import { View, Text ,Image,Button,TouchableOpacity,StyleSheet} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Biology from '../Navigation/Icons/Biology';
 import Physics from '../Navigation/Icons/Physics';
@@ -7,10 +7,6 @@ import Maths from '../Navigation/Icons/Maths';
 import Social from '../Navigation/Icons/Social';
 import Science from '../Navigation/Icons/Science';
 import Chemistry from '../Navigation/Icons/Chemistry';
-
-// import Science from './Science';
-// import Chemistry from './Chemistry';
-// import Svgpage from '../../Svg';
 import Svg, {
     Circle,
     Ellipse,
@@ -33,7 +29,6 @@ import Svg, {
 } from 'react-native-svg'
 import { ScrollView } from 'react-native-gesture-handler';
 
-//var Svgarray = [Svgpage]
 class TeacherSub extends React.Component{
     
     constructor()
@@ -158,7 +153,6 @@ class TeacherSub extends React.Component{
                     </LinearGradient>
                     </View>
 
-
                     <View style={{ flexDirection: 'row',marginTop:20}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#57D5C3','#3C83D7']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
                     <View style={{paddingLeft:20,paddingTop:20}}>
@@ -170,8 +164,6 @@ class TeacherSub extends React.Component{
                      </View>
                     </LinearGradient>
                     </View>
-
-
 
                     <View style={{ flexDirection: 'row',marginTop:20}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#FF7B93','#E0435E']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
@@ -185,9 +177,6 @@ class TeacherSub extends React.Component{
                     </LinearGradient>
                     </View>
                     
-
-
-
                     <View style={{ flexDirection: 'row',marginTop:20}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#FF5B37','#FF8660']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
                     <View style={{paddingLeft:20,paddingTop:20}}>
@@ -199,10 +188,6 @@ class TeacherSub extends React.Component{
                      </View>
                     </LinearGradient>
                     </View>
-
-
-
-
 
                     <View style={{ flexDirection: 'row',marginTop:20}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#16BF74','#36CC9C']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
@@ -216,9 +201,6 @@ class TeacherSub extends React.Component{
                     </LinearGradient>
                     </View>
 
-
-
-
                     <View style={{ flexDirection: 'row',marginTop:20}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#BA7DFB','#8738D9']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
                     <View style={{paddingLeft:20,paddingTop:20}}>
@@ -230,10 +212,44 @@ class TeacherSub extends React.Component{
                      </View>
                     </LinearGradient>
                     </View>
+                    <View style={styles.footer}>
+                    <TouchableOpacity 
+                    style={styles.button}
+                    >
+                        <Text 
+                        style={styles.buttonText}
+                        >View/Edit Attendence</Text>
+                    </TouchableOpacity>
+                    </View>
                     </ScrollView>
-            </View>
-            
+            </View> 
         )
     }
 }
+const styles = StyleSheet.create(
+    {
+    button:{
+        backgroundColor:'#1F85FF',
+        padding:10,
+        borderRadius: 4,
+        width:240,
+        height:40
+      },
+      buttonText:{
+        color:'white',
+        alignSelf:'center',
+        fontSize:14,
+        fontFamily:"Roboto",
+        fontWeight: "bold"
+      },
+      footer: {
+        backgroundColor:'#FFFFFF',
+        height:56,
+        alignItems:'center',
+        justifyContent:'center',
+        marginTop:70,
+        opacity:100
+        },
+       }
+    )
 export default TeacherSub;

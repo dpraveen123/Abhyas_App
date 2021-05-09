@@ -1,14 +1,62 @@
-import React from 'react'
+import React, { Component } from 'react';
 import { View, Text,TouchableOpacity,Image,StyleSheet, ScrollView } from 'react-native'
 import Timetablesvg from './TimetableSvg'
 import LinearGradient from 'react-native-linear-gradient';
 import Timetable from '../Images/Timetable.jpg'
 import Continue from '../Images/Continue'
-import AllClasses from '../profile/Classes'
-const TeacherDashboard=(props)=>{
-    console.log(props,"navigation");
+import {Card} from 'react-native-elements';
+import Edit from '../assets/edit';
+const IC_ARR_DOWN = require('../assets/dropup.png');
+const IC_ARR_UP = require('../assets/dropdown.png');
+import {
+    MenuProvider,
+    Menu,
+    MenuTrigger,
+    MenuOptions,
+    MenuOption,
+  } from 'react-native-popup-menu';
+// import AllClasses from '../profile/Classes'
+var data=[
+    {
+        class:'1st class',
+        sections:['A','B','C']
+    },
+    {
+        class:'2nd class',
+        sections:['A','B','C']
+    },
+    {
+        class:'3rd class',
+        sections:['A','B','C']
+    },
+]
+class TeacherDashboard extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+            darray:[],
+            darray1:[]
+        }
+    }
+     componentDidMount=()=>{
+         data.map((i,l)=>{
+            // console.log("i and l are",i,l)
+            this.state.darray[l]=false;
+         })
+         console.log(this.state.darray,"is darray yy")
+     }
+     openDrop=(i)=>{
+        console.log(i,"drop clicked")
+        this.state.darray[i]=!this.state.darray[i];
+        // this.setState({darray:this.state.darray})
+        this.state.darray1=this.state.darray;
+        this.setState({darray1:this.state.darray1})
+        console.log(this.state.darray1)
+     }
+    render(){
+        console.log(this.props,'ckecking');
     return (
-        <View 
+        <ScrollView 
         // style={{backgroundColor:'white'}}
         >
             {/* <Text>hi teachers dashboard</Text> */}
@@ -30,8 +78,11 @@ const TeacherDashboard=(props)=>{
                         </View>
                         <View style={{paddingLeft:30,paddingTop:30}}>
                         <TouchableOpacity style={styles.continue} 
-              onPress={() => props.navigation.navigate('TeachersTimeTbl')}
-                            // console.log('timetable was pressed')}
+              onPress={() => 
+                // console.log(this.props.navigation.navigate,'ckecking')
+            this.props.navigation.navigate('TeachersTimeTbl')}
+                            // console.log('timetable was pressed')
+                        // }
                             >
                             <View style={{flexDirection:'row'}}>
                               <Text style={{color:'#38A8FA',paddingLeft:15}}>
@@ -50,16 +101,99 @@ const TeacherDashboard=(props)=>{
                 <Text style={{fontWeight:'bold',fontSize:14}}>My Classes</Text>
             </View>
             <ScrollView>
-            <View style={{marginTop:-10}}>
-                <AllClasses props={props}/>
+            <View style={{marginTop:-10,height:4000}}>
+                {/* <AllClasses/> */}
+         {
+             data.map((l,i)=>{
+                 return(
+                   <View style={{borderRadius:15}}>
+                   <Card
+                   containerStyle={{borderRadius:8}}
+                   >
+              <View style={{height:70}}>
+                  {/* <Text>hlooo</Text> */}
+                 <View style={{flexDirection:'row'}}>
+                 {/* <TouchableOpacity 
+                 onPress={()=>this.props.navigation.navigate('1st Class')
+                }
+                 > */}
+                     <View style={{width:64,height:64,backgroundColor:'whitesmoke'}}></View>
+                 {/* </TouchableOpacity> */}
+               <View style={{marginLeft:16}}>
+                   <Text style={{fontSize:20,lineHeight:28}}>{l.class}</Text>
+                   <Text style={{color:'#AAB8C2',fontSize:14,lineHeight:28,marginTop:0}}>{l.sections.length} Sections</Text>
+               </View>
+                <TouchableOpacity style={{justifyContent:'center',marginLeft:80}}
+                onPress={()=>{
+                    this.openDrop(i)
+                }}
+                >
+                <View >
+                    <Image source={
+                        
+                        this.state.darray1[i]===true?IC_ARR_DOWN:IC_ARR_UP
+                    } style={{width:10,height:10}}></Image>
+                </View>
+                </TouchableOpacity>
+                <View style={{justifyContent:'center',marginLeft:14,width:1,height:'100%',borderWidth:0.5,borderColor:'#E1E8ED'}}>
+               {/* <Text>hlo</Text> */}
+                </View>
+                <View style={{justifyContent:'center',marginLeft:14}}>
+               {/* <Text>hlo</Text> */}
+               <Edit/>
+                </View>
+                 </View>
+           
+              </View>
+              
+          </Card>
+         
+              <View style={{marginLeft:15,width:'91.5%',backgroundColor:'white'}}>
+                  {
+                      l.sections.map(k=>{
+                          return(
+                        <View>
+                             {
+                                 this.state.darray1[i]===true?<View>
+                                 <View style={{marginTop:12,marginLeft:10}}>
+                                 <TouchableOpacity 
+                                  onPress={()=>this.props.navigation.navigate('1st Class',
+                                  {l,k
+                                    //   l.route.params.class,
+                                    // k.route.params
+                                }
+                                  
+                                      
+                                  
+                                  )
+                                  }>
+                                     <Text style={{fontSize:16,fontWeight:'400',height:30}}>Section {k}</Text>
+                                 </TouchableOpacity>
+                         </View>
+                                 </View>:<View>
+                                 </View>
+
+                             }
+                         </View>
+                           )
+                      })
+                  }
+
+              </View>
+              
+                   </View>
+                 )
+             })
+         }
             </View>
             </ScrollView>
             </View>
             <View>
 
             </View>
-        </View>
+        </ScrollView>
     )
+}
 }
 const styles=StyleSheet.create({
     card:{

@@ -54,6 +54,7 @@ import TeacherStack from './TEACHERS/TeacherStack';
     // )
 
     const [confirm, setConfirm] = useState(null);
+    const [Roll, setRoll] = useState(null);
     const [authenticated, setAuthenticated] = useState(false);
 
     async function signIn(phoneNumber) {
@@ -73,37 +74,53 @@ import TeacherStack from './TEACHERS/TeacherStack';
         } catch (error) {
             alert('Invalid code');
         }
-    }
+    }   
 
     auth().onAuthStateChanged((user) => {
-      
+        
         // this.props.details(auth())
         if (user) {
             setAuthenticated(true);
             console.log(user.phoneNumber,"thse are the user details")
-            firestore().collection('Principals').doc(user.phoneNumber).get().then(res=>{
-                console.log(res.data(),"is res")
-               props.details(res.data())
-            })
+        firestore().collection('Users').doc(user.phoneNumber).get().then(res=>{
+            console.log(res.data(),"is res")
+            setRoll(res.data().role)
+           props.details(res.data())
+        })
         } else {
+            // setConfirm(false)
             setAuthenticated(false);
         }
     })
 
-    if (authenticated){ 
+    if (authenticated) {
+      if(Roll==='Teacher'){
+          return(
+<NavigationContainer>
+               {/* <Text>hiii teacher</Text> */}
+               <DrawerNav/>
+               {/* <TeacherStack/> */}
+               </NavigationContainer>
+          )
+      }else if(Roll==='Principal'){
+          return(
+<NavigationContainer>
+               <DrawerNav/>
+               </NavigationContainer>
+          )
+      }else if(Roll==null){
+          return(
+              <View style={{justifyContent:'center',alignItems:'center'}}>
+                  <Text style={{fontSize:25}}>Laoding...</Text>
+              </View>
+          )
+      }
+    }
+
         
-        return (
-        
-        // <NavigationContainer>
-        //     <DrawerNav />
-        // </NavigationContainer>
-        <NavigationContainer>
-        <TeacherStack/>
-        </NavigationContainer>
         // <AddNewClassesPage/>
         // <ChooseClass/>
-    );
-    }
+    
 
     if (confirm) return <VerifyCode onSubmit={confirmVerificationCode} />;
 

@@ -4,7 +4,7 @@ import { View, Text } from 'react-native'
 function Classes() {
     return (
         <View>
-            <Text>Classes...........??????????????/###############</Text>
+            <Text>Classes...........??????????????###############</Text>
         </View>
     )
 }

@@ -12,7 +12,6 @@ function FirstClass({props}) {
     return (
         <View>
             <Tabnav/>
-          
         </View>
     )
 }

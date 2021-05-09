@@ -20,7 +20,7 @@ import AdminDashboard from '../../cardss/AdminDashboard'
 import BellIconPage from '../../BellIconPage'
 import User from '../Icons/User'
 import UserIconPage from '../../UserIconPage'
-import TeacherDashboard from '../../TEACHERS/TeacherDashboard'
+// import TeacherDashboard from '../../TEACHERS/TeacherDashboard'
 const Tab = createBottomTabNavigator();
 export default function BotNav(){
     return(
