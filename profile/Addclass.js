@@ -115,14 +115,17 @@ export default function Addclass() {
     var subjects = {}
     // subjects={j:}
     mySubjects.map((l, i) => {
-      subjects[i] = {
-        // section:onChangeSection,
-        subject: l,
-        Uid: uuidv4()
-      }
-
-      // .subject = l: uuidv4() 
+      subjects[l] = uuidv4()
     })
+
+    var SectionandSubjects = {
+
+      // onChangeSection: subjects,
+      // mySection1: onChangeSection
+    }
+    SectionandSubjects[onChangeSection] = subjects
+
+    // console.log("Classandsubjects",SectionandSubjects);
 
     // var SecSubject = [{
     //   onChangeSection: { subjects }
@@ -130,6 +133,7 @@ export default function Addclass() {
     console.log("hii", subjects, "subjects");
 
     var details = {
+      mySectionandSubjects: SectionandSubjects,
       MySubjects: subjects,
       TeacherName: onChangeName,
       TeacherPhoneno: onChangeNumber,

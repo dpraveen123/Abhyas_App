@@ -14,11 +14,11 @@ import React, { useState } from 'react';
 // import LandingPage from './Logo/LandingPage'
 // import MyCourses from './Bsharp/mycourses'
 // import Example from './Bsharp/students'
-// // import Hello from './Bsharp/Cards'
+// import Hello from './Bsharp/Cards'
 // import SwitchExample from './Bsharp/dropdown'
 import Authentication1 from './Authentication1'
-import CreateData from './createdata'
-import Schools from './Schools'
+// import CreateData from './createdata'
+// import Schools from './Schools'
 // import DropDown1 from './dropDown'
 // import AdminDashboard from './cardss/AdminDashboard'
 import { Provider } from 'react-redux';
@@ -36,39 +36,86 @@ import {
   ScrollView
 } from 'react-native';
 // import Profile from './mywork/Profile';
-import Teacher from './teacher'
+// import Teacher from './teacher'
 
-import Hello from './profile/Hello';
-import Addclass from './profile/Addclass';
-import Profile from './profile/Stack';
-import AllClasses from './profile/Classes';
-import Slider from './profile/Tab';
-import Tab2 from './profile/Editpick'
-import EditPick from './profile/Editpick'
-import Translator from './OtpPage'
-import Page from './ClassesDesign/NoSectionsAdded';
-import Pick from './profile/Picker'
-// -----------------port-8081---------------------------
-class App extends React.Component {
+// import Hello from './profile/Hello';
+// import Addclass from './profile/Addclass';
+// import Profile from './profile/Stack';
+// import AllClasses from './profile/Classes';
+// import Slider from './profile/Tab';
+// import Editpick from './profile/Editpick';
+// // import store from './redux'
+// import Newone from './profile/new2';
+// import Testing from './Testing'
 
+  //         this.setState({authenticated:true})
+  //     } else {
 
+  //         this.setState({authenticated:false})
+  //     }
+  // })
+  // }
+  // signIn=(phoneNumber)=> {
+  //    try {
+  //        const confirmation = auth().signInWithPhoneNumber(phoneNumber);
+  //        this.setState({confirm:confirmation})
+  //    } catch (error) {
+  //        alert(error);
+  //    }
+  // }
 
+  // confirmVerificationCode=(code)=> {
+  //    console.log(code);
+  //    try {
+  //         confirm.confirm(code);
+  //        setConfirm(null);
+  //    } catch (error) {
+  //        alert('Invalid code');
+  //    }
+  // }
+class App extends React.Component{
   render() {
     return (
       // <CreateData />
       // <Schools />
       // <Profile />
       // <Teacher />
-      // <TeacherData />
-
+//  <AllClasses/> 
+/* <Editpick/> */
      
       <Provider store={store}>
          <Authentication1 /> 
          {/* <Slider/> */}
+         {/* <Editpick /> */}
+         {/* <Slider/> */}
+         {/* <Testing/> */}
+      {/* <Test/> */}  
+         {/* <Newone />   */}
          {/* <DropDown1/> */}
          {/* <Pick/> */}
          {/* <EditPick/> */}
       </Provider>
+      // <PickerWithIcon />
+      // <Tab2 />
+      // // <View>
+      
+      
+      //   {/* <PhoneNumber /> */}
+        // <AllClasses /> 
+        // <Provider store={store}>
+        //  <Slider />
+
+        // </Provider>
+        // <Newone />
+        // <Editpick />
+      //   {/* <Tablet /> */}
+      //  <Hello /> 
+      //   {/* <Profile /> */}
+      //   {/* <Addclass /> */}
+      //   {/* <MyCourses /> */}
+      //   {/* <SwitchExample /> */}
+      //   {/* <Example /> */}
+      // // </View>
     )
 
 
@@ -90,4 +137,3 @@ class App extends React.Component {
 }
 
 export default App;
-
