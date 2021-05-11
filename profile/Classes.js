@@ -209,6 +209,8 @@ Drop=(i)=>{
                
                 <TouchableOpacity onPress={()=>{
                     this.Drop(i)
+                    this.openDrop(i)
+
                 }}
                 >
                     <Image source={

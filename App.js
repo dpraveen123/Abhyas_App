@@ -23,6 +23,8 @@ import Authentication1 from './Authentication1'
 // import AdminDashboard from './cardss/AdminDashboard'
 import { Provider } from 'react-redux';
 import store from './redux';
+import Report from './class-students/Report';
+import Modaling from './Student-profile/modal';
 
 import {
   AppRegistry,
@@ -84,7 +86,9 @@ class App extends React.Component{
 /* <Editpick/> */
      
       <Provider store={store}>
-         <Authentication1 /> 
+         {/* <Authentication1 />  */}
+         {/* <Report /> */}
+         <Modaling />
          {/* <Slider/> */}
          {/* <Editpick /> */}
          {/* <Slider/> */}
