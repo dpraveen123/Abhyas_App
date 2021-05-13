@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Header, Tab, Tabs, TabHeading, Icon, Text ,StyleProvider} from 'native-base';
 import {View} from 'react-native';
-import Students from './Students'
+import AllStudents from './Students'
 import Report from './Report';
 import Subjects from './Subjects';
 import getTheme from '../native-base-theme/components';
@@ -20,7 +20,7 @@ export default class Tabnav1 extends Component {
           </Tab >
          
           <Tab heading={ <TabHeading><Text>Students</Text></TabHeading>}>
-           <Students />
+           <AllStudents />
           </Tab>
 
           <Tab heading={ <TabHeading><Text>Reports</Text></TabHeading>}>

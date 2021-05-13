@@ -6,10 +6,11 @@ import pic from '../Images/student1.png';
 import pic1 from '../Images/stu.png';
 import Svgpages from '../assets/Svg';
 import Search from '../assets/Search';
+import Fil from '../assets/fil';
+import Editpickker from './edit';
 
 
-
-class AllStudents extends React.Component {
+class AllClasses extends React.Component {
   
   
     state={
@@ -114,20 +115,20 @@ class AllStudents extends React.Component {
              </View>
              </View>
             
-             {/* <View style={{paddingLeft:25,paddingTop:15}}> 
+             <View style={{paddingLeft:25,paddingTop:15}}> 
 
            <Text style={{fontFamily:"Roboto",fontSize:20,fontWeight:"500",lineHeight:28,color:"#14171A"}}>All Students</Text>
-            </View> */}
+            </View>
 
            
           
              <ScrollView style={{backgroundColor:'white'}}>
             
-            <View style={{paddingLeft:25,paddingTop:12}}> 
+            {/* <View style={{paddingLeft:25,paddingTop:12}}> 
 
              <Text style={{fontFamily:"Roboto",fontSize:20,fontWeight:"500",lineHeight:28,color:"#14171A"}}>All Students</Text>
              </View>
-          
+           */}
          
          <View style={{flexDirection:'row',borderRadius:80, margin:0}}>
              
@@ -155,10 +156,10 @@ class AllStudents extends React.Component {
                      <Image source={artist.image}
                          style={{
                          
-                            height: 64,
-                            width: 64,
+                            height: 50,
+                            width: 50,
                             backgroundColor: "#ddd",
-                            borderRadius: 64/ 2}}resizeMode="cover"/>
+                            borderRadius: 50 / 2}}resizeMode="cover"/>
       
                         </View>
   
@@ -166,20 +167,20 @@ class AllStudents extends React.Component {
                           style={{
                             flexDirection: "column",
                             paddingLeft: 13,
-                            marginTop: -21,
+                            marginTop: -20,
                             fontWeight:"bold",
                           
                           
                           }}>
-                          <Text style={{ fontSize: 17,fontFamily:"Roboto",lineHeight:28 ,lineHeight:24}} >{artist.name}</Text>
+                          <Text style={{ fontSize: 20,fontFamily:"Roboto",lineHeight:28 }} >{artist.name}</Text>
                           <Text style={{ fontSize: 14, color: "#657786",fontFamily:"Roboto" }}>{artist.rollno} </Text>
                           
-                          <Text style={{ fontSize: 12, color: "#A7A7A7",fontFamily:"Roboto" }}>{artist.section} </Text>
+                          <Text style={{ fontSize: 14, color: "#A7A7A7",fontFamily:"Roboto" }}>{artist.section} </Text>
                         </View>
   
                                     
                        </View>
-                       <View style={{ marginLeft:300,marginTop:-8,position:"absolute"}}>
+                       <View style={{ marginLeft:300,marginTop:-5,position:"absolute"}}>
                         <View>
                         <Svgpages  />
                          </View>
@@ -210,7 +211,7 @@ class AllStudents extends React.Component {
                   </View>
   
                 </ScrollView>
-                   <View style={{marginTop: 600, marginLeft: 117,position:"absolute"}}>
+                   <View style={{marginTop: 650, marginLeft: 110,position:"absolute"}}>
                  
                  
                    <TouchableOpacity style={styles.submit} onPress={() => 
@@ -265,7 +266,7 @@ class AllStudents extends React.Component {
   
   
   
-  export default AllStudents;
+  export default AllClasses;
   
   
   
