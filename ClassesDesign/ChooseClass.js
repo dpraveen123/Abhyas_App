@@ -201,8 +201,8 @@ ShowPage=()=>{
         this.props.props.modal();
       });
    }
-
 }  
+
 afterClassPage=()=>{
 
 }

@@ -24,6 +24,8 @@ class CreateData extends React.Component {
         // this.state.phonenumber = '+919515794253'
         this.state.phonenumber = '+918688696792'
         this.setState({ phonenumber: this.state.phonenumber })
+
+        
         console.log(this.state.phonenumber, typeof (`${this.state.phonenumber}`))
         firestore()
             .collection('Principals').doc(`${this.state.phonenumber}`)

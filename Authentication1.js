@@ -46,7 +46,7 @@ import TeacherStack from './TEACHERS/TeacherStack';
 
 // export default App;
 
- function Authentication1(props) {
+function Authentication1(props) {
     // console.log("hloooooo")
     // return (
     //   // <OtpPage />
@@ -128,12 +128,12 @@ import TeacherStack from './TEACHERS/TeacherStack';
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-   
-    //   // dispatching plain actions
-    //   increment: () => dispatch({ type: 'INCREMENT' }),
-    //   decrement: () => dispatch({ type: 'DECREMENT' }),
-    //   reset: () => dispatch({ type: 'RESET' }),
-    details:(l)=>dispatch({type:'authdetails',payload:l})
+
+        //   // dispatching plain actions
+        //   increment: () => dispatch({ type: 'INCREMENT' }),
+        //   decrement: () => dispatch({ type: 'DECREMENT' }),
+        //   reset: () => dispatch({ type: 'RESET' }),
+        details: (l) => dispatch({ type: 'authdetails', payload: l })
     }
-  }
-export default connect(null,mapDispatchToProps)(Authentication1)
+}
+export default connect(null, mapDispatchToProps)(Authentication1)
