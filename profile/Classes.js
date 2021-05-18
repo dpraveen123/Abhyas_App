@@ -120,60 +120,7 @@ class AllClasses extends React.Component {
        color2:"#F879C7"
       },
 
-      [ 
-        {
-        class: '1st class',
-        color1:"#9A56E1",
-        color2:"#F879C7"
-      },
-      {
-        class: '2nd class',
-        color1:"#F28436",
-       color2:"#FEE468"
-      },
-      {
-        class: '3rd class',
-        color1:"#3890FA",
-       color2:"#57D5C3"
-      },
-      {
-        class: '4th class',
-        color1:'#E0435E',
-       color2:'#FF7B93'
-      },
-      {
-        class: '5th class',
-        color1:'#9E37CA',
-        color2:'#D92E9F'
-      },
-      {
-        class: '6th class',
-        color1:'#126DD8',
-        color2:'#50B8FF'
-      },
-      {
-        class: '7th class',
-        color1:'#E0435E',
-        color2:'#FF7B93'
-      },
-      {
-        class: '8th class',
-        color1:"#3890FA",
-        color2:"#57D5C3"
-      },
-      {
-        class: '9th class',
-        color1:"#F28436",
-        color2:"#FEE468"
-      },
-      {
-        class: '10th class',
-        color1:"#9A56E1",
-        color2:"#F879C7"
-       
-      },
-
-      ]
+     
      
   ],
   data:[],
@@ -244,7 +191,7 @@ Drop=(i)=>{
   render() {
     const { modalVisible } = this.state;
     return (
-      <View style={{flex:1,marginTop:-20}} >
+      <View style={{flex:1}} >
                 {/* <View style={{}}>
                 <ModalTester props={this.state.data}/>
                 </View> */}
