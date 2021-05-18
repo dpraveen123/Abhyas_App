@@ -23,9 +23,9 @@ import Authentication1 from './Authentication1'
 // import AdminDashboard from './cardss/AdminDashboard'
 import { Provider } from 'react-redux';
 import store from './redux';
-import AllStudents from './class-students/Students';
-import Tabnav1 from './class-students/Tabnav'
-import Modaling from './Student-profile/modal';
+// import AllStudents from './class-students/Students';
+// import Tabnav1 from './class-students/Tabnav'
+// import Modaling from './Student-profile/modal';
 
 
 
@@ -89,12 +89,12 @@ class App extends React.Component{
 /* <Editpick/> */
      
       <Provider store={store}>
-         {/* <Authentication1 />  */}
+         <Authentication1 /> 
          {/* <Report /> */}
          {/* <Modaling /> */}
          {/* <Searchbar /> */}
          {/* <AllStudents /> */}
-       <Tabnav1 />
+       {/* <Tabnav1 /> */}
          {/* <Slider/> */}
          {/* <Editpick /> */}
          {/* <Slider/> */}
