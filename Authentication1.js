@@ -29,7 +29,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import AddNewClassesPage from './ClassesDesign/AddNewClassesPage';
 import ChooseClass from './ClassesDesign/ChooseClass-2';
 import { connect } from 'react-redux';
-import TeacherStack from './Teachers/TeacherStack';
+import TeacherStack from './TEACHERS/TeacherStack';
 // class App extends React.Component {
 //   render() {
 //     return (

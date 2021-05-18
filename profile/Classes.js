@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { StyleSheet, View, Text,TouchableOpacity,Image,Dimensions,ScrollView,SafeAreaView,AppRegistry,
   TextInput,Button,Alert,title,TouchableHighlight} from 'react-native';
 import {Card} from'react-native-elements';
@@ -9,7 +9,7 @@ import Edit from '../assets/edit';
 import Arr from '../assets/line';
 import Pick from './Picker';
 import Editpick from './Editpick';
-
+import Modal from 'react-native-modal';
 import Newone from './new1'
 import { connect } from 'react-redux';
 import store from '../redux'
@@ -25,6 +25,7 @@ import firestore from '@react-native-firebase/firestore';
 import { Menu, MenuProvider, MenuOptions, MenuOption, MenuTrigger} from "react-native-popup-menu";
 import LinearGradient from 'react-native-linear-gradient';
 import { NavigationContainer } from '@react-navigation/native';
+import ChooseClass from '../ClassesDesign/ChooseClass'
 // import ModalTester from '../ClassesDesign/AddNewClassesPage'
 // import store from '../redux'
 // import Dropdown from '../profile/drop';
@@ -128,7 +129,7 @@ class AllClasses extends React.Component {
   }
 }
 componentDidMount=()=>{
-  console.log(store.getState().authdetails," i am from clasess.js")
+  // console.log(store.getState().authdetails," i am from clasess.js")
  var details={
    uid:store.getState().authdetails.uuid
  }
@@ -137,13 +138,13 @@ functions().httpsCallable('getClass')(details)
   // console.log("sucsesfully getting all classess bro",response.data)
   this.state.data=response.data;
   this.setState({data:this.state.data})
-  console.log(this.state.data)
+  // console.log(this.state.data)
   this.state.data.map((i,l)=>{
     // console.log("i and l are",i,l)
     this.state.darray[l]=false;
     this.state.drop[l]=false;
  })
- console.log(this.state.darray,"is darray yy")
+//  console.log(this.state.darray,"is darray yy")
 });
   //  firestore().collection('Schools').doc(store.getState().authdetails.uuid).collection('classes').get()
   //  .then((querySnapshot) =>{
@@ -153,23 +154,27 @@ functions().httpsCallable('getClass')(details)
   //  })
 }
 openDrop=(i)=>{
-  console.log(i,"drop clicked")
+  // console.log(i,"drop clicked")
   this.state.darray[i]=!this.state.darray[i];
   // this.setState({darray:this.state.darray})
   this.state.darray1=this.state.darray;
   this.setState({darray1:this.state.darray1})
-  console.log(this.state.darray1)
+  // console.log(this.state.darray1)
 }
 Drop=(i)=>{
-  console.log(i,"drop clicked")
+  // console.log(i,"drop clicked")
   this.state.drop[i]=!this.state.drop[i];
   this.state.drop1=this.state.drop;
   this.setState({drop1:this.state.drop1})
-  console.log(this.state.drop1)
+  // console.log(this.state.drop1)
 }
   render() {
     return (
-      <View>
+      <View >
+                <View style={{}}>
+                <ModalTester props={this.state.data}/>
+                </View>
+
       {/* // <SafeAreaView style={{backgroundColor:'white' }}> */}
        <ScrollView style={{backgroundColor:'whitesmoke'}}>
        {/* <ModalTester/> */}
@@ -231,8 +236,11 @@ Drop=(i)=>{
                                  this.state.drop1[i]===true?<View>
                                  <View style={{marginTop:-45,marginLeft:-50,}}>
                          <Card >
-                            
-                         <TouchableOpacity onPress={()=>{ this.openDrop(i)}} >
+      
+                         <TouchableOpacity onPress={()=>{ 
+                           this.openDrop(i)
+                          //  this.Drop(i)
+                         }} >
                          <Text style={{fontWeight:"bold",fontFamily:"Roboto",fontSize:18,borderWidth:1,borderColor:"#E1E8ED",marginLeft:1}}>Edit Class</Text>
                          </TouchableOpacity>
                         
@@ -303,24 +311,26 @@ Drop=(i)=>{
               
                    </View>
                  )
+                 
              })
+             
          }
 
 
                 {/* ................uptohere................................. */}
 
-              
                 </ScrollView>
-
+     
                 {/* ..................floating button .................. */}
-                <View style={{position:'absolute', marginTop: 567, marginLeft: 104}}>
+                {/* <View style={{position:'absolute', marginTop: 567, marginLeft: 104}}>
                
                
-               <TouchableOpacity style={{width:153,height:48}} onPress={() => 
+               {/* <TouchableOpacity style={{width:153,height:48}} onPress={() => 
                  Alert.alert("Adding new class")}underlayColor='#fff'>
                  <Text style={styles.submitText}> + Add new Class </Text>
-                </TouchableOpacity>
-              </View>
+                </TouchableOpacity> */}
+              {/* </View> */} 
+              
                 </View>
                 
                 
@@ -333,6 +343,70 @@ Drop=(i)=>{
   }
 }
 const { width, height } = Dimensions.get("screen");
+  class ModalTester extends React.Component{
+    constructor(props){
+      super(props);
+      this.state={
+        isModalVisible:false,
+        classes:[],
+        availableClass:[],
+        data:[],
+        intialClasses:['1st class','2nd class','3rd class','4th class','5th class','6th class','7th class','8th class','9th class','10th class']
+      }
+    }
+    toggleModal=()=>{
+      this.setState({isModalVisible:!this.state.isModalVisible})
+    }
+    
+    componentDidMount=()=>{
+      var details={
+        uid:store.getState().authdetails.uuid
+      }
+      functions().httpsCallable('getClass')(details)
+.then(response => {
+  // console.log("sucsesfully getting all classess bro",response.data)
+  this.state.data=response.data;
+  this.setState({data:this.state.data})
+  // console.log(this.state.data,"i am from modal tester")
+  this.state.data.map(l=>{
+      this.state.availableClass=this.state.availableClass.concat(l.class)
+      this.setState({availableClass:this.state.availableClass})
+  })
+  // console.log(this.state.availableClass,"available")
+  this.state.intialClasses.map(l=>{
+    var n=this.state.availableClass.includes(l)
+    if(!n){
+      console.log(n,l)
+       this.state.classes=this.state.classes.concat(l)
+    this.setState({classes:this.state.classes})
+    }
+  })
+  console.log(this.state.classes,"thse are not added")
+
+//  console.log(this.state.darray,"is darray yy")
+});
+     
+    }
+    render(){
+      return(
+         <View style={{elevation:10,alignItems:'center',}}>
+          <TouchableOpacity style={styles.button} onPress={this.toggleModal}>
+                <View>
+                    <Text style={styles.Class}>+ Add new Class</Text>
+                </View>
+            </TouchableOpacity>
+           <Modal isVisible={this.state.isModalVisible}>
+             <TouchableOpacity onPress={this.toggleModal} style={{width:360,height:190,marginLeft:-20}}>
+             </TouchableOpacity>
+           <ChooseClass props={{class:this.state.classes,modal:this.toggleModal}}/>
+          </Modal>
+      </View>
+      )
+    }
+  }
+    
+  
+
 const styles = StyleSheet.create({
   container: {
     flex: 2,
@@ -371,7 +445,26 @@ name:{
   color:'white',
   fontSize:32,
   paddingLeft:25
-}})
+},
+button:{
+  backgroundColor:"#1F85FF",
+  width:152,
+  height:48,
+  borderRadius:40,
+  justifyContent:'center',
+  // display:'flex',
+  // position:'absolute',
+  // left:30,
+  // top:50
+},
+Class:{
+  color:'white',
+  fontFamily:'Roboto',
+  fontWeight:'500',
+  fontSize:16,
+  marginLeft:16
+}
+})
 const mapDispatchToProps = (dispatch) => {
   return {
  
@@ -391,3 +484,5 @@ export default connect(null,mapDispatchToProps)(AllClasses)
                     //  style={{paddingTop:100}}
                      />
                      </View> */}
+
+                     
