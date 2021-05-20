@@ -17,6 +17,9 @@ import React, { useState } from 'react';
 // import Hello from './Bsharp/Cards'
 // import SwitchExample from './Bsharp/dropdown'
 import Authentication1 from './Authentication1'
+import Ganesh from './Navigation/TEACHERS/ganesh';
+//import RunMetro from './Navigation/TEACHERS/RunMetro';
+//import Svgpage from '../../Svg';
 // import CreateData from './createdata'
 // import Schools from './Schools'
 // import AdminDashboard from './cardss/AdminDashboard'
@@ -34,6 +37,8 @@ import {
 } from 'react-native';
 // import Profile from './mywork/Profile';
 import Teacher from './teacher'
+import Svgpage from './Svg';
+//import RunMetro from './Navigation/TEACHERS/RunMetro';
 
 // import Translator from './OtpPage'
 
@@ -82,7 +87,13 @@ class App extends React.Component {
       // <Profile />
       // <Teacher />
 
-      <Authentication1 />
+      // <Authentication1 />
+      <View>
+       <Ganesh/>
+       {/* <RunMetro/> */}
+      </View>
+     
+      // <Svgpage/>
 
     )
 
