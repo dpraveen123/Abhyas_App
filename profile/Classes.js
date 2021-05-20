@@ -16,10 +16,16 @@ import store from '../redux'
 import DropDownItem from '../react-native-drop-down-item';
 import functions from '@react-native-firebase/functions';
 import auth from '@react-native-firebase/auth';
+// import Edit from '../assets/edit';
+const IC_ARR_DOWN = require('../assets/dropup.png');
+const IC_ARR_UP = require('../assets/dropdown.png');
+const editpickup =require('../assets/Editpick.png');
+const editpickdown =require('../assets/Editpick.png');
 import firestore from '@react-native-firebase/firestore';
 import { Menu, MenuProvider, MenuOptions, MenuOption, MenuTrigger} from "react-native-popup-menu";
 import LinearGradient from 'react-native-linear-gradient';
 import { NavigationContainer } from '@react-navigation/native';
+// import ModalTester from '../ClassesDesign/AddNewClassesPage'
 // import store from '../redux'
 // import Dropdown from '../profile/drop';
 
@@ -112,47 +118,209 @@ class AllClasses extends React.Component {
       },
      
   ],
+  data:[],
+  darray:[],
+  darray1:[],
+  drop:[],
+  drop1:[],
+  
   }
 }
 componentDidMount=()=>{
-  // console.log(store.getState().authdetails," i am from clasess.js")
-  var details={uid:store.getState().authdetails.uuid}
-console.log("details are,",details)
+  console.log(store.getState().authdetails," i am from clasess.js")
+ var details={
+   uid:store.getState().authdetails.uuid
+ }
 functions().httpsCallable('getClass')(details)
 .then(response => {
-  console.log("sucsesfully added a new class bro",response.data)
+  // console.log("sucsesfully getting all classess bro",response.data)
+  this.state.data=response.data;
+  this.setState({data:this.state.data})
+  console.log(this.state.data)
+  this.state.data.map((i,l)=>{
+    // console.log("i and l are",i,l)
+    this.state.darray[l]=false;
+    this.state.drop[l]=false;
+ })
+ console.log(this.state.darray,"is darray yy")
 });
-//    firestore().collection('Schools').doc(details.uid).collection('classes').get()
-//    .then((querySnapshot) =>{
-// // console.log(querySnapshot.size,"data")
-
-//     // querySnapshot.forEach(documentSnapshot => {
-//     //   console.log('User ID: ', documentSnapshot.data());
-//     // });
-//    })
+  //  firestore().collection('Schools').doc(store.getState().authdetails.uuid).collection('classes').get()
+  //  .then((querySnapshot) =>{
+  //   querySnapshot.forEach(documentSnapshot => {
+  //     console.log('User ID: ',documentSnapshot.id, documentSnapshot.data());
+  //   });
+  //  })
+}
+openDrop=(i)=>{
+  console.log(i,"drop clicked")
+  this.state.darray[i]=!this.state.darray[i];
+  // this.setState({darray:this.state.darray})
+  this.state.darray1=this.state.darray;
+  this.setState({darray1:this.state.darray1})
+  console.log(this.state.darray1)
+}
+Drop=(i)=>{
+  console.log(i,"drop clicked")
+  this.state.drop[i]=!this.state.drop[i];
+  this.state.drop1=this.state.drop;
+  this.setState({drop1:this.state.drop1})
+  console.log(this.state.drop1)
 }
   render() {
     return (
-      // <SafeAreaView style={{backgroundColor:'white' }}>
-       <ScrollView>
-                {this.state.artists.map((artist)=>{
-                  return(
-                    <Card>
-        <Text>hloooo</Text>
-                </Card>
-                  )
-                }
-                   )}
+      <View>
+      {/* // <SafeAreaView style={{backgroundColor:'white' }}> */}
+       <ScrollView style={{backgroundColor:'whitesmoke'}}>
+       {/* <ModalTester/> */}
+                {/* .............cards.............................                */}
                
-                <View style={{position:'absolute', marginTop: 600, marginLeft: 125}}>
-               
-               
-                <TouchableHighlight style={styles.submit} onPress={() => 
-                  Alert.alert("Adding new class")}underlayColor='#fff'>
-                  <Text style={styles.submitText}> + Add new Class </Text>
-                 </TouchableHighlight>
+                {
+             this.state.data.map((l,i)=>{
+                 return(
+                   <View style={{borderRadius:15}}>
+                   <Card
+                   containerStyle={{borderRadius:8}}
+                   >
+              <View style={{height:70}}>
+                  {/* <Text>hlooo</Text> */}
+                 <View style={{flexDirection:'row'}}>
+                 <View style={{width:64,height:64,backgroundColor:'whitesmoke'}}><Text>hii</Text></View>
+               <View style={{marginLeft:16}}>
+                   <Text style={{fontSize:20,lineHeight:28}}>{l.class}</Text>
+                   <Text style={{color:'#AAB8C2',fontSize:14,lineHeight:28,marginTop:0}}>{l.sections.length} Sections</Text>
                </View>
+                <TouchableOpacity style={{justifyContent:'center',marginLeft:80}}
+                onPress={()=>{
+                    this.openDrop(i)
+                }}
+                >
+                <View >
+                    <Image source={
+                        
+                        this.state.darray1[i]===true?IC_ARR_DOWN:IC_ARR_UP
+                    } style={{width:10,height:10}}></Image>
+                </View>
+                </TouchableOpacity>
+                <View style={{justifyContent:'center',marginLeft:14,width:1,height:'100%',borderWidth:0.5,borderColor:'#E1E8ED'}}>
+               {/* <Text>hlo</Text> */}
+                </View>
+                <View style={{justifyContent:'center',marginLeft:14}}>
+               
+                <TouchableOpacity onPress={()=>{
+                    this.Drop(i)
+                }}
+                >
+                    <Image source={
+                        
+                        this.state.drop1[i]===true?editpickdown:editpickup
+                    } style={{width:10,height:20}}></Image>
+                        
+                    </TouchableOpacity>
+                </View>
+
+                           {/* .................. 3 dots icon................ */}
+                <View style={{width:'39.5%',backgroundColor:'white',position:"absolute",marginHorizontal:85,marginVertical:10}}>
+                  {
+
+                    
+                        <View>
+                             {
+                                 this.state.drop1[i]===true?<View>
+                                 <View style={{marginTop:-45,marginLeft:-50,}}>
+                         <Card >
+                            
+                         <TouchableOpacity onPress={()=>{ this.openDrop(i)}} >
+                         <Text style={{fontWeight:"bold",fontFamily:"Roboto",fontSize:18,borderWidth:1,borderColor:"#E1E8ED",marginLeft:1}}>Edit Class</Text>
+                         </TouchableOpacity>
+                        
+                         <TouchableOpacity>
+                         <Text style={{fontWeight:"bold",fontFamily:"Roboto",fontSize:18,marginLeft:1,borderWidth:1,borderColor:"#E1E8ED"}}>Delete Class</Text>
+                         </TouchableOpacity>
+                         <TouchableOpacity>
+                         <Text style={{fontWeight:"bold",fontFamily:"Roboto",fontSize:18,borderWidth:1,borderColor:"#E1E8ED",marginLeft:1}}>Add Section</Text>
+                         </TouchableOpacity>
+                         </Card>
+
+                         </View>
+                                 </View>:<View>
+                                 </View>
+
+                             }
+                         </View>
+             }
+
+              </View>
+                 </View>
+           
+              </View>
+             
+              
+          </Card>
+         
+          
+         
+              <View style={{marginLeft:15,width:'91.5%',backgroundColor:'white'}}>
+                  {
+                      l.sections.map(k=>{
+                          return(
+                    
+                        <View>
+                             {
+                                 this.state.darray1[i]===true?<View>
+                                 <View style={{marginTop:12,marginLeft:10,flexDirection:"row",justifyContent:"space-between"}}>
+                         <Text style={{fontSize:16,fontWeight:'400',height:30}}>Section {k}</Text>
+                         {/* ....................Edit and Delete class view.............. */}
+                                
+                         <View>
+                         {
+                                 this.state.drop1[i]===true?<View style={{flexDirection:"row",paddingLeft:90}}>
+                         <TouchableOpacity>
+                         <Text style={{color:"#657786"}}> Edit</Text>
+                         </TouchableOpacity>
+                         <TouchableOpacity>
+                         <Text style={{color:"#657786",paddingStart:10}}> Delete</Text>
+                         </TouchableOpacity>
+                         
+                         </View>:<View>
+                             </View>
+                      }
+                         </View>
+
+                         </View>
+                                 </View>:<View>
+                                 </View>
+
+                             }
+                         </View>
+                           )
+                      })
+                  }
+
+              </View>
+              
+                   </View>
+                 )
+             })
+         }
+
+
+                {/* ................uptohere................................. */}
+
+              
                 </ScrollView>
+
+                {/* ..................floating button .................. */}
+                <View style={{position:'absolute', marginTop: 567, marginLeft: 104}}>
+               
+               
+               <TouchableOpacity style={{width:153,height:48}} onPress={() => 
+                 Alert.alert("Adding new class")}underlayColor='#fff'>
+                 <Text style={styles.submitText}> + Add new Class </Text>
+                </TouchableOpacity>
+              </View>
+                </View>
+                
+                
 
                 
     

@@ -18,17 +18,78 @@ import {
 // import AllClasses from '../profile/Classes'
 var data=[
     {
+        id:1,
         class:'1st class',
-        sections:['A','B','C']
+        sections:['A','B','C'], 
+        color1:"#9A56E1",
+        color2:"#F879C7",
+        
     },
     {
+        id:2,
         class:'2nd class',
-        sections:['A','B','C']
+        sections:['A','B','C'],
+        color1:"#F28436",
+        color2:"#FEE468"
     },
     {
+        id:3,
         class:'3rd class',
-        sections:['A','B','C']
+        sections:['A','B','C'],
+        color1:"#3890FA",
+        color2:"#57D5C3"
     },
+    {
+        id:4,
+        class:'4th class',
+        sections:['A','B','C'],
+        color1:'#E0435E',
+        color2:'#FF7B93'
+    },
+    {
+        id:5,
+        class:'5th class',
+        sections:['A','B','C'],
+        color1:'#9E37CA',
+        color2:'#D92E9F'
+    },
+    {
+        id:6,
+        class:'6th class',
+        sections:['A','B','C'],
+        color1:'#126DD8',
+        color2:'#50B8FF'
+    },
+    {
+        id:7,
+        class:'7th class',
+        sections:['A','B','C'],
+        color1:"#9A56E1",
+        color2:"#F879C7"
+    },
+    {
+        id:8,
+        class:'8th class',
+        sections:['A','B','C'],
+        color1:"#9A56E1",
+        color2:"#F879C7"
+    },
+    {
+        id:9,
+        class:'9th class',
+        sections:['A','B','C'],
+        color1:"#9A56E1",
+        color2:"#F879C7"
+    },
+    {
+        id:10,
+        class:'10th class',
+        sections:['A','B','C'],
+        color1:"#9A56E1",
+        color2:"#F879C7"
+    },
+    
+    
 ]
 class TeacherDashboard extends Component{
     constructor(props){
@@ -101,7 +162,7 @@ class TeacherDashboard extends Component{
                 <Text style={{fontWeight:'bold',fontSize:14}}>My Classes</Text>
             </View>
             <ScrollView>
-            <View style={{marginTop:-10,height:4000}}>
+            <View style={{marginTop:-10,height:1200}}>
                 {/* <AllClasses/> */}
          {
              data.map((l,i)=>{
@@ -117,7 +178,9 @@ class TeacherDashboard extends Component{
                  onPress={()=>this.props.navigation.navigate('1st Class')
                 }
                  > */}
-                     <View style={{width:64,height:64,backgroundColor:'whitesmoke'}}></View>
+                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}} colors={[l.color1,l.color2]}  style={{width:64,height:64,alignItems:'center',justifyContent:'center'}}>
+                         <Text style={styles.number}>{l.id}</Text>
+                     </LinearGradient>
                  {/* </TouchableOpacity> */}
                <View style={{marginLeft:16}}>
                    <Text style={{fontSize:20,lineHeight:28}}>{l.class}</Text>
@@ -157,30 +220,18 @@ class TeacherDashboard extends Component{
                                  this.state.darray1[i]===true?<View>
                                  <View style={{marginTop:12,marginLeft:10}}>
                                  <TouchableOpacity 
-                                  onPress={()=>this.props.navigation.navigate('1st Class',
-                                  {l,k
-                                    //   l.route.params.class,
-                                    // k.route.params
-                                }
-                                  
-                                      
-                                  
-                                  )
-                                  }>
+                                  onPress={()=>this.props.navigation.navigate('1st Class',{l,k})}>
                                      <Text style={{fontSize:16,fontWeight:'400',height:30}}>Section {k}</Text>
                                  </TouchableOpacity>
                          </View>
                                  </View>:<View>
                                  </View>
-
                              }
                          </View>
                            )
                       })
                   }
-
               </View>
-              
                    </View>
                  )
              })
@@ -189,7 +240,6 @@ class TeacherDashboard extends Component{
             </ScrollView>
             </View>
             <View>
-
             </View>
         </ScrollView>
     )
@@ -237,6 +287,10 @@ const styles=StyleSheet.create({
         height:36,
         justifyContent:'center',
         borderRadius:120,
+    },
+    number:{
+        color:'white',
+        fontSize:32
     }
 })
 export default TeacherDashboard

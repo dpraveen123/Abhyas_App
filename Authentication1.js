@@ -98,8 +98,8 @@ import TeacherStack from './TEACHERS/TeacherStack';
           return(
 <NavigationContainer>
                {/* <Text>hiii teacher</Text> */}
-               <DrawerNav/>
-               {/* <TeacherStack/> */}
+               {/* <DrawerNav/> */}
+               <TeacherStack/>
                </NavigationContainer>
           )
       }else if(Roll==='Principal'){

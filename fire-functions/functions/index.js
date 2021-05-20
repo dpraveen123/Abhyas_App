@@ -27,7 +27,8 @@ exports.addingClass=functions.https.onCall((data,context)=>{
 })
 
 exports.getClass=functions.https.onCall((data,context)=>{
-  var a=[],i=55,j=0;
+  var a=[],i=55,j=0,b=[];
+ return (
   db.collection('Schools').doc(data.uid).collection('classes').get()
   .then(
     querySnapshot => {
@@ -35,13 +36,16 @@ exports.getClass=functions.https.onCall((data,context)=>{
       i=querySnapshot.size;
       querySnapshot.forEach(documentSnapshot => {
         // console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
-        var l=documentSnapshot.id;
-        a.push({l:documentSnapshot.data()})
-     j=j+1;
+        //  j=documentSnapshot.id;
+        
+        a.push({class:documentSnapshot.id,sections:Object.keys(documentSnapshot.data().sections)})
+    //  j=j+1;
       });
+      return a
     })
-   if(i==j){
-    return a;
-    console.log("a is ",a)
-   }
+  //  if(i==j){  
+    // return a;
+ )
+    // console.log("a is ",a)
+  //  }
 })
