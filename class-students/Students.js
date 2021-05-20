@@ -1,18 +1,24 @@
 import React from 'react';
 import { StyleSheet, View, Text,TouchableOpacity,Image,Dimensions,ScrollView,SafeAreaView,AppRegistry,
-  TextInput,Button,Alert,title,TouchableHighlight} from 'react-native';
+  TextInput,Button,Alert,title,TouchableHighlight,Modal} from 'react-native';
 import {Card} from'react-native-elements';
 import pic from '../Images/student1.png';
 import pic1 from '../Images/stu.png';
 import Svgpages from '../assets/Svg';
 import Search from '../assets/Search';
-
+import { Icon } from 'react-native-elements';
+import AddStudent from './Addstudent';
 
 
 class AllStudents extends React.Component {
   
   
     state={
+
+     
+        modalVisible: false,
+       
+      
     artists: [
       {
         image: pic,
@@ -91,12 +97,19 @@ class AllStudents extends React.Component {
     
    
     }
+    setModalVisible = (visible) => {
+      console.log("modal opened");
+      this.setState({ modalVisible: visible });
+      // console.log("modal closed");
+    }
   
-  
+
+
+
     render() {
       
       
-      
+      const { modalVisible } = this.state;
   
       
       return (
@@ -114,10 +127,7 @@ class AllStudents extends React.Component {
              </View>
              </View>
             
-             {/* <View style={{paddingLeft:25,paddingTop:15}}> 
-
-           <Text style={{fontFamily:"Roboto",fontSize:20,fontWeight:"500",lineHeight:28,color:"#14171A"}}>All Students</Text>
-            </View> */}
+           
 
            
           
@@ -210,18 +220,40 @@ class AllStudents extends React.Component {
                   </View>
   
                 </ScrollView>
-                   <View style={{marginTop: 600, marginLeft: 117,position:"absolute"}}>
+
+                
+                   <View style={{alignItems:"center",position:"absolute",}}>
                  
                  
-                   <TouchableOpacity style={styles.submit} onPress={() => 
-                     Alert.alert("Adding new class")}underlayColor='#fff'>
-                     <Text style={styles.submitText}> + Add new Student </Text>
+                   <TouchableOpacity style={styles.button} onPress={() => this.setModalVisible(true)} underlayColor='#fff'>
+                     <View>
+                     <Text style={styles.Class}> + Add new Student </Text>
+                     </View>
                     </TouchableOpacity>
-                    </View>
+
+                    <Modal visible={modalVisible} animationType="slide">
+
+                      {/* ......................header component .............*/}
+
+            <View style={{flexDirection:"row",paddingTop: 30,paddingLeft:10,backgroundColor:"#FFFFFF",borderBottomWidth:1,borderColor:"#E5E5E5",height:60}}>
+             <View style={{flexDirection:"row",paddingLeft:10,marginTop:-10}}>
+           <Icon name='close' size={24} 
+           onPress={() => this.setModalVisible(false)} />
+          <Text style={{fontSize:20,fontWeight:"bold",paddingLeft:7}}>Add Student</Text>
+         </View>
+
+       </View>
+
+
+              <AddStudent />
+
+           </Modal>
+
+      </View>
    
                
                
-                    </View>
+      </View>
       
       
       );
@@ -259,7 +291,25 @@ class AllStudents extends React.Component {
     paddingTop:7,
     marginLeft:-155,
     
-}
+},
+button:{
+  backgroundColor:"#1F85FF",
+  width:152,
+  height:48,
+  borderRadius:40,
+  justifyContent:'center',
+  marginTop:650,
+  marginLeft:105
+
+},
+Class:{
+  color:'white',
+  fontFamily:'Roboto',
+  fontWeight:'500',
+  fontSize:15,
+  marginLeft:9
+},
+
   });
   
   
