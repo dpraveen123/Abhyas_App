@@ -9,22 +9,36 @@ import material from '../native-base-theme/variables/material';
 
 
 export default class Tabnav extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+
+    }
+  }
+  componentDidMount=()=>{
+    // console.log("i am from tabnav.js",this.props.route.params)  
+  }
   render() {
+    this.props.navigation.setOptions({
+      headerTitle:this.props.route.params.class+'-'+this.props.route.params.section+' section'
+    
+    })
+      
     return (
       <StyleProvider style={getTheme(material)}>
       <Container >
         
-        <Tabs >
+        <Tabs>
           <Tab  heading={ <TabHeading><Text>Subjects</Text></TabHeading>}  >
-          <Subjects/>
-          </Tab >
+          <Subjects props={this.props}/>
+          </Tab>
          
           <Tab heading={ <TabHeading><Text>Students</Text></TabHeading>}>
            <Students />
           </Tab>
 
           <Tab heading={ <TabHeading><Text>Reports</Text></TabHeading>}>
-           <Report />
+           <Report   />
           </Tab>
          
         </Tabs>

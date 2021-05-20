@@ -96,6 +96,10 @@ class TeacherDashboard extends Component {
         this.setState({ darray1: this.state.darray1 })
         console.log(this.state.darray1)
     }
+    selectSection=(c,s)=>{
+        var x={class:c,section:s}
+        this.props.navigation.navigate({name:'Section',params:x})
+    }
     render() {
         return (
             <ScrollView
@@ -190,10 +194,17 @@ class TeacherDashboard extends Component {
                                                             <View>
                                                                 {
                                                                     this.state.darray1[i] === true ? <View>
-                                                                        <View style={{ marginTop: 12, marginLeft: 10 }}>
+                                                             <TouchableOpacity 
+                                                             onPress={()=>{
+                                                                this.selectSection(l.class,k)
+                                                                //  this.props.navigation.navigate('Section')
+                                                             }}
+                                                             >
+                                                             <View style={{ marginTop: 12, marginLeft: 10 }}>
                                                                             <Text style={{ fontSize: 16, fontWeight: '400', height: 30 }}>Section {k}</Text>
 
                                                                         </View>
+                                                             </TouchableOpacity>
                                                                     </View> : <View>
                                                                     </View>
 
