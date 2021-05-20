@@ -113,7 +113,7 @@ class AllStudents extends React.Component {
   
       
       return (
-          <View style={{flex:1,backgroundColor:"white"}}>
+          <View style={{flex:1,backgroundColor:"white",}}>
       
            
        
@@ -131,15 +131,15 @@ class AllStudents extends React.Component {
 
            
           
-             <ScrollView style={{backgroundColor:'white'}}>
+             <ScrollView style={{backgroundColor:'white'  }}>
             
-            <View style={{paddingLeft:25,paddingTop:12}}> 
+            <View style={{paddingLeft:25,paddingTop:12,}}> 
 
              <Text style={{fontFamily:"Roboto",fontSize:20,fontWeight:"500",lineHeight:28,color:"#14171A"}}>All Students</Text>
              </View>
           
          
-         <View style={{flexDirection:'row',borderRadius:80, margin:0}}>
+         <View style={{flexDirection:'row',borderRadius:80, margin:0,paddingBottom:100}}>
              
        
              <View
