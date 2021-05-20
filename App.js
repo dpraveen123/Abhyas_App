@@ -17,6 +17,9 @@ import React, { useState } from 'react';
 // import Hello from './Bsharp/Cards'
 // import SwitchExample from './Bsharp/dropdown'
 import Authentication1 from './Authentication1'
+import Ganesh from './Navigation/TEACHERS/ganesh';
+//import RunMetro from './Navigation/TEACHERS/RunMetro';
+//import Svgpage from '../../Svg';
 // import CreateData from './createdata'
 // import Schools from './Schools'
 // import DropDown1 from './dropDown'

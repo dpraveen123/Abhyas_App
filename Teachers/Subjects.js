@@ -3,6 +3,8 @@ import { Text } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import functions from '@react-native-firebase/functions';
+import Biology from '../Navigation/TEACHERS/Biology'
+import TeacherSub from '../Navigation/TEACHERS/ganesh'
 class Subjects extends React.Component{
   constructor(props){
     super(props);
@@ -29,13 +31,13 @@ class Subjects extends React.Component{
   .httpsCallable('getTeacherSubjects')(details)
   .then((response) => {
     console.log("sucsesfully getting Teacher details dudee to fire functions from teacher", response.data)
-    // this.state.data = response.data;
-    // this.setState({data:this.state.data});
   });
   }
   render(){
     return(
-      <Text>Hello, This is subjects page!!!!!</Text>
+      // <Text>Hello, This is subjects page!!!!!</Text>
+      // <Biology/>
+      <TeacherSub/>
 
     )
     }

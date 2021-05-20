@@ -198,7 +198,7 @@ exports.getTeacherdetails=functions.https.onCall((data,context)=>{
 })
 exports.getTeacherSubjects=functions.https.onCall((data,context)=>{
     return(
-      firestore().collection('Users').doc(data.User).collection('Classes').doc(data.class).get().then(
+      db.collection('Users').doc(data.User).collection('Classes').doc(data.class).get().then(
          l=>{
           //  console.log("res",l.data())
           // console.log(l.data().SectionandSubjects[details.section],"hiiii")
