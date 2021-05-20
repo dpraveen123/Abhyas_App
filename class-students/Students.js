@@ -298,8 +298,8 @@ button:{
   height:48,
   borderRadius:40,
   justifyContent:'center',
-  marginTop:650,
-  marginLeft:105
+  marginTop:670,
+  marginLeft:110
 
 },
 Class:{

@@ -200,7 +200,7 @@ Drop=(i)=>{
        <ScrollView style={{backgroundColor:'whitesmoke'}}>
        {/* <ModalTester/> */}
                 {/* .............cards.............................                */}
-               
+               <View style={{paddingBottom:100}}>
                 {
              this.state.data.map((l,i)=>{
                  return(
@@ -391,11 +391,11 @@ Drop=(i)=>{
                 </View> */}
 
                 {/* ................uptohere................................. */}
-
+                </View>
                 </ScrollView>
 
 
-                <View style={{position:"absolute",marginTop:550,marginLeft:110}}>
+                <View style={{position:"absolute",marginTop:560,marginLeft:110}}>
                 <ModalTester props={this.state.data}/>
                 </View>
 
