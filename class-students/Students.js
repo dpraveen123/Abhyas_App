@@ -221,7 +221,7 @@ class AllStudents extends React.Component {
   
                 </ScrollView>
 
-                
+
                    <View style={{alignItems:"center",position:"absolute",}}>
                  
                  
@@ -239,7 +239,7 @@ class AllStudents extends React.Component {
              <View style={{flexDirection:"row",paddingLeft:10,marginTop:-10}}>
            <Icon name='close' size={24} 
            onPress={() => this.setModalVisible(false)} />
-          <Text style={{fontSize:20,fontWeight:"bold",paddingLeft:7}}>Add Student</Text>
+          <Text style={{fontSize:20,fontWeight:"500",paddingLeft:7,fontFamily:"Roboto"}}>Add Student</Text>
          </View>
 
        </View>
