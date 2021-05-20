@@ -27,16 +27,16 @@ class Subjects extends React.Component{
     
   //  }
   //  )
-  functions()
-  .httpsCallable('getTeacherSubjects')(details)
-  .then((response) => {
-    console.log("sucsesfully getting Teacher details dudee to fire functions from teacher", response.data)
-  });
+  // functions()
+  // .httpsCallable('getTeacherSubjects')(details)
+  // .then((response) => {
+  //   console.log("sucsesfully getting Teacher details dudee to fire functions from teacher", response.data)
+  // });
   }
   render(){
     return(
       // <Text>Hello, This is subjects page!!!!!</Text>
-      // <Biology/>
+      // <Biology/>adb devices
       <TeacherSub/>
 
     )
