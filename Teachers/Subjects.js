@@ -4,7 +4,7 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import functions from '@react-native-firebase/functions';
 import Biology from '../Navigation/TEACHERS/Biology'
-import TeacherSub from '../Navigation/TEACHERS/ganesh'
+import TeacherSub from '../Navigation/TEACHERS/ganesh';
 class Subjects extends React.Component{
   constructor(props){
     super(props);
