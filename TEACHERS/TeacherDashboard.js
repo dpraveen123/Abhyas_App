@@ -33,6 +33,57 @@ var data = [
         class: '3rd class',
         sections: ['A', 'B', 'C']
     },
+    {
+        id:4,
+        class:'4th class',
+        sections:['A','B','C'],
+        color1:'#E0435E',
+        color2:'#FF7B93'
+    },
+    {
+        id:5,
+        class:'5th class',
+        sections:['A','B','C'],
+        color1:'#9E37CA',
+        color2:'#D92E9F'
+    },
+    {
+        id:6,
+        class:'6th class',
+        sections:['A','B','C'],
+        color1:'#126DD8',
+        color2:'#50B8FF'
+    },
+    {
+        id:7,
+        class:'7th class',
+        sections:['A','B','C'],
+        color1:"#9A56E1",
+        color2:"#F879C7"
+    },
+    {
+        id:8,
+        class:'8th class',
+        sections:['A','B','C'],
+        color1:"#9A56E1",
+        color2:"#F879C7"
+    },
+    {
+        id:9,
+        class:'9th class',
+        sections:['A','B','C'],
+        color1:"#9A56E1",
+        color2:"#F879C7"
+    },
+    {
+        id:10,
+        class:'10th class',
+        sections:['A','B','C'],
+        color1:"#9A56E1",
+        color2:"#F879C7"
+    },
+    
+    
 ]
 class TeacherDashboard extends Component {
     constructor(props) {

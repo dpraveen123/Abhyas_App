@@ -1,9 +1,16 @@
 import React from 'react';
-import { Text } from 'react-native';
-
+import { Text ,View} from 'react-native';
+import TeacherSubj from '../TEACHERS/TeacherSubj'
 const Subjects = () => {
+  console.log('subjects');
   return (
-    <Text>Hello, This is subjects page!!!!!</Text>
+    <View 
+    // style={{backgroundColor:'black'}}
+    >
+      {/* <TeacherSubj/> */}
+    {/* <Text>Hello, This is subjects page!!!!!</Text> */}
+
+    </View>
   );
 }
 

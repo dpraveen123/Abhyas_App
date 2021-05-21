@@ -29,10 +29,11 @@ class Editpick extends React.Component {
   {/* <MenuTrigger text='Select option' /> */}
   <MenuTrigger  style={{width:20,height:20,backgroundColor:'red'}}>
     <Edit />
+    {/* <Drop /> */}
   </MenuTrigger>
   
   <MenuOptions   >
-    <MenuOption value={1}  text ='Edit class'/>
+    <MenuOption value={1}  text='Edit Class' />
     <MenuOption value={2}  text='Delete Class' />
     <MenuOption value={3}  text='Add Section'/>
     {/* <MenuOption value={4}  text='Add Section'/> */}

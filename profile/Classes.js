@@ -31,12 +31,11 @@ import ChooseClass from '../ClassesDesign/ChooseClass'
 // import Dropdown from '../profile/drop';
 
 class AllClasses extends React.Component {
-
  constructor(props) {
    super(props)
- 
+   console.log(props);
    this.state = {
-    
+  // navigation:this.props, 
   artists: [
     {
       image: Classno,
@@ -190,7 +189,7 @@ Drop=(i)=>{
               <View style={{height:70}}>
                   {/* <Text>hlooo</Text> */}
                  <View style={{flexDirection:'row'}}>
-                 <View style={{width:64,height:64,backgroundColor:'whitesmoke'}}></View>
+                 <View style={{width:64,height:64,backgroundColor:'whitesmoke'}}><Text>hii</Text></View>
                <View style={{marginLeft:16}}>
                    <Text style={{fontSize:20,lineHeight:28}}>{l.class}</Text>
                    <Text style={{color:'#AAB8C2',fontSize:14,lineHeight:28,marginTop:0}}>{l.sections.length} Sections</Text>
@@ -475,7 +474,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 export default connect(null,mapDispatchToProps)(AllClasses)
-
 
 {/* <View style={{ paddingLeft:280,paddingTop:10,position:'absolute',flexDirection:'row', justifyContent: 'space-between'}}>
                      <Editpick 

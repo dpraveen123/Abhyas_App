@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text,TouchableOpacity,Image,Dimensions,ScrollView,SafeAreaView,AppRegistry,
   TextInput,Button,Alert,title,TouchableHighlight} from 'react-native';
 import {Card} from'react-native-elements';
-import pic from '../images/pp.jpg';
+import pic from '../Images/pp.jpg';
 import Svgpages from '../assets/Svg';
 import Search from '../assets/Search';
 import Fil from '../assets/fil';
@@ -15,7 +15,7 @@ import Editpickker from './edit';
 
 
 
-class AllClasses extends React.Component {
+class Students extends React.Component {
   
   
   state={
@@ -265,6 +265,6 @@ card: {
 
 
 
-export default AllClasses;
+export default Students;
 
 

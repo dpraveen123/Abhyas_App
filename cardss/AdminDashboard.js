@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
 import {
-  Button, Text, TextInput, View, Image,
+  Button, 
+  Text, 
+  TextInput, 
+  View, 
+  Image,
   TouchableOpacity,
-  ImageBackground, ScrollView
+  ImageBackground, 
+  ScrollView,
+  StyleSheet
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { shadow } from 'react-native-paper';
 import Svg, { G, Path } from 'react-native-svg'
-// import OtpInputs from 'react-native-otp-textinput'
-// import Svgpage from '../otppage/Svg';
 import Classroom from '../Images/Classroom.jpg'
 import Teacher from '../Images/teacher.jpg'
 import Student from '../Images/students.jpg'
 import Graph from '../Images/Graph.jpg'
 import Timetable from '../Images/Timetable.jpg'
-// import Continue from '../Images/continue.jpg'
 import Continue from '../Images/Continue'
 import Rectangler from '../Images/Rectangle'
 const AdminDashboard = ({ navigation }) => {
-  // const [text, setText] = useState('');
   return (
     <View
       style={{ backgroundColor: 'white' }}
@@ -79,89 +82,77 @@ const AdminDashboard = ({ navigation }) => {
             </View>
           </View>
           <View>
-            {/* <TouchableOpacity>
-  <View>
-  <Rectangler/>
-  </View>
-</TouchableOpacity> */}
-            <TouchableOpacity
-              style={{
-                width: 328,
-                height: 160,
-                backgroundColor: "#4860DC",
-                borderRadius: 8,
-                justifyContent: "center",
-                alignItems: "center",
-                marginLeft: 15,
-                borderWidth: 1,
-                borderColor: "#4860DC",
-                shadowColor: "black",
-                marginTop: 45.15,
-
-                marginRight: 18
-              }}>
-
-              <View>
-                <View style={{ marginTop: 12 }}>
-                  <Image source={Timetable} style={{ marginLeft: 31.33, marginRight: 210 }}>
-                  </Image>
-                </View>
-              </View>
-            </TouchableOpacity>
-          </View>
-          <Text
-            style={{
-              color: "white",
-              marginLeft: 184,
-              marginTop: -140,
-              fontSize: 14
-            }}>Time table</Text>
-          <Text
-            style={{
-              color: "white",
-              marginLeft: 184,
-              fontSize: 12
-            }}>Add/edit the timetable for</Text>
-          <Text style={{
-            color: "white",
-            marginLeft: 184,
-            fontSize: 12
-          }}>your teachers</Text>
-        </View>
-        <View>
-          <TouchableOpacity
-
-            style={{
-              width: 148,
-              height: 36,
-              borderRadius: 40,
-              backgroundColor: "white",
-              marginLeft: 190,
-              marginTop: 40
-            }}>
-            <Text
+          <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}} colors={['#38A8FA','#4860DC']} 
+                 style={styles.card}
+               >
+                <View style={{flexDirection:'row'}}>
+                    <Image source={Timetable} 
+                       style={styles.image}
+                       />
+                    <View style={{flexDirection:'column'}}>
+                        <Text style={styles.text}>Time table</Text>
+                        <View style={styles.column}>
+                          <Text style={styles.teachertext}>timetable of your teachers</Text>
+                        </View>
+                        <View style={{paddingLeft:30,paddingTop:30}}>
+                        <TouchableOpacity style={styles.continue} 
               onPress={() => navigation.navigate('Timetable')}
-              style={{
-                marginTop: 5,
-                marginLeft: 8,
-                color: "#1F85FF",
-                fontSize: 14,
-                textAlign: 'center'
-              }}>View Timetable
-        <View
-                style={{ marginLeft: 10 }}
-              >
-                <Continue />
-              </View>
-              {/* <Image source={Continue} style={{marginLeft:10}}></Image> */}
-            </Text>
-          </TouchableOpacity>
-        </View>
+                            >
+                            <View style={{flexDirection:'row'}}>
+                              <Text style={{color:'#38A8FA',paddingLeft:15}}>
+                                View Timetable
+                              </Text>
+                              <View style={{paddingLeft:5,paddingTop:3}}>
+                                 <Continue />
+                              </View>
+                            </View>
+                        </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+             </LinearGradient>
+             </View>
+            </View>
       </ScrollView>
 
     </View>
 
   );
 }
-
+const styles=StyleSheet.create({
+  card:{
+    width: 328,
+        height: 160,
+        borderRadius: 8,
+        justifyContent: "center",
+        alignItems: "center",
+        marginLeft: 15,
+        borderWidth: 1,
+        borderColor: "#4860DC",
+        shadowColor: "black",
+        marginTop: 45.15,
+        marginRight: 18
+},
+text:{
+  color:'white',
+  fontSize:16,
+  fontWeight:'bold',
+  paddingLeft:30,
+},
+column:{
+  marginLeft:30,
+  width:130,
+  paddingTop:10
+},
+teachertext:{
+  color:'white',
+},
+continue:{
+  backgroundColor:'white',
+  width:148,
+  height:36,
+  justifyContent:'center',
+  borderRadius:120,
+}
+})
 export default AdminDashboard
