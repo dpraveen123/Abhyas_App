@@ -18,8 +18,8 @@ export default function LandingPage(props) {
     const [text, setText] = useState('+91-');
     const [button, setButton] = useState(true);
     const [loader, setLoader] = useState(false);
-
     const [color, setcolor] = useState('rgba(29, 161, 242, 0.5)')
+
     const onChangeText = (text1) => {
         console.log(`hi text ${text1}`);
         if (text1.length < 4) {

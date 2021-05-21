@@ -1,13 +1,20 @@
 import React from 'react'
 import { View, Text ,Image,Button,TouchableOpacity,StyleSheet} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Biology from '../Navigation/Icons/Biology';
-import Physics from '../Navigation/Icons/Physics';
-import Maths from '../Navigation/Icons/Maths';
-import Social from '../Navigation/Icons/Social';
-import Science from '../Navigation/Icons/Science';
-import Chemistry from '../Navigation/Icons/Chemistry';
+//import Biology from '../Navigation/Icons/TEACHERS/Biology';
+import Biology from './Biology';
+import Physics from './Physics';
+import Maths from './Maths';
+import Social from './Social';
+import Science from './Science';
+
 import functions from '@react-native-firebase/functions';
+import Chemistry from './Chemistry';
+// import Physics from '../Navigation/Icons/Physics';
+// import Maths from '../Navigation/Icons/Maths';
+// import Social from '../Navigation/Icons/Social';
+// import Science from '../Navigation/Icons/Science';
+// import Chemistry from '../Navigation/Icons/Chemistry';
 import Svg, {
     Circle,
     Ellipse,
@@ -29,13 +36,14 @@ import Svg, {
     Mask,
 } from 'react-native-svg'
 import { ScrollView } from 'react-native-gesture-handler';
-
+var test={}
+//var Svgarray = [Svgpage]
 class TeacherSub extends React.Component{
-    
-    constructor()
+    constructor(props)
     {
         super(props);
           this.state={
+              subject:{},
                    dimensionBio:[
                     {
                      width:40,
@@ -131,42 +139,67 @@ class TeacherSub extends React.Component{
                 }
             ],
        }
-       
   }
- 
-//   componentDidMount=()=>{
-//     var details={
-//       User :auth().currentUser.phoneNumber,
-//       class:this.props.props.route.params.class,
-//       section:this.props.props.route.params.section
-//   }
-//   // console.log("i am from subject.js",details)
-//   //  firestore().collection('Users').doc(details.User).collection('Classes').doc(details.class).get().then(
-//   //  l=>{
-//   //   //  console.log("res",l.data())
-//   //   console.log(l.data().SectionandSubjects[details.section],"hiiii")
-//   //   // var x=l.data().SectionandSubjects
+//   {console.log()}
+// componentDidMount=()=>{
+//     console.log('hii bro');
+//     console.log(this.props.props,'function');
+//     this.state.subject=this.props.props
+//     // this.setState({
+//     //     subject:this.state.subject
+//     // })
+//     console.log(this.state.subject,"subject");
+//     functions()
+//     .httpsCallable('getTeacherSubjects')(this.props.props)
+//     .then((response) => {
+//         this.setState({
+//            subject:Object.keys(response.data)
+//         })
+       
+//     //   console.log("sucsesfully getting Teacher details dudee to fire functions from teacher in teacherSub", response.data)
+//       console.log("sucsesfully getting Teacher details dudee to fire functions from teacher in teacherSub",this.state.subject)
     
-//   //  }
-//   //  )
-//   functions()
-//   .httpsCallable('getTeacherSubjects')(details)
-//   .then((response) => {
-//     console.log("sucsesfully getting Teacher details dudee to fire functions from teacher in teacherSub", response.data)
-//   });
-//   }
-    render()
-    {
-        console.log('props is',this.props);
-        console.log('teachersub');
-        console.log(this.state.dimensionBio[0],'are dimensions');
-        // props={this.width,this.height}
+//     });
+    
+// }
+list=()=>{
+    return test.map((i)=>{
         return(
             <View>
-               <ScrollView 
-               style={{height:520}}
-               > 
-               {/* --------------------------Biology---------------------------- */}
+                <Text>{test[i]}</Text>
+            </View>
+        )
+    })
+}
+    render()
+    {
+        functions()
+        .httpsCallable('getTeacherSubjects')(this.props.props)
+        .then((response) => {
+            test=Object.keys(response.data)
+            console.log("sucsesfully getting Teacher details dudee to fire functions from teacher in teacherSub",test[1])
+        });
+        return(
+            <View>
+                {test.map((i)=>
+                {
+                    return(
+                        <View>
+                            <Text>{test}</Text>
+                        </View>
+                    )
+                })}
+                {/* {
+                    test.map((i)=>
+                    return(
+                    <View>
+                        <Text>{test[i]}</Text>
+                    </View>
+                        )
+                } */}
+               <ScrollView> 
+                   {this.list()}
+              {/* --------------------------------BIOLOGY----------------------      */}
                 <View style={{ flexDirection: 'row',marginTop:40}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#9363F9','#4a59d8']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
                     <View style={{paddingLeft:20,paddingTop:20}}>
@@ -178,7 +211,8 @@ class TeacherSub extends React.Component{
                      </View>
                     </LinearGradient>
                     </View>
-{/* -------------------------------------Physics------------------------------------- */}
+
+{/* ----------------------------------PHYSICS--------------------------------------------- */}
                     <View style={{ flexDirection: 'row',marginTop:20}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#57D5C3','#3C83D7']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
                     <View style={{paddingLeft:20,paddingTop:20}}>
@@ -190,7 +224,9 @@ class TeacherSub extends React.Component{
                      </View>
                     </LinearGradient>
                     </View>
-{/* -------------------------------------------------Maths---------------------------------------------------- */}
+
+{/* ------------------------------------------------MATHS--------------------------------------------- */}
+
                     <View style={{ flexDirection: 'row',marginTop:20}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#FF7B93','#E0435E']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
                     <View style={{paddingLeft:20,paddingTop:20}}>
@@ -202,7 +238,10 @@ class TeacherSub extends React.Component{
                      </View>
                     </LinearGradient>
                     </View>
-                   {/* ------------------------------------------------------Social--------------------------------  */}
+                    
+
+{/* --------------------------------------------------------SOCIAL-------------------------------------------------------- */}
+
                     <View style={{ flexDirection: 'row',marginTop:20}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#FF5B37','#FF8660']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
                     <View style={{paddingLeft:20,paddingTop:20}}>
@@ -214,7 +253,8 @@ class TeacherSub extends React.Component{
                      </View>
                     </LinearGradient>
                     </View>
-{/* ------------------------------------------------------Science------------------------------------------ */}
+
+{/* -----------------------------------------------------SCIENCE----------------------------------------------------- */}
                     <View style={{ flexDirection: 'row',marginTop:20}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#16BF74','#36CC9C']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
                     <View style={{paddingLeft:20,paddingTop:20}}>
@@ -227,6 +267,7 @@ class TeacherSub extends React.Component{
                     </LinearGradient>
                     </View>
 
+{/* -----------------------------------------------CHEMISTRY------------------------------------------------- */}
                     <View style={{ flexDirection: 'row',marginTop:20}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#BA7DFB','#8738D9']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
                     <View style={{paddingLeft:20,paddingTop:20}}>
@@ -238,44 +279,42 @@ class TeacherSub extends React.Component{
                      </View>
                     </LinearGradient>
                     </View>
-                    <View style={styles.footer}>
-                    <TouchableOpacity 
-                    style={styles.button}
-                    >
-                        <Text 
-                        style={styles.buttonText}
-                        >View/Edit Attendence</Text>
-                    </TouchableOpacity>
-                    </View>
                     </ScrollView>
-            </View> 
+                    <View style={styles.footer}>
+          <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>View/Edit Attendence</Text></TouchableOpacity>
+         </View>
+            </View>
+            
         )
     }
 }
-const styles = StyleSheet.create(
-    {
-    button:{
-        backgroundColor:'#1F85FF',
-        padding:10,
-        borderRadius: 4,
-        width:240,
-        height:40
-      },
-      buttonText:{
-        color:'white',
-        alignSelf:'center',
-        fontSize:14,
-        fontFamily:"Roboto",
-        fontWeight: "bold"
-      },
-      footer: {
-        backgroundColor:'#FFFFFF',
-        height:56,
-        alignItems:'center',
-        justifyContent:'center',
-        marginTop:70,
-        opacity:100
-        },
-       }
-    )
 export default TeacherSub;
+const styles = StyleSheet.create(
+{
+button:{
+    backgroundColor:'#1F85FF',
+    padding:10,
+    borderRadius: 4,
+    width:240,
+    height:40
+  
+  },
+  buttonText:{
+    color:'white',
+    alignSelf:'center',
+    fontSize:14,
+    fontFamily:"Roboto",
+    fontWeight: "bold"
+    
+  },
+  footer: {
+    backgroundColor:'#FFFFFF',
+    height:56,
+    alignItems:'center',
+    justifyContent:'center',
+    marginTop:75,
+    opacity:100
+    
+    },
+   }
+)

@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import Authentication1 from './Authentication1'
-import CreateData from './createdata'
-import Schools from './Schools'
+import Ganesh from './Navigation/TEACHERS/TeacherSub';
+//import RunMetro from './Navigation/TEACHERS/RunMetro';
+//import Svgpage from '../../Svg';
+// import CreateData from './createdata'
+// import Schools from './Schools'
+// import DropDown1 from './dropDown'
+// import AdminDashboard from './cardss/AdminDashboard'
 import { Provider } from 'react-redux';
 import store from './redux';
 
@@ -43,6 +48,7 @@ class App extends React.Component {
       </>
     )
   }
- }
+
+}
 
 export default App;

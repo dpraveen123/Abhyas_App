@@ -5,8 +5,7 @@ import TeachersTimeTbl from './TeachersTimeTbl'
 // import TeacherDashboard from './TeacherDashboard';
 import TeacherBotNav from './TeacherBotNav';
 import FirstClass from './FirstClass';
-import Tabnav from '../class-students/Tabnav';
-// import FirstClass from './FirstClass';
+import TabNav from './Tabnav'
 const Stack = createStackNavigator();
 function TeacherStack({props}) {
 console.log(props,"instack");
@@ -17,7 +16,10 @@ console.log(props,"instack");
     <Stack.Navigator>
       <Stack.Screen name="Home" component={TeacherBotNav} />
       <Stack.Screen name="TeachersTimeTbl" component={TeachersTimeTbl}/>
-      <Stack.Screen name="1st Class" component={Tabnav}/>
+      <Stack.Screen name="Section" component={TabNav}/>
+      {/* <Stack.Screen name="Notifications" component={Notifications} />
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Settings" component={Settings} /> */}
     </Stack.Navigator>
   );
 }

@@ -10,7 +10,7 @@ import {
     TouchableOpacity,
     Button,
     Image,
-    Picker,
+    Picker,ActivityIndicator,
     Modal
 } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
@@ -37,11 +37,13 @@ export default class ChooseClass extends Component {
              value:false,
              noSectionAdded:[],
              show:false,
-             visibility:false
+             visibility:false,
+             add:0
         }
     }
     componentDidMount=()=>{
-        console.log(store.getState()," i am from choose class bro")
+        // console.log(store.getState()," i am from choose class bro")
+        console.log("okk i get it",this.props)
     }
 onValueChange=(value1)=>{
     console.log(value1," is picker value")
@@ -53,7 +55,7 @@ onValueChange=(value1)=>{
         color:'#1F85FF',
         addSection:true,
         addAnotherSectionTitle:true,
-       
+       add:0,
         
     })
    }
@@ -175,6 +177,7 @@ ShowPage=()=>{
         })
    }
    else{
+       this.setState({add:1})
        var sectionuuids={
        }
     //    console.log(this.state.no)
@@ -193,11 +196,13 @@ ShowPage=()=>{
        functions()
       .httpsCallable('addingClass')(details)
       .then(response => {
-        console.log("sucsesfully added a new class bro",response.data)
+        // console.log("sucsesfully added a new class bro",response.data)
+        alert("sucsefully added your class")
+        this.props.props.modal();
       });
    }
-
 }  
+
 afterClassPage=()=>{
 
 }
@@ -236,13 +241,13 @@ render() {
                         //  console.log('this.state.value add class',this.state.value);
                         // console.log('displaying the no sevtion added value',this.state.noSectionAdded);
                     // }}
-                    >Add Class</Text>
+                    >{this.state.add===0?<Text>Add Class</Text>:<View style={{flexDirection:'row'}}><ActivityIndicator color='white'/><Text style={{color:'white'}}>Adding Class...</Text></View>}</Text>
                  </TouchableOpacity>
                  <View   style={{borderWidth:1,borderColor:'#E1E8ED',width:328,height:40,marginLeft:16,borderRadius:4}}>
                  
                 <Picker  onValueChange={(value1) =>{this.onValueChange(value1)}}>
                     <Picker.Item label="Select class" value="0"/>
-                    <Picker.Item label="1st class" value="1st class"/>
+                    {/* <Picker.Item label="1st class" value="1st class"/>
                     <Picker.Item label="2nd class" value="2nd class"/>
                     <Picker.Item label="3rd class" value="3rd class"/>
                     <Picker.Item label="4th class" value="4th class"/>
@@ -251,7 +256,14 @@ render() {
                     <Picker.Item label="7th class" value="7th class"/>
                     <Picker.Item label="8th class" value="8th class"/>
                     <Picker.Item label="9th class" value="9th class"/>
-                    <Picker.Item label="10th class" value="10th class"/>
+                    <Picker.Item label="10th class" value="10th class"/> */}
+                    {
+                        this.props.props.class.map(l=>{
+                            return(
+                            <Picker.Item label={l} value={l}/>
+                            )
+                        })
+                    }
                 </Picker>
                 </View>
                 <Text>
