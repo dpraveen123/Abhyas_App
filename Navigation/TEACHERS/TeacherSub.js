@@ -36,14 +36,13 @@ import Svg, {
     Mask,
 } from 'react-native-svg'
 import { ScrollView } from 'react-native-gesture-handler';
-var test={}
-//var Svgarray = [Svgpage]
+var test=[]
 class TeacherSub extends React.Component{
     constructor(props)
     {
         super(props);
           this.state={
-              subject:{},
+              subject:[],
                    dimensionBio:[
                     {
                      width:40,
@@ -140,67 +139,14 @@ class TeacherSub extends React.Component{
             ],
        }
   }
-//   {console.log()}
-// componentDidMount=()=>{
-//     console.log('hii bro');
-//     console.log(this.props.props,'function');
-//     this.state.subject=this.props.props
-//     // this.setState({
-//     //     subject:this.state.subject
-//     // })
-//     console.log(this.state.subject,"subject");
-//     functions()
-//     .httpsCallable('getTeacherSubjects')(this.props.props)
-//     .then((response) => {
-//         this.setState({
-//            subject:Object.keys(response.data)
-//         })
-       
-//     //   console.log("sucsesfully getting Teacher details dudee to fire functions from teacher in teacherSub", response.data)
-//       console.log("sucsesfully getting Teacher details dudee to fire functions from teacher in teacherSub",this.state.subject)
-    
-//     });
-    
-// }
-list=()=>{
-    return test.map((i)=>{
+  svgcode=(key)=>{
+      console.log('keyyyy is.............',key);
+ {/* --------------------------------BIOLOGY----------------------      */}
+               
+      if(key.key=="Biology")
+      {
         return(
-            <View>
-                <Text>{test[i]}</Text>
-            </View>
-        )
-    })
-}
-    render()
-    {
-        functions()
-        .httpsCallable('getTeacherSubjects')(this.props.props)
-        .then((response) => {
-            test=Object.keys(response.data)
-            console.log("sucsesfully getting Teacher details dudee to fire functions from teacher in teacherSub",test[1])
-        });
-        return(
-            <View>
-                {test.map((i)=>
-                {
-                    return(
-                        <View>
-                            <Text>{test}</Text>
-                        </View>
-                    )
-                })}
-                {/* {
-                    test.map((i)=>
-                    return(
-                    <View>
-                        <Text>{test[i]}</Text>
-                    </View>
-                        )
-                } */}
-               <ScrollView> 
-                   {this.list()}
-              {/* --------------------------------BIOLOGY----------------------      */}
-                <View style={{ flexDirection: 'row',marginTop:40}}>
+          <View style={{ flexDirection: 'row',marginTop:20}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#9363F9','#4a59d8']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
                     <View style={{paddingLeft:20,paddingTop:20}}>
                     <Biology props={this.state.dimensionBio[0]} />
@@ -210,10 +156,14 @@ list=()=>{
                          <Biology props={this.state.dimensionBio[1]}/>
                      </View>
                     </LinearGradient>
-                    </View>
-
-{/* ----------------------------------PHYSICS--------------------------------------------- */}
-                    <View style={{ flexDirection: 'row',marginTop:20}}>
+            </View> 
+        ) 
+      }
+{/* ----------------------------------PHYSICS--------------------------------------------- */}             
+      if(key.key=="Physics")
+      {
+          return(
+                <View style={{ flexDirection: 'row',marginTop:20}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#57D5C3','#3C83D7']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
                     <View style={{paddingLeft:20,paddingTop:20}}>
                     <Physics props={this.state.dimensionPhy[0]}/>
@@ -223,10 +173,14 @@ list=()=>{
                          <Physics props={this.state.dimensionPhy[1]}/>
                      </View>
                     </LinearGradient>
-                    </View>
+                </View> 
 
-{/* ------------------------------------------------MATHS--------------------------------------------- */}
-
+          )
+      }
+ {/* ------------------------------------------------MATHS--------------------------------------------- */}            
+      if(key.key=="Mathematics")
+      {
+          return(
                     <View style={{ flexDirection: 'row',marginTop:20}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#FF7B93','#E0435E']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
                     <View style={{paddingLeft:20,paddingTop:20}}>
@@ -238,11 +192,14 @@ list=()=>{
                      </View>
                     </LinearGradient>
                     </View>
-                    
 
-{/* --------------------------------------------------------SOCIAL-------------------------------------------------------- */}
-
-                    <View style={{ flexDirection: 'row',marginTop:20}}>
+          )
+      }
+{/* --------------------------------------------------------SOCIAL-------------------------------------------------------- */}                  
+      if(key.key=="Social Studies")
+      {
+          return(
+                <View style={{ flexDirection: 'row',marginTop:20}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#FF5B37','#FF8660']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
                     <View style={{paddingLeft:20,paddingTop:20}}>
                     <Social props={this.state.dimensionSoc[0]}/>
@@ -252,10 +209,15 @@ list=()=>{
                          <Social props={this.state.dimensionSoc[1]}/>
                      </View>
                     </LinearGradient>
-                    </View>
+                </View> 
 
-{/* -----------------------------------------------------SCIENCE----------------------------------------------------- */}
-                    <View style={{ flexDirection: 'row',marginTop:20}}>
+          )
+      }
+// ----------------------------------SCIENCE------------------------------------------------      
+      if(key.key=="Science")
+      {
+          return(
+                <View style={{ flexDirection: 'row',marginTop:20}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#16BF74','#36CC9C']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
                     <View style={{paddingLeft:20,paddingTop:20}}>
                     <Science props={this.state.dimensionSci[0]}/>
@@ -265,10 +227,15 @@ list=()=>{
                          <Science props={this.state.dimensionSci[1]}/>
                      </View>
                     </LinearGradient>
-                    </View>
+                </View> 
 
-{/* -----------------------------------------------CHEMISTRY------------------------------------------------- */}
-                    <View style={{ flexDirection: 'row',marginTop:20}}>
+          )
+      }
+// ---------------------------------------------------CHEMISTRY------------------------------------------------      
+      if(key.key=="Chemistry")
+      {
+          return(
+                <View style={{ flexDirection: 'row',marginTop:20}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#BA7DFB','#8738D9']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
                     <View style={{paddingLeft:20,paddingTop:20}}>
                     <Chemistry props={this.state.dimensionChem[0]}/>
@@ -278,9 +245,40 @@ list=()=>{
                          <Chemistry props={this.state.dimensionChem[1]}/>
                      </View>
                     </LinearGradient>
-                    </View>
-                    </ScrollView>
-                    <View style={styles.footer}>
+                </View>
+          )
+      }      
+  }
+componentDidMount=()=>{
+    console.log('hii bro');
+    console.log(this.props.props,'function');
+    console.log(this.state.subject,"subject");
+    functions()
+    .httpsCallable('getTeacherSubjects')(this.props.props)
+    .then((response) => {
+        this.setState({
+           subject:Object.keys(response.data)
+        })
+      console.log("sucsesfully getting Teacher details dudee to fire functions from teacher in teacherSub",this.state.subject)
+    });  
+}
+ render()
+    {
+        return(
+            <View>
+                 <ScrollView>
+               {
+                  this.state.subject.map((key) =>{
+                       console.log("key is from object keys",key);
+                       return(
+                    <View >
+                         {this.svgcode({key})}
+                 </View>
+                       )
+                  })
+               }
+                  </ScrollView>
+            <View style={styles.footer}>
           <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>View/Edit Attendence</Text></TouchableOpacity>
          </View>
             </View>

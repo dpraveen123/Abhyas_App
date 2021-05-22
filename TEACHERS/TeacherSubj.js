@@ -159,7 +159,7 @@ class TeacherSub extends React.Component{
     {
         console.log('props is',this.props);
         console.log('teachersub');
-        console.log(this.state.dimensionBio[0],'are dimensions');
+        // console.log(this.state.dimensionBio[0],'are dimensions');
         // props={this.width,this.height}
         return(
             <View>

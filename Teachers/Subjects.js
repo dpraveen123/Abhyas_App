@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text ,View} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import functions from '@react-native-firebase/functions';
@@ -10,8 +10,7 @@ class Subjects extends React.Component{
   constructor(props){
     super(props);
     this.state={
- details:{
- }
+ details:""
     }
   }
   componentDidMount=()=>{
@@ -40,11 +39,15 @@ class Subjects extends React.Component{
   });
   }
   render(){
+    // console.log("this.state.details is",this.state.details);
     return(
       // <Text>Hello, This is subjects page!!!!!</Text>
       // <Biology/>
-      <TeacherSub props={this.state.details}/>
+      // <TeacherSub props={this.state.details}/>
+      <View>
 
+{this.state.details===""?<Text>Loading....</Text>:<TeacherSub props={this.state.details}/>}
+      </View>
     )
     }
 }
