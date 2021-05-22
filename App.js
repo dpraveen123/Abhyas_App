@@ -10,6 +10,11 @@ import Ganesh from './Navigation/TEACHERS/TeacherSub';
 import Teacherspage from './Navigation/TEACHERS/Teacherspage';
 import { Provider } from 'react-redux';
 import store from './redux';
+import AllStudents from './class-students/Students';
+// import Tabnav1 from './class-students/Tabnav'
+// import Modaling from './Student-profile/modal';
+
+
 
 import {
   AppRegistry,
@@ -38,15 +43,31 @@ import Sheet1 from './BottomSheet/Sheet1'
 class App extends React.Component {
   render() {
     return (
-      <>
-      {/* <Sheet1/> */}
-     {/* <Tabnav1/> */}
-      <Provider 
-      store={store}
-      >
-         <Authentication1 /> 
+      // <CreateData />
+      // <Schools />
+      // <Profile />
+      // <Teacher />
+//  <AllClasses/> 
+/* <Editpick/> */
+     
+      <Provider store={store}>
+         {/* <Authentication1 />  */}
+         {/* <Report /> */}
+         {/* <Modaling /> */}
+         {/* <Searchbar /> */}
+         <AllStudents />
+       {/* <Tabnav1 /> */}
+         {/* <Slider/> */}
+         {/* <Editpick /> */}
+         {/* <Slider/> */}
+         {/* <Testing/> */}
+      {/* <Test/> */}  
+         {/* <Newone />   */}
+         {/* <DropDown1/> */}
+         {/* <Pick/> */}
+         {/* <EditPick/> */}
       </Provider>
-      </>
+      // </>
     )
   }
 

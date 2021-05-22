@@ -26,6 +26,7 @@ import { Menu, MenuProvider, MenuOptions, MenuOption, MenuTrigger} from "react-n
 import LinearGradient from 'react-native-linear-gradient';
 import { NavigationContainer } from '@react-navigation/native';
 import ChooseClass from '../ClassesDesign/ChooseClass'
+import { Input } from 'native-base';
 // import ModalTester from '../ClassesDesign/AddNewClassesPage'
 // import store from '../redux'
 // import Dropdown from '../profile/drop';
@@ -117,6 +118,8 @@ class AllClasses extends React.Component {
        color1:"#9A56E1",
        color2:"#F879C7"
       },
+
+     
      
   ],
   data:[],
@@ -124,9 +127,17 @@ class AllClasses extends React.Component {
   darray1:[],
   drop:[],
   drop1:[],
+  modalVisible: false,
   
   }
 }
+setModalVisible = () => {
+  console.log("modal opened");
+  this.setState({ modalVisible:!this.state.modalVisible });
+  // console.log("modal closed");
+}
+
+
 componentDidMount=()=>{
   // console.log(store.getState().authdetails," i am from clasess.js")
  var details={
@@ -164,39 +175,63 @@ Drop=(i)=>{
   // console.log(i,"drop clicked")
   this.state.drop[i]=!this.state.drop[i];
   this.state.drop1=this.state.drop;
-  this.setState({drop1:this.state.drop1})
-  // console.log(this.state.drop1)
+  this.setState({drop1:this.state.drop1});
+  
+  // console.iflog(this.state.drop1)
 }
+//  changeButtonColor(){
+//   if(this.buttonColor === "white"){
+//     this.buttonColor = "green";
+//   }
+//   else{
+//     this.buttonColor = "red";
+//   }
+// }
   render() {
+    const { modalVisible } = this.state;
     return (
-      <View >
-                <View style={{}}>
+      <View style={{flex:1}} >
+                {/* <View style={{}}>
                 <ModalTester props={this.state.data}/>
-                </View>
+                </View> */}
 
       {/* // <SafeAreaView style={{backgroundColor:'white' }}> */}
        <ScrollView style={{backgroundColor:'whitesmoke'}}>
        {/* <ModalTester/> */}
                 {/* .............cards.............................                */}
-               
+               <View style={{paddingBottom:100}}>
                 {
              this.state.data.map((l,i)=>{
                  return(
                    <View style={{borderRadius:15}}>
+                     
                    <Card
-                   containerStyle={{borderRadius:8}}
+                   containerStyle={{borderRadius:8,}}
                    >
               <View style={{height:70}}>
-                  {/* <Text>hlooo</Text> */}
+            
                  <View style={{flexDirection:'row'}}>
+<<<<<<< HEAD
                  <View style={{width:64,height:64,backgroundColor:'whitesmoke'}}><Text>hii</Text></View>
+=======
+                 <View style={{width:64,height:64,backgroundColor:'whitesmoke'}}>
+                 <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}} colors={["#3890FA","#57D5C3"]} style={styles.gradient1}>
+                   <Text style={styles.name}>1</Text>
+                              
+                            </LinearGradient>
+                 
+                 </View>
+>>>>>>> f146dfff0eafd4a4107e3bda3466fa35a9d81f34
                <View style={{marginLeft:16}}>
                    <Text style={{fontSize:20,lineHeight:28}}>{l.class}</Text>
                    <Text style={{color:'#AAB8C2',fontSize:14,lineHeight:28,marginTop:0}}>{l.sections.length} Sections</Text>
                </View>
                 <TouchableOpacity style={{justifyContent:'center',marginLeft:80}}
+                
                 onPress={()=>{
+                 
                     this.openDrop(i)
+                    
                 }}
                 >
                 <View >
@@ -207,14 +242,14 @@ Drop=(i)=>{
                 </View>
                 </TouchableOpacity>
                 <View style={{justifyContent:'center',marginLeft:14,width:1,height:'100%',borderWidth:0.5,borderColor:'#E1E8ED'}}>
-               {/* <Text>hlo</Text> */}
+              
                 </View>
                 <View style={{justifyContent:'center',marginLeft:14}}>
                
                 <TouchableOpacity onPress={()=>{
                     this.Drop(i)
-                }}
-                >
+                    }}>
+
                     <Image source={
                         
                         this.state.drop1[i]===true?editpickdown:editpickup
@@ -233,22 +268,60 @@ Drop=(i)=>{
                                  this.state.drop1[i]===true?<View>
                                  <View style={{marginTop:-45,marginLeft:-50,}}>
                          <Card >
-      
+                        <View>
                          <TouchableOpacity onPress={()=>{ 
-                           this.openDrop(i)
-                          //  this.Drop(i)
+                            
+                           this.openDrop(i) 
+                         
+                        
+                      
                          }} >
-                         <Text style={{fontWeight:"bold",fontFamily:"Roboto",fontSize:18,borderWidth:1,borderColor:"#E1E8ED",marginLeft:1}}>Edit Class</Text>
+                         <Text style={{fontWeight:"500",fontFamily:"Roboto",fontSize:18,marginLeft:0}}>Edit Class</Text>
                          </TouchableOpacity>
+                          
+                         
                         
                          <TouchableOpacity>
-                         <Text style={{fontWeight:"bold",fontFamily:"Roboto",fontSize:18,marginLeft:1,borderWidth:1,borderColor:"#E1E8ED"}}>Delete Class</Text>
+                         <Text style={{fontWeight:"500",fontFamily:"Roboto",fontSize:18,marginLeft:0}}>Delete Class</Text>
                          </TouchableOpacity>
-                         <TouchableOpacity>
-                         <Text style={{fontWeight:"bold",fontFamily:"Roboto",fontSize:18,borderWidth:1,borderColor:"#E1E8ED",marginLeft:1}}>Add Section</Text>
-                         </TouchableOpacity>
-                         </Card>
 
+                        
+                         <TouchableOpacity onPress={() => this.setModalVisible(true)} >
+                         <Text style={{fontWeight:"500",fontFamily:"Roboto",fontSize:18,marginLeft:0}}>Add Section</Text>
+                         </TouchableOpacity>
+                      
+                             {/* ..............................modal .....................................*/}
+                        
+                         <Modal isVisible={modalVisible}>
+                  
+                      <TouchableOpacity onPress={this.setModalVisible} 
+                     style={{width:400,height:200}} >
+                      </TouchableOpacity>
+            
+                   <View style={styles.modalview}>
+                  
+                   <Text style={{marginLeft:22,fontWeight:"900",fontSize:20,fontFamily:"Roboto"}}>Add Section</Text>
+                   <View style={{marginTop:18}} >
+                   <Text style={{marginLeft:20,fontWeight:"800",fontSize:14,fontFamily:"Roboto",marginBottom:-9,}}>Enter Section Name</Text>
+                   <TextInput style={{height: 40,margin:15,borderWidth: 1,fontFamily:"Roboto",fontWeight:"500",borderColor:"#E1E8ED"}}  placeholder="Add section"  />
+                   </View>
+                  </View>
+
+                   <View style={styles.footer}>
+                  <TouchableOpacity style={styles.button1}><Text style={styles.buttonText}>Edit Section</Text></TouchableOpacity>
+                </View>
+          
+                </Modal>
+                         
+
+
+                </View>
+
+               
+             
+
+                         </Card>
+                              
                          </View>
                                  </View>:<View>
                                  </View>
@@ -258,12 +331,14 @@ Drop=(i)=>{
              }
 
               </View>
+             
                  </View>
-           
+             
               </View>
              
               
           </Card>
+         
          
           
          
@@ -274,7 +349,8 @@ Drop=(i)=>{
                     
                         <View>
                              {
-                                 this.state.darray1[i]===true?<View>
+                                 this.state.darray1[i]===true ?<View>
+                                  
                                  <View style={{marginTop:12,marginLeft:10,flexDirection:"row",justifyContent:"space-between"}}>
                          <Text style={{fontSize:16,fontWeight:'400',height:30}}>Section {k}</Text>
                          {/* ....................Edit and Delete class view.............. */}
@@ -306,27 +382,31 @@ Drop=(i)=>{
 
               </View>
               
+              
                    </View>
                  )
                  
              })
              
          }
-
+                 {/* <View style={{position:"absolute",marginTop:550,marginLeft:100}}>
+                <ModalTester props={this.state.data}/>
+                </View> */}
 
                 {/* ................uptohere................................. */}
-
+                </View>
                 </ScrollView>
+
+
+                <View style={{position:"absolute",marginTop:560,marginLeft:110}}>
+                <ModalTester props={this.state.data}/>
+                </View>
+
+                {/* <View style={{}}>
+                <ModalTester props={this.state.data}/>
+                </View> */}
      
-                {/* ..................floating button .................. */}
-                {/* <View style={{position:'absolute', marginTop: 567, marginLeft: 104}}>
                
-               
-               {/* <TouchableOpacity style={{width:153,height:48}} onPress={() => 
-                 Alert.alert("Adding new class")}underlayColor='#fff'>
-                 <Text style={styles.submitText}> + Add new Class </Text>
-                </TouchableOpacity> */}
-              {/* </View> */} 
               
                 </View>
                 
@@ -339,6 +419,9 @@ Drop=(i)=>{
     );
   }
 }
+
+
+
 const { width, height } = Dimensions.get("screen");
   class ModalTester extends React.Component{
     constructor(props){
@@ -386,14 +469,14 @@ const { width, height } = Dimensions.get("screen");
     }
     render(){
       return(
-         <View style={{elevation:10,alignItems:'center',}}>
+         <View style={{elevation:10,alignItems:'center'}}>
           <TouchableOpacity style={styles.button} onPress={this.toggleModal}>
-                <View>
+                <View >
                     <Text style={styles.Class}>+ Add new Class</Text>
                 </View>
             </TouchableOpacity>
            <Modal isVisible={this.state.isModalVisible}>
-             <TouchableOpacity onPress={this.toggleModal} style={{width:360,height:190,marginLeft:-20}}>
+             <TouchableOpacity onPress={this.toggleModal} style={{width:360,height:300,marginLeft:-20}}>
              </TouchableOpacity>
            <ChooseClass props={{class:this.state.classes,modal:this.toggleModal}}/>
           </Modal>
@@ -404,6 +487,9 @@ const { width, height } = Dimensions.get("screen");
     
   
 
+
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 2,
@@ -412,14 +498,11 @@ const styles = StyleSheet.create({
   Menu:{
    marginLeft:250,
     marginBottom:70,
-    // paddingTop:20,
-    // marginLeft:20,
     elevation:5,
-//     height:300,
-// width:300,
-// position:'absolute'
+
   },
-submitText:{
+
+    submitText:{
     paddingTop:10,
     paddingBottom:10,
     color:'#fff',
@@ -429,6 +512,40 @@ submitText:{
     borderWidth: 1,
     fontWeight:'bold',
     borderColor: '#fff',
+
+},
+
+footer: {
+  // 
+  position: 'absolute',
+  flex:0.1,
+  left: 0,
+  right: 0,
+  bottom: -20,
+  
+  flexDirection:'row',
+  height:80,
+  alignItems:'center',
+  marginLeft:5,
+  
+},
+modalview:{
+   
+    backgroundColor:'white',
+        height:550,
+        width:357,
+        // marginTop:80,
+        marginLeft:-17,
+        borderTopLeftRadius:16,
+        borderTopRightRadius:16,
+        paddingTop:20
+ 
+},
+modal:{
+  marginLeft:30,
+  fontWeight:'600',
+  fontSize:20,
+
 
 },
 gradient:{
@@ -449,10 +566,32 @@ button:{
   height:48,
   borderRadius:40,
   justifyContent:'center',
-  // display:'flex',
-  // position:'absolute',
-  // left:30,
-  // top:50
+  
+},
+button1:{
+  backgroundColor:'#1F85FF',
+  paddingBottom:8,
+  borderRadius: 4,
+  width:308,
+  height:40 
+
+},
+gradient1:{
+  width:64,
+  height:64,
+  borderRadius:4,
+  justifyContent:'center',
+  marginLeft:-1
+},
+buttonText:{
+  color:'white',
+  alignSelf:'center',
+  fontSize:16,
+  fontFamily:"Roboto",
+  fontWeight: "bold",
+  paddingLeft:9,
+  paddingTop:10
+  
 },
 Class:{
   color:'white',
@@ -460,6 +599,14 @@ Class:{
   fontWeight:'500',
   fontSize:16,
   marginLeft:16
+},
+name:{
+  color:'white',
+  fontSize:32,
+  paddingLeft:25,
+  fontWeight:"500",
+  fontFamily:"Roboto"
+
 }
 })
 const mapDispatchToProps = (dispatch) => {
@@ -475,10 +622,15 @@ const mapDispatchToProps = (dispatch) => {
 }
 export default connect(null,mapDispatchToProps)(AllClasses)
 
+<<<<<<< HEAD
 {/* <View style={{ paddingLeft:280,paddingTop:10,position:'absolute',flexDirection:'row', justifyContent: 'space-between'}}>
                      <Editpick 
                     //  style={{paddingTop:100}}
                      />
                      </View> */}
+=======
+
+
+>>>>>>> f146dfff0eafd4a4107e3bda3466fa35a9d81f34
 
                      

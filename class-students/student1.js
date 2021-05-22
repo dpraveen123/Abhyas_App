@@ -1,38 +1,19 @@
 import React from 'react';
 import { StyleSheet, View, Text,TouchableOpacity,Image,Dimensions,ScrollView,SafeAreaView,AppRegistry,
-  TextInput,Button,Alert,title,TouchableHighlight,Modal} from 'react-native';
+  TextInput,Button,Alert,title,TouchableHighlight} from 'react-native';
 import {Card} from'react-native-elements';
-<<<<<<< HEAD
-import pic from '../Images/pp.jpg';
-=======
 import pic from '../Images/student1.png';
 import pic1 from '../Images/stu.png';
->>>>>>> f146dfff0eafd4a4107e3bda3466fa35a9d81f34
 import Svgpages from '../assets/Svg';
 import Search from '../assets/Search';
-import { Icon } from 'react-native-elements';
-import AddStudent from './Addstudent';
+import Fil from '../assets/fil';
+import Editpickker from './edit';
 
 
-<<<<<<< HEAD
-
-
-
-
-
-
-class Students extends React.Component {
-=======
-class AllStudents extends React.Component {
->>>>>>> f146dfff0eafd4a4107e3bda3466fa35a9d81f34
+class AllClasses extends React.Component {
   
   
     state={
-
-     
-        modalVisible: false,
-       
-      
     artists: [
       {
         image: pic,
@@ -111,23 +92,16 @@ class AllStudents extends React.Component {
     
    
     }
-    setModalVisible = (visible) => {
-      console.log("modal opened");
-      this.setState({ modalVisible: visible });
-      // console.log("modal closed");
-    }
   
-
-
-
+  
     render() {
       
       
-      const { modalVisible } = this.state;
+      
   
       
       return (
-          <View style={{flex:1,backgroundColor:"white",}}>
+          <View style={{flex:1,backgroundColor:"white"}}>
       
            
        
@@ -141,19 +115,22 @@ class AllStudents extends React.Component {
              </View>
              </View>
             
-           
+             <View style={{paddingLeft:25,paddingTop:15}}> 
+
+           <Text style={{fontFamily:"Roboto",fontSize:20,fontWeight:"500",lineHeight:28,color:"#14171A"}}>All Students</Text>
+            </View>
 
            
           
-             <ScrollView style={{backgroundColor:'white'  }}>
+             <ScrollView style={{backgroundColor:'white'}}>
             
-            <View style={{paddingLeft:25,paddingTop:12,}}> 
+            {/* <View style={{paddingLeft:25,paddingTop:12}}> 
 
              <Text style={{fontFamily:"Roboto",fontSize:20,fontWeight:"500",lineHeight:28,color:"#14171A"}}>All Students</Text>
              </View>
-          
+           */}
          
-         <View style={{flexDirection:'row',borderRadius:80, margin:0,paddingBottom:100}}>
+         <View style={{flexDirection:'row',borderRadius:80, margin:0}}>
              
        
              <View
@@ -179,10 +156,10 @@ class AllStudents extends React.Component {
                      <Image source={artist.image}
                          style={{
                          
-                            height: 64,
-                            width: 64,
+                            height: 50,
+                            width: 50,
                             backgroundColor: "#ddd",
-                            borderRadius: 64/ 2}}resizeMode="cover"/>
+                            borderRadius: 50 / 2}}resizeMode="cover"/>
       
                         </View>
   
@@ -190,20 +167,20 @@ class AllStudents extends React.Component {
                           style={{
                             flexDirection: "column",
                             paddingLeft: 13,
-                            marginTop: -21,
+                            marginTop: -20,
                             fontWeight:"bold",
                           
                           
                           }}>
-                          <Text style={{ fontSize: 17,fontFamily:"Roboto",lineHeight:28 ,lineHeight:24}} >{artist.name}</Text>
+                          <Text style={{ fontSize: 20,fontFamily:"Roboto",lineHeight:28 }} >{artist.name}</Text>
                           <Text style={{ fontSize: 14, color: "#657786",fontFamily:"Roboto" }}>{artist.rollno} </Text>
                           
-                          <Text style={{ fontSize: 12, color: "#A7A7A7",fontFamily:"Roboto" }}>{artist.section} </Text>
+                          <Text style={{ fontSize: 14, color: "#A7A7A7",fontFamily:"Roboto" }}>{artist.section} </Text>
                         </View>
   
                                     
                        </View>
-                       <View style={{ marginLeft:300,marginTop:-8,position:"absolute"}}>
+                       <View style={{ marginLeft:300,marginTop:-5,position:"absolute"}}>
                         <View>
                         <Svgpages  />
                          </View>
@@ -234,44 +211,18 @@ class AllStudents extends React.Component {
                   </View>
   
                 </ScrollView>
-
-
-                   <View style={{alignItems:"center",position:"absolute",}}>
+                   <View style={{marginTop: 650, marginLeft: 110,position:"absolute"}}>
                  
                  
-                   <TouchableOpacity style={styles.button} onPress={() => this.setModalVisible(true)} underlayColor='#fff'>
-                     <View>
-                     <Text style={styles.Class}> + Add new Student </Text>
-                     </View>
+                   <TouchableOpacity style={styles.submit} onPress={() => 
+                     Alert.alert("Adding new class")}underlayColor='#fff'>
+                     <Text style={styles.submitText}> + Add new Student </Text>
                     </TouchableOpacity>
-
-                    <Modal visible={modalVisible} animationType="slide">
-
-                      {/* ......................header component .............*/}
-
-            <View style={{flexDirection:"row",paddingTop: 30,paddingLeft:10,backgroundColor:"#FFFFFF",borderBottomWidth:1,borderColor:"#E5E5E5",height:60}}>
-             <View style={{flexDirection:"row",paddingLeft:10,marginTop:-10}}>
-           <Icon name='close' size={24} 
-           onPress={() => this.setModalVisible(false)} />
-          <Text style={{fontSize:20,fontWeight:"500",paddingLeft:7,fontFamily:"Roboto"}}>Add Student</Text>
-         </View>
-
-       </View>
-
-
-              <AddStudent />
-
-<<<<<<< HEAD
-export default Students;
-=======
-           </Modal>
->>>>>>> f146dfff0eafd4a4107e3bda3466fa35a9d81f34
-
-      </View>
+                    </View>
    
                
                
-      </View>
+                    </View>
       
       
       );
@@ -309,31 +260,13 @@ export default Students;
     paddingTop:7,
     marginLeft:-155,
     
-},
-button:{
-  backgroundColor:"#1F85FF",
-  width:152,
-  height:48,
-  borderRadius:40,
-  justifyContent:'center',
-  marginTop:670,
-  marginLeft:110
-
-},
-Class:{
-  color:'white',
-  fontFamily:'Roboto',
-  fontWeight:'500',
-  fontSize:15,
-  marginLeft:9
-},
-
+}
   });
   
   
   
   
-  export default AllStudents;
+  export default AllClasses;
   
   
   
