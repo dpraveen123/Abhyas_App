@@ -7,7 +7,7 @@ import Ganesh from './Navigation/TEACHERS/TeacherSub';
 // import Schools from './Schools'
 // import DropDown1 from './dropDown'
 // import AdminDashboard from './cardss/AdminDashboard'
-import Teacherspage from './Navigation/TEACHERS/Teacherspage';
+import Studentpage from './Navigation/TEACHERS/Studentpage';
 import { Provider } from 'react-redux';
 import store from './redux';
 import AllStudents from './class-students/Students';

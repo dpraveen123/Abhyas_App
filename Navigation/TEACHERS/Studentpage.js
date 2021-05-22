@@ -3,7 +3,7 @@ import { Image, Text, TextInput } from 'react-native';
 import {View ,Button,StyleSheet,TouchableOpacity,Images} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import AntIcon from "react-native-vector-icons/AntDesign";
-function Teacherspage()
+function Studentpage()
 {
     return(
         
@@ -73,4 +73,4 @@ const styles=StyleSheet.create(
       fontWeight:'normal',
   }
 })
-export default Teacherspage;
+export default Studentpage;
