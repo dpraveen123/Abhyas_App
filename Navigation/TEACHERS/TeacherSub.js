@@ -43,7 +43,9 @@ class TeacherSub extends React.Component{
     {
         super(props);
           this.state={
+            showComponent: true,
               subject:{},
+              
                    dimensionBio:[
                     {
                      width:40,
@@ -162,45 +164,32 @@ class TeacherSub extends React.Component{
 //     });
     
 // }
-list=()=>{
-    return test.map((i)=>{
-        return(
-            <View>
-                <Text>{test[i]}</Text>
-            </View>
-        )
-    })
-}
+// list=()=>{
+//     return test.map((i)=>{
+//         return(
+//             <View>
+//                 <Text>{test[i]}</Text>
+//             </View>
+//         )
+//     })
+// }
     render()
     {
         functions()
         .httpsCallable('getTeacherSubjects')(this.props.props)
         .then((response) => {
             test=Object.keys(response.data)
-            console.log("sucsesfully getting Teacher details dudee to fire functions from teacher in teacherSub",test[1])
+            console.log("sucsesfully getting Teacher details dudee to fire functions from teacher in teacherSub",test[0])
         });
         return(
-            <View>
-                {test.map((i)=>
-                {
-                    return(
-                        <View>
-                            <Text>{test}</Text>
-                        </View>
-                    )
-                })}
-                {/* {
-                    test.map((i)=>
-                    return(
-                    <View>
-                        <Text>{test[i]}</Text>
-                    </View>
-                        )
-                } */}
-               <ScrollView> 
-                   {this.list()}
+            <View >
+               
+               <ScrollView>
+                 
+                   {}
+                 
               {/* --------------------------------BIOLOGY----------------------      */}
-                <View style={{ flexDirection: 'row',marginTop:40}}>
+                <View style={{display:this.state.showComponent ? 'flex' : 'none', flexDirection: 'row',marginTop:40}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#9363F9','#4a59d8']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
                     <View style={{paddingLeft:20,paddingTop:20}}>
                     <Biology props={this.state.dimensionBio[0]} />
@@ -213,7 +202,7 @@ list=()=>{
                     </View>
 
 {/* ----------------------------------PHYSICS--------------------------------------------- */}
-                    <View style={{ flexDirection: 'row',marginTop:20}}>
+                    <View style={{ display:this.state.showComponent ? 'flex' : 'none',flexDirection: 'row',marginTop:20}}>
                     <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}}colors={['#57D5C3','#3C83D7']} style={{width:328,height:80,marginLeft:10,borderRadius:8}}>
                     <View style={{paddingLeft:20,paddingTop:20}}>
                     <Physics props={this.state.dimensionPhy[0]}/>

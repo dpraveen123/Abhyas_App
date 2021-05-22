@@ -4,12 +4,8 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import functions from '@react-native-firebase/functions';
 import Biology from '../Navigation/TEACHERS/Biology'
-<<<<<<< HEAD
-import TeacherSub from '../Navigation/TEACHERS/ganesh';
-=======
 import TeacherSub from '../Navigation/TEACHERS/TeacherSub'
 // var details
->>>>>>> 21472ef48f13d256c548fb0f739d366ebf7040ed
 class Subjects extends React.Component{
   constructor(props){
     super(props);
