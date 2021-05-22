@@ -18,8 +18,8 @@ export default class Tabnav extends Component {
     }
   }
   render() {
-    console.log(this.props.route.params.l.class,"Tabnav l");
-    console.log(this.props.route.params.k,"Tabnav k");
+    // console.log(this.props.route.params.l.class,"Tabnav l");
+    // console.log(this.props.route.params.k,"Tabnav k");
     return (
       <>
       <View>
