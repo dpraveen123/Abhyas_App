@@ -35,6 +35,7 @@ import {
   TextInput,
   ScrollView
 } from 'react-native';
+import RunSheet from './bottomSheet/RunSheet';
 // import Profile from './mywork/Profile';
 // import Teacher from './teacher'
 
@@ -82,19 +83,20 @@ class App extends React.Component{
       // <Teacher />
 //  <AllClasses/> 
 /* <Editpick/> */
+<RunSheet/>
      
-      <Provider store={store}>
-         <Authentication1 /> 
-         {/* <Slider/> */}
-         {/* <Editpick /> */}
-         {/* <Slider/> */}
-         {/* <Testing/> */}
-      {/* <Test/> */}  
-         {/* <Newone />   */}
-         {/* <DropDown1/> */}
-         {/* <Pick/> */}
-         {/* <EditPick/> */}
-      </Provider>
+      // <Provider store={store}>
+      //    <Authentication1 /> 
+      //    {/* <Slider/> */}
+      //    {/* <Editpick /> */}
+      //    {/* <Slider/> */}
+      //    {/* <Testing/> */}
+      // {/* <Test/> */}  
+      //    {/* <Newone />   */}
+      //    {/* <DropDown1/> */}
+      //    {/* <Pick/> */}
+      //    {/* <EditPick/> */}
+      // </Provider>
       // <PickerWithIcon />
       // <Tab2 />
       // // <View>
