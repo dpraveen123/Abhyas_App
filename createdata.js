@@ -44,7 +44,7 @@ class CreateData extends React.Component {
     render() {
         return (
             <View>
-                <Text>hloo</Text>
+  
             </View>
         );
     }

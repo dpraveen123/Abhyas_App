@@ -1,270 +1,355 @@
 import React from 'react';
 import { StyleSheet, View, Text,TouchableOpacity,Image,Dimensions,ScrollView,SafeAreaView,AppRegistry,
-  TextInput,Button,Alert,title,TouchableHighlight} from 'react-native';
+  TextInput,Button,Alert,title,TouchableHighlight,Modal} from 'react-native';
 import {Card} from'react-native-elements';
-import pic from '../images/pp.jpg';
+import pic from '../Images/student1.png';
+import pic1 from '../Images/stu.png';
 import Svgpages from '../assets/Svg';
 import Search from '../assets/Search';
-import Fil from '../assets/fil';
-import Editpickker from './edit';
+import { Icon } from 'react-native-elements';
+import AddStudent from './Addstudent';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+import store from '../redux'
+import functions from '@react-native-firebase/functions';
+import noStudent from '../TEACHERS/noStudentAdded'
+var width1= Dimensions.get('window').width
+var height1= Dimensions.get('window').height
 
+class AllStudents extends React.Component {
+  constructor(props){
+    super(props)
 
-
-
-
-
-
-
-class AllClasses extends React.Component {
-  
-  
-  state={
-  artists: [
-    {
-      image: pic,
-     
-      id: 1,
-      name: "Mike Anderson ",
-     section:"1ST CLASS- A SECTION",
-     rollno:"Roll No. 2"
-    },
-    {
-      image: pic,
-      id: 2,
-      name: "Thomas Edison",
-      section:"1ST CLASS- A SECTION",
-      rollno:"Roll No. 2"
-
-    },
-    {
-      image: pic,
-      id: 3,
-      name: "Mounika Kiran",
-     section:"1ST CLASS- A SECTION",
-     rollno:"Roll No. 2"
-    },
-    {
-        image:pic,
-        id: 4,
-       name: "Thomas Edison  ",
+  }
+    state={
+        modalVisible: false,
+        sectionUid:'',
+        data:'',
+    artists: [
+      {
+        image: pic,
+       
+        id: 1,
+        name: "Mike Anderson ",
        section:"1ST CLASS- A SECTION",
        rollno:"Roll No. 2"
       },
       {
-        image: pic,
-        id: 5,
-      name: "Mike Anderson",
-      section:"1ST CLASS- A SECTION",
-      rollno:"Roll No. 2"
-      },
-      {
-        image: pic,
-        id: 6,
-      name: "Amelia Cleo",
-      section:"1ST CLASS- A SECTION",
-      rollno:"Roll No. 2"
-      },
-      {
-        image: pic,
-        id: 7,
-       name: "Cleo ",
-      section:"1ST CLASS- A SECTION",
-      rollno:"Roll No. 2"
-      },
-      {
-        image: pic,
-        id: 8,
-      name: "Mike Anderson",
-      section:"1ST CLASS- A SECTION",
-      rollno:"Roll No. 2"
-      },
-      {
-        image: pic,
-        id: 9,
-        name: " Yuro Plee ",
+        image: pic1,
+        id: 2,
+        name: "Thomas Edison",
         section:"1ST CLASS- A SECTION",
         rollno:"Roll No. 2"
-      },
-      {
-        image: pic,
-        id: 10,
-        name: "Nachos",
-        section:"1ST CLASS- A SECTION",
-        rollno:"Roll No. 2"
-      },
-     
-  ],
   
- 
+      },
+      {
+        image: pic,
+        id: 3,
+        name: "Mounika Kiran",
+       section:"1ST CLASS- A SECTION",
+       rollno:"Roll No. 2"
+      },
+      {
+          image:pic1,
+          id: 4,
+         name: "Thomas Edison  ",
+         section:"1ST CLASS- A SECTION",
+         rollno:"Roll No. 2"
+        },
+        {
+          image: pic,
+          id: 5,
+        name: "Mike Anderson",
+        section:"1ST CLASS- A SECTION",
+        rollno:"Roll No. 2"
+        },
+        {
+          image: pic1,
+          id: 6,
+        name: "Amelia Cleo",
+        section:"1ST CLASS- A SECTION",
+        rollno:"Roll No. 2"
+        },
+        {
+          image: pic,
+          id: 7,
+         name: "Cleo ",
+        section:"1ST CLASS- A SECTION",
+        rollno:"Roll No. 2"
+        },
+        {
+          image: pic1,
+          id: 8,
+        name: "Mike Anderson",
+        section:"1ST CLASS- A SECTION",
+        rollno:"Roll No. 2"
+        },
+        {
+          image: pic,
+          id: 9,
+          name: " Yuro Plee ",
+          section:"1ST CLASS- A SECTION",
+          rollno:"Roll No. 2"
+        },
+        {
+          image: pic1,
+          id: 10,
+          name: "Nachos",
+          section:"1ST CLASS- A SECTION",
+          rollno:"Roll No. 2"
+        },
+       
+    ],
+    
+   
+    }
+    setModalVisible = (visible) => {
+      console.log("modal opened");
+      this.setState({ modalVisible: visible });
+      // console.log("modal closed");
+    }
+  componentDidMount=()=>{
+    // console.log(this.props.props)
+    firestore().collection('Schools').doc(store.getState().authdetails.SchoolID).collection('classes').doc(this.props.props.route.params.class).get()
+    .then(l=>{
+      // console.log("response is",l.data().sections[this.props.props.route.params.section])
+      this.state.sectionUid=l.data().sections[this.props.props.route.params.section];
+      this.setState({sectionUid:this.state.sectionUid})
+      this.loadStudentData()
+      // console.log(this.state.sectionUid,"i am form student.js")
+    
+    })
+   
+  }
+    loadStudentData=()=>{
+      var x=[]
+      // firestore().collection('Sections').doc(this.state.sectionUid).get().then(l=>{
+
+      //   // console.log(l.data().students)
+      //   for (const [key, value] of Object.entries(l.data().students).sort((a, b) => a[0].localeCompare(b[0]))) {
+      //     // console.log(`${key}: ${value}`);
+      //     // this.state.data=this.state.data.concat(value)
+      //     // this.setState({data:this.state.data})
+      //     x=x.concat(value)
+      // }  
+      // console.log("x is ",x)
+      // })
+      var details={
+        sectionUid:this.state.sectionUid,
+      }
+      functions()
+      .httpsCallable('getStudent')(details)
+      .then((response) => {
+        //  console.log("sucsesfully getting Student details", response.data)
+         this.state.data=response.data;
+         this.setState({data:this.state.data})
+      });
+    }
+  modalVi=()=>{
+    this.setModalVisible(false)
+    this.loadStudentData()
   }
 
 
-  render() {
-    
-    
-    
 
-    
-    return (
-      <SafeAreaView style={{backgroundColor:'white' }}>
-          <View style={{justifyContent:'center',paddingHorizontal:15,flexDirection:'row',paddingTop:10}}>
-         
-         <View style={{height:50,flexDirection:'row',padding:5,alignItems:'center',borderRadius:30,paddingLeft:30, flex: 1,backgroundColor:'#f5f8fa'}}>
-         
-         
-           <Search />
-           <TextInput placeholder="Search Students or roll no" style={{fontSize:14, marginLeft:15,borderRadius:15}}/>
-           </View>
-           
-         </View>
-         
-        
+    render() {
+      
+      // console.log("hehhe")
+      // console.log(this.props.props)
+      const { modalVisible } = this.state;
   
+      
+      return (
+          <View style={{flex:1,backgroundColor:"white",}}>
+            <View style={{justifyContent:'center',paddingHorizontal:17,flexDirection:'row',paddingTop:13}}>
+           
+           <View style={{height:50,flexDirection:'row',padding:4,alignItems:'center',borderRadius:38,paddingLeft:18, paddingRight:40,flex: 1,backgroundColor:'#F5F8FA'}}>
+           
+             <Search />
+             <TextInput placeholder="Search Students or roll no......" style={{fontSize:16, marginLeft:15,borderRadius:15,fontFamily:"Roboto",fontWeight:"400",marginLeft:4,lineHeight:18}}/>
+             </View>
+             </View>
           
-    
-       <ScrollView>
-
-           
-       
-       
-       <View style={{flexDirection:'row',borderRadius:80, margin:12}}>
-           
+             <ScrollView style={{backgroundColor:'white'  }}>
             
-           <View
-               style={{
-                 backgroundColor: "white",
-                 borderRadius: 20,
-                 flex: 1,
-                 width:300,heigth:45,marginLeft:-10}}>
-                {this.state.artists.map(artist =>  (
+            <View style={{paddingLeft:25,paddingTop:12,}}> 
 
-            
-            
-              <TouchableOpacity style={styles.card}> 
-      
-      
-
-       <View key={artist.id} style={{flexDirection: "row" ,flex:1}} >
+             <Text style={{fontFamily:"Roboto",fontSize:20,fontWeight:"500",lineHeight:28,color:"#14171A"}}>All Students</Text>
+             </View>
+          
          
-       <View style={{flexDirection:'row',borderRadius:20}}>
-
-       <View style={{flexDirection: "column",paddingLeft: 0,paddingTop:1,}}>
-                   <Image source={artist.image}
-                       style={{
-                       
-                          height: 50,
-                          width: 50,
-                          backgroundColor: "#ddd",
-                          borderRadius: 50 / 2}}resizeMode="cover"/>
+         <View style={{flexDirection:'row',borderRadius:80, margin:0,paddingBottom:100}}>
+             
+       
+             <View
+                 style={{
+                   backgroundColor: "white",
+                   borderRadius: 20,
+                   flex: 1,
+                   width:300,heigth:45,marginLeft:-10,
+                   }}>
+                  {
+                    this.state.data===''?<View><Text>Loading....</Text></View>:
+                    this.state.data.map((artist,i) =>  (
+      <Card containerStyle={styles.card} key={i}> 
+    <View key={artist.id} style={{flexDirection: "row"}} >
     
-                      </View>
+    <View style={{flexDirection:'row',borderRadius:20}}>
+    
+    <View style={{flexDirection: "column",marginTop:-20}}>
+           <Image source={pic}
+              style={{
+           
+              height: 64,
+              width: 64,
+              backgroundColor: "#ddd",
+              borderRadius: 64/ 2}}resizeMode="cover"/>
 
-                      <View
-                        style={{
-                          flexDirection: "column",
-                          paddingLeft: 13,
-                          paddingTop: 7,
-                          fontWeight:"bold",
-                        
-                        
-                        }}>
-                        <Text style={{ fontSize: 20,fontFamily:"Roboto",lineHeight:28 }} >{artist.name}</Text>
-                        <Text style={{ fontSize: 14, color: "#657786",fontFamily:"Roboto" }}>{artist.rollno} </Text>
-                        
-                        <Text style={{ fontSize: 14, color: "#A7A7A7",fontFamily:"Roboto" }}>{artist.section} </Text>
-                      </View>
+          </View>
 
-                                  
-                     </View>
-                     <View style={{ paddingLeft:260,paddingTop:25,position:"absolute"}}>
-                      <View>
-                      <Svgpages  />
-                       </View>
-                    </View>
-                    
-                
-                   </View>
-                  
-                 
-                  
-                   
-                  </TouchableOpacity>
-                  
-                    
-                    
-                    
-                   
-                   ))}
-                  
-                   
+          <View
+            style={{
+              flexDirection: "column",
+              paddingLeft: 13,
+              marginTop: -21,
+              fontWeight:"bold",
+            
+            
+            }}>
+            <Text style={{ fontSize: 17,fontFamily:"Roboto",lineHeight:28 ,lineHeight:24}} >{artist.name}</Text>
+            <Text style={{ fontSize: 14, color: "#657786",fontFamily:"Roboto" }}>Roll No. {artist.rollNo} </Text>
+            
+            <Text style={{ fontSize: 12, color: "#A7A7A7",fontFamily:"Roboto" }}>{this.props.props.route.params.class}-{this.props.props.route.params.section} Section</Text>
+          </View>        
+         </View>
+         <View style={{ marginLeft:300,marginTop:-8,position:"absolute"}}>
+          <View>
+          <Svgpages />
+           </View>
+        </View>
+        
+    
+       </View>
       
+     
       
-                 
-                </View>
-                
-                
-                
-                </View>
-               
+       
+      </Card>
+      
+        
+        
+        
+       
+       ))
+                  }
+                    
+                     
+        
+        
+                   
+                  </View>
+                  
+                  
+                  
+                  </View>
+  
                 </ScrollView>
-                <View style={{position:'absolute', marginTop: 600, marginLeft: 125}}>
-               
-               
-                <TouchableHighlight style={styles.submit} onPress={() => 
-                  Alert.alert("Adding new class")}underlayColor='#fff'>
-                  <Text style={styles.submitText}> + Add new Student </Text>
-                 </TouchableHighlight>
 
-               </View>
+
+                   <View style={{alignItems:"center",position:"absolute",}}>
                  
-                </SafeAreaView>
-                
-    
-    
-    
-    );
+                 
+                   <TouchableOpacity style={styles.button} onPress={() => this.setModalVisible(true)} underlayColor='#fff'>
+                     <View>
+                     <Text style={styles.Class}> + Add new Student </Text>
+                     </View>
+                    </TouchableOpacity>
+
+                    <Modal visible={modalVisible} animationType="slide">
+
+                      {/* ......................header component .............*/}
+
+            <View style={{flexDirection:"row",paddingTop: 30,paddingLeft:10,backgroundColor:"#FFFFFF",borderBottomWidth:1,borderColor:"#E5E5E5",height:60}}>
+             <View style={{flexDirection:"row",paddingLeft:10,marginTop:-10}}>
+           <Icon name='close' size={24} 
+           onPress={() => this.setModalVisible(false)} />
+          <Text style={{fontSize:20,fontWeight:"500",paddingLeft:7,fontFamily:"Roboto"}}>Add Student</Text>
+         </View>
+
+       </View>
+
+
+              <AddStudent props={{class:this.props.props.route.params,function:this.modalVi}}/>
+
+           </Modal>
+
+      </View>
+   
+               
+               
+      </View>
+      
+      
+      );
+    }
   }
-}
-const { width, height } = Dimensions.get("screen");
-const styles = StyleSheet.create({
- 
-submitText:{
-    paddingTop:10,
-    paddingBottom:10,
-
-    color:'#fff',
-    textAlign:'center',
-    backgroundColor:"#1e90ff",
-    borderRadius: 20,
-    borderWidth: 1,
-    fontWeight:'bold',
-    borderColor: '#fff',
-    fontFamily:"Roboto"
-},
-card: {
-  backgroundColor: "#fff",
-  paddingVertical: 10,
-  paddingHorizontal: 15,
-  width: width / 1.1,
-  marginHorizontal: 20,
-  borderRadius: 20,
-
-  height: height / 8,
-
-  shadowColor: "#000",
-  shadowOffset: {
-    width: 2,
-    height: 2,
+  const { width, height } = Dimensions.get("screen");
+  const styles = StyleSheet.create({
+   
+  submitText:{
+      paddingTop:10,
+      paddingBottom:10,
+      color:'#fff',
+      textAlign:'center',
+      backgroundColor:"#1e90ff",
+      borderRadius: 30,
+      borderWidth: 1,
+      borderColor: '#fff',
+      fontFamily:"Roboto",
+      fontWeight:"500"
   },
-  flex:1,
-  shadowOpacity: 0.3,
-  shadowRadius: 1.5,
+  card: {
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    elevation:0,
+    backgroundColor:"white",
+    borderWidth:0,
+   
+  },
+
+
+  submit:{
+    width:300,
+    height:60,
+    paddingLeft:160,
+    paddingTop:7,
+    marginLeft:-155,
+    
 },
-});
+button:{
+  backgroundColor:"#1F85FF",
+  width:152,
+  height:48,
+  borderRadius:40,
+  justifyContent:'center',
+  marginTop:height1-200,
+  marginLeft:110
 
+},
+Class:{
+  color:'white',
+  fontFamily:'Roboto',
+  fontWeight:'500',
+  fontSize:15,
+  marginLeft:9
+},
 
-
-
-export default AllClasses;
-
-
+  });
+  
+  
+  
+  
+  export default AllStudents;
+  
+  
+  

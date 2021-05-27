@@ -26,6 +26,11 @@ import Ganesh from './Navigation/TEACHERS/ganesh';
 // import AdminDashboard from './cardss/AdminDashboard'
 import { Provider } from 'react-redux';
 import store from './redux';
+import AllStudents from './class-students/Students';
+// import Tabnav1 from './class-students/Tabnav'
+// import Modaling from './Student-profile/modal';
+
+
 
 import {
   AppRegistry,
@@ -88,6 +93,11 @@ class App extends React.Component{
      
       <Provider store={store}>
          <Authentication1 /> 
+         {/* <Report /> */}
+         {/* <Modaling /> */}
+         {/* <Searchbar /> */}
+         {/* <AllStudents /> */}
+       {/* <Tabnav1 /> */}
          {/* <Slider/> */}
          {/* <Editpick /> */}
          {/* <Slider/> */}

@@ -230,7 +230,7 @@ render() {
                     backgroundColor:this.state.color,
                     borderRadius:4,
                     marginLeft:16,
-                    marginTop:480,
+                    marginTop:440,
                     justifyContent:'center',
                     textAlign:'center'
                 }}
