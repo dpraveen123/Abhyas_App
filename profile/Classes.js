@@ -136,11 +136,14 @@ addSection=(l,i)=>{
       //  },{merge:true})
       // console.log(store.getState().authdetails.uuid)
      }
+  // this.makeAllFalseOfEditView()
+
 }
 setModalVisible = () => {
 
   console.log("modal opened");
   this.setState({ modalVisible:!this.state.modalVisible });
+  // this.makeAllFalseOfEditView()
 
   // console.log("modal closed");
 }
@@ -225,7 +228,7 @@ Drop=(i)=>{
 // }
 editClassClicked=(i)=>{ 
   this.state.drop2[i]=true;
-  this.setState({drop2:this.state.drop2})5
+  this.setState({drop2:this.state.drop2})
   // this.openDrop(i)
   // opening drop jere.................
   this.state.darray[i]=true;
@@ -344,7 +347,9 @@ editClassClicked=(i)=>{
                          </TouchableOpacity>
 
                         
-                         <TouchableOpacity onPress={() => this.setModalVisible(true)} >
+                         <TouchableOpacity onPress={() =>{
+                           
+                            this.setModalVisible(true)}} >
                          <Text style={{fontWeight:"500",fontFamily:"Roboto",fontSize:18,marginLeft:0}}>Add Section</Text>
                          </TouchableOpacity>
                       
