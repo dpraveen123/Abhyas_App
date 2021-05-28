@@ -96,6 +96,7 @@ class AllClasses extends React.Component {
   darray1:[],
   drop:[],
   drop1:[],
+  drop2:[],
   modalVisible: false,
 addSectionName:'',
   
@@ -160,6 +161,7 @@ loadData=()=>{
      this.state.darray[l]=false;
      this.state.drop[l]=false;
      this.state.drop1[l]=false;
+     this.state.drop2[l]=false;
     //  this.setState({darray:this.state.darray,drop:this.state.drop,})
   })
  //  console.log(this.state.darray,"is darray yy")
@@ -190,6 +192,11 @@ openDrop=(i)=>{
   this.setState({darray:this.state.darray})
   this.state.darray1=this.state.darray;
   this.setState({darray1:this.state.darray1})
+
+
+  // ...............edit and delete false................
+  this.state.drop2[i]=false;
+  this.setState({drop2:this.state.drop2})
 }
 Drop=(i)=>{
   // console.log(i,"drop clicked")
@@ -217,6 +224,15 @@ Drop=(i)=>{
 //   }
 // }
 editClassClicked=(i)=>{ 
+  this.state.drop2[i]=true;
+  this.setState({drop2:this.state.drop2})5
+  // this.openDrop(i)
+  // opening drop jere.................
+  this.state.darray[i]=true;
+  // this.setState({darray:this.state.darray})
+  this.state.darray1=this.state.darray;
+  this.setState({darray1:this.state.darray1})
+
     this.makeAllFalseOfEditView()
 
 }
@@ -401,7 +417,7 @@ editClassClicked=(i)=>{
                                 
                          <View>
                          {
-                                 this.state.drop1[i]===true?<View style={{flexDirection:"row",paddingLeft:90}}>
+                                 this.state.drop2[i]===true?<View style={{flexDirection:"row",paddingLeft:90}}>
                          <TouchableOpacity>
                          <Text style={{color:"#657786"}}> Edit</Text>
                          </TouchableOpacity>
