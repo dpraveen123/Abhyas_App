@@ -239,7 +239,6 @@ editClassClicked=(i)=>{
 
     this.makeAllFalseOfEditView()
 
-    
 }
 deleteClass=(l,i)=>{
   // console.log("deleting class",l,i)
@@ -273,6 +272,37 @@ deleteClass=(l,i)=>{
 
   this.makeAllFalseOfEditView()
  this.loadData() 
+}
+deleteSection=(l,i,k)=>{
+  // console.log(l,i,k)
+  var details={
+    uid:store.getState().authdetails.uuid,
+    class:l.class,
+    section:k
+  }
+  functions()
+  .httpsCallable('deleteSection')(details)
+  .then(response => {
+    alert("sucsesfully deleted the section")
+    this.loadData() 
+  });
+  this.makeAllFalseOfEditView()
+  this.loadData() 
+  // console.log("details are",details)
+  // firestore().collection('Schools').doc(details.uid).collection('classes').doc(details.class).get().then(l=>{
+  //   var sectionUid=l.data().sections[details.section]
+  //   console.log("section uid issssssss",sectionUid,typeof(sectionUid))
+  //   firestore().collection('Sections').doc(sectionUid).set({
+  //     isDeleted:true,
+  //   },{merge:true}).then(l=>{
+  //     console.log("data is",l.data())
+  //   }).catch(e=>{console.log("no such doocunmnet")})
+    
+  // })
+  //   firestore().collection('Schools').doc(details.uid).collection('classes').doc(l.class).set({
+  //     sections:{[details.section]:firestore.FieldValue.delete()}
+  //   },{merge:true})
+
 }
   render() {
     const { modalVisible } = this.state;
@@ -460,7 +490,9 @@ deleteClass=(l,i)=>{
                          <TouchableOpacity>
                          <Text style={{color:"#657786"}}> Edit</Text>
                          </TouchableOpacity>
-                         <TouchableOpacity>
+                         <TouchableOpacity
+                         onPress={()=>{this.deleteSection(l,i,k)}}
+                         >
                          <Text style={{color:"#657786",paddingStart:10}}> Delete</Text>
                          </TouchableOpacity>
                          
