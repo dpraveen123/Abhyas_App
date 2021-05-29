@@ -273,21 +273,3 @@ exports.deleteClass=functions.https.onCall((data,context)=>{
   })
 })
 
-exports.deleteSection=functions.https.onCall((data,context)=>{
-
-  db.collection('Schools').doc(data.uid).collection('classes').doc(data.class).get().then(l=>{
-    var sectionUid=l.data().sections[data.section]
-    console.log("section uid issssssss",sectionUid,typeof(sectionUid))
-    firestore().collection('Sections').doc(sectionUid).set({
-      isDeleted:true,
-    },{merge:true}).then(l=>{
-      console.log("data is",l.data())
-    }).catch(e=>{console.log("no such doocunmnet")})
-    
-  })
-    db.collection('Schools').doc(data.uid).collection('classes').doc(data.class).set({
-      sections:{[data.section]:admin.firestore.FieldValue.delete()}
-    },{merge:true}).then(l=>{
-      return "sucsesfully deleted the section"
-    })
-})

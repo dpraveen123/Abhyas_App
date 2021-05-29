@@ -98,6 +98,7 @@ class AllClasses extends React.Component {
   drop1:[],
   drop2:[],
   modalVisible: false,
+  loaderOfAddSection:0,
 addSectionName:'',
   
   }
@@ -109,7 +110,7 @@ uuidv4 = () => {
   });
 }
 addSection=(l,i)=>{
-
+this.setState({loaderOfAddSection:1})
      console.log("for add section",l,i,this.state.addSectionName)
      var n=l.sections.includes(this.state.addSectionName)
      if(n){
@@ -128,8 +129,11 @@ addSection=(l,i)=>{
    .then(response => {
      console.log("sucsesfully added a new section bro",response.data)
      alert("sucsefully added your section")
-     this.setModalVisible();
      this.loadData()
+     this.setModalVisible();
+  this.makeAllFalseOfEditView()
+  this.openDrop(i)
+  this.setState({loaderOfAddSection:0})
          //  this.props.props.modal();
    });
       //  firestore().collection('Schools').doc(store.getState().authdetails.uuid).collection('classes').doc(l.class).set({
@@ -137,7 +141,6 @@ addSection=(l,i)=>{
       //  },{merge:true})
       // console.log(store.getState().authdetails.uuid)
      }
-  // this.makeAllFalseOfEditView()
 
 }
 setModalVisible = () => {
@@ -285,9 +288,11 @@ deleteSection=(l,i,k)=>{
   .then(response => {
     alert("sucsesfully deleted the section")
     this.loadData() 
+    this.makeAllFalseOfEditView()
+    // this.openDrop(i)
   });
-  this.makeAllFalseOfEditView()
-  this.loadData() 
+  // this.makeAllFalseOfEditView()
+  // this.loadData() 
   // console.log("details are",details)
   // firestore().collection('Schools').doc(details.uid).collection('classes').doc(details.class).get().then(l=>{
   //   var sectionUid=l.data().sections[details.section]
@@ -436,9 +441,18 @@ deleteSection=(l,i,k)=>{
                    </View>
                   </View>
 
-                   <View style={styles.footer}>
-                  <TouchableOpacity style={styles.button1}><Text style={styles.buttonText} onPress={()=>{this.addSection(l,i)}}>Add Section</Text></TouchableOpacity>
+                   <TouchableOpacity style={styles.footer}
+                   onPress={()=>{this.addSection(l,i)}}
+                   >
+                   <View style={styles.button1}>
+                <Text style={styles.buttonText} >{
+                    this.state.loaderOfAddSection===0?<Text style={styles.buttonText}>Add Section</Text>:<View
+                    >
+                      <Text style={styles.buttonText}>Adding Section...</Text>
+                    </View>
+                  }</Text>
                 </View>
+                   </TouchableOpacity>
           
                 </Modal>
                          
