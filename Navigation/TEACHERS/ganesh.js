@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text ,Image,Button,TouchableOpacity,StyleSheet} from 'react-native';
+import { View, Text ,Image,Button,TouchableOpacity,StyleSheet,Dimensions} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 //import Biology from '../Navigation/Icons/TEACHERS/Biology';
 import Biology from './Biology';
@@ -36,7 +36,9 @@ import Svg, {
     Mask,
 } from 'react-native-svg'
 import { ScrollView } from 'react-native-gesture-handler';
+var height1= Dimensions.get('window').height
 var test=[]
+
 class TeacherSub extends React.Component{
     constructor(props)
     {
@@ -310,8 +312,12 @@ button:{
     height:56,
     alignItems:'center',
     justifyContent:'center',
-    marginTop:75,
-    opacity:100
+    // marginTop:75,
+    position:'absolute',
+    top:height1-200,
+    left:60,
+    opacity:100,
+   
     
     },
    }

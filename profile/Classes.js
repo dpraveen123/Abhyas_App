@@ -109,6 +109,7 @@ uuidv4 = () => {
   });
 }
 addSection=(l,i)=>{
+
      console.log("for add section",l,i,this.state.addSectionName)
      var n=l.sections.includes(this.state.addSectionName)
      if(n){
@@ -158,7 +159,7 @@ loadData=()=>{
   //  console.log("sucsesfully getting all classess bro",response.data)
    this.state.data=response.data;
    this.setState({data:this.state.data})
-   // console.log(this.state.data)
+  //  console.log(this.state.data)
    this.state.data.map((i,l)=>{
      // console.log("i and l are",i,l)
      this.state.darray[l]=false;
@@ -238,6 +239,40 @@ editClassClicked=(i)=>{
 
     this.makeAllFalseOfEditView()
 
+    
+}
+deleteClass=(l,i)=>{
+  // console.log("deleting class",l,i)
+  var details={
+    uid:store.getState().authdetails.uuid,
+    class:l.class,
+    sections:l.sections
+  }
+  functions()
+  .httpsCallable('deleteClass')(details)
+  .then(response => {
+    alert("sucsesfully deleted")
+  });
+  // firestore().collection('Schools').doc(details.uid).collection('classes').doc(details.class).get().then(l=>{
+  //   // console.log('sections and those uids are0',l.data())
+  //   var sectionUids=Object.values(l.data().sections)
+  //   console.log(sectionUids,"section uids are")
+  //   sectionUids.map(l=>{
+  //     firestore().collection('Sections').doc(l).set({
+  //       isDeleted:true,
+  //     },{merge:true}).then(l=>{
+  //       console.log("sucsesfully deleted",l)
+  //     })
+  //   })
+  // })
+  // firestore().collection('Schools').doc(details.uid).collection('classes').doc(details.class).delete().then(l=>{
+  //   console.log("sucsessfully deleted doc",l)
+  //   alert("sucsesfully deleted")
+  // })
+
+
+  this.makeAllFalseOfEditView()
+ this.loadData() 
 }
   render() {
     const { modalVisible } = this.state;
@@ -339,10 +374,9 @@ editClassClicked=(i)=>{
                          }} >
                          <Text style={{fontWeight:"500",fontFamily:"Roboto",fontSize:18,marginLeft:0}}>Edit Class</Text>
                          </TouchableOpacity>
-                          
-                         
-                        
-                         <TouchableOpacity>
+                         <TouchableOpacity
+                         onPress={()=>{this.deleteClass(l,i)}}
+                         >
                          <Text style={{fontWeight:"500",fontFamily:"Roboto",fontSize:18,marginLeft:0}}>Delete Class</Text>
                          </TouchableOpacity>
 
@@ -466,7 +500,7 @@ editClassClicked=(i)=>{
 
 
                 <View style={{position:"absolute",marginTop:height1-200,marginLeft:110}}>
-                <ModalTester props={this.state.data}/>
+                <ModalTester props={{loadData:this.loadData}}/>
                 </View>
 
                 {/* <View style={{}}>
@@ -507,6 +541,7 @@ var height1=Dimensions.get('window').height;
     }
     
     componentDidMount=()=>{
+      
       var details={
         uid:store.getState().authdetails.uuid
       }
@@ -546,7 +581,7 @@ var height1=Dimensions.get('window').height;
            <Modal isVisible={this.state.isModalVisible}>
              <TouchableOpacity onPress={this.toggleModal} style={{width:360,height:300,marginLeft:-20}}>
              </TouchableOpacity>
-           <ChooseClass props={{class:this.state.classes,modal:this.toggleModal}}/>
+           <ChooseClass props={{class:this.state.classes,modal:this.toggleModal,loadData:this.props.props.loadData}}/>
           </Modal>
       </View>
       )

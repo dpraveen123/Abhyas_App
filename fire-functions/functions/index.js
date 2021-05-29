@@ -247,3 +247,28 @@ exports.getStudent=functions.https.onCall((data,context)=>{
     })
   )
 })
+
+// ............................admin dashboard.....................
+
+exports.deleteClass=functions.https.onCall((data,context)=>{
+
+  db.collection('Schools').doc(data.uid).collection('classes').doc(data.class).get().then(l=>{
+    // console.log('sections and those uids are0',l.data())
+    var sectionUids=Object.values(l.data().sections)
+    console.log(sectionUids,"section uids are")
+    sectionUids.map(l=>{
+      firestore().collection('Sections').doc(l).set({
+        isDeleted:true,
+      },{merge:true}).then(l=>{
+        console.log("sucsesfully deleted",l)
+      })
+    })
+  })
+  
+
+  db.collection('Schools').doc(data.uid).collection('classes').doc(data.class).delete().then(l=>{
+    console.log("sucsessfully deleted doc",l)
+    return "sucsessfully deleted the classss..."
+    // alert("sucsesfully deleted")
+  })
+})

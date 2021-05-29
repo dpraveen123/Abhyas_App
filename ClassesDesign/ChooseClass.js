@@ -198,6 +198,8 @@ ShowPage=()=>{
       .then(response => {
         // console.log("sucsesfully added a new class bro",response.data)
         alert("sucsefully added your class")
+        this.props.props.loadData()
+
         this.props.props.modal();
       });
    }

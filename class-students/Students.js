@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Text,TouchableOpacity,Image,Dimensions,ScrollView,SafeAreaView,AppRegistry,
   TextInput,Button,Alert,title,TouchableHighlight,Modal} from 'react-native';
-import {Card} from'react-native-elements';
+import {Card} from 'react-native-elements';
+import RBSheet from 'react-native-raw-bottom-sheet';
 import pic from '../Images/student1.png';
 import pic1 from '../Images/stu.png';
 import Svgpages from '../assets/Svg';
@@ -12,14 +13,16 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import store from '../redux'
 import functions from '@react-native-firebase/functions';
-import noStudent from '../TEACHERS/noStudentAdded'
+import NoStudent from '../TEACHERS/noStudentAdded'
+import StudentMenu from '../bottomSheet/StudentMenu'
 var width1= Dimensions.get('window').width
 var height1= Dimensions.get('window').height
+var Height = (273.5/640)*100;
+var HeightInPercentage = Height+"%";
 
 class AllStudents extends React.Component {
   constructor(props){
     super(props)
-
   }
     state={
         modalVisible: false,
@@ -149,11 +152,18 @@ class AllStudents extends React.Component {
     this.setModalVisible(false)
     this.loadStudentData()
   }
+openSheet=(l,i)=>{
+  // console.log(l,i)
+  // this.RBSheet.open()
 
+  
+
+}
 
 
     render() {
-      
+     
+   
       // console.log("hehhe")
       // console.log(this.props.props)
       const { modalVisible } = this.state;
@@ -172,10 +182,7 @@ class AllStudents extends React.Component {
           
              <ScrollView style={{backgroundColor:'white'  }}>
             
-            <View style={{paddingLeft:25,paddingTop:12,}}> 
-
-             <Text style={{fontFamily:"Roboto",fontSize:20,fontWeight:"500",lineHeight:28,color:"#14171A"}}>All Students</Text>
-             </View>
+           
           
          
          <View style={{flexDirection:'row',borderRadius:80, margin:0,paddingBottom:100}}>
@@ -189,9 +196,20 @@ class AllStudents extends React.Component {
                    width:300,heigth:45,marginLeft:-10,
                    }}>
                   {
-                    this.state.data===''?<View><Text>Loading....</Text></View>:
-                    this.state.data.map((artist,i) =>  (
-      <Card containerStyle={styles.card} key={i}> 
+                    this.state.data===''?<View><Text>Loading....</Text></View>:<View>
+                    <View style={{paddingLeft:25,paddingTop:12,}}> 
+
+<Text style={{fontFamily:"Roboto",fontSize:20,fontWeight:"500",lineHeight:28,color:"#14171A"}}>All Students</Text>
+</View>
+                    {
+                      this.state.data.length===0?<View><NoStudent/></View>:
+                      <View>{
+                      this.state.data.map((artist,i) =>  (
+                      <TouchableOpacity
+                       onPress={() => {this[RBSheet + i].open()}}
+                       key={i}
+                      >
+      <Card containerStyle={styles.card} > 
     <View key={artist.id} style={{flexDirection: "row"}} >
     
     <View style={{flexDirection:'row',borderRadius:20}}>
@@ -231,16 +249,47 @@ class AllStudents extends React.Component {
     
        </View>
       
-     
-      
-       
       </Card>
+      <RBSheet
+       ref={ref => {
+        this[RBSheet + i] = ref;
+          }}
+        closeOnDragDown={true}
+        closeOnPressMask={false}
+        onOpen={()=>{
+          console.log("sheet opened",artist,i)
+        }}
+        customStyles={{
+          container:{
+            borderTopLeftRadius:16,
+            borderTopRightRadius:16,
+            height:HeightInPercentage,
+
+          },
+          wrapper: {
+            backgroundColor: "transparent"
+          },
+          draggableIcon: {
+            backgroundColor: "#E1E8ED",
+            width:87,
+            height:5.5,
+            
+          }
+        }}
+       
+      >
+          <StudentMenu props={{nav:this.props,studentData:artist}}/>
+      </RBSheet> 
+      </TouchableOpacity>
       
         
         
         
        
        ))
+                      }</View>
+                    }</View>
+               
                   }
                     
                      
@@ -286,7 +335,7 @@ class AllStudents extends React.Component {
       </View>
    
                
-               
+     
       </View>
       
       

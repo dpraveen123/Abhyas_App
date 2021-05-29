@@ -43,6 +43,8 @@ import {
   TextInput,
   ScrollView
 } from 'react-native';
+
+import Sheet from './bottomSheet/Sheet'
 // import Profile from './mywork/Profile';
 // import Teacher from './teacher'
 
@@ -90,9 +92,11 @@ class App extends React.Component{
       // <Teacher />
 //  <AllClasses/> 
 /* <Editpick/> */
+// {/* <RunSheet/> */}
      
       <Provider store={store}>
          <Authentication1 /> 
+         {/* <Sheet/> */}
          {/* <Report /> */}
          {/* <Modaling /> */}
          {/* <Searchbar /> */}
