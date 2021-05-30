@@ -1,9 +1,10 @@
 import React from 'react';
 import { Text } from 'react-native';
-
-const Students = () => {
+import AllStudents from '../class-students/Students'
+const Students = (props) => {
+  // console.log(props.props.route.params)
   return (
-    <Text>Hello, This is students page !!!!!</Text>
+    <AllStudents props={props.props}/>
   );
 }
 

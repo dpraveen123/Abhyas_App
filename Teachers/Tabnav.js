@@ -17,12 +17,13 @@ export default class Tabnav extends Component {
   }
   componentDidMount=()=>{
     // console.log("i am from tabnav.js",this.props.route.params)  
-  }
-  render() {
     this.props.navigation.setOptions({
       headerTitle:this.props.route.params.class+'-'+this.props.route.params.section+' section'
     
     })
+  }
+  render() {
+  
       
     return (
       <StyleProvider style={getTheme(material)}>
@@ -34,7 +35,7 @@ export default class Tabnav extends Component {
           </Tab>
          
           <Tab heading={ <TabHeading><Text>Students</Text></TabHeading>}>
-           <Students />
+           <Students props={this.props}/>
           </Tab>
 
           <Tab heading={ <TabHeading><Text>Reports</Text></TabHeading>}>

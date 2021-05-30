@@ -198,6 +198,8 @@ ShowPage=()=>{
       .then(response => {
         // console.log("sucsesfully added a new class bro",response.data)
         alert("sucsefully added your class")
+        this.props.props.loadData()
+
         this.props.props.modal();
       });
    }
@@ -230,7 +232,7 @@ render() {
                     backgroundColor:this.state.color,
                     borderRadius:4,
                     marginLeft:16,
-                    marginTop:480,
+                    marginTop:440,
                     justifyContent:'center',
                     textAlign:'center'
                 }}

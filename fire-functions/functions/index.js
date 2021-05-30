@@ -47,7 +47,7 @@ exports.listProducts = functions.https.onCall((data, context) => {
 exports.addingClass = functions.https.onCall((data, context) => {
   db.collection('Schools').doc(`${data.uid}`).collection('classes').doc(`${data.className}`).set({
     sections: data.sections,
-  }).then((res) => {
+  },{merge:true}).then((res) => {
     console.log(res, "saved to firestore sucsessfully")
   })
   for (var i = 0; i < Object.keys(data.sections).length; i++) {
@@ -173,7 +173,7 @@ exports.getClass=functions.https.onCall((data,context)=>{
   //  }
 })
 
-exports.getTeacherdetails=functions.https.onCall((data,context)=>{
+exports.getTeacherdata=functions.https.onCall((data,context)=>{
   var a=[],i=55,j=0,b=[];
  return (
   db.collection('Users').doc(data.User).collection('Classes').get()
@@ -201,10 +201,74 @@ exports.getTeacherSubjects=functions.https.onCall((data,context)=>{
       db.collection('Users').doc(data.User).collection('Classes').doc(data.class).get().then(
          l=>{
           //  console.log("res",l.data())
-          // console.log(l.data().SectionandSubjects[details.section],"hiiii")
+          // console.log(l.data().SectionandSubjects[data.section],"hiiii")
           // var x=l.data().SectionandSubjects
           return l.data().SectionandSubjects[data.section];
          }
          )
     )
+})
+exports.addStudent=functions.https.onCall((data,context)=>{
+  var a={}
+  a[data.rollNo]={uid:data.studentUid,rollNo:data.rollNo,name:data.name,}
+  db.collection('Sections').doc(data.sectionUid).set({
+    students:a
+  },{merge:true}).then(l=>{
+    console.log("sucsesffuly added")
+  })
+  db.collection('Students').doc(data.studentUid).set({
+    name:data.name,
+    class:data.class,
+    section:data.section,
+    rollNo:data.rollNo,
+    fatherName:data.fatherName,
+    motherName:data.motherName,
+    mobileNumber:data.mobileNumber,
+    studentUid:data.studentUid,
+    schoolUid:data.schoolUid,
+    sectionUid:data.sectionUid
+  })
+  return "sucsfully added all"
+})
+exports.getStudent=functions.https.onCall((data,context)=>{
+  var x=[]
+  return(
+   db.collection('Sections').doc(data.sectionUid).get().then(l=>{
+
+      // console.log(l.data().students)
+      for (const [key, value] of Object.entries(l.data().students).sort((a, b) => a[0].localeCompare(b[0]))) {
+        // console.log(`${key}: ${value}`);
+        // this.state.data=this.state.data.concat(value)
+        // this.setState({data:this.state.data})
+        x=x.concat(value)
+    }  
+    console.log("x is ",x)
+    return x
+    })
+  )
+})
+
+// ............................admin dashboard.....................
+
+exports.deleteClass=functions.https.onCall((data,context)=>{
+
+  db.collection('Schools').doc(data.uid).collection('classes').doc(data.class).get().then(l=>{
+    // console.log('sections and those uids are0',l.data())
+    var sectionUids=Object.values(l.data().sections)
+    console.log(sectionUids,"section uids are")
+    sectionUids.map(l=>{
+      firestore().collection('Sections').doc(l).set({
+        isDeleted:true,
+      },{merge:true}).then(l=>{
+        console.log("sucsesfully deleted",l)
+      })
+    })
+  })
+  
+
+  db.collection('Schools').doc(data.uid).collection('classes').doc(data.class).delete().then(l=>{
+    console.log("sucsessfully deleted doc",l)
+    return "sucsessfully deleted the classss..."
+    // alert("sucsesfully deleted")
+  })
 })
