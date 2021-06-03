@@ -12,6 +12,7 @@ function Teacher({props}) {
     return (
 
         <View style={{backgroundColor:'white'}}>
+           
             <View style={{ marginLeft: 20 }}>
 
 
@@ -45,13 +46,6 @@ function Teacher({props}) {
 
                     <Text style={{ fontSize: 16, color: "#FFFFFF", width: 137.75, height: 24 }}> +Add new Teacher</Text>
                 </TouchableOpacity>
-
-            {/* <Modal isVisible={isModalVisible}>
-             <TouchableOpacity onPress={toggleModal} style={{width:360,height:190,marginLeft:-20}}>
-             </TouchableOpacity>
-            <ChooseClass/>
-            </Modal> */}
-
             </View>
 
 

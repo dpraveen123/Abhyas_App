@@ -55,38 +55,41 @@ export default function Addclass() {
   const [onChangeName, setonChangeName] = useState('');
   const [onChangeNumber, setonChangeNumber] = useState('');
   const [selectedValue, setSelectedValue] = useState("select class");
-  const [onChangeClass, setonChangeClass] = useState('');
-  const [onChangeSection, setonChangeSection] = useState('');
+  const [onChangeClass, setonChangeClass] = useState([]);
+  const [onChangeSection, setonChangeSection] = useState([]);
   const [onChangeSubject, setonChangeSubject] = useState('');
-  const [onAddClass, setonAddClass] = useState(1);
+  const [onAddClass, setonAddClass] = useState([1]);
   const [mySections, setmySections] = useState([]);
   const [mySubjects, setmySubjects] = useState([]);
+  const [darray,setdarray] = useState([])
 
   // console.log(isSelected, onChangeName, onChangeNumber, onChangeNumber, onChangeSection, onChangeSubject)
   AddAnotherClass = () => {
-    setonAddClass(onAddClass + 1);
-    console.log(onAddClass);
+    setonAddClass(onAddClass.concat(1));
+    setdarray([])
+    console.log("onaddddclasss length  ", onAddClass.length);
+
+    console.log("no of sections is ", onChangeClass);
   }
-  addMySubjects = (itemValue) => {
-    setmySubjects(mySubjects.concat(itemValue));
+  // var darray = [];
+  addMySubjects = (itemValue, i) => {
+    setdarray(darray.concat(itemValue));
+    mySubjects[i] = darray;
+    setmySubjects(mySubjects);
+    console.log("mysubjects", mySubjects);
   }
   Addclass = (itemvalue) => {
-    console.log("adding classes");
+    // console.log("no of sections is from add class ", onChangeClass.length);
+
     firestore()
       .collection('Schools').doc(store.getState().authdetails.uuid).collection('classes').doc(itemvalue)
       .get()
       .then((querySnapshot) => {
-        // querySnapshot.forEach(documentSnapshot => {
-        //   console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
-        // });
         console.log("itemvalue", itemvalue);
         console.log('details of classes', querySnapshot.data());
 
         var x = querySnapshot.data();
         console.log("x is ", x.sections, Object.keys(x.sections));
-        // mySections=Object.keys(x.sections)
-        // y = Object.keys(x.sections)
-        // console.log(y, " y details");
         setmySections(Object.keys(x.sections))
         console.log(mySections, "sections")
       });
@@ -99,37 +102,15 @@ export default function Addclass() {
   }
 
   storeData = () => {
-    // firestore()
-    //   .collection('Schools').doc('5a027b11-470c-4fb5-9355-989036cade8c').collection('Teachers').doc(`${onChangeNumber}`)
-    //   .set({
-    //     TeacherName: onChangeName,
-    //     TeacherPhoneno: onChangeNumber,
-    //     Class: onChangeClass,
-    //     section: onChangeSection,
-    //     subject: onChangeSubject,
-    //     classTeacher: isSelected
-    //   })
-    //   .then(() => {
-    //     console.log('User added!');
-    //   });
+mySubjects.map((m,n) =>{
     var subjects = {}
-    // subjects={j:}
-    mySubjects.map((l, i) => {
+
+    m.map((l, i) => {
       subjects[l] = uuidv4()
     })
 
-    var SectionandSubjects = {
-
-      // onChangeSection: subjects,
-      // mySection1: onChangeSection
-    }
-    SectionandSubjects[onChangeSection] = subjects
-
-    // console.log("Classandsubjects",SectionandSubjects);
-
-    // var SecSubject = [{
-    //   onChangeSection: { subjects }
-    // }]
+    var SectionandSubjects = {}
+    SectionandSubjects[onChangeSection[n]] = subjects
     console.log("hii", subjects, "subjects");
 
     var details = {
@@ -137,15 +118,15 @@ export default function Addclass() {
       MySubjects: subjects,
       TeacherName: onChangeName,
       TeacherPhoneno: onChangeNumber,
-      Class: onChangeClass,
-      section: onChangeSection,
+      Class: onChangeClass[n],
+      section: onChangeSection[n],
       subject: subjects,
       classTeacher: isSelected,
       role: 'Teacher',
       uid: store.getState().authdetails.uuid
     }
     console.log("details from add teacher", details);
-
+  
     functions()
       .httpsCallable('addingUser')(details)
       .then((response) => {
@@ -156,7 +137,7 @@ export default function Addclass() {
       .then((response) => {
         console.log("sucsesfully added a new Teacher dudee to fire functions", response)
       });
-
+  } )
   }
   return (
     <ScrollView style={{ backgroundColor: 'white' }}>
@@ -193,95 +174,118 @@ export default function Addclass() {
             }
 
           ></TextInput>
-          <View
-            style={{
-              paddingTop: 5,
-              borderBottomColor: '#E1E8ED',
-              borderBottomWidth: 1,
-              flex: 2
-            }}
-          />
-          <Text style={styles.adtext}>Add Classes</Text>
-          <View >
-            <View style={{ flexDirection: "row" }} >
 
-              <Picker
-                selectedValue={onChangeClass}
-                // placeholder = {"select class"}
-                style={{ height: 50, width: 150, borderWidth: 1, borderColor: '#E1E8ED' }}
-                onValueChange={(itemValue, itemIndex) => {
-                  // onChangeClass = itemValue
-                  setonChangeClass(itemValue)
-                  // console.log("onchangechangeclass",);
-                  Addclass(itemValue)
+          {
 
-
-                }}
-
-              >
-                <Picker.Item label="Class 1" value="1st class" />
-                <Picker.Item label="Class 2 " value="2nd class" />
-                <Picker.Item label="Class 3 " value="3rd class" />
-              </Picker>
-
-              <Picker
-                selectedValue={onChangeSection}
-                style={{ height: 50, width: 150, borderWidth: 1, borderColor: '#E1E8ED' }}
-                onValueChange={(Value, itemIndex) => setonChangeSection(Value)}
-              >
-                {
-
-                  mySections.map(l => {
-                    return (
-                      <Picker.Item label={l} value={l} />
-
-                    )
-                  })
-                }
-                {/* <Picker.Item label="A" value="A" />
-                <Picker.Item label="B" value="B" />
-                <Picker.Item label="C" value="C" /> */}
-              </Picker>
-            </View>
-            <Text style={styles.text1}>Subjects</Text>
-            <Picker
-              selectedValue={onChangeSubject}
-              style={{ height: 50, width: 328, backgroundColor: "#F5F8FA", color: "#AAB8C2" }}
-              onValueChange={(itemValue, itemIndex) => {
-                addMySubjects(itemValue)
-                setonChangeSubject(itemValue)
-              }}
-            >
-              <Picker.Item label="Maths" value="Maths" />
-              <Picker.Item label="Physics " value="Physics" />
-              <Picker.Item label="Biology " value="Biology" />
-            </Picker>
-          </View>
-          <View>
-            {mySubjects.map(l => {
+            onAddClass.map((l, i) => {
               return (
-                <Text>{l}</Text>
+
+
+                <View>
+                  <View
+                    style={{
+                      paddingTop: 5,
+                      borderBottomColor: '#E1E8ED',
+                      borderBottomWidth: 1,
+                      flex: 2
+                    }}
+                  />
+                  <Text style={styles.adtext}>Add Classes</Text>
+                  <View >
+                    <View style={{ flexDirection: "row" }} >
+
+                      <Picker
+                        selectedValue={onChangeClass[i]}
+                        // placeholder = {"select class"}
+                        style={{ height: 50, width: 150, borderWidth: 1, borderColor: '#E1E8ED' }}
+                        onValueChange={(itemValue, itemIndex) => {
+                          // onChangeClass = itemValue
+                          onChangeClass[i] = itemValue
+                          setonChangeClass(onChangeClass)
+                          console.log("onchangechangeclass valuechange i is", i, onChangeClass);
+
+                          Addclass(itemValue)
+                        }}
+
+                      >
+                        <Picker.Item label="Class 1" value="1st class" />
+                        <Picker.Item label="Class 2 " value="2nd class" />
+                        <Picker.Item label="Class 3 " value="3rd class" />
+                        <Picker.Item label="Class 4 " value="4th class" />
+                        <Picker.Item label="Class 5 " value="5th class" />
+                        <Picker.Item label="Class 6 " value="6th class" />
+                        <Picker.Item label="Class 7 " value="7th class" />
+                        <Picker.Item label="Class 8 " value="8th class" />
+                        <Picker.Item label="Class 9 " value="9th class" />
+                        <Picker.Item label="Class 10 " value="10th class" />
+                      </Picker>
+
+                      <Picker
+                        selectedValue={onChangeSection[i]}
+                        style={{ height: 50, width: 150, borderWidth: 1, borderColor: '#E1E8ED' }}
+                        onValueChange={(Value, itemIndex) => {
+                          onChangeSection[i] = Value
+                          setonChangeSection(onChangeSection)
+                          // setonChangeSection(Value)
+                          console.log("new sections is", onChangeSection);
+                        }}
+                      >
+                        {
+
+                          mySections.map(l => {
+                            return (
+                              <Picker.Item label={l} value={l} />
+
+                            )
+                          })
+                        }
+                      </Picker>
+                    </View>
+                    <Text style={styles.text1}>Subjects</Text>
+                    <Picker
+                      selectedValue={onChangeSubject}
+                      style={{ height: 50, width: 328, backgroundColor: "#F5F8FA", color: "#AAB8C2" }}
+                      onValueChange={(itemValue, itemIndex) => {
+                        addMySubjects(itemValue, i)
+                        setonChangeSubject(itemValue)
+                      }}
+                    >
+                      <Picker.Item label="Maths" value="Maths" />
+                      <Picker.Item label="Physics " value="Physics" />
+                      <Picker.Item label="Biology " value="Biology" />
+                    </Picker>
+                  </View>
+                  <View>
+                    {mySubjects.map(l => {
+                      return (
+                        <Text>{l}</Text>
+                      )
+                    })
+                    }
+                  </View>
+                  <View style={styles.checkboxContainer}>
+                    <CheckBox
+                      value={isSelected}
+                      onValueChange={setSelection}
+                      style={styles.checkbox}
+                    />
+                    <Text style={styles.label}>Assign as Class teacher</Text>
+                  </View>
+                  <View>
+
+
+                  </View>
+                </View>
               )
             })
-            }
-          </View>
-          <View style={styles.checkboxContainer}>
-            <CheckBox
-              value={isSelected}
-              onValueChange={setSelection}
-              style={styles.checkbox}
-            />
-            <Text style={styles.label}>Assign as Class teacher</Text>
-          </View>
-          <View>
-            <TouchableOpacity onPress={() => AddAnotherClass()}>
-              <Text style={{ color: '#1F85FF', fontWeight: "bold", fontSize: 15 }}
-              >
-                Add Another class
+          }
+          <TouchableOpacity onPress={() => AddAnotherClass()}>
+            <Text style={{ color: '#1F85FF', fontWeight: "bold", fontSize: 15 }}
+            >
+              Add Another class
             </Text>
-            </TouchableOpacity>
+          </TouchableOpacity>
 
-          </View>
         </View>
 
 

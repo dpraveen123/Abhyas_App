@@ -7,8 +7,8 @@ function Teachers({navigation}) {
     // console.log(navigation,"i am from captal Teachers")
     return (
         // <View>
-            <Teacher props={navigation}/> 
-            // <Hello/>
+            // <Teacher props={navigation}/> 
+            <Hello props={navigation} />
             // {/* <Text>Teachers?????????????????????????????...............</Text> */}
         // </View>
     )
