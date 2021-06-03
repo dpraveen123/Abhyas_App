@@ -33,12 +33,18 @@ import Delete from '../Logo/Delete'
 // import store from '../redux'
 // import Dropdown from '../profile/drop';
 // const viewmodel=false
+// const class = ''
 class AllClasses extends React.Component {
+ class=""
+ section=""
  constructor(props) {
    super(props)
    console.log(props);
    this.state = {
     viewmodel:false,
+    viewmodalSection:false,
+    class:'',
+    sec:' ',
     colors:[ 
       {
       class: '1st class',
@@ -99,6 +105,7 @@ class AllClasses extends React.Component {
   drop1:[],
   drop2:[],
   modalVisible: false,
+  loaderOfAddSection:0,
 addSectionName:'',
   
   }
@@ -110,7 +117,7 @@ uuidv4 = () => {
   });
 }
 addSection=(l,i)=>{
-
+this.setState({loaderOfAddSection:1})
      console.log("for add section",l,i,this.state.addSectionName)
      var n=l.sections.includes(this.state.addSectionName)
      if(n){
@@ -129,8 +136,11 @@ addSection=(l,i)=>{
    .then(response => {
      console.log("sucsesfully added a new section bro",response.data)
      alert("sucsefully added your section")
-     this.setModalVisible();
      this.loadData()
+     this.setModalVisible();
+  this.makeAllFalseOfEditView()
+  this.openDrop(i)
+  this.setState({loaderOfAddSection:0})
          //  this.props.props.modal();
    });
       //  firestore().collection('Schools').doc(store.getState().authdetails.uuid).collection('classes').doc(l.class).set({
@@ -138,7 +148,6 @@ addSection=(l,i)=>{
       //  },{merge:true})
       // console.log(store.getState().authdetails.uuid)
      }
-  // this.makeAllFalseOfEditView()
 
 }
 setModalVisible = () => {
@@ -229,6 +238,8 @@ Drop=(i)=>{
 //   }
 // }
 editClassClicked=(i)=>{ 
+  
+  console.log('edit pressed func'),
   this.state.drop2[i]=true;
   this.setState({drop2:this.state.drop2})
   // this.openDrop(i)
@@ -240,7 +251,20 @@ editClassClicked=(i)=>{
 
     this.makeAllFalseOfEditView()
 
-    
+}
+ModalTesterSec=()=>{
+  // console.log("section delete pressed")
+  this.setState({
+    viewmodalSection:!(this.state.viewmodalSection)
+  })
+}
+setClassSec=(k,l)=>{
+  console.log('ckecking class & sec');
+  // this.setState({
+  //   sec:k,
+  //   class:c
+  // })
+
 }
 ModalTester=()=>{
   console.log("delete class is pressed")
@@ -250,7 +274,8 @@ ModalTester=()=>{
   // console.log('viewmodel',this.state.viewmodel)
   }
 deleteClass=(l,i)=>{
-  this.ModalTester()
+  this.ModalTester(),
+  this.openEditView(i)
  console.log('delete pressed')
   // console.log("deleting class",l,i)
   var details={
@@ -286,6 +311,40 @@ deleteClass=(l,i)=>{
 
   this.makeAllFalseOfEditView()
  this.loadData() 
+}
+deleteSection=(l,i,k)=>{
+  this.ModalTesterSec()
+  // console.log(l,i,k)
+  var details={
+    uid:store.getState().authdetails.uuid,
+    class:l,
+    section:k
+  }
+  functions()
+  .httpsCallable('deleteSection')(details)
+  .then(response => {
+    alert("sucsesfully deleted the section")
+    this.loadData() 
+    this.makeAllFalseOfEditView()
+    // this.openDrop(i)
+  });
+  // this.makeAllFalseOfEditView()
+  // this.loadData() 
+  // console.log("details are",details)
+  // firestore().collection('Schools').doc(details.uid).collection('classes').doc(details.class).get().then(l=>{
+  //   var sectionUid=l.data().sections[details.section]
+  //   console.log("section uid issssssss",sectionUid,typeof(sectionUid))
+  //   firestore().collection('Sections').doc(sectionUid).set({
+  //     isDeleted:true,
+  //   },{merge:true}).then(l=>{
+  //     console.log("data is",l.data())
+  //   }).catch(e=>{console.log("no such doocunmnet")})
+    
+  // })
+  //   firestore().collection('Schools').doc(details.uid).collection('classes').doc(l.class).set({
+  //     sections:{[details.section]:firestore.FieldValue.delete()}
+  //   },{merge:true})
+
 }
   render() {
     const { modalVisible } = this.state;
@@ -370,6 +429,8 @@ deleteClass=(l,i)=>{
                         <View>
                          <TouchableOpacity onPress={()=>{ 
                           //  this.openDrop(i) 
+                          
+                         console.log('edit pressed'),
                          this.editClassClicked(i)
                         // this.editClassClicked(i);
                       }} >
@@ -379,6 +440,7 @@ deleteClass=(l,i)=>{
                          onPress={()=>
                           // this.deleteClass(l,i)
                           this.ModalTester()
+                          // console.log('visibility',this.state.viewmodel)
                         }
                          >
  {/* --------------------------------------------------------------Delete class modal-------------------------------------------------------------------------                           */}
@@ -386,34 +448,31 @@ deleteClass=(l,i)=>{
                            isVisible={this.state.viewmodel}
                            >
                              <View style={{width:328,height:210,backgroundColor:'white',borderRadius:8,alignContent:'center',justifyContent:'center',alignItems:'center'}}>
-                               {/* <View>
+                               <View>
                                <Delete/>
-                               </View> */}
+                               </View>
                                <View style={{width:250,height:48}}>
                                  <Text style={{fontSize:16,textAlign:'center',lineHeight:24}}>Are you sure you wanted to delete  </Text>
                                  <Text style={{fontSize:16,textAlign:'center',lineHeight:24,fontWeight:'bold'}}>{l.class}?</Text>
                                </View>
                                <View style={{flexDirection:'row'}}>
-                                  <TouchableOpacity style={{width:136,height:42,borderRadius:8,backgroundColor:'#E1E8ED',justifyContent:'center',alignItems:'center',margin:10}}
-                                    onPress={()=>
-                                      // console.log('cancel pressed')
-                                      this.ModalTester()
-                                  }
-                                    >
-                                    <View >
-                                      <Text style={{fontSize:16,color:'#657786'}}>Cancel</Text>
-                                    </View>
-                                  </TouchableOpacity>
-                                  <TouchableOpacity style={{width:136,height:42,borderRadius:8,backgroundColor:'#1F85FF',justifyContent:'center',alignItems:'center',margin:10}}
-                                  onPress={()=>
-                                    // console.log('delete pressed')
-                                  this.deleteClass(l,i)
-                                }
-                                  >
-                                  <View>
-                                      <Text style={{fontSize:16,color:'white'}}>Delete</Text>
-                                    </View>
-                                  </TouchableOpacity>
+                               <TouchableOpacity style={{width:136,height:42,borderRadius:8,backgroundColor:'#E1E8ED',justifyContent:'center',alignItems:'center',margin:10}}
+                                 onPress={()=>
+                                 {this.ModalTester(),
+                                 this.openEditView(i)}
+                                 }>
+                                   <View>
+                                     <Text style={{fontSize:16,color:'#657786'}}>cancel</Text>
+                                   </View>
+                                 </TouchableOpacity>
+                                 <TouchableOpacity style={{width:136,height:42,borderRadius:8,backgroundColor:'#1F85FF',justifyContent:'center',alignItems:'center',margin:10}}
+                                 onPress={()=>
+                                 { this.deleteClass(l,i)}
+                                 }>
+                                   <View>
+                                     <Text style={{fontSize:16,color:'white'}}>Delete</Text>
+                                   </View>
+                                 </TouchableOpacity>
                                </View>
                              </View>
                            </Modal>
@@ -437,9 +496,20 @@ deleteClass=(l,i)=>{
                      />
                    </View>
                   </View>
-                  <View style={styles.footer}>
-                  <TouchableOpacity style={styles.button1}><Text style={styles.buttonText} onPress={()=>{this.addSection(l,i)}}>Add Section</Text></TouchableOpacity>
+
+                   <TouchableOpacity style={styles.footer}
+                   onPress={()=>{this.addSection(l,i)}}
+                   >
+                   <View style={styles.button1}>
+                <Text style={styles.buttonText} >{
+                    this.state.loaderOfAddSection===0?<Text style={styles.buttonText}>Add Section</Text>:<View
+                    >
+                      <Text style={styles.buttonText}>Adding Section...</Text>
+                    </View>
+                  }</Text>
                 </View>
+                   </TouchableOpacity>
+          
                 </Modal>
                 </View>
                 </Card>
@@ -467,13 +537,61 @@ deleteClass=(l,i)=>{
                          <View>
                          {
                                  this.state.drop2[i]===true?<View style={{flexDirection:"row",paddingLeft:90}}>
-                         <TouchableOpacity>
+                         <TouchableOpacity 
+                         >
                          <Text style={{color:"#657786"}}> Edit</Text>
                          </TouchableOpacity>
-                         <TouchableOpacity 
-                         onPress={()=>console.log("he wants delete section bro....")}
+                         <TouchableOpacity
+                         onPress={()=>{
+                          this.ModalTesterSec(),
+                          this.setState({
+                            class:l.class,
+                            sec:k
+                          }),
+                          console.log("class test",this.state.sec)
+                        }
+                        }
                          >
+{/* --------------------------------------Delete section modal-------------------------------------------------- */}
+                         <Modal 
+                           isVisible={this.state.viewmodalSection}
+                           >
+                             <View style={{width:328,height:210,backgroundColor:'white',borderRadius:8,alignContent:'center',justifyContent:'center',alignItems:'center'}}>
+                               <View>
+                               <Delete/>
+                               </View>
+                               <View style={{width:250,height:48}}>
+                                 <Text style={{fontSize:16,textAlign:'center',lineHeight:24}}>Are you sure you wanted to delete  </Text>
+                                 <View style={{flexDirection:'row',textAlign:'center',justifyContent:'center',alignContent:'center'}}>
+                                 <Text style={{fontSize:16,textAlign:'center',lineHeight:24,fontWeight:'bold'}}>Section:{this.state.sec} </Text>
+                                 <Text style={{fontSize:16,textAlign:'center',lineHeight:24}}>in </Text>
+                                 <Text style={{fontSize:16,textAlign:'center',lineHeight:24}}>{this.state.class}?</Text>
+                                 </View>
+                               </View>
+                               <View style={{flexDirection:'row'}}>
+                                  <TouchableOpacity style={{width:136,height:42,borderRadius:8,backgroundColor:'#E1E8ED',justifyContent:'center',alignItems:'center',margin:10}}
+                                    onPress={()=>
+                                      this.ModalTesterSec()
+                                  }
+                                    >
+                                    <View >
+                                      <Text style={{fontSize:16,color:'#657786'}}>Cancel</Text>
+                                    </View>
+                                  </TouchableOpacity>
+                                  <TouchableOpacity style={{width:136,height:42,borderRadius:8,backgroundColor:'#1F85FF',justifyContent:'center',alignItems:'center',margin:10}}
+                                  onPress={()=>
+                                  {this.deleteSection(this.state.class,i,this.state.sec)}
+                                }
+                                  >
+                                  <View>
+                                      <Text style={{fontSize:16,color:'white'}}>Delete</Text>
+                                    </View>
+                                  </TouchableOpacity>
+                               </View>
+                             </View>
+                           </Modal>
                          <Text style={{color:"#657786",paddingStart:10}}> Delete</Text>
+                         
                          </TouchableOpacity>
                          
                          </View>:<View>

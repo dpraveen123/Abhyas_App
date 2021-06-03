@@ -272,3 +272,4 @@ exports.deleteClass=functions.https.onCall((data,context)=>{
     // alert("sucsesfully deleted")
   })
 })
+
