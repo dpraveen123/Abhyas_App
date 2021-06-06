@@ -9,7 +9,8 @@ import TeacherBotNav from './TeacherBotNav';
 import FirstClass from './FirstClass';
 import TabNav from './Tabnav'
 const Stack = createStackNavigator();
-function TeacherStack() {
+function TeacherStack({props}) {
+console.log(props,"instack");
   return (
     //   <View>
     //       <Text>hii</Text>

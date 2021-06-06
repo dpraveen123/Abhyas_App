@@ -27,17 +27,24 @@ import LinearGradient from 'react-native-linear-gradient';
 import { NavigationContainer } from '@react-navigation/native';
 import ChooseClass from '../ClassesDesign/ChooseClass'
 import { Input } from 'native-base';
+import Delete from '../Logo/Delete'
+// import Modal from 'react-native-modal';
 // import ModalTester from '../ClassesDesign/AddNewClassesPage'
 // import store from '../redux'
 // import Dropdown from '../profile/drop';
-
+// const viewmodel=false
+// const class = ''
 class AllClasses extends React.Component {
-
+ class=""
+ section=""
  constructor(props) {
    super(props)
- 
+   console.log(props);
    this.state = {
-    
+    viewmodel:false,
+    viewmodalSection:false,
+    class:'',
+    sec:' ',
     colors:[ 
       {
       class: '1st class',
@@ -146,7 +153,7 @@ this.setState({loaderOfAddSection:1})
 setModalVisible = () => {
 
   console.log("modal opened");
-  this.setState({ modalVisible:!this.state.modalVisible });
+  // this.setState({ modalVisible:!this.state.modalVisible });
   // this.makeAllFalseOfEditView()
 
   // console.log("modal closed");
@@ -233,6 +240,8 @@ Drop=(i)=>{
 //   }
 // }
 editClassClicked=(i)=>{ 
+  
+  console.log('edit pressed func'),
   this.state.drop2[i]=true;
   this.setState({drop2:this.state.drop2})
   // this.openDrop(i)
@@ -245,7 +254,31 @@ editClassClicked=(i)=>{
     this.makeAllFalseOfEditView()
 
 }
-deleteClass=(l,i)=>{ 
+ModalTesterSec=()=>{
+  // console.log("section delete pressed")
+  this.setState({
+    viewmodalSection:!(this.state.viewmodalSection)
+  })
+}
+setClassSec=(k,l)=>{
+  console.log('ckecking class & sec');
+  // this.setState({
+  //   sec:k,
+  //   class:c
+  // })
+
+}
+ModalTester=()=>{
+  console.log("delete class is pressed")
+  this.setState({
+    viewmodel:!(this.state.viewmodel)
+  })
+  // console.log('viewmodel',this.state.viewmodel)
+  }
+deleteClass=(l,i)=>{
+  this.ModalTester(),
+  this.openEditView(i)
+ console.log('delete pressed')
   // console.log("deleting class",l,i)
   var details={
     uid:store.getState().authdetails.uuid,
@@ -258,7 +291,12 @@ deleteClass=(l,i)=>{
     console.log("sucsesffuly eleted the class")
     this.loadData() 
     alert("sucsesfully deleted")
+    this.loadData() 
+
   });
+  // this.setState=({
+  // isModalVisible:!(this.state.isModalVisible)
+  // })
   // firestore().collection('Schools').doc(details.uid).collection('classes').doc(details.class).get().then(l=>{
   //   // console.log('sections and those uids are0',l.data())
   //   var sectionUids=Object.values(l.data().sections)
@@ -276,15 +314,16 @@ deleteClass=(l,i)=>{
   //   alert("sucsesfully deleted")
   // })
 
-
+  this.loadData() 
   this.makeAllFalseOfEditView()
  this.loadData() 
 }
 deleteSection=(l,i,k)=>{
+  this.ModalTesterSec()
   // console.log(l,i,k)
   var details={
     uid:store.getState().authdetails.uuid,
-    class:l.class,
+    class:l,
     section:k
   }
   functions()
@@ -332,12 +371,13 @@ deleteSection=(l,i,k)=>{
                 this.state.data.map((l,i)=>{
                   {/* console.log("l is",l) */}
                   var x=this.state.colors.find(function(post, index) {
-         if(post.class === l.class)
+         if( l.class==post.class )
       return true;
         });
-  console.log("okk",x,"found")
+  {/* console.log("okk",x,"found") */}
   var color1=x.color1;
   var color2=x.color2;
+  var classno=parseInt(x.class)
                  return(
                    <View style={{borderRadius:15}}>
                      
@@ -347,9 +387,10 @@ deleteSection=(l,i,k)=>{
               <View style={{height:70}}>
             
                  <View style={{flexDirection:'row'}}>
+                 {/* <View style={{width:64,height:64,backgroundColor:'whitesmoke'}}><Text>hii</Text></View> */}
                  <View style={{width:64,height:64,backgroundColor:'whitesmoke'}}>
                  <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}} colors={[color1,color2]} style={styles.gradient1}>
-                   <Text style={styles.name}>{i+1}</Text>
+                   <Text style={styles.name}>{classno}</Text>
                               
                             </LinearGradient>
                  
@@ -361,83 +402,101 @@ deleteSection=(l,i,k)=>{
                 <TouchableOpacity style={{justifyContent:'center',marginLeft:80}}
                 
                 onPress={()=>{
-                 
-                    this.openDrop(i)
-                    
+                 this.openDrop(i)
                 }}
                 >
                 <View >
                     <Image source={
-                        
                         this.state.darray1[i]===true?IC_ARR_DOWN:IC_ARR_UP
                     } style={{width:10,height:10}}></Image>
                 </View>
                 </TouchableOpacity>
                 <View style={{justifyContent:'center',marginLeft:14,width:1,height:'100%',borderWidth:0.5,borderColor:'#E1E8ED'}}>
-              
-                </View>
+              </View>
                 <View style={{justifyContent:'center',marginLeft:14}}>
-               
-                <TouchableOpacity onPress={()=>{
+               <TouchableOpacity onPress={()=>{
                   console.log("huhuuhuhu")
                     // this.Drop(i)
                     this.openEditView(i)
                     }}
                     style={{width:50,height:20}}
                     >
-
-                    <Image source={
-                        
+                   <Image source={
                         editpickup
                     } style={{width:10,height:20}}></Image>
-                        
                     </TouchableOpacity>
                 </View>
-
-                           {/* .................. 3 dots icon................ */}
+  {/* .................. 3 dots icon................ */}
                 <View style={{width:'39.5%',backgroundColor:'white',position:"absolute",marginHorizontal:85,marginVertical:10}}>
                   {
-
-                    
-                        <View>
+                   <View>
                              {
                                  this.state.drop1[i]===true?<View>
                                  <View style={{marginTop:-45,marginLeft:-50,}}>
                          <Card >
                         <View>
                          <TouchableOpacity onPress={()=>{ 
-                            
                           //  this.openDrop(i) 
+                          
+                         console.log('edit pressed'),
                          this.editClassClicked(i)
                         // this.editClassClicked(i);
-                      
-                         }} >
+                      }} >
                          <Text style={{fontWeight:"500",fontFamily:"Roboto",fontSize:18,marginLeft:0}}>Edit Class</Text>
                          </TouchableOpacity>
                          <TouchableOpacity
-                         onPress={()=>{this.deleteClass(l,i)}}
+                         onPress={()=>
+                          // this.deleteClass(l,i)
+                          this.ModalTester()
+                          // console.log('visibility',this.state.viewmodel)
+                        }
                          >
+ {/* --------------------------------------------------------------Delete class modal-------------------------------------------------------------------------                           */}
+                           <Modal 
+                           isVisible={this.state.viewmodel}
+                           >
+                             <View style={{width:328,height:210,backgroundColor:'white',borderRadius:8,alignContent:'center',justifyContent:'center',alignItems:'center'}}>
+                               <View>
+                               <Delete/>
+                               </View>
+                               <View style={{width:250,height:48}}>
+                                 <Text style={{fontSize:16,textAlign:'center',lineHeight:24}}>Are you sure you wanted to delete  </Text>
+                                 <Text style={{fontSize:16,textAlign:'center',lineHeight:24,fontWeight:'bold'}}>{l.class}?</Text>
+                               </View>
+                               <View style={{flexDirection:'row'}}>
+                               <TouchableOpacity style={{width:136,height:42,borderRadius:8,backgroundColor:'#E1E8ED',justifyContent:'center',alignItems:'center',margin:10}}
+                                 onPress={()=>
+                                 {this.ModalTester(),
+                                 this.openEditView(i)}
+                                 }>
+                                   <View>
+                                     <Text style={{fontSize:16,color:'#657786'}}>cancel</Text>
+                                   </View>
+                                 </TouchableOpacity>
+                                 <TouchableOpacity style={{width:136,height:42,borderRadius:8,backgroundColor:'#1F85FF',justifyContent:'center',alignItems:'center',margin:10}}
+                                 onPress={()=>
+                                 { this.deleteClass(l,i)}
+                                 }>
+                                   <View>
+                                     <Text style={{fontSize:16,color:'white'}}>Delete</Text>
+                                   </View>
+                                 </TouchableOpacity>
+                               </View>
+                             </View>
+                           </Modal>
                          <Text style={{fontWeight:"500",fontFamily:"Roboto",fontSize:18,marginLeft:0}}>Delete Class</Text>
                          </TouchableOpacity>
-
-                        
-                         <TouchableOpacity onPress={() =>{
-                           
-                            this.setModalVisible(true)}} >
+                        <TouchableOpacity onPress={() =>{
+                           this.setModalVisible(true)}} >
                          <Text style={{fontWeight:"500",fontFamily:"Roboto",fontSize:18,marginLeft:0}}>Add Section</Text>
                          </TouchableOpacity>
-                      
-                             {/* ..............................modal .....................................*/}
-                        
-                         <Modal isVisible={modalVisible}>
-                  
+                           {/* ..............................modal .....................................*/}
+                        <Modal isVisible={modalVisible}>
                       <TouchableOpacity onPress={this.setModalVisible} 
                      style={{width:400,height:200}} >
                       </TouchableOpacity>
-            
-                   <View style={styles.modalview}>
-                  
-                   <Text style={{marginLeft:22,fontWeight:"900",fontSize:20,fontFamily:"Roboto"}}>Add Section</Text>
+                     <View style={styles.modalview}>
+                  <Text style={{marginLeft:22,fontWeight:"900",fontSize:20,fontFamily:"Roboto"}}>Add Section</Text>
                    <View style={{marginTop:18}} >
                    <Text style={{marginLeft:20,fontWeight:"800",fontSize:14,fontFamily:"Roboto",marginBottom:-9,}}>Enter Section Name</Text>
                    <TextInput style={{height: 40,margin:15,borderWidth: 1,fontFamily:"Roboto",fontWeight:"500",borderColor:"#E1E8ED"}}  placeholder="Add section"
@@ -460,87 +519,108 @@ deleteSection=(l,i,k)=>{
                    </TouchableOpacity>
           
                 </Modal>
-                         
-
-
                 </View>
-
-               
-             
-
-                         </Card>
-                              
-                         </View>
+                </Card>
+                        </View>
                                  </View>:<View>
                                  </View>
-
-                             }
+                          }
                          </View>
              }
-
-              </View>
-             
-                 </View>
-             
-              </View>
-             
-              
-          </Card>
-         
-         
-          
-         
-              <View style={{marginLeft:15,width:'91.5%',backgroundColor:'white'}}>
+</View>
+             </View>
+             </View>
+             </Card>
+           <View style={{marginLeft:15,width:'91.5%',backgroundColor:'white'}}>
                   {
                       l.sections.map(k=>{
                           return(
-                    
-                        <View>
+                    <View>
                              {
                                  this.state.darray1[i]===true ?<View>
                                   
                                  <View style={{marginTop:12,marginLeft:10,flexDirection:"row",justifyContent:"space-between"}}>
                          <Text style={{fontSize:16,fontWeight:'400',height:30}}>Section {k}</Text>
                          {/* ....................Edit and Delete class view.............. */}
-                                
                          <View>
                          {
                                  this.state.drop2[i]===true?<View style={{flexDirection:"row",paddingLeft:90}}>
-                         <TouchableOpacity>
+                         <TouchableOpacity 
+                         >
                          <Text style={{color:"#657786"}}> Edit</Text>
                          </TouchableOpacity>
                          <TouchableOpacity
-                         onPress={()=>{this.deleteSection(l,i,k)}}
+                         onPress={()=>{
+                          this.ModalTesterSec(),
+                          this.setState({
+                            class:l.class,
+                            sec:k
+                          }),
+                          console.log("class test",this.state.sec)
+                        }
+                        }
                          >
+{/* --------------------------------------Delete section modal-------------------------------------------------- */}
+                         <Modal 
+                           isVisible={this.state.viewmodalSection}
+                           >
+                             <View style={{width:328,height:210,backgroundColor:'white',borderRadius:8,alignContent:'center',justifyContent:'center',alignItems:'center'}}>
+                               <View>
+                               <Delete/>
+                               </View>
+                               <View style={{width:250,height:48}}>
+                                 <Text style={{fontSize:16,textAlign:'center',lineHeight:24}}>Are you sure you wanted to delete  </Text>
+                                 <View style={{flexDirection:'row',textAlign:'center',justifyContent:'center',alignContent:'center'}}>
+                                 <Text style={{fontSize:16,textAlign:'center',lineHeight:24,fontWeight:'bold'}}>Section:{this.state.sec} </Text>
+                                 <Text style={{fontSize:16,textAlign:'center',lineHeight:24}}>in </Text>
+                                 <Text style={{fontSize:16,textAlign:'center',lineHeight:24}}>{this.state.class}?</Text>
+                                 </View>
+                               </View>
+                               <View style={{flexDirection:'row'}}>
+                                  <TouchableOpacity style={{width:136,height:42,borderRadius:8,backgroundColor:'#E1E8ED',justifyContent:'center',alignItems:'center',margin:10}}
+                                    onPress={()=>
+                                      this.ModalTesterSec()
+                                  }
+                                    >
+                                    <View >
+                                      <Text style={{fontSize:16,color:'#657786'}}>Cancel</Text>
+                                    </View>
+                                  </TouchableOpacity>
+                                  <TouchableOpacity style={{width:136,height:42,borderRadius:8,backgroundColor:'#1F85FF',justifyContent:'center',alignItems:'center',margin:10}}
+                                  onPress={()=>
+                                  {this.deleteSection(this.state.class,i,this.state.sec)}
+                                }
+                                  >
+                                  <View>
+                                      <Text style={{fontSize:16,color:'white'}}>Delete</Text>
+                                    </View>
+                                  </TouchableOpacity>
+                               </View>
+                             </View>
+                           </Modal>
                          <Text style={{color:"#657786",paddingStart:10}}> Delete</Text>
+                         
                          </TouchableOpacity>
                          
                          </View>:<View>
                              </View>
                       }
                          </View>
-
                          </View>
                                  </View>:<View>
                                  </View>
-
-                             }
+                          }
                          </View>
                            )
                       })
                   }
-
+               </View>
               </View>
-              
-              
-                   </View>
                  )
-                 
-             })
+              })
                }
              </View>
-             
-         }
+          }
                  {/* <View style={{position:"absolute",marginTop:550,marginLeft:100}}>
                 <ModalTester props={this.state.data}/>
                 </View> */}
@@ -548,32 +628,16 @@ deleteSection=(l,i,k)=>{
                 {/* ................uptohere................................. */}
                 </View>
                 </ScrollView>
-
-
                 <View style={{position:"absolute",marginTop:height1-200,marginLeft:110}}>
                 <ModalTester props={{loadData:this.loadData}}/>
                 </View>
-
-                {/* <View style={{}}>
+               {/* <View style={{}}>
                 <ModalTester props={this.state.data}/>
                 </View> */}
-     
-               
-              
-                </View>
-                
-                
-
-                
-    
-    
-    
+       </View>
     );
   }
 }
-
-
-
 const { width, height} = Dimensions.get("screen");
 var height1=Dimensions.get('window').height;
   class ModalTester extends React.Component{
