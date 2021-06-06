@@ -112,15 +112,16 @@ class AllStudents extends React.Component {
       // console.log("modal closed");
     }
   componentDidMount=()=>{
+    console.log(" i am from students.js",parseInt("10th class"))
+    
     // console.log(this.props.props)
     firestore().collection('Schools').doc(store.getState().authdetails.SchoolID).collection('classes').doc(this.props.props.route.params.class).get()
-    .then(l=>{
+    .then(l=>{  
       // console.log("response is",l.data().sections[this.props.props.route.params.section])
       this.state.sectionUid=l.data().sections[this.props.props.route.params.section];
       this.setState({sectionUid:this.state.sectionUid})
       this.loadStudentData()
       // console.log(this.state.sectionUid,"i am form student.js")
-    
     })
    
   }
@@ -128,14 +129,14 @@ class AllStudents extends React.Component {
       var x=[]
       // firestore().collection('Sections').doc(this.state.sectionUid).get().then(l=>{
 
-      //   // console.log(l.data().students)
-      //   for (const [key, value] of Object.entries(l.data().students).sort((a, b) => a[0].localeCompare(b[0]))) {
-      //     // console.log(`${key}: ${value}`);
+      //   // console.log(l.data(),"checking data")
+      //   for (const [key, value] of Object.entries(l.data().students).sort((a, b) => (a.rollNo>b.rollNo?-1:1))) {
+      //     console.log(`${key}: ${value}`);
       //     // this.state.data=this.state.data.concat(value)
       //     // this.setState({data:this.state.data})
-      //     x=x.concat(value)
+      //     // x=x.concat(value)
       // }  
-      // console.log("x is ",x)
+       
       // })
       var details={
         sectionUid:this.state.sectionUid,

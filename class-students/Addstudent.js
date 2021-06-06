@@ -28,7 +28,7 @@ export default class  AddStudent extends React.Component{
       name:'',
       class:this.props.props.class.class,
       section:this.props.props.class.section,
-      rollNo:'',
+      rollNo:0,
       fatherName:'',  
       motherName:'',
       mobileNumber:'',
@@ -49,7 +49,7 @@ uuidv4 = () => {
       name:this.state.name,
       class:this.state.class,
       section:this.state.section,
-      rollNo:this.state.rollNo,
+      rollNo:parseInt(this.state.rollNo),
       fatherName:this.state.fatherName,
       motherName:this.state.motherName,
       mobileNumber:this.state.mobileNumber,
@@ -58,6 +58,7 @@ uuidv4 = () => {
       sectionUid:this.state.sectionUid,
       datadded:false,
     }
+    console.log("type of roll umber is",details.rollNo)
     // var a={}
     // a[details.rollNo]={uid:details.studentUid,rollNo:details.rollNo,name:details.name,}
     // firestore().collection('Sections').doc(details.sectionUid).set({
@@ -80,7 +81,7 @@ uuidv4 = () => {
     functions()
   .httpsCallable('addStudent')(details)
   .then((response) => {
-    console.log("sucsesfully getting Teacher details dudee to fire functions from teacher", response.data)
+    // console.log("sucsesfully getting Teacher details dudee to fire functions from teacher", response.data)
     this.setState({datadded:true})
     alert("sucsefully added student details")
     this.props.props.function();

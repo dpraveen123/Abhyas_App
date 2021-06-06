@@ -68,11 +68,12 @@ class TeacherDashboard extends Component {
         // user = FirebaseAuth.getInstance().getCurrentUser();
 
         // console.log("userphonenumber", user);
-       
-        console.log(this.state.darray, "is darray yy")
         var details={
             User :auth().currentUser.phoneNumber
         }
+       
+        console.log(this.state.darray, "is darray yy")
+        
         functions()
         .httpsCallable('getTeacherdetails')(details)
         .then((response) => {

@@ -123,7 +123,7 @@ this.setState({loaderOfAddSection:1})
         sections:a,
         uid:store.getState().authdetails.uuid,
     }
-    console.log(details,"these are the details")
+    console.log(details,"these are the details for add class")
     functions()
    .httpsCallable('addingClass')(details)
    .then(response => {
@@ -175,6 +175,8 @@ loadData=()=>{
  });
 }
 componentDidMount=()=>{
+
+  
   console.log("checkinggg okkk")
  
   // console.log(store.getState().authdetails," i am from clasess.js")
@@ -243,7 +245,7 @@ editClassClicked=(i)=>{
     this.makeAllFalseOfEditView()
 
 }
-deleteClass=(l,i)=>{
+deleteClass=(l,i)=>{ 
   // console.log("deleting class",l,i)
   var details={
     uid:store.getState().authdetails.uuid,
@@ -253,6 +255,8 @@ deleteClass=(l,i)=>{
   functions()
   .httpsCallable('deleteClass')(details)
   .then(response => {
+    console.log("sucsesffuly eleted the class")
+    this.loadData() 
     alert("sucsesfully deleted")
   });
   // firestore().collection('Schools').doc(details.uid).collection('classes').doc(details.class).get().then(l=>{
@@ -326,11 +330,12 @@ deleteSection=(l,i,k)=>{
              this.state.data.length===0?<View style={{justifyContent:'center'}}><Text>Loading....</Text></View>:<View>
                {
                 this.state.data.map((l,i)=>{
+                  {/* console.log("l is",l) */}
                   var x=this.state.colors.find(function(post, index) {
-         if(post.class == l.class)
+         if(post.class === l.class)
       return true;
         });
-  {/* console.log("okk",x,"found") */}
+  console.log("okk",x,"found")
   var color1=x.color1;
   var color2=x.color2;
                  return(
@@ -448,7 +453,7 @@ deleteSection=(l,i,k)=>{
                 <Text style={styles.buttonText} >{
                     this.state.loaderOfAddSection===0?<Text style={styles.buttonText}>Add Section</Text>:<View
                     >
-                      <Text style={styles.buttonText}>Adding Section...</Text>
+                      <Text style={styles.buttonText  }>Adding Section...</Text>
                     </View>
                   }</Text>
                 </View>
@@ -582,38 +587,44 @@ var height1=Dimensions.get('window').height;
         intialClasses:['1st class','2nd class','3rd class','4th class','5th class','6th class','7th class','8th class','9th class','10th class']
       }
     }
+   loadData=()=>{
+    var details={
+      uid:store.getState().authdetails.uuid
+    }
+    functions().httpsCallable('getClass')(details)
+.then(response => {
+// console.log("sucsesfully getting all classess bro",response.data)
+this.state.data=response.data;
+this.setState({data:this.state.data})
+// console.log(this.state.data,"i am from classes.js")
+this.state.data.map(l=>{
+    this.state.availableClass=this.state.availableClass.concat(l.class)
+    this.setState({availableClass:this.state.availableClass})
+})
+// console.log(this.state.availableClass,"available")
+this.state.intialClasses.map(l=>{
+  var n=this.state.availableClass.includes(l)
+  if(!n){
+    console.log(n,l)
+     this.state.classes=this.state.classes.concat(l)
+  this.setState({classes:this.state.classes})
+  }
+})
+console.log(this.state.classes,"thse are not added")
+
+//  console.log(this.state.darray,"is darray yy")
+});
+   }
     toggleModal=()=>{
+      // this.loadData()
       this.setState({isModalVisible:!this.state.isModalVisible})
     }
     
     componentDidMount=()=>{
-      
-      var details={
-        uid:store.getState().authdetails.uuid
-      }
-      functions().httpsCallable('getClass')(details)
-.then(response => {
-  // console.log("sucsesfully getting all classess bro",response.data)
-  this.state.data=response.data;
-  this.setState({data:this.state.data})
-  // console.log(this.state.data,"i am from modal tester")
-  this.state.data.map(l=>{
-      this.state.availableClass=this.state.availableClass.concat(l.class)
-      this.setState({availableClass:this.state.availableClass})
-  })
-  // console.log(this.state.availableClass,"available")
-  this.state.intialClasses.map(l=>{
-    var n=this.state.availableClass.includes(l)
-    if(!n){
-      console.log(n,l)
-       this.state.classes=this.state.classes.concat(l)
-    this.setState({classes:this.state.classes})
-    }
-  })
-  console.log(this.state.classes,"thse are not added")
 
-//  console.log(this.state.darray,"is darray yy")
-});
+
+      
+      this.loadData()
      
     }
     render(){

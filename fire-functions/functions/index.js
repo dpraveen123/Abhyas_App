@@ -47,6 +47,7 @@ exports.listProducts = functions.https.onCall((data, context) => {
 exports.addingClass = functions.https.onCall((data, context) => {
   db.collection('Schools').doc(`${data.uid}`).collection('classes').doc(`${data.className}`).set({
     sections: data.sections,
+    class:parseInt(data.className)
   },{merge:true}).then((res) => {
     console.log(res, "saved to firestore sucsessfully")
   })
@@ -152,7 +153,7 @@ exports.addingTeacher = functions.https.onCall((data, context) => {
 exports.getClass=functions.https.onCall((data,context)=>{
   var a=[],i=55,j=0,b=[];
  return (
-  db.collection('Schools').doc(data.uid).collection('classes').get()
+  db.collection('Schools').doc(data.uid).collection('classes').orderBy('class','asc').get()
   .then(
     querySnapshot => {
       // console.log('Total users: ', querySnapshot.size);
@@ -160,8 +161,15 @@ exports.getClass=functions.https.onCall((data,context)=>{
       querySnapshot.forEach(documentSnapshot => {
         // console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
         //  j=documentSnapshot.id;
-        
-        a.push({class:documentSnapshot.id,sections:Object.keys(documentSnapshot.data().sections)})
+        var x=[]
+            // console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
+            for (const [key, value] of Object.entries(documentSnapshot.data().sections).sort((a, b) => a[0].localeCompare(b[0]))) {
+              // console.log(documentSnapshot.id,`${key}: ${value}`);
+              // this.state.data=this.state.data.concat(value)
+              // this.setState({data:this.state.data})
+              x=x.concat(key)
+          }   
+        a.push({class:documentSnapshot.id,sections:x})
     //  j=j+1;
       });
       return a
@@ -184,8 +192,15 @@ exports.getTeacherdata=functions.https.onCall((data,context)=>{
       querySnapshot.forEach(documentSnapshot => {
         // console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
         //  j=documentSnapshot.id;
-        
-        a.push({class:documentSnapshot.id,sections:Object.keys(documentSnapshot.data().SectionandSubjects)})
+        var x=[]
+        // console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
+        for (const [key, value] of Object.entries(documentSnapshot.data().sections).sort((a, b) => a[0].localeCompare(b[0]))) {
+          // console.log(documentSnapshot.id,`${key}: ${value}`);
+          // this.state.data=this.state.data.concat(value)
+          // this.setState({data:this.state.data})
+          x=x.concat(key)
+      }   
+        a.push({class:documentSnapshot.id,sections:x})
     //  j=j+1;
       });
       return a
@@ -236,7 +251,7 @@ exports.getStudent=functions.https.onCall((data,context)=>{
    db.collection('Sections').doc(data.sectionUid).get().then(l=>{
 
       // console.log(l.data().students)
-      for (const [key, value] of Object.entries(l.data().students).sort((a, b) => a[0].localeCompare(b[0]))) {
+      for (const [key, value] of Object.entries(l.data().students).sort((a, b) => (a.rollNo>b.rollNo?-1:1))) {
         // console.log(`${key}: ${value}`);
         // this.state.data=this.state.data.concat(value)
         // this.setState({data:this.state.data})
@@ -273,3 +288,33 @@ exports.deleteClass=functions.https.onCall((data,context)=>{
   })
 })
 
+exports.getTeacherdetails = functions.https.onCall((data, context) => {
+  var a = [], i = 55, j = 0, b = [];
+  return (
+    db.collection('Users').doc(data.User).collection('Classes').get()
+      .then(
+        querySnapshot => {
+          // console.log('Total users: ', querySnapshot.size);
+          // i=querySnapshot.size;
+          querySnapshot.forEach(documentSnapshot => {
+            // console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
+            //  j=documentSnapshot.id;
+            var x=[]
+            // console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
+            for (const [key, value] of Object.entries(documentSnapshot.data().SectionandSubjects).sort((a1, b) => a1[0].localeCompare(b[0]))) {
+              // console.log(documentSnapshot.id,`${key}: ${value}`);documentSnapshot.data().SectionandSubjects
+              // this.state.data=this.state.data.concat(value)
+              // this.setState({data:this.state.data})
+              x=x.concat(key)
+          }   
+            a.push({ class: documentSnapshot.id, sections:x })
+            //  j=j+1;
+          });
+          return a
+        })
+    //  if(i==j){  
+    // return a;
+  )
+  // console.log("a is ",a)
+  //  }
+})
