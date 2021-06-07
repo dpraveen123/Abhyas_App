@@ -27,6 +27,8 @@ import AllStudents from './class-students/Students';
 // import Tabnav1 from './class-students/Tabnav'
 // import Modaling from './Student-profile/modal';
 
+import Attendence from './TEACHERS/Attendence';
+
 
 
 import {
@@ -93,7 +95,9 @@ class App extends React.Component{
          {/* <Report /> */}
          {/* <Modaling /> */}
          {/* <Searchbar /> */}
-         <AllStudents />
+         <Attendence />
+        
+         {/* <AllStudents /> */}
        {/* <Tabnav1 /> */}
          {/* <Slider/> */}
          {/* <Editpick /> */}
