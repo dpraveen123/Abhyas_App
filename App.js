@@ -13,6 +13,7 @@ import store from './redux';
 import AllStudents from './class-students/Students';
 // import Tabnav1 from './class-students/Tabnav'
 // import Modaling from './Student-profile/modal';
+import Attendance from './attendence';
 
 
 
@@ -43,6 +44,7 @@ import Sheet1 from './BottomSheet/Sheet1'
 class App extends React.Component {
   render() {
     return (
+      <Attendance/>
       // <CreateData />
       // <Schools />
       // <Profile />
@@ -50,24 +52,26 @@ class App extends React.Component {
 //  <AllClasses/> 
 /* <Editpick/> */
      
-      <Provider store={store}>
-         {/* <Authentication1 />  */}
-         {/* <Report /> */}
-         {/* <Modaling /> */}
-         {/* <Searchbar /> */}
-         <AllStudents />
-       {/* <Tabnav1 /> */}
-         {/* <Slider/> */}
-         {/* <Editpick /> */}
-         {/* <Slider/> */}
-         {/* <Testing/> */}
-      {/* <Test/> */}  
-         {/* <Newone />   */}
-         {/* <DropDown1/> */}
-         {/* <Pick/> */}
-         {/* <EditPick/> */}
-      </Provider>
+      // <Provider store={store}>
+         /* <Authentication1 />  */
+      //    {/* <Report /> */}
+      //    {/* <Modaling /> */}
+      //    {/* <Searchbar /> */}
+      //   //  <AllStudents />
+      //  {/* <Tabnav1 /> */}
+      //    {/* <Slider/> */}
+      //    {/* <Editpick /> */}
+      //    {/* <Slider/> */}
+      //    {/* <Testing/> */}
+      // {/* <Test/> */}  
+      //    {/* <Newone />   */}
+      //    {/* <DropDown1/> */}
+      //    {/* <Pick/> */}
+      //    {/* <EditPick/> */}
+      // {/* </Provider> */}
+     
       // </>
+     
     )
   }
 

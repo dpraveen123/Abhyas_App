@@ -2,29 +2,15 @@ import React from 'react';
 import { StyleSheet, View, Text,TouchableOpacity,Image,Dimensions,ScrollView,SafeAreaView,AppRegistry,
   TextInput,Button,Alert,title,TouchableHighlight,Modal} from 'react-native';
 import {Card} from'react-native-elements';
-<<<<<<< HEAD
-import pic from '../Images/pp.jpg';
-=======
 import pic from '../Images/student1.png';
 import pic1 from '../Images/stu.png';
->>>>>>> f146dfff0eafd4a4107e3bda3466fa35a9d81f34
 import Svgpages from '../assets/Svg';
 import Search from '../assets/Search';
 import { Icon } from 'react-native-elements';
 import AddStudent from './Addstudent';
 
 
-<<<<<<< HEAD
-
-
-
-
-
-
-class Students extends React.Component {
-=======
 class AllStudents extends React.Component {
->>>>>>> f146dfff0eafd4a4107e3bda3466fa35a9d81f34
   
   
     state={
@@ -261,11 +247,7 @@ class AllStudents extends React.Component {
 
               <AddStudent />
 
-<<<<<<< HEAD
-export default Students;
-=======
            </Modal>
->>>>>>> f146dfff0eafd4a4107e3bda3466fa35a9d81f34
 
       </View>
    

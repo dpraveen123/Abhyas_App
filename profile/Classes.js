@@ -211,9 +211,6 @@ Drop=(i)=>{
               <View style={{height:70}}>
             
                  <View style={{flexDirection:'row'}}>
-<<<<<<< HEAD
-                 <View style={{width:64,height:64,backgroundColor:'whitesmoke'}}><Text>hii</Text></View>
-=======
                  <View style={{width:64,height:64,backgroundColor:'whitesmoke'}}>
                  <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}} colors={["#3890FA","#57D5C3"]} style={styles.gradient1}>
                    <Text style={styles.name}>1</Text>
@@ -221,7 +218,6 @@ Drop=(i)=>{
                             </LinearGradient>
                  
                  </View>
->>>>>>> f146dfff0eafd4a4107e3bda3466fa35a9d81f34
                <View style={{marginLeft:16}}>
                    <Text style={{fontSize:20,lineHeight:28}}>{l.class}</Text>
                    <Text style={{color:'#AAB8C2',fontSize:14,lineHeight:28,marginTop:0}}>{l.sections.length} Sections</Text>
@@ -622,15 +618,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 export default connect(null,mapDispatchToProps)(AllClasses)
 
-<<<<<<< HEAD
-{/* <View style={{ paddingLeft:280,paddingTop:10,position:'absolute',flexDirection:'row', justifyContent: 'space-between'}}>
-                     <Editpick 
-                    //  style={{paddingTop:100}}
-                     />
-                     </View> */}
-=======
 
 
->>>>>>> f146dfff0eafd4a4107e3bda3466fa35a9d81f34
 
                      
