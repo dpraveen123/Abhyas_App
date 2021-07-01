@@ -20,78 +20,66 @@ import {
     MenuOption,
 } from 'react-native-popup-menu';
 // import AllClasses from '../profile/Classes'
-var data = [
-    {
-        class: '1st class',
-        sections: ['A', 'B', 'C']
-    },
-    {
-        class: '2st class',
-        sections: ['A', 'B', 'C']
-    },
-    {
-        class: '3rd class',
-        sections: ['A', 'B', 'C']
-    },
-    {
-        id:4,
-        class:'4th class',
-        sections:['A','B','C'],
-        color1:'#E0435E',
-        color2:'#FF7B93'
-    },
-    {
-        id:5,
-        class:'5th class',
-        sections:['A','B','C'],
-        color1:'#9E37CA',
-        color2:'#D92E9F'
-    },
-    {
-        id:6,
-        class:'6th class',
-        sections:['A','B','C'],
-        color1:'#126DD8',
-        color2:'#50B8FF'
-    },
-    {
-        id:7,
-        class:'7th class',
-        sections:['A','B','C'],
-        color1:"#9A56E1",
-        color2:"#F879C7"
-    },
-    {
-        id:8,
-        class:'8th class',
-        sections:['A','B','C'],
-        color1:"#9A56E1",
-        color2:"#F879C7"
-    },
-    {
-        id:9,
-        class:'9th class',
-        sections:['A','B','C'],
-        color1:"#9A56E1",
-        color2:"#F879C7"
-    },
-    {
-        id:10,
-        class:'10th class',
-        sections:['A','B','C'],
-        color1:"#9A56E1",
-        color2:"#F879C7"
-    },
-    
-    
-]
 class TeacherDashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
             darray: [],
             darray1: [],
-            data : []
+            data : [],
+            colors:[ 
+                {
+                class: '1st class',
+                color1:"#9A56E1",
+                color2:"#F879C7"
+              },
+              {
+                class: '2nd class',
+                color1:"#F28436",
+               color2:"#FEE468"
+              },
+              {
+                class: '3rd class',
+                color1:"#3890FA",
+               color2:"#57D5C3"
+              },
+              {
+                class: '4th class',
+                color1:'#E0435E',
+               color2:'#FF7B93'
+              },
+              {
+                class: '5th class',
+                color1:'#9E37CA',
+                color2:'#D92E9F'
+              },
+              {
+                class: '6th class',
+                color1:'#126DD8',
+                color2:'#50B8FF'
+              },
+              {
+                class: '7th class',
+                color1:'#E0435E',
+                color2:'#FF7B93'
+              },
+              {
+                class: '8th class',
+                color1:"#3890FA",
+                color2:"#57D5C3"
+              },
+              {
+                class: '9th class',
+                color1:"#F28436",
+                color2:"#FEE468"
+              },
+              {
+                class: '10th class',
+                color1:"#9A56E1",
+                color2:"#F879C7"
+               
+              }
+              ] ,
         }
     }
     componentDidMount = () => {
@@ -131,6 +119,7 @@ class TeacherDashboard extends Component {
           console.log("sucsesfully getting Teacher details dudee to fire functions from teacher", response.data)
           this.state.data = response.data;
           this.setState({data:this.state.data});
+        //   console.log(response.data,"is data")
         });
         this.state.data.map((i, l) => {
             // console.log("i and l are",i,l)
@@ -150,6 +139,7 @@ class TeacherDashboard extends Component {
     }
     selectSection=(c,s)=>{
         var x={class:c,section:s}
+        // console.log("you clicked the sectin  is",x)
         this.props.navigation.navigate({name:'Section',params:x})
     }
     render() {
@@ -200,6 +190,15 @@ class TeacherDashboard extends Component {
                             {/* <AllClasses/> */}
                             {
                                 this.state.data.map((l, i) => {
+                                    var x=this.state.colors.find(function(post, index) {
+         if( l.class==post.class )
+      return true;
+        });
+  {/* console.log("okk",x,"found")
+   */}
+  var color1=x.color1;
+  var color2=x.color2;
+  var classno=parseInt(x.class)
                                     return (
                                         <View style={{ borderRadius: 15 }}>
                                             <Card
@@ -208,7 +207,13 @@ class TeacherDashboard extends Component {
                                                 <View style={{ height: 70 }}>
                                                     {/* <Text>hlooo</Text> */}
                                                     <View style={{ flexDirection: 'row' }}>
-                                                        <View style={{ width: 64, height: 64, backgroundColor: 'whitesmoke' }}></View>
+                                                    <View style={{width:64,height:64,backgroundColor:'whitesmoke'}}>
+                 <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}} colors={[color1,color2]} style={styles.gradient1}>
+                   <Text style={styles.name}>{classno}</Text>
+                              
+                            </LinearGradient>
+                 
+                 </View>
                                                         <View style={{ marginLeft: 16 }}>
                                                             <Text style={{ fontSize: 20, lineHeight: 28 }}>{l.class}</Text>
                                                             <Text style={{ color: '#AAB8C2', fontSize: 14, lineHeight: 28, marginTop: 0 }}>{l.sections.length} Sections</Text>
@@ -324,6 +329,18 @@ const styles = StyleSheet.create({
         height: 36,
         justifyContent: 'center',
         borderRadius: 120,
-    }
+    },
+    gradient1:{
+        width:64,
+        height:64,
+        borderRadius:4,
+        justifyContent:'center',
+        marginLeft:-1
+      },
+      name:{
+        color:'white',
+        fontSize:32,
+        paddingLeft:25
+      },
 })
 export default TeacherDashboard

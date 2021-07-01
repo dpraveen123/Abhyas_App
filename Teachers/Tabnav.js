@@ -21,6 +21,7 @@ export default class Tabnav extends Component {
       headerTitle:this.props.route.params.class+'-'+this.props.route.params.section+' section'
     
     })
+    // console.log(this.props)
   }
   render() {
   

@@ -8,6 +8,7 @@ import Modaling from '../Student-profile/modal'
 import TeacherBotNav from './TeacherBotNav';
 import FirstClass from './FirstClass';
 import TabNav from './Tabnav'
+import Attendence from './Attendence';
 const Stack = createStackNavigator();
 function TeacherStack({props}) {
 console.log(props,"instack");
@@ -20,6 +21,7 @@ console.log(props,"instack");
       <Stack.Screen name="TeachersTimeTbl" component={TeachersTimeTbl}/>
       <Stack.Screen name="Section" component={TabNav}/>
       <Stack.Screen name="EditProfile" component={Modaling}/>
+      <Stack.Screen name="Attendence" component={Attendence}/>
       {/* <Stack.Screen name="Notifications" component={Notifications} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Settings" component={Settings} /> */}

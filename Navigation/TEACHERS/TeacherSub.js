@@ -252,20 +252,22 @@ class TeacherSub extends React.Component{
       }      
   }
 componentDidMount=()=>{
-    console.log('hii bro');
-    console.log(this.props.props,'function');
-    console.log(this.state.subject,"subject");
+    // console.log(this.props)
+    // console.log('hii bro');
+    // console.log(this.props.props,'function');
+    // console.log(this.state.subject,"subject");
     functions()
     .httpsCallable('getTeacherSubjects')(this.props.props)
     .then((response) => {
         this.setState({
            subject:Object.keys(response.data)
         })
-      console.log("sucsesfully getting Teacher details dudee to fire functions from teacher in teacherSub",this.state.subject)
+    //   console.log("sucsesfully getting Teacher details dudee to fire functions from teacher in teacherSub",this.state.subject)
     });  
 }
  render()
     {
+        // console.log("hhiii andiii")
         return(
             <View>
                  <ScrollView>
@@ -280,9 +282,9 @@ componentDidMount=()=>{
                   })
                }
                   </ScrollView>
-            <View style={styles.footer}>
+            {/* <View style={styles.footer}>
           <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>View/Edit Attendence</Text></TouchableOpacity>
-         </View>
+         </View> */}
             </View>
             
         )
