@@ -320,10 +320,10 @@ exports.getTeacherdetails = functions.https.onCall((data, context) => {
 })
 
 
-exports.saveAttendence=functions.https.onCall((details, context) => {
- db.collection('attendence').doc(details.doc).set({
-    attendenceList:details.data,
-     sectionUid:this.state.sectionUid
-},{merge:true})
-  return "saved sucsessfully"
-})
+// exports.saveAttendence=functions.https.onCall((data, context) => {
+//  db.collection('attendence').doc(data.doc).set({
+//     attendenceList:admin.firestore.FieldValue.arrayUnion(data.attendenceData),
+//      sectionUid:data.sectionUid
+// },{merge:true})
+//   return "saved sucsessfully"
+// })

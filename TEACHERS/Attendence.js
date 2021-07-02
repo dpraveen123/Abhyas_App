@@ -184,18 +184,24 @@ saveAttendence=()=>{
          data[attendence.time]=attendence;
         var details={
           doc:string,
-          data:data
+          attendenceData:attendence,
+          // data1:data,
+          SectionUid:this.state.sectionUid,
         }
 
-        // firestore().collection('attendence').doc(details.doc).set({
-        //        attendenceList:details.data,
-        //         sectionUid:this.state.sectionUid
-        // },{merge:true})
-        functions()
-        .httpsCallable('saveAttendence')(details)
-        .then((response) => {
-          console.log("sucsessfully saved data")
-           })
+        firestore().collection('attendence').doc(details.doc).set({
+               attendenceList:firestore.FieldValue.arrayUnion(details.attendenceData),
+                sectionUid:this.state.sectionUid
+        },{merge:true}).then(l=>{
+          alert("succsessfully saved attendence")
+          this.props.navigation.goBack()
+        })
+        // functions()
+        // .httpsCallable('saveAttendence')(details)
+        // .then((response) => {
+        //   console.log("sucsessfully saved data")
+        //   alert("succsess attendence")
+        //    })
          
        
 
