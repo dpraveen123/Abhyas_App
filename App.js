@@ -10,6 +10,7 @@ import Ganesh from './Navigation/TEACHERS/TeacherSub';
 import { Provider } from 'react-redux';
 import store from './redux';
 import AllStudents from './class-students/Students';
+import SelectionButton from './AttendanceSelection/SelectionButton';
 // import Tabnav1 from './class-students/Tabnav'
 // import Modaling from './Student-profile/modal';
 
@@ -78,7 +79,8 @@ class App extends React.Component{
 // {/* <RunSheet/> */}
      
       <Provider store={store}>
-         <Authentication1 /> 
+        <SelectionButton/>
+         {/* <Authentication1 />  */}
          {/* <Sheet/> */}
          {/* <Report /> */}
          {/* <Modaling /> */}
