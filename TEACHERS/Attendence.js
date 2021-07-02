@@ -192,7 +192,10 @@ saveAttendence=()=>{
         firestore().collection('attendence').doc(details.doc).set({
                attendenceList:firestore.FieldValue.arrayUnion(details.attendenceData),
                 sectionUid:this.state.sectionUid
-        },{merge:true})
+        },{merge:true}).then(l=>{
+          alert("succsessfully saved attendence")
+          this.props.navigation.goBack()
+        })
         // functions()
         // .httpsCallable('saveAttendence')(details)
         // .then((response) => {
