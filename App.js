@@ -79,8 +79,8 @@ class App extends React.Component{
 // {/* <RunSheet/> */}
      
       <Provider store={store}>
-        <SelectionButton/>
-         {/* <Authentication1 />  */}
+        {/* <SelectionButton/> */}
+         <Authentication1 /> 
          {/* <Sheet/> */}
          {/* <Report /> */}
          {/* <Modaling /> */}

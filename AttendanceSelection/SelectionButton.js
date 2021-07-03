@@ -11,10 +11,14 @@ export default class SelectionButton extends Component {
              thisMonth:[],
              sixmonths:[],
              thisYear:[],
-             data:[]
+             thisDay:[],
+             data:[],
+             count:0,
+             info:'',
+             subcode:'69b0a8e0-76d2-492f-bb41-c809c62f8136_'
         }
     }
-  
+
 Past7days=()=>{
     for(var i=0;i<7;i++)
     {
@@ -60,40 +64,40 @@ GetThisYear=()=>{
     var date= new Date()
     console.log(date);
 }
-    // componentDidMount=()=>{
-//         const y = new Date('2021-07-02')
-// console.log(y.getTime())
-
-        // firestore()
-        // .collection('attendence')
-        // // .doc('3797a3ad-10f6-47fe-b1d9-d1cb44b2a9e9_1624838400000')
-        // .get()
-        // .then(querySnapshot => {
-        //     console.log(querySnapshot.size);
-        //     querySnapshot.forEach(documentSnapshot => {
-        //         // console.log(documentSnapshot.data().attendenceList,'is the data');
-        //       this.state.List=this.state.List.concat(documentSnapshot.data().attendenceList)
-        //           this.setState({
-        //               List:this.state.List,
-                      
-        //           })
-        //           console.log((this.state.List),'is List')
-        //         //   this.setState({
-        //         //       data:Object.values(this.state.List)
-        //         //   })
-        //         //   console.log(this.state.data,'is data');
-        //     });
-        //   });  
-    // }
+GetThisDay=()=>{
+const d = new Date('2021-07-02');
+d.setUTCHours(0,0,0,0);
+console.log(d.getTime());
+this.setState({
+info:this.state.subcode+d.getTime()
+})
+console.log(this.state.info);
+    firestore()
+    .collection('attendence')
+    .doc(this.state.info)
+    .get()
+    .then(querySnapshot => {
+        this.state.data=querySnapshot.data().attendenceList
+        this.setState({
+            data:this.state.data
+        })
+    })
+}
     render() {
         return(
         <View>
             <Text>Hi selection broo</Text>
-            <Button title="Choose Date" onPress={()=>console.log('Choose Date clicked')}/>
+            <Button title="Choose Date" onPress={()=>this.GetThisDay()}/>
             <Button title="Last 7 days" onPress={()=>this.Past7days()}/>
             <Button title="This Month" onPress={()=>this.GetThisMonth()}/>
             <Button title="Last 6 months" onPress={()=>this.GetSixMonths()}/>
             <Button title="This Year" onPress={()=>this.GetThisYear()}/>
+            {
+                Object.values(this.state.data).map(i=>{
+                    console.log('in map present',i.totalPresent);
+                    console.log('in map absent',i.totalAbsent);
+                })
+            }
         </View>
         )
     }

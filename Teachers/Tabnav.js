@@ -40,7 +40,7 @@ export default class Tabnav extends Component {
           </Tab>
 
           <Tab heading={ <TabHeading><Text>Reports</Text></TabHeading>}>
-           <Report   />
+           <Report  props={this.props} />
           </Tab>
          
         </Tabs>
