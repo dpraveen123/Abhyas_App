@@ -12,6 +12,7 @@ import firestore from '@react-native-firebase/firestore';
 import store from '../redux'
 import functions from '@react-native-firebase/functions';
 import auth from '@react-native-firebase/auth';
+var m=0
 const d = new Date();
 class Attendence extends React.Component {
   constructor(props){
@@ -127,8 +128,15 @@ class Attendence extends React.Component {
           .httpsCallable('getStudent')(details)
           .then((response) => {
             //  console.log("sucsesfully getting Student details", response.data)
+            
              this.state.data1=response.data;
              this.setState({data1:this.state.data1})
+             
+              // this.state.data1.map(l=>{
+              //   m=m+1;
+              //   console.log("misssssss/ s",m,this.state.data1.length)
+              // })
+            
              this.state.data1.map((l,i)=>{
                 //  this.setState({ar})
                 this.state.array=this.state.array.concat({isPresent:'',uid:'',rollNo:''})
@@ -191,7 +199,10 @@ saveAttendence=()=>{
 
         firestore().collection('attendence').doc(details.doc).set({
                attendenceList:firestore.FieldValue.arrayUnion(details.attendenceData),
-                sectionUid:this.state.sectionUid
+                sectionUid:this.state.sectionUid,
+                day:d.getDate(),
+                month:d.getMonth(),
+                year:d.getFullYear()
         },{merge:true}).then(l=>{
           alert("succsessfully saved attendence")
           this.props.navigation.goBack()
@@ -207,7 +218,7 @@ saveAttendence=()=>{
 
 }
     render() {
-      
+    
    
       return (
           <View style={{flex:1,backgroundColor:"white",}}>
@@ -262,8 +273,12 @@ saveAttendence=()=>{
                         flex: 1,
                         width:300,heigth:45,marginLeft:-10,
                         }}>
-                        {this.state.data1.map((artist,i) =>  (
-        
+                        {
+                        this.state.data1.map((artist,i) => { 
+                         
+                          // console.log("heehhe",artist,i)
+
+                         return(
                     
                     
                         <Card containerStyle={styles.card} key={i}> 
@@ -354,7 +369,7 @@ saveAttendence=()=>{
                                 </Card>
                                 
                                 
-                                ))}
+                                )})}
                             
                             </View>
                             
