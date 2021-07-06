@@ -1,24 +1,33 @@
 import React from 'react';
 import { StyleSheet, View, Text,TouchableOpacity,Image,Dimensions,ScrollView,SafeAreaView,AppRegistry,
   TextInput,Button,Alert,title,TouchableHighlight,Modal} from 'react-native';
-import {Card} from'react-native-elements';
+import {Card} from 'react-native-elements';
+import RBSheet from 'react-native-raw-bottom-sheet';
 import pic from '../Images/student1.png';
 import pic1 from '../Images/stu.png';
 import Svgpages from '../assets/Svg';
 import Search from '../assets/Search';
 import { Icon } from 'react-native-elements';
 import AddStudent from './Addstudent';
-
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+import store from '../redux'
+import functions from '@react-native-firebase/functions';
+import NoStudent from '../TEACHERS/noStudentAdded';
+import StudentMenu from '../BottomSheet/StudentMenu';
+var width1= Dimensions.get('window').width
+var height1= Dimensions.get('window').height
+var Height = (273.5/640)*100;
+var HeightInPercentage = Height+"%";
 
 class AllStudents extends React.Component {
-  
-  
+  constructor(props){
+    super(props)
+  }
     state={
-
-     
         modalVisible: false,
-       
-      
+        sectionUid:'',
+        data:'',
     artists: [
       {
         image: pic,
@@ -102,41 +111,79 @@ class AllStudents extends React.Component {
       this.setState({ modalVisible: visible });
       // console.log("modal closed");
     }
+  componentDidMount=()=>{
+    console.log(" i am from students.js",parseInt("10th class"))
+    
+    // console.log(this.props.props)
+    firestore().collection('Schools').doc(store.getState().authdetails.SchoolID).collection('classes').doc(this.props.props.route.params.class).get()
+    .then(l=>{  
+      // console.log("response is",l.data().sections[this.props.props.route.params.section])
+      this.state.sectionUid=l.data().sections[this.props.props.route.params.section];
+      this.setState({sectionUid:this.state.sectionUid})
+      this.loadStudentData()
+      // console.log(this.state.sectionUid,"i am form student.js")
+    })
+   
+  }
+    loadStudentData=()=>{
+      var x=[]
+      // firestore().collection('Sections').doc(this.state.sectionUid).get().then(l=>{
+
+      //   // console.log(l.data(),"checking data")
+      //   for (const [key, value] of Object.entries(l.data().students).sort((a, b) => (a.rollNo>b.rollNo?-1:1))) {
+      //     console.log(`${key}: ${value}`);
+      //     // this.state.data=this.state.data.concat(value)
+      //     // this.setState({data:this.state.data})
+      //     // x=x.concat(value)
+      // }  
+       
+      // })
+      var details={
+        sectionUid:this.state.sectionUid,
+      }
+      functions()
+      .httpsCallable('getStudent')(details)
+      .then((response) => {
+        //  console.log("sucsesfully getting Student details", response.data)
+         this.state.data=response.data;
+         this.setState({data:this.state.data})
+      });
+    }
+  modalVi=()=>{
+    this.setModalVisible(false)
+    this.loadStudentData()
+  }
+openSheet=(l,i)=>{
+  // console.log(l,i)
+  // this.RBSheet.open()
+
   
 
+}
 
 
     render() {
-      
-      
+     
+   
+      // console.log("hehhe")
+      // console.log(this.props.props)
       const { modalVisible } = this.state;
   
       
       return (
           <View style={{flex:1,backgroundColor:"white",}}>
-      
-           
-       
             <View style={{justifyContent:'center',paddingHorizontal:17,flexDirection:'row',paddingTop:13}}>
            
            <View style={{height:50,flexDirection:'row',padding:4,alignItems:'center',borderRadius:38,paddingLeft:18, paddingRight:40,flex: 1,backgroundColor:'#F5F8FA'}}>
-           
            
              <Search />
              <TextInput placeholder="Search Students or roll no......" style={{fontSize:16, marginLeft:15,borderRadius:15,fontFamily:"Roboto",fontWeight:"400",marginLeft:4,lineHeight:18}}/>
              </View>
              </View>
-            
-           
-
-           
           
              <ScrollView style={{backgroundColor:'white'  }}>
             
-            <View style={{paddingLeft:25,paddingTop:12,}}> 
-
-             <Text style={{fontFamily:"Roboto",fontSize:20,fontWeight:"500",lineHeight:28,color:"#14171A"}}>All Students</Text>
-             </View>
+           
           
          
          <View style={{flexDirection:'row',borderRadius:80, margin:0,paddingBottom:100}}>
@@ -149,65 +196,102 @@ class AllStudents extends React.Component {
                    flex: 1,
                    width:300,heigth:45,marginLeft:-10,
                    }}>
-                  {this.state.artists.map(artist =>  (
-  
-              
-              
-                <Card containerStyle={styles.card}> 
-        
-        
-  
-         <View key={artist.id} style={{flexDirection: "row"}} >
+                  {
+                    this.state.data===''?<View><Text>Loading....</Text></View>:<View>
+                    <View style={{paddingLeft:25,paddingTop:12,}}> 
+
+<Text style={{fontFamily:"Roboto",fontSize:20,fontWeight:"500",lineHeight:28,color:"#14171A"}}>All Students</Text>
+</View>
+                    {
+                      this.state.data.length===0?<View><NoStudent/></View>:
+                      <View>{
+                      this.state.data.map((artist,i) =>  (
+                      <TouchableOpacity
+                       onPress={() => {this[RBSheet + i].open()}}
+                       key={i}
+                      >
+      <Card containerStyle={styles.card} > 
+    <View key={artist.id} style={{flexDirection: "row"}} >
+    
+    <View style={{flexDirection:'row',borderRadius:20}}>
+    
+    <View style={{flexDirection: "column",marginTop:-20}}>
+           <Image source={pic}
+              style={{
            
-         <View style={{flexDirection:'row',borderRadius:20}}>
-  
-         <View style={{flexDirection: "column",marginTop:-20}}>
-                     <Image source={artist.image}
-                         style={{
-                         
-                            height: 64,
-                            width: 64,
-                            backgroundColor: "#ddd",
-                            borderRadius: 64/ 2}}resizeMode="cover"/>
+              height: 64,
+              width: 64,
+              backgroundColor: "#ddd",
+              borderRadius: 64/ 2}}resizeMode="cover"/>
+
+          </View>
+
+          <View
+            style={{
+              flexDirection: "column",
+              paddingLeft: 13,
+              marginTop: -21,
+              fontWeight:"bold",
+            
+            
+            }}>
+            <Text style={{ fontSize: 17,fontFamily:"Roboto",lineHeight:28 ,lineHeight:24}} >{artist.name}</Text>
+            <Text style={{ fontSize: 14, color: "#657786",fontFamily:"Roboto" }}>Roll No. {artist.rollNo} </Text>
+            
+            <Text style={{ fontSize: 12, color: "#A7A7A7",fontFamily:"Roboto" }}>{this.props.props.route.params.class}-{this.props.props.route.params.section} Section</Text>
+          </View>        
+         </View>
+         <View style={{ marginLeft:300,marginTop:-8,position:"absolute"}}>
+          <View>
+          <Svgpages />
+           </View>
+        </View>
+        
+    
+       </View>
       
-                        </View>
-  
-                        <View
-                          style={{
-                            flexDirection: "column",
-                            paddingLeft: 13,
-                            marginTop: -21,
-                            fontWeight:"bold",
-                          
-                          
-                          }}>
-                          <Text style={{ fontSize: 17,fontFamily:"Roboto",lineHeight:28 ,lineHeight:24}} >{artist.name}</Text>
-                          <Text style={{ fontSize: 14, color: "#657786",fontFamily:"Roboto" }}>{artist.rollno} </Text>
-                          
-                          <Text style={{ fontSize: 12, color: "#A7A7A7",fontFamily:"Roboto" }}>{artist.section} </Text>
-                        </View>
-  
-                                    
-                       </View>
-                       <View style={{ marginLeft:300,marginTop:-8,position:"absolute"}}>
-                        <View>
-                        <Svgpages  />
-                         </View>
-                      </View>
-                      
-                  
-                     </View>
-                    
-                   
-                    
-                     
-                    </Card>
-                    
-                      
-                      
-                      
-                     
-                     ))}
+      </Card>
+      <RBSheet
+       ref={ref => {
+        this[RBSheet + i] = ref;
+          }}
+        closeOnDragDown={true}
+        closeOnPressMask={false}
+        onOpen={()=>{
+          console.log("sheet opened",artist,i)
+        }}
+        customStyles={{
+          container:{
+            borderTopLeftRadius:16,
+            borderTopRightRadius:16,
+            height:HeightInPercentage,
+
+          },
+          wrapper: {
+            backgroundColor: "transparent"
+          },
+          draggableIcon: {
+            backgroundColor: "#E1E8ED",
+            width:87,
+            height:5.5,
+            
+          }
+        }}
+       
+      >
+          <StudentMenu props={{nav:this.props,studentData:artist}}/>
+      </RBSheet> 
+      </TouchableOpacity>
+      
+        
+        
+        
+       
+       ))
+                      }</View>
+                    }</View>
+               
+                  }
                     
                      
         
@@ -245,14 +329,14 @@ class AllStudents extends React.Component {
        </View>
 
 
-              <AddStudent />
+              <AddStudent props={{class:this.props.props.route.params,function:this.modalVi}}/>
 
            </Modal>
 
       </View>
    
                
-               
+     
       </View>
       
       
@@ -298,7 +382,7 @@ button:{
   height:48,
   borderRadius:40,
   justifyContent:'center',
-  marginTop:670,
+  marginTop:height1-200,
   marginLeft:110
 
 },

@@ -13,8 +13,10 @@ import store from './redux';
 import AllStudents from './class-students/Students';
 // import Tabnav1 from './class-students/Tabnav'
 // import Modaling from './Student-profile/modal';
-import Attendance from './attendence';
-
+//import Attendance from './attendence';
+import Report from './TEACHERS/Report';
+import Pie from './Pie';
+import Example from './calendar'
 
 
 import {
@@ -28,36 +30,69 @@ import {
   TextInput,
   ScrollView
 } from 'react-native';
-import Teacher from './teacher'
-import AllClasses from './profile/Classes'
-import Translator from './OtpPage'
-import Page from './ClassesDesign/NoSectionsAdded';
-import Editpick from './profile/Editpick'
-import TeacherSubj from './TEACHERS/TeacherSubj';
-import Biology from './Navigation/Icons/Biology';
-import Physics from './Navigation/Icons/Physics';
-import Maths from './Navigation/Icons/Maths';
-import Social from './Navigation/Icons/Social';
-import Tabnav1 from './class-students/Tabnav';
-import Sheet1 from './BottomSheet/Sheet1'
-// -----------------port-8081---------------------------
-class App extends React.Component {
+
+import Sheet from './BottomSheet/Sheet';
+// import Profile from './mywork/Profile';
+// import Teacher from './teacher'
+
+// import Hello from './profile/Hello';
+// import Addclass from './profile/Addclass';
+// import Profile from './profile/Stack';
+// import AllClasses from './profile/Classes';
+// import Slider from './profile/Tab';
+// import Editpick from './profile/Editpick';
+// // import store from './redux'
+// import Newone from './profile/new2';
+// import Testing from './Testing'
+
+  //         this.setState({authenticated:true})
+  //     } else {
+
+  //         this.setState({authenticated:false})
+  //     }
+  // })
+  // }
+  // signIn=(phoneNumber)=> {
+  //    try {
+  //        const confirmation = auth().signInWithPhoneNumber(phoneNumber);
+  //        this.setState({confirm:confirmation})
+  //    } catch (error) {
+  //        alert(error);
+  //    }
+  // }
+
+  // confirmVerificationCode=(code)=> {
+  //    console.log(code);
+  //    try {
+  //         confirm.confirm(code);
+  //        setConfirm(null);
+  //    } catch (error) {
+  //        alert('Invalid code');
+  //    }
+  // }
+class App extends React.Component{
   render() {
     return (
-      <Attendance/>
+      
+           <Report/>
+          // <Pie/>
+  //  <Example />
+     
       // <CreateData />
       // <Schools />
       // <Profile />
       // <Teacher />
 //  <AllClasses/> 
 /* <Editpick/> */
+// {/* <RunSheet/> */}
      
-      // <Provider store={store}>
-         /* <Authentication1 />  */
+      // // <Provider store={store}>
+      //    <Authentication1 /> 
+      //    {/* <Sheet/> */}
       //    {/* <Report /> */}
       //    {/* <Modaling /> */}
       //    {/* <Searchbar /> */}
-      //   //  <AllStudents />
+      //    {/* <AllStudents /> */}
       //  {/* <Tabnav1 /> */}
       //    {/* <Slider/> */}
       //    {/* <Editpick /> */}
@@ -68,10 +103,8 @@ class App extends React.Component {
       //    {/* <DropDown1/> */}
       //    {/* <Pick/> */}
       //    {/* <EditPick/> */}
-      // {/* </Provider> */}
-     
+      // </Provider>
       // </>
-     
     )
   }
 

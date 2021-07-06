@@ -5,12 +5,16 @@ import Delete from '../assets/deleteicon';
 import Deleteicon from '../assets/deleteicon1'
 import Editpro from './Editprofile';
 import profile from '../Images/Student.png';
-
+import firestore from '@react-native-firebase/firestore';
 
 
 
 
 class Modaling extends React.Component {
+  constructor(props){
+    super(props);
+  }
+  
   state = {
     modalVisible: false,
     openmodal:false,
@@ -29,9 +33,17 @@ class Modaling extends React.Component {
         Phone:"7997083831, 7997083832",
         Address:"D.No- 221 B, Baker Street,Hyderabad",
       }
-    ]
+    ],
+    cdetails:{}
   };
-
+componentDidMount=()=>{
+  // console.log(this.props.route.params)
+  console.log(this.props.route.params)
+  firestore().collection('Students').doc(this.props.route.params.studentData.uid).get().then(l=>{
+    console.log("lis",l.data())
+    this.setState({cdetails:l.data()})
+  })
+}
 
   setModalVisible = (visible) => {
     console.log("modal opened");
@@ -143,9 +155,9 @@ class Modaling extends React.Component {
                    
                        
                            <View style= {{paddingLeft:15,}}>
-                           <Text style={{fontSize: 16,fontFamily:"Roboto", fontWeight: 'bold',}}>{l.name} </Text>
-                           <Text style={{fontSize: 14, fontWeight: 'bold',fontFamily:"Roboto",paddingTop:2}}>{l.Rollno} </Text>
-                           <Text style={{fontSize: 12, fontWeight: 'bold',color:"#657786",paddingTop:3,fontFamily:"Roboto",}}>{l.section} </Text>
+                           <Text style={{fontSize: 16,fontFamily:"Roboto", fontWeight: 'bold',}}>{this.props.route.params.studentData.name} </Text>
+                           <Text style={{fontSize: 14, fontFamily:"Roboto",paddingTop:2}}>Roll No. {this.props.route.params.studentData.rollNo} </Text>
+                           <Text style={{fontSize: 12, fontWeight: 'bold',color:"#657786",paddingTop:3,fontFamily:"Roboto",}}>{this.props.route.params.class.class} -{this.props.route.params.class.section} SECTION</Text>
                            </View>
 
                       {/* ..................................... edit icon............................ */}
@@ -192,17 +204,17 @@ class Modaling extends React.Component {
 
                 <View style={{ flexDirection: 'row'}}>
                 <Text style={{ color: '#657786', marginLeft: 15, marginTop: 27.5,fontFamily:"Roboto" }}>Parents</Text>
-                <Text style={{ marginTop: 27.5, marginLeft: 35 ,marginRight:90}}>{l.Parents}</Text>
+                <Text style={{ marginTop: 27.5, marginLeft: 35 ,marginRight:90}}>{this.state.cdetails.fatherName},{this.state.cdetails.motherName}</Text>
                 </View>
 
                 <View style={{ flexDirection: 'row' }}>
                 <Text style={{ color: '#657786', marginLeft: 15, marginTop: 15,fontFamily:"Roboto"}}>Phone</Text>
-                <Text style={{ marginTop: 15, marginLeft: 42,fontFamily:"Roboto",marginRight:90 }}>{l.Phone}</Text>
+                <Text style={{ marginTop: 15, marginLeft: 42,fontFamily:"Roboto",marginRight:90 }}>{this.state.cdetails.mobileNumber}</Text>
                 </View>
 
                 <View style={{ flexDirection: 'row',marginRight:90 }}>
                 <Text style={{ color: '#657786', marginLeft: 15, marginTop: 15,fontFamily:"Roboto" }}>Address</Text>
-                <Text style={{ marginTop: 15,marginLeft:31,fontFamily:"Roboto",marginBottom:20}}>{l.Address}</Text>
+                <Text style={{ marginTop: 15,marginLeft:31,fontFamily:"Roboto",marginBottom:20}}>{this.state.cdetails.adress}</Text>
                  </View>
                            
                            </View>

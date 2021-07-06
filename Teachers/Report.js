@@ -1,9 +1,16 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
+import Attendance from '../attendence';
 
 const Report = () => {
   return (
-    <Text>Hello, This is Reports page!!!!!</Text>
+    <View>
+      <TouchableOpacity >
+    <Attendance/>
+    </TouchableOpacity>
+
+    </View>
+   
   );
 }
 

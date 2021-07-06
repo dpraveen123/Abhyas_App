@@ -15,25 +15,95 @@ import {
 
   
 } from 'react-native';
+import store from '../redux'
+// import {Picker} from '@react-native-community/picker';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+import functions from '@react-native-firebase/functions';
 
-import {Picker} from '@react-native-community/picker';
+export default class  AddStudent extends React.Component{
+  constructor(props){
+    super(props);
+    this.state={
+      name:'',
+      class:this.props.props.class.class,
+      section:this.props.props.class.section,
+      rollNo:0,
+      fatherName:'',  
+      motherName:'',
+      mobileNumber:'',
+      sectionUid:''
+    }
+  }
 
+// const [selectedValue, setSelectedValue] = useState("select class");
+uuidv4 = () => {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+  });
+}
+  addStudent=()=>{
+    // console.log("hiiii",store.getState( ))
+    var details={
+      name:this.state.name,
+      class:this.state.class,
+      section:this.state.section,
+      rollNo:parseInt(this.state.rollNo),
+      fatherName:this.state.fatherName,
+      motherName:this.state.motherName,
+      mobileNumber:this.state.mobileNumber,
+      studentUid:this.uuidv4(),
+      schoolUid:store.getState().authdetails.SchoolID,
+      sectionUid:this.state.sectionUid,
+      datadded:false,
+    }
+    console.log("type of roll umber is",details.rollNo)
+    // var a={}
+    // a[details.rollNo]={uid:details.studentUid,rollNo:details.rollNo,name:details.name,}
+    // firestore().collection('Sections').doc(details.sectionUid).set({
+    //   students:a
+    // },{merge:true}).then(l=>{
+    //   console.log("sucsesffuly added")
+    // })
+    // firestore().collection('Students').doc(details.studentUid).set({
+    //   name:details.name,
+    //   class:details.class,
+    //   section:details.section,
+    //   rollNo:details.rollNo,
+    //   fatherName:details.fatherName,
+    //   motherName:details.motherName,
+    //   mobileNumber:details.mobileNumber,
+    //   studentUid:details.studentUid,
+    //   schoolUid:details.schoolUid,
+    //   sectionUid:details.sectionUid
+    // })
+    functions()
+  .httpsCallable('addStudent')(details)
+  .then((response) => {
+    // console.log("sucsesfully getting Teacher details dudee to fire functions from teacher", response.data)
+    this.setState({datadded:true})
+    alert("sucsefully added student details")
+    this.props.props.function();
+  });
+  }
+  componentDidMount=()=>{
+    console.log(this.props.props,"hiiii")
 
+    firestore().collection('Schools').doc(store.getState().authdetails.SchoolID).collection('classes').doc(this.props.props.class.class).get()
+    .then(l=>{
+      // console.log("response is",l.data().sections[this.props.props.route.params.section])
+      this.state.sectionUid=l.data().sections[this.props.props.class.section];
+      this.setState({sectionUid:this.state.sectionUid})
+      console.log(this.state.sectionUid)
+    })
+  }
 
-
-
-export default function AddStudent(){
-
-const [selectedValue, setSelectedValue] = useState("select class");
-  
-
+render(){
 
           return(
             
               <View style={{flex:1}}>
-              
-
-
                   <ScrollView >
                 <View style={{margin:20}}>
 
@@ -56,7 +126,9 @@ const [selectedValue, setSelectedValue] = useState("select class");
   <View style={{paddingTop:80,justifyContent:"space-evenly"}}>
   
   <Text style={styles.text1}>Name</Text>
-  <TextInput placeholder="Enter your full name" style={styles.textinput}></TextInput>
+  <TextInput placeholder="Enter your full name" style={styles.textinput}
+  onChangeText={(val)=>{this.setState({name:val})}}
+  ></TextInput>
 
 
        {/* .........................picker.......................... */}
@@ -65,7 +137,7 @@ const [selectedValue, setSelectedValue] = useState("select class");
       <View style={styles.text1}>
           <Text style={styles.text1}>Choose class</Text>
           <View style={{ borderWidth: 1, height:45, padding: 0, backgroundColor: "#F5F8FA" ,borderColor:"#E1E8ED",fontFamily:"Roboto", borderRadius:4,}}>
-      <Picker
+      {/* <Picker
         selectedValue={selectedValue}
         style={{ height: 50, width: 150,fontFamily:"Roboto",fontWeight:"500" }}
         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
@@ -81,14 +153,14 @@ const [selectedValue, setSelectedValue] = useState("select class");
         <Picker.Item label="9th class" value="9th class" />
         <Picker.Item label="10th class" value="10th class" />
         
-      </Picker>
+      </Picker> */}
       </View>
       
       </View>
       <View style={styles.text2}>
       <Text style={styles.text1}>Section</Text>
       <View style={{borderWidth: 1, height:45, padding: 0, backgroundColor: "#F5F8FA",borderColor:"#E1E8ED", borderRadius:4,}}>
-      <Picker
+      {/* <Picker
         selectedValue={selectedValue}
         style={{ height: 50, width: 150}}
         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
@@ -99,7 +171,7 @@ const [selectedValue, setSelectedValue] = useState("select class");
         <Picker.Item label="D" value="D" />
         <Picker.Item label="E" value="E" />
         <Picker.Item label="F" value="F" />
-      </Picker>
+      </Picker> */}
       </View>
 
       </View>
@@ -110,13 +182,21 @@ const [selectedValue, setSelectedValue] = useState("select class");
   
   <View >
   <Text style={styles.text1}>Roll No.</Text>
-  <TextInput placeholder="Enter your Roll No"  style={styles.textinput1}></TextInput>
+  <TextInput placeholder="Enter your Roll No"  style={styles.textinput1}
+    onChangeText={(val)=>{this.setState({rollNo:val})}}
+  ></TextInput>
   <Text style={styles.text1}>Father's Name</Text>
-  <TextInput placeholder="Enter your Father's Name"  style={styles.textinput}></TextInput>
+  <TextInput placeholder="Enter your Father's Name"  style={styles.textinput}
+    onChangeText={(val)=>{this.setState({fatherName:val})}}
+  ></TextInput>
   <Text style={styles.text1}>Mother's Name</Text>
-  <TextInput placeholder="Enter your Mother's Name"  style={styles.textinput}></TextInput>
+  <TextInput placeholder="Enter your Mother's Name"  style={styles.textinput}
+    onChangeText={(val)=>{this.setState({motherName:val})}}
+  ></TextInput>
   <Text style={styles.text1}>Mobile Number</Text>
-  <TextInput placeholder="Enter your Mobile Number"  style={styles.textinput}></TextInput>
+  <TextInput placeholder="Enter your Mobile Number"  style={styles.textinput}
+    onChangeText={(val)=>{this.setState({mobileNumber:val})}}
+  ></TextInput>
   </View>
 
 
@@ -128,7 +208,9 @@ const [selectedValue, setSelectedValue] = useState("select class");
           {/* .....................Footer ............................*/}
 
           <View style={styles.footer}>
-          <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Add Student</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.button}
+               onPress={()=>{this.addStudent()}}
+          ><Text style={styles.buttonText}>Add Student</Text></TouchableOpacity>
           </View>
   
 
@@ -136,7 +218,7 @@ const [selectedValue, setSelectedValue] = useState("select class");
         </View>
   
  
-          );
+          )};
       };
       const styles= StyleSheet.create({
         header:{

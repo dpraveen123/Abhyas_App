@@ -9,7 +9,7 @@ import getTheme from '../native-base-theme/components';
 import material from '../native-base-theme/variables/material';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import TeacherSub from '../TEACHERS/TeacherSubj';
-const Tab1 = createMaterialTopTabNavigator();
+// const Tab = createMaterialTopTabNavigator();
 export default class Tabnav extends Component {
   constructor(props) {
   super(props)
