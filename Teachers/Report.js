@@ -54,7 +54,7 @@ class Report extends Component {
   }
 // --------------------------------------GETTING CHOOSED DATE ATTENDANCE-----------------------------------------------------
 GetThisDay=(p)=>{
-const d = new Date(p);
+const d = new Date();
 d.setUTCHours(0,0,0,0);
 console.log(d.getTime());
 this.state.totalPresent=0,
