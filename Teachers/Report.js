@@ -122,7 +122,7 @@ for(var i=1;i<=7;i++)
     .get()
     .then(querySnapshot => {
       if(querySnapshot.exists) {
-        console.log("Document Exist",querySnapshot);
+        // console.log("Document Exist",querySnapshot);
       this.state.Absent=0,
       this.state.Present=0,
       this.state.totalPresent7=0,
@@ -301,8 +301,11 @@ GetSixMonths=(p)=>{
   }
   console.log('dates array is',this.state.SixMonths);
   console.log('length is',this.state.SixMonths.length);
+  var x=0;
   for(var i=0;i<this.state.SixMonths.length;i++)
   {
+    x=x+1;
+    // console.log(x)
     firestore()
     .collection('attendence')
     .doc(this.state.sectionUid+'_'+this.state.SixMonths[i])
@@ -343,6 +346,7 @@ GetSixMonths=(p)=>{
         this.state.textPresent=this.state.totalPresent6Mon/(this.state.SixMonthEachAvgAbsent.length);
         this.state.textAbsent=this.state.totalAbsent6Mon/(this.state.SixMonthEachAvgAbsent.length)
         console.log('total average of month is present:',this.state.textPresent,'absent: ',this.state.textAbsent);
+        
       }
       }
       else{
