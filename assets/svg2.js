@@ -26,7 +26,7 @@ export default class Svgpage2 extends React.Component {
         return (
             <View >
             
-            <Svg width="34" height="17" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Svg width="30" height="12" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
             <Path d="M1.16663 7.5L6.96927 1.69736L12.7719 7.5" stroke="#1F85FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </Svg>
             

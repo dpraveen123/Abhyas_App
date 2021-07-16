@@ -17,6 +17,7 @@ import AllStudents from './class-students/Students';
 import Report from './TEACHERS/Report';
 import Pie from './Pie';
 import Example from './calendar'
+import Test from './Navigation/test';
 
 
 import {
@@ -75,6 +76,7 @@ class App extends React.Component{
     return (
       
            <Report/>
+          //  <Test/>
           // <Pie/>
   //  <Example />
      

@@ -26,7 +26,7 @@ const Example = () => {
     return (
         <View>
             <TouchableOpacity style={{ width: 440, height: 30 }} onPress={showDatePicker}>
-                <Text style={{ fontSize: 18, marginLeft: 18, marginTop: 10 }}> Choose Date</Text>
+                <Text style={{ fontSize: 18, marginLeft: 13, marginTop: 10 }}> Choose Date</Text>
                  <RadioForm
                                    radio_props={ring}
                                    initial={1}
@@ -36,7 +36,7 @@ const Example = () => {
                                    buttonInnerSize={30}
                                    selectedButtonColor={'#E1E8ED'}
                                    selectedLabelColor={'#E1E8ED'}
-                                   style={{marginLeft:300,marginTop:-15}}
+                                   style={{marginLeft:315,marginTop:-15}}
                                    disable={false}
                                    ></RadioForm> 
             </TouchableOpacity>
