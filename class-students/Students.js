@@ -205,89 +205,92 @@ openSheet=(l,i)=>{
                     {
                       this.state.data.length===0?<View><NoStudent/></View>:
                       <View>{
-                      this.state.data.map((artist,i) =>  (
-                      <TouchableOpacity
-                       onPress={() => {this[RBSheet + i].open()}}
-                       key={i}
-                      >
-      <Card containerStyle={styles.card} > 
-    <View key={artist.id} style={{flexDirection: "row"}} >
+                      this.state.data.map((artist,i) =>{
+                        // console.log(i)
+                      return  (
+                          <TouchableOpacity
+                           onPress={() => {this[RBSheet + i].open()}}
+                           key={i}
+                          >
+          <Card containerStyle={styles.card} > 
+        <View key={artist.id} style={{flexDirection: "row"}} >
+        
+        <View style={{flexDirection:'row',borderRadius:20}}>
+        
+        <View style={{flexDirection: "column",marginTop:-20}}>
+               <Image source={pic}
+                  style={{
+               
+                  height: 64,
+                  width: 64,
+                  backgroundColor: "#ddd",
+                  borderRadius: 64/ 2}}resizeMode="cover"/>
     
-    <View style={{flexDirection:'row',borderRadius:20}}>
+              </View>
     
-    <View style={{flexDirection: "column",marginTop:-20}}>
-           <Image source={pic}
-              style={{
-           
-              height: 64,
-              width: 64,
-              backgroundColor: "#ddd",
-              borderRadius: 64/ 2}}resizeMode="cover"/>
-
-          </View>
-
-          <View
-            style={{
-              flexDirection: "column",
-              paddingLeft: 13,
-              marginTop: -21,
-              fontWeight:"bold",
+              <View
+                style={{
+                  flexDirection: "column",
+                  paddingLeft: 13,
+                  marginTop: -21,
+                  fontWeight:"bold",
+                
+                
+                }}>
+                <Text style={{ fontSize: 17,fontFamily:"Roboto",lineHeight:28 ,lineHeight:24}} >{artist.name}</Text>
+                <Text style={{ fontSize: 14, color: "#657786",fontFamily:"Roboto" }}>Roll No. {artist.rollNo} </Text>
+                
+                <Text style={{ fontSize: 12, color: "#A7A7A7",fontFamily:"Roboto" }}>{this.props.props.route.params.class}-{this.props.props.route.params.section} Section</Text>
+              </View>        
+             </View>
+             <View style={{ marginLeft:300,marginTop:-8,position:"absolute"}}>
+              <View>
+              <Svgpages />
+               </View>
+            </View>
             
-            
-            }}>
-            <Text style={{ fontSize: 17,fontFamily:"Roboto",lineHeight:28 ,lineHeight:24}} >{artist.name}</Text>
-            <Text style={{ fontSize: 14, color: "#657786",fontFamily:"Roboto" }}>Roll No. {artist.rollNo} </Text>
-            
-            <Text style={{ fontSize: 12, color: "#A7A7A7",fontFamily:"Roboto" }}>{this.props.props.route.params.class}-{this.props.props.route.params.section} Section</Text>
-          </View>        
-         </View>
-         <View style={{ marginLeft:300,marginTop:-8,position:"absolute"}}>
-          <View>
-          <Svgpages />
+        
            </View>
-        </View>
-        
+          
+          </Card>
+          <RBSheet
+           ref={ref => {
+            this[RBSheet + i] = ref;
+              }}
+            closeOnDragDown={true}
+            closeOnPressMask={false}
+            onOpen={()=>{
+              console.log("sheet opened",artist,i)
+            }}
+            customStyles={{
+              container:{
+                borderTopLeftRadius:16,
+                borderTopRightRadius:16,
+                height:HeightInPercentage,
     
-       </View>
-      
-      </Card>
-      <RBSheet
-       ref={ref => {
-        this[RBSheet + i] = ref;
-          }}
-        closeOnDragDown={true}
-        closeOnPressMask={false}
-        onOpen={()=>{
-          console.log("sheet opened",artist,i)
-        }}
-        customStyles={{
-          container:{
-            borderTopLeftRadius:16,
-            borderTopRightRadius:16,
-            height:HeightInPercentage,
-
-          },
-          wrapper: {
-            backgroundColor: "transparent"
-          },
-          draggableIcon: {
-            backgroundColor: "#E1E8ED",
-            width:87,
-            height:5.5,
+              },
+              wrapper: {
+                backgroundColor: "transparent"
+              },
+              draggableIcon: {
+                backgroundColor: "#E1E8ED",
+                width:87,
+                height:5.5,
+                
+              }
+            }}
+           
+          >
+              <StudentMenu props={{nav:this.props,studentData:artist}}/>
+          </RBSheet> 
+          </TouchableOpacity>
+          
             
-          }
-        }}
-       
-      >
-          <StudentMenu props={{nav:this.props,studentData:artist}}/>
-      </RBSheet> 
-      </TouchableOpacity>
-      
-        
-        
-        
-       
-       ))
+            
+            
+           
+           )
+                      })
                       }</View>
                     }</View>
                

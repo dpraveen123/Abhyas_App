@@ -111,12 +111,12 @@ class TeacherDashboard extends Component {
             User :auth().currentUser.phoneNumber
         }
        
-        console.log(this.state.darray, "is darray yy")
+        // console.log(this.state.darray, "is darray yy")
         
         functions()
         .httpsCallable('getTeacherdetails')(details)
         .then((response) => {
-          console.log("sucsesfully getting Teacher details dudee to fire functions from teacher", response.data)
+        //   console.log("sucsesfully getting Teacher details dudee to fire functions from teacher", response.data)
           this.state.data = response.data;
           this.setState({data:this.state.data});
         //   console.log(response.data,"is data")
@@ -130,12 +130,12 @@ class TeacherDashboard extends Component {
 
     
     openDrop = (i) => {
-        console.log(i, "drop clicked")
+        // console.log(i, "drop clicked")
         this.state.darray[i] = !this.state.darray[i];
         // this.setState({darray:this.state.darray})
         this.state.darray1 = this.state.darray;
         this.setState({ darray1: this.state.darray1 })
-        console.log(this.state.darray1)
+        // console.log(this.state.darray1)
     }
     selectSection=(c,s)=>{
         var x={class:c,section:s}
@@ -200,7 +200,7 @@ class TeacherDashboard extends Component {
   var color2=x.color2;
   var classno=parseInt(x.class)
                                     return (
-                                        <View style={{ borderRadius: 15 }}>
+                                        <View style={{ borderRadius: 15 }} key={i}>
                                             <Card
                                                 containerStyle={{ borderRadius: 8 }}
                                             >
@@ -245,10 +245,10 @@ class TeacherDashboard extends Component {
 
                                             <View style={{ marginLeft: 15, width: '91.5%', backgroundColor: 'white' }}>
                                                 {
-                                                    l.sections.map(k => {
+                                                    l.sections.map((k,key) => {
                                                         return (
 
-                                                            <View>
+                                                            <View key={key}>
                                                                 {
                                                                     this.state.darray1[i] === true ? <View>
                                                              <TouchableOpacity 
