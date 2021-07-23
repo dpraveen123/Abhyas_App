@@ -13,8 +13,8 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import store from '../redux'
 import functions from '@react-native-firebase/functions';
-import NoStudent from '../TEACHERS/noStudentAdded'
-import StudentMenu from '../bottomSheet/StudentMenu'
+import NoStudent from '../TEACHERS/noStudentAdded';
+import StudentMenu from '../BottomSheet/StudentMenu';
 var width1= Dimensions.get('window').width
 var height1= Dimensions.get('window').height
 var Height = (273.5/640)*100;
