@@ -72,6 +72,7 @@ class Attendance extends React.Component {
      totalPresentAvg:this.state.totalPresentAvg
    })
    this.calculatePercentage()
+  //  this.finalDisplay()
   }
   gettingTotalCount=()=>{
     console.log('this is gettingtotalcount');
@@ -100,16 +101,36 @@ class Attendance extends React.Component {
   checkingSwitchbutton=(k)=>{
 
 this.state.percentageEnable=k.value
-// this.setState({
-//   percentageEnable:this.state.percentageEnable
-// })
+this.setState({
+  percentageEnable:this.state.percentageEnable
+})
 console.log('checking broo',this.state.percentageEnable);
+// this.finalDisplay()
   }
+// finalDisplay=()=>{
+// if(this.percentageEnable)
+// {
+//   this.state.displayAbsent=this.state.percentageAbsent
+//   this.state.displayPresent=this.state.percentagePresent
+//   this.setState({
+//     displayPresent:this.state.displayPresent,
+//     displayAbsent:this.state.displayAbsent
+//   })
+// }
+// else{
+//   this.state.displayAbsent=this.state.totalAbsentAvg
+//   this.state.displayPresent=this.state.totalPresentAvg
+//   this.setState({
+//     displayAbsent:this.state.displayAbsent,
+//     displayPresent:this.state.displayPresent
+//   })
+// }
+//   }
   render() {
     const chart_wh = 250
     const series = [123, 321, 123, 789, 537]
     const sliceColor = ['#F44336', '#2196F3', '#FFEB3B', '#4CAF50', '#FF9800']
-    console.log('im from attendance broo',this.props.props);
+    // console.log('im from attendance broo',this.props.props);
     return (
       <View style={styles.ganesh}>
         <View style={styles.ganesh}>
@@ -139,7 +160,9 @@ console.log('checking broo',this.state.percentageEnable);
                 </View>
               </TouchableOpacity>
               <View style={{marginLeft:50}}>
-                    <Switchbutton checkingswitchbutton={this.checkingSwitchbutton}/>
+                    <Switchbutton 
+                    checkingswitchbutton={this.checkingSwitchbutton}
+                    />
                   </View>
               <RBSheet
                 ref={ref => {
@@ -204,7 +227,8 @@ console.log('checking broo',this.state.percentageEnable);
                     <View style={{ flexDirection: 'row' }}>
                       <View>
                         <Text style={{ fontSize: 20, fontWeight: 'bold', marginLeft: -210, marginTop: 200 }}>
-                          {this.state.percentageEnable ? this.state.percentagePresent : this.state.totalPresentAvg}
+                          {this.state.percentageEnable=== true ? this.state.percentagePresent.toFixed(2) :this.state.totalPresentAvg.toFixed(2)}
+                          {/* {this.state.displayPresent} */}
                           {/* {this.state.totalPresentAvg} */}
                           </Text>
                         <Text style={{ color: '#1F85FF', marginLeft: -230, marginTop: 4, width: 24, height: 24 }}>⬤</Text>
@@ -212,7 +236,8 @@ console.log('checking broo',this.state.percentageEnable);
                       </View>
                       <View>
                         <Text style={{ fontSize: 20, fontWeight: 'bold', marginLeft: -90, marginTop: 200 }}>
-                        {this.state.percentageEnable ? this.state.percentagePresent : this.state.totalPresentAvg}
+                          {this.state.percentageEnable===true? this.state.percentageAbsent.toFixed(2) :this.state.totalAbsentAvg.toFixed(2)}
+                        {/* {this.state.displayAbsent} */}
                           {/* {this.state.percentageAbsent} */}
                           {/* {this.state.totalAbsentAvg} */}
                           </Text>
