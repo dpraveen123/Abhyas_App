@@ -63,6 +63,14 @@ exports.addingClass = functions.https.onCall((data, context) => {
   }
   return data;
 })
+
+exports.saveAttendence=functions.https.onCall((details, context) => {
+  db.collection('attendence').doc(details.doc).set({
+     attendenceList:details.data,
+      sectionUid:this.state.sectionUid
+ },{merge:true})
+   return "saved sucsessfully"
+ })
 // var section = {}
 
 exports.addingUser = functions.https.onCall((data, context) => {

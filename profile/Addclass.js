@@ -37,15 +37,20 @@ var y = [];
 
 export default function Addclass() {
 
-  // useEffect(() => {
-  //   firestore()
-  //     .collection('Schools')
-  //     .get()
-  //     .then(response => {
-  //       console.log("hii", response.data());
-  //     })
-  //   console.log("hello this is from componentdidmount");
-  // });
+  useEffect(() => {
+    console.log("hiii this is checking");
+    // .collection('Schools').doc(store.getState().authdetails.uuid).collection('classes').doc(itemvalue)
+    //   .get()
+    //   .then((querySnapshot) => {
+    //     console.log("itemvalue", itemvalue);
+    //     console.log('details of classes', querySnapshot.data());
+
+    //     var x = querySnapshot.data();
+    //     console.log("x is ", x.sections, Object.keys(x.sections));
+    //     setmySections(Object.keys(x.sections))
+    //     console.log(mySections, "sections")
+    //   });
+  });
 
 
   // const [isSelected, setSelection] = useState(false);
@@ -61,7 +66,8 @@ export default function Addclass() {
   const [onAddClass, setonAddClass] = useState([1]);
   const [mySections, setmySections] = useState([]);
   const [mySubjects, setmySubjects] = useState([]);
-  const [darray,setdarray] = useState([])
+  const [darray, setdarray] = useState([]);
+  const [getClass, setgetClass] = useState([])
 
   // console.log(isSelected, onChangeName, onChangeNumber, onChangeNumber, onChangeSection, onChangeSubject)
   AddAnotherClass = () => {
@@ -78,6 +84,11 @@ export default function Addclass() {
     setmySubjects(mySubjects);
     console.log("mysubjects", mySubjects);
   }
+
+  deleteSubject = (l) => {
+    console.log("deleted subject is ", l);
+  }
+
   Addclass = (itemvalue) => {
     // console.log("no of sections is from add class ", onChangeClass.length);
 
@@ -102,42 +113,42 @@ export default function Addclass() {
   }
 
   storeData = () => {
-mySubjects.map((m,n) =>{
-    var subjects = {}
+    mySubjects.map((m, n) => {
+      var subjects = {}
 
-    m.map((l, i) => {
-      subjects[l] = uuidv4()
+      m.map((l, i) => {
+        subjects[l] = uuidv4()
+      })
+
+      var SectionandSubjects = {}
+      SectionandSubjects[onChangeSection[n]] = subjects
+      console.log("hii", subjects, "subjects");
+
+      var details = {
+        mySectionandSubjects: SectionandSubjects,
+        MySubjects: subjects,
+        TeacherName: onChangeName,
+        TeacherPhoneno: onChangeNumber,
+        Class: onChangeClass[n],
+        section: onChangeSection[n],
+        subject: subjects,
+        classTeacher: isSelected,
+        role: 'Teacher',
+        uid: store.getState().authdetails.uuid
+      }
+      console.log("details from add teacher", details);
+
+      functions()
+        .httpsCallable('addingUser')(details)
+        .then((response) => {
+          console.log("sucsesfully added a new Teacher dudee to fire functions from user", response)
+        });
+      functions()
+        .httpsCallable('addingTeacher')(details)
+        .then((response) => {
+          console.log("sucsesfully added a new Teacher dudee to fire functions", response)
+        });
     })
-
-    var SectionandSubjects = {}
-    SectionandSubjects[onChangeSection[n]] = subjects
-    console.log("hii", subjects, "subjects");
-
-    var details = {
-      mySectionandSubjects: SectionandSubjects,
-      MySubjects: subjects,
-      TeacherName: onChangeName,
-      TeacherPhoneno: onChangeNumber,
-      Class: onChangeClass[n],
-      section: onChangeSection[n],
-      subject: subjects,
-      classTeacher: isSelected,
-      role: 'Teacher',
-      uid: store.getState().authdetails.uuid
-    }
-    console.log("details from add teacher", details);
-  
-    functions()
-      .httpsCallable('addingUser')(details)
-      .then((response) => {
-        console.log("sucsesfully added a new Teacher dudee to fire functions from user", response)
-      });
-    functions()
-      .httpsCallable('addingTeacher')(details)
-      .then((response) => {
-        console.log("sucsesfully added a new Teacher dudee to fire functions", response)
-      });
-  } )
   }
   return (
     <ScrollView style={{ backgroundColor: 'white' }}>
@@ -250,18 +261,32 @@ mySubjects.map((m,n) =>{
                         setonChangeSubject(itemValue)
                       }}
                     >
-                      <Picker.Item label="Maths" value="Maths" />
+                      <Picker.Item label="Telugu" value="Telugu" />
+                      <Picker.Item label="Hindi" value="Hindi" />
+                      <Picker.Item label="English" value="English" />
+                      <Picker.Item label="MatheMatics" value="MatheMatics" />
                       <Picker.Item label="Physics " value="Physics" />
                       <Picker.Item label="Biology " value="Biology" />
                     </Picker>
                   </View>
-                  <View>
-                    {mySubjects.map(l => {
-                      return (
-                        <Text>{l}</Text>
-                      )
-                    })
+                  <View >
+
+                    {
+
+                      mySubjects.map(l => {
+                        return (
+                          <TouchableOpacity onPress={() => { deleteSubject(l) }} >
+                            {/* <View style={{ backgroundColor: '#1F85FF', justifyContent: 'space-around', width: 80, borderRadius: 20, marginTop: 20,flexDirection:'column' }}> */}
+
+                            <Text style={{ color: 'black', }}>{l}   X</Text>
+                          </TouchableOpacity >
+                          /* </View> */
+                        )
+                      })
+
+
                     }
+
                   </View>
                   <View style={styles.checkboxContainer}>
                     <CheckBox
