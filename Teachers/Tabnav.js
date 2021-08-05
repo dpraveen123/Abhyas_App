@@ -6,6 +6,7 @@ import Report from './Report';
 import Subjects from './Subjects';
 import getTheme from '../native-base-theme/components';
 import material from '../native-base-theme/variables/material';
+import Attendance from '../attendence';
 
 
 export default class Tabnav extends Component {
@@ -40,7 +41,7 @@ export default class Tabnav extends Component {
           </Tab>
 
           <Tab heading={ <TabHeading><Text>Reports</Text></TabHeading>}>
-           <Report  props={this.props} />
+           <Attendance  props={this.props} />
           </Tab>
          
         </Tabs>
