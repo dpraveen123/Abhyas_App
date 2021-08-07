@@ -11,6 +11,7 @@ import {
     ActivityIndicator,
     Button
 } from 'react-native';
+import firestore from '@react-native-firebase/firestore';
 import Home from './Bulb'
 var Loader = 0
 export default function LandingPage(props) {
@@ -18,9 +19,11 @@ export default function LandingPage(props) {
     const [text, setText] = useState('+91-');
     const [button, setButton] = useState(true);
     const [loader, setLoader] = useState(false);
+    const [isRegisterdno, setisRegisteredno] = useState(true);
     const [color, setcolor] = useState('rgba(29, 161, 242, 0.5)')
 
     const onChangeText = (text1) => {
+        setisRegisteredno(true);
         console.log(`hi text ${text1}`);
         if (text1.length < 4) {
             console.log('hiii text' + text1.length);
@@ -76,12 +79,30 @@ export default function LandingPage(props) {
                     borderRadius: 4,
                     marginTop: 240,
                     marginLeft: 22,
-                    textAlign: 'center',
+                    alignItems: 'center',
                     justifyContent: 'center'
                 }} disabled={button}
                     onPress={() => {
                         setLoader(true)
-                        props.onSubmit(text)
+                        // console.log('+91'+text.substr(4,13))
+                        var s="+91"+text.substr(4,13);
+                        console.log("s is",s,typeof(s));
+                      firestore().collection('Users').doc(s).get().then(l=>{
+
+                        //   console.log("existed bro",l.data())
+                          if(l.data()==undefined){
+                            setLoader(false);
+                          setisRegisteredno(false);
+                          }else{
+                            props.onSubmit(text)
+
+                          }
+                      }).catch(e=>{
+                          console.log("this doc doesn't exist");
+                        //   setLoader(false);
+                      })
+                    
+
                     }
                     }>
                     <View>
@@ -100,8 +121,15 @@ export default function LandingPage(props) {
 
                     </View>
                 </TouchableOpacity>
-            </View>
+                <View>
+                    {
+                        isRegisterdno===false?<View style={{width:'100%',alignItems:'center'}}>
+                        <Text style={{marginTop:24,color:'red',fontSize:14,}}>Mobile number not registered with us!</Text>
+                        </View>:<View></View>
+                    }
+                </View>
 
+            </View>
 
 
         </ScrollView>
@@ -145,7 +173,7 @@ const styles = StyleSheet.create({
     },
     otp: {
         color: 'white',
-        paddingLeft: 125
+        // paddingLeft: 125
     },
     number: {
 

@@ -53,6 +53,7 @@ const NavBar = ({ navigation }) => {
                         fontWeight: "500",
                         marginLeft: 40,
                         fontFamily: 'Roboto',
+                        fontWeight:'bold'
                         
                     },
                     headerLeft: () => <View style={styles.direction}>

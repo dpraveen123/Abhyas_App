@@ -21,7 +21,7 @@ const INITIAL_STATE = {
   }
   var store = createStore(counterReducer);
 
-  store.subscribe(() => console.log(store.getState().changecontentvisbile," i am from redux"))
+  // store.subscribe(() => console.log(store.getState().changecontentvisbile," i am from redux"))
 
 
   export default store;

@@ -74,6 +74,7 @@ Class:{
     fontFamily:'Roboto',
     fontWeight:'500',
     fontSize:16,
-    marginLeft:16
+    marginLeft:16,
+    elevation:5
 }
 })

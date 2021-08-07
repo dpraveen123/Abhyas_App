@@ -67,7 +67,7 @@ function Authentication1(props) {
     }
 
     async function confirmVerificationCode(code) {
-        console.log(code);
+        // console.log(code);
         try {
             await confirm.confirm(code);
             setConfirm(null);
@@ -81,9 +81,9 @@ function Authentication1(props) {
         // this.props.details(auth())
         if (user) {
             setAuthenticated(true);
-            console.log(user.phoneNumber,"thse are the user details")
+            // console.log(user.phoneNumber,"thse are the user details")
         firestore().collection('Users').doc(user.phoneNumber).get().then(res=>{
-            console.log(res.data(),"is res")
+            // console.log(res.data(),"is res")
             setRoll(res.data().role)
            props.details(res.data())
         })
@@ -111,7 +111,7 @@ function Authentication1(props) {
       }else if(Roll==null){
           return(
               <View style={{justifyContent:'center',alignItems:'center'}}>
-                  <Text style={{fontSize:25}}>Laoding...</Text>
+                  <Text style={{fontSize:25}}>Loading...</Text>
               </View>
           )
       }

@@ -122,6 +122,7 @@ this.setState({loaderOfAddSection:1})
      var n=l.sections.includes(this.state.addSectionName)
      if(n){
        alert("section already exist")
+       this.setState({loaderOfAddSection:0})
      }else{
        var a={}
        a[this.state.addSectionName]=this.uuidv4()
@@ -135,12 +136,13 @@ this.setState({loaderOfAddSection:1})
    .httpsCallable('addingClass')(details)
    .then(response => {
      console.log("sucsesfully added a new section bro",response.data)
-     alert("sucsefully added your section")
      this.loadData()
      this.setModalVisible();
   this.makeAllFalseOfEditView()
   this.openDrop(i)
   this.setState({loaderOfAddSection:0})
+  alert("sucsefully added your section")
+
          //  this.props.props.modal();
    });
       //  firestore().collection('Schools').doc(store.getState().authdetails.uuid).collection('classes').doc(l.class).set({
@@ -153,9 +155,8 @@ this.setState({loaderOfAddSection:1})
 setModalVisible = () => {
 
   console.log("modal opened");
-  // this.setState({ modalVisible:!this.state.modalVisible });
+  this.setState({ modalVisible:!this.state.modalVisible });
   // this.makeAllFalseOfEditView()
-
   // console.log("modal closed");
 }
 
@@ -276,7 +277,7 @@ ModalTester=()=>{
   // console.log('viewmodel',this.state.viewmodel)
   }
 deleteClass=(l,i)=>{
-  this.ModalTester(),
+  this.ModalTester();
   this.openEditView(i)
  console.log('delete pressed')
   // console.log("deleting class",l,i)
@@ -329,9 +330,9 @@ deleteSection=(l,i,k)=>{
   functions()
   .httpsCallable('deleteSection')(details)
   .then(response => {
-    alert("sucsesfully deleted the section")
     this.loadData() 
     this.makeAllFalseOfEditView()
+    alert("sucsesfully deleted the section")
     // this.openDrop(i)
   });
   // this.makeAllFalseOfEditView()
@@ -350,6 +351,7 @@ deleteSection=(l,i,k)=>{
   //   firestore().collection('Schools').doc(details.uid).collection('classes').doc(l.class).set({
   //     sections:{[details.section]:firestore.FieldValue.delete()}
   //   },{merge:true})
+  this.loadData()
 
 }
   render() {
@@ -379,10 +381,10 @@ deleteSection=(l,i,k)=>{
   var color2=x.color2;
   var classno=parseInt(x.class)
                  return(
-                   <View style={{borderRadius:15}}>
+                   <View style={{borderRadius:0}} key={i}>
                      
                    <Card
-                   containerStyle={{borderRadius:8,}}
+                   containerStyle={{borderRadius:8,elevation:3}}
                    >
               <View style={{height:70}}>
             
@@ -491,7 +493,7 @@ deleteSection=(l,i,k)=>{
                          <Text style={{fontWeight:"500",fontFamily:"Roboto",fontSize:18,marginLeft:0}}>Add Section</Text>
                          </TouchableOpacity>
                            {/* ..............................modal .....................................*/}
-                        <Modal isVisible={modalVisible}>
+                        <Modal isVisible={modalVisible} >
                       <TouchableOpacity onPress={this.setModalVisible} 
                      style={{width:400,height:200}} >
                       </TouchableOpacity>
@@ -510,10 +512,9 @@ deleteSection=(l,i,k)=>{
                    >
                    <View style={styles.button1}>
                 <Text style={styles.buttonText} >{
-                    this.state.loaderOfAddSection===0?<Text style={styles.buttonText}>Add Section</Text>:<View
-                    >
-                      <Text style={styles.buttonText  }>Adding Section...</Text>
-                    </View>
+                    this.state.loaderOfAddSection===0?<Text style={styles.buttonText}>Add Section</Text>:
+                      <Text style={styles.buttonText}>Adding Section...</Text>
+                   
                   }</Text>
                 </View>
                    </TouchableOpacity>
@@ -533,9 +534,9 @@ deleteSection=(l,i,k)=>{
              </Card>
            <View style={{marginLeft:15,width:'91.5%',backgroundColor:'white'}}>
                   {
-                      l.sections.map(k=>{
+                      l.sections.map((k,k1)=>{
                           return(
-                    <View>
+                    <View key={k1}>
                              {
                                  this.state.darray1[i]===true ?<View>
                                   
@@ -652,12 +653,20 @@ var height1=Dimensions.get('window').height;
       }
     }
    loadData=()=>{
+    this.state.data=[];
+    this.state.availableClass=[];
+    this.state.classes=[];
+   this.setState({data:this.state.data,availableClass:this.state.availableClass,classes:this.state.classes})
     var details={
       uid:store.getState().authdetails.uuid
     }
     functions().httpsCallable('getClass')(details)
 .then(response => {
 // console.log("sucsesfully getting all classess bro",response.data)
+this.state.data=[];
+this.state.availableClass=[];
+this.state.classes=[];
+this.setState({data:this.state.data,availableClass:this.state.availableClass,classes:this.state.classes})
 this.state.data=response.data;
 this.setState({data:this.state.data})
 // console.log(this.state.data,"i am from classes.js")
@@ -680,7 +689,12 @@ console.log(this.state.classes,"thse are not added")
 });
    }
     toggleModal=()=>{
-      // this.loadData()
+      this.state.data=[];
+      this.state.availableClass=[];
+      this.state.classes=[];
+     this.setState({data:this.state.data,availableClass:this.state.availableClass,classes:this.state.classes})
+
+      this.loadData()
       this.setState({isModalVisible:!this.state.isModalVisible})
     }
     
@@ -688,7 +702,7 @@ console.log(this.state.classes,"thse are not added")
 
 
       
-      this.loadData()
+      // this.loadData()
      
     }
     render(){

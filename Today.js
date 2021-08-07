@@ -20,7 +20,15 @@ var ring = [
 ];
 
 export default class Today extends Component {
+    constructor(props){
+        super(props)
+    }
+    closeSheet=(x)=>{
+        this.RBSheet.close();
+        console.log("parameter is",x)
+    }
     render() {
+        console.log('props from today is',this.props)
         return (
 
             <View style={{ width: 410, height: 848, backgroundColor: 'white' }}>
@@ -49,10 +57,10 @@ export default class Today extends Component {
                             <View style={{ width: 400, borderWidth: 1, borderColor: '#E1E8ED', marginTop: 14 }}></View>
                         </View>
                         <View>
-                            <Example></Example>
+                            <Example close={"hello world"}></Example>
                         </View>
                         <View>
-                           <RadioButton/>
+                           <RadioButton close={"hello world"}/>
                         </View>
                     </RBSheet>
                 </View>

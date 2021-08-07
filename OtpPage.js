@@ -12,26 +12,34 @@ import {
     Button
 } from 'react-native';
 import OtpInputs from 'react-native-otp-textinput'
-import Svgpage from './Svg';
+import OtpSvg from './otpSvg';
+// import Svgpage from './Svg';
 const Translator = (props) => {
     const [code, setCode] = useState('');
     return (
         <View>
-
+{/* 
             <View style={{ width: 45, height: 45, borderRadius: 45 / 2, backgroundColor: '#E1E8ED', marginTop: 50, marginLeft: 24 }} />
-            <Svgpage></Svgpage>
+            <OtpSvg></OtpSvg>
             <View>
                 <Text style={{ fontSize: 16, marginTop: -18, marginLeft: 78 }}>
                     Telangana ZP High School
           </Text>
+            </View> */}
+            <View style={{flexDirection:'row',marginLeft:24,marginTop:50,height:40,alignItems:'center'}}>
+                <View style={{width:40,height:40,borderRadius:20,backgroundColor:'#E1E8ED',justifyContent:'center',alignItems:'center'  }}>
+            <OtpSvg></OtpSvg>
+                </View>
+                <Text style={{marginLeft:8,fontSize:16,fontWeight:'bold'}}>Telangana ZP High School</Text>
             </View>
             <View>
-                <Text style={{ fontSize: 24, fontFamily: "roboto", marginTop: 73.75, marginLeft: 24 }}>Teacher Login</Text>
+                <Text style={{ fontSize: 24, fontFamily: "roboto", marginTop: 47.75, marginLeft: 24 }}>Teacher Login</Text>
                 <Text style={{ marginTop: 6, fontSize: 14, lineHeight: 20, color: "#657786", marginLeft: 24 }}>Enter the OTP send to <Text style={{ color: "black" }}>+91-8932456123</Text></Text>
             </View>
             <Text style={{ fontSize: 14, color: '#657786', fontFamily: "roboto", marginTop: 44, marginLeft: 24 }}>Enter One Time Password(OTP)</Text>
-            <View style={{ padding: 40, paddingTop: 28, marginLeft: -40, marginTop: -20, width: 250 }}>
-                <OtpInputs
+            <View style={{  width: '100%',}}>
+       <View style={{width:'80%',marginLeft:17}}>
+       <OtpInputs
                     // value={code}
                     tintColor="#1DA1F2"
                     offTintColor="#BBBCBE"
@@ -39,7 +47,9 @@ const Translator = (props) => {
                     inputCount={6}
                     inputCellLength={1}
                     containerStyle={50}
+                    width={40}
                 ></OtpInputs>
+       </View>
 
 
             </View>
@@ -52,7 +62,8 @@ const Translator = (props) => {
                 // marginTop: 20,
                 marginLeft: 22,
                 textAlign: 'center',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                marginTop:32
             }}
                 onPress={() => props.onSubmit(code)
 

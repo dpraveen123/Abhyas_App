@@ -7,7 +7,8 @@ var ring = [
     { label: " ", value: 0 },
 
 ];
-const Example1 = () => {
+const Example1 = (props) => {
+    console.log("props from example is",props)
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
     const showDatePicker = () => {
@@ -28,7 +29,7 @@ const Example1 = () => {
     return (
         <View>
             <TouchableOpacity style={{ width: 440, height: 30 }} onPress={showDatePicker}>
-                <Text style={{ fontSize: 18, marginLeft: 18, marginTop: 10 }}> Choose Date</Text>
+                <Text style={{ fontSize: 18, marginLeft: 13, marginTop: 10 }}> Choose Date</Text>
                  <RadioForm
                                    radio_props={ring}
                                    initial={1}
@@ -38,7 +39,7 @@ const Example1 = () => {
                                    buttonInnerSize={30}
                                    selectedButtonColor={'#1F85FF'}
                                    selectedLabelColor={'#1F85FF'}
-                                   style={{marginLeft:310,marginTop:-15}}
+                                   style={{marginLeft:315,marginTop:-15}}
                                    disable={false}
                                    ></RadioForm>
             </TouchableOpacity>

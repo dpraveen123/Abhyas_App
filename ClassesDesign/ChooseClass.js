@@ -10,9 +10,10 @@ import {
     TouchableOpacity,
     Button,
     Image,
-    Picker,ActivityIndicator,
+    ActivityIndicator,
     Modal
 } from 'react-native';
+import { Picker as SelectPicker } from '@react-native-picker/picker';
 import RNPickerSelect from 'react-native-picker-select';
 import AfterClassPage from './AfterClassPage';
 var i=0;
@@ -202,7 +203,11 @@ ShowPage=()=>{
 
         this.props.props.modal();
       });
+      this.props.props.loadData()
+
    }
+   this.props.props.loadData()
+
 }  
 
 afterClassPage=()=>{
@@ -219,7 +224,7 @@ render() {
                  {/* <Text>
                     {this.page()}
                 </Text> */}
-                 {console.log('checking page',this.state.value)}
+                 {/* {console.log('checking page',this.state.value)} */}
                  {/* <Text>
                     {this.NoSectionsAdded()}
                 </Text> */}
@@ -247,8 +252,11 @@ render() {
                  </TouchableOpacity>
                  <View   style={{borderWidth:1,borderColor:'#E1E8ED',width:328,height:40,marginLeft:16,borderRadius:4}}>
                  
-                <Picker  onValueChange={(value1) =>{this.onValueChange(value1)}}>
-                    <Picker.Item label="Select class" value="0"/>
+                <SelectPicker  onValueChange={(value1) =>{this.onValueChange(value1)}}
+                style={{ height: 50, width: '100%' }}
+                selectedValue={this.state.pickervalue}
+                >
+                    <SelectPicker.Item label="Select class" value="0"/>
                     {/* <Picker.Item label="1st class" value="1st class"/>
                     <Picker.Item label="2nd class" value="2nd class"/>
                     <Picker.Item label="3rd class" value="3rd class"/>
@@ -260,13 +268,13 @@ render() {
                     <Picker.Item label="9th class" value="9th class"/>
                     <Picker.Item label="10th class" value="10th class"/> */}
                     {
-                        this.props.props.class.map(l=>{
+                        this.props.props.class.map((l,l1)=>{
                             return(
-                            <Picker.Item label={l} value={l}/>
+                            <SelectPicker.Item label={l} value={l} key={l1}/>
                             )
                         })
                     }
-                </Picker>
+                </SelectPicker>
                 </View>
                 <Text>
                     {this.AddSection()}
@@ -275,10 +283,10 @@ render() {
                 <Text>
                 {/* {this.AddAnotherSection()} */}
                    {
-                    this.state.n.map(l=>{
+                    this.state.n.map((l,l1)=>{
             // console.log("l is ",l)
             return(
-            <View>
+            <View key={l1}>
                  <View>
                 {/* <Text style={{backgroundColor:'black'}}>hello</Text> */}
                   <TextInput 
