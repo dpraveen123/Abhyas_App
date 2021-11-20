@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Authentication1 from './Authentication1'
+import Authentication1 from './src/components/Authentication/Authentication1'
 import Ganesh from './Navigation/TEACHERS/TeacherSub';
 //import RunMetro from './Navigation/TEACHERS/RunMetro';
 //import Svgpage from '../../Svg';

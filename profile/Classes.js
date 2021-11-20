@@ -27,7 +27,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { NavigationContainer } from '@react-navigation/native';
 import ChooseClass from '../ClassesDesign/ChooseClass'
 import { Input } from 'native-base';
-import Delete from '../Logo/Delete'
+import Delete from '../src/components/Authentication/Logo/Delete'
 // import Modal from 'react-native-modal';
 // import ModalTester from '../ClassesDesign/AddNewClassesPage'
 // import store from '../redux'
