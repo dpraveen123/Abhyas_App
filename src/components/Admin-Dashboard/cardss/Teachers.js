@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import Teacher from '../teacher'
+import Teacher from '../TeachersDesign/teacher'
 
-import Hello from '../profile/Hello'
+// import Hello from '../../profile/Hello'
 function Teachers({navigation}) {
     // console.log(navigation,"i am from captal Teachers")
     return (

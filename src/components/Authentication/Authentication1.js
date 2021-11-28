@@ -24,12 +24,12 @@ import {
     TextInput,
     ScrollView
 } from 'react-native';
-import DrawerNav from '../../../Navigation/TopNav/NavBar'
+import DrawerNav from '../Admin-Dashboard/Navigation/TopNav/NavBar'
 import { NavigationContainer } from '@react-navigation/native';
-import AddNewClassesPage from '../../../ClassesDesign/AddNewClassesPage';
-import ChooseClass from '../../../ClassesDesign/ChooseClass-2';
+// import AddNewClassesPage from '../../../ClassesDesign/AddNewClassesPage';
+// import ChooseClass from '../../../ClassesDesign/ChooseClass-2';
 import { connect } from 'react-redux';
-import TeacherStack from '../../../TEACHERS/TeacherStack';
+// import TeacherStack from '../../../TEACHERS/TeacherStack';
 // class App extends React.Component {
 //   render() {
 //     return (

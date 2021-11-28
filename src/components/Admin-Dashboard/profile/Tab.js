@@ -4,8 +4,8 @@ import { Container, Header, Tab, Tabs, TabHeading, Icon, Text ,StyleProvider} fr
 import {View} from 'react-native';
 import Tab1 from './Tab1';
 import AllClasses from './Classes';
-import getTheme from '../native-base-theme/components';
-import material from '../native-base-theme/variables/material';
+import getTheme from '../../../../native-base-theme/components';
+import material from '../../../../native-base-theme/variables/material';
 
 
 export default class Slider extends Component {

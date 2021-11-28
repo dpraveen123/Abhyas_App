@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import Authentication1 from './src/components/Authentication/Authentication1'
-import Ganesh from './Navigation/TEACHERS/TeacherSub';
+// import Ganesh from './Navigation/TEACHERS/TeacherSub';
 //import RunMetro from './Navigation/TEACHERS/RunMetro';
 //import Svgpage from '../../Svg';
 // import CreateData from './createdata'
 // import Schools from './Schools'
 // import DropDown1 from './dropDown'
 // import AdminDashboard from './cardss/AdminDashboard'
-import Studentpage from './Navigation/TEACHERS/Studentpage';
+// import Studentpage from './Navigation/TEACHERS/Studentpage';
 import { Provider } from 'react-redux';
 import store from './redux';
-import AllStudents from './class-students/Students';
-import SelectionButton from './AttendanceSelection/SelectionButton';
+// import AllStudents from './class-students/Students';
+// import SelectionButton from './AttendanceSelection/SelectionButton';
 // import Tabnav1 from './class-students/Tabnav'
 // import Modaling from './Student-profile/modal';
 //import Attendance from './attendence';
-import Report from './TEACHERS/Report';
-import Pie from './Pie';
-import Example from './calendar'
+// import Report from './TEACHERS/Report';
+// import Pie from './Pie';
+// import Example from './calendar'
 
 
 import {
@@ -88,6 +88,7 @@ class App extends React.Component{
 // {/* <RunSheet/> */}
      
       <Provider store={store}>
+        {/* <Text>hello baabi</Text> */}
         {/* <SelectionButton/> */}
          <Authentication1 /> 
          {/* <Sheet/> */}

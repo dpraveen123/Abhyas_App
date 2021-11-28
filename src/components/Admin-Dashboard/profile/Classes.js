@@ -4,30 +4,30 @@ import { StyleSheet, View, Text,TouchableOpacity,Image,Dimensions,ScrollView,Saf
 import {Card} from'react-native-elements';
 import {Picker} from '@react-native-picker/picker';
 // import Drop from '../assets/dropdown';
-import Classno from '../Images/Classno'
-import Edit from '../assets/edit';
-import Arr from '../assets/line';
+// import Classno from '../Images/Classno'
+// import Edit from '../assets/edit';
+// import Arr from '../assets/line';
 import Pick from './Picker';
 import Editpick from './Editpick';
 import Modal from 'react-native-modal';
 import Newone from './new1'
 import { connect } from 'react-redux';
-import store from '../redux'
-import DropDownItem from '../react-native-drop-down-item';
+import store from '../../../../redux'
+// import DropDownItem from '../react-native-drop-down-item';
 import functions from '@react-native-firebase/functions';
 import auth from '@react-native-firebase/auth';
 // import Edit from '../assets/edit';
-const IC_ARR_DOWN = require('../assets/dropup.png');
-const IC_ARR_UP = require('../assets/dropdown.png');
-const editpickup =require('../assets/Editpick.png');
-const editpickdown =require('../assets/Editpick.png');
+const IC_ARR_DOWN = require('../../../../assets/dropup.png');
+const IC_ARR_UP = require('../../../../assets/dropdown.png');
+const editpickup =require('../../../../assets/Editpick.png');
+const editpickdown =require('../../../../assets/Editpick.png');
 import firestore from '@react-native-firebase/firestore';
 import { Menu, MenuProvider, MenuOptions, MenuOption, MenuTrigger} from "react-native-popup-menu";
 import LinearGradient from 'react-native-linear-gradient';
 import { NavigationContainer } from '@react-navigation/native';
 import ChooseClass from '../ClassesDesign/ChooseClass'
 import { Input } from 'native-base';
-import Delete from '../src/components/Authentication/Logo/Delete'
+// import Delete from '../src/components/Authentication/Logo/Delete'
 // import Modal from 'react-native-modal';
 // import ModalTester from '../ClassesDesign/AddNewClassesPage'
 // import store from '../redux'
@@ -459,7 +459,7 @@ deleteSection=(l,i,k)=>{
                            >
                              <View style={{width:328,height:210,backgroundColor:'white',borderRadius:8,alignContent:'center',justifyContent:'center',alignItems:'center'}}>
                                <View>
-                               <Delete/>
+                               {/* <Delete/> */}delete icon
                                </View>
                                <View style={{width:250,height:48}}>
                                  <Text style={{fontSize:16,textAlign:'center',lineHeight:24}}>Are you sure you wanted to delete  </Text>
@@ -567,7 +567,7 @@ deleteSection=(l,i,k)=>{
                            >
                              <View style={{width:328,height:210,backgroundColor:'white',borderRadius:8,alignContent:'center',justifyContent:'center',alignItems:'center'}}>
                                <View>
-                               <Delete/>
+                               {/* <Delete/> */}delete icon
                                </View>
                                <View style={{width:250,height:48}}>
                                  <Text style={{fontSize:16,textAlign:'center',lineHeight:24}}>Are you sure you wanted to delete  </Text>

@@ -46,7 +46,7 @@ import { Picker } from '@react-native-community/picker';
 // import CheckBox from '@react-native-community/checkbox';
 import firestore from '@react-native-firebase/firestore';
 import { black } from 'react-native-paper/lib/typescript/styles/colors';
-import Hello from '../profile/Hello';
+import Hello from '../src/components/Admin-Dashboard/profile/Hello';
 
 
 function Profile() {

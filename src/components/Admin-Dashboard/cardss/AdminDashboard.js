@@ -13,13 +13,13 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import { shadow } from 'react-native-paper';
 import Svg, { G, Path } from 'react-native-svg'
-import Classroom from '../Images/Classroom.jpg'
-import Teacher from '../Images/teacher.jpg'
-import Student from '../Images/students.jpg'
-import Graph from '../Images/Graph.jpg'
-import Timetable from '../Images/Timetable.jpg'
-import Continue from '../Images/Continue'
-import Rectangler from '../Images/Rectangle'
+import Classroom from '../../../../Images/Classroom.jpg'
+import Teacher from '../../../../Images/teacher.jpg'
+import Student from '../../../../Images/students.jpg'
+import Graph from '../../../../Images/Graph.jpg'
+import Timetable from '../../../../Images/Timetable.jpg'
+import Continue from '../../../../Images/Continue'
+// import Rectangler from '../../../I/mages/Rectangle'
 const AdminDashboard = ({ navigation }) => {
   return (
     <View

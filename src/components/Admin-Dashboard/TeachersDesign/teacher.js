@@ -5,8 +5,8 @@ import { View, Button, StyleSheet, TouchableOpacity, Images, Modal } from 'react
 import { NavigationContainer } from '@react-navigation/native';
 import AntIcon from "react-native-vector-icons/AntDesign";
 import { Header } from 'react-native/Libraries/NewAppScreen';
-import Profile from './mywork/Profile'
-import Search from './assets/Search'
+import Profile from '../../../../mywork/Profile'
+import Search from '../../../../assets/Search'
 function Teacher({props}) {
     console.log(props.navigate,"props from teachers bro")
     return (

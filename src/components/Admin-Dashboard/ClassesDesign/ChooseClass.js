@@ -15,13 +15,13 @@ import {
 } from 'react-native';
 import { Picker as SelectPicker } from '@react-native-picker/picker';
 import RNPickerSelect from 'react-native-picker-select';
-import AfterClassPage from './AfterClassPage';
+// import AfterClassPage from '../../AfterClassPage';
 var i=0;
 import Page from './NoSectionsAdded'
 import functions from '@react-native-firebase/functions';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import store from '../redux'
+import store from '../../../../redux'
 export default class ChooseClass extends Component {
     constructor(props) {
         super(props)

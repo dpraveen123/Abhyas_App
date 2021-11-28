@@ -7,12 +7,12 @@ import {
   MenuOptions,
   MenuOption,
 } from 'react-native-popup-menu';
-import Edit from '../assets/edit'
-import Drop from '../assets/drop';
+import Edit from '../../../../assets/edit'
+// import Drop from '../assets/drop';
 import { TouchableOpacity } from 'react-native'; 
-import New from './new'   ;
+// import New from './new'   ;
 import { connect } from 'react-redux';
-import store from '../redux'
+import store from '../../../../redux'
 class Editpick extends React.Component {
   render() {
     console.log('hiii')

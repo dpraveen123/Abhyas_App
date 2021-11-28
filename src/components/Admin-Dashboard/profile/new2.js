@@ -9,8 +9,8 @@ import store from '../redux'
 import Classno from '../Images/Classno'
 import { Menu, MenuProvider, MenuOptions, MenuOption, MenuTrigger} from "react-native-popup-menu";
 import Edit from '../assets/edit';
-var com=require('../react-native-drop-down-item/index.js')
-console.log(com.default,"where is these bri")
+// var com=require('../react-native-drop-down-item/index.js')
+// console.log(com.default,"where is these bri")
 var x=0;
 const IC_ARR_DOWN = require('../assets/dropup.png');
 const IC_ARR_UP = require('../assets/dropdown.png');

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Platform, StyleSheet, Text, View, ScrollView, Image,Card ,Dimensions} from 'react-native';
-import DropDownItem from '../react-native-drop-down-item';
-import New from './new';
-var com=require('../react-native-drop-down-item/index.js')
-console.log(com.default,"where is these bri")
+// import DropDownItem from '../react-native-drop-down-item';
+// import New from './new';
+// var com=require('../react-native-drop-down-item/index.js')
+// console.log(com.default,"where is these bri")
 var x=0;
-const IC_ARR_DOWN = require('../assets/dropup.png');
-const IC_ARR_UP = require('../assets/dropdown.png');
+const IC_ARR_DOWN = require('../../../../assets/dropup.png');
+const IC_ARR_UP = require('../../../../assets/dropdown.png');
 
 export default class App extends Component {
 

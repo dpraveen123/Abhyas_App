@@ -13,13 +13,13 @@ import {
 } from 'react-native';
 import Home from '../Icons/Home'
 import Bell from'../Icons/Bell'
-import HomeIconPage from '../../HomeIconPage'
+// import HomeIconPage from '../../HomeIconPage'
 import AdminDashboard from '../../cardss/AdminDashboard'
 // import AdminDashboard from '../../cardss/AdminDashboard'
 // import  Translator from '../../cardss/Page2'
-import BellIconPage from '../../BellIconPage'
+import BellIconPage from '../../../../../BellIconPage'
 import User from '../Icons/User'
-import UserIconPage from '../../UserIconPage'
+import UserIconPage from '../../../../../UserIconPage'
 // import TeacherDashboard from '../../TEACHERS/TeacherDashboard'
 const Tab = createBottomTabNavigator();
 export default function BotNav(){
