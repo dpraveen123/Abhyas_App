@@ -3,9 +3,9 @@ import { Text ,View,StyleSheet,Dimensions,TouchableOpacity} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import functions from '@react-native-firebase/functions';
-import Biology from '../Navigation/TEACHERS/Biology'
-import TeacherSub from '../Navigation/TEACHERS/TeacherSub'
-import store from '../redux'
+import Biology from '../../../../../Navigation/TEACHERS/Biology'
+import TeacherSub from '../../../../../Navigation/TEACHERS/TeacherSub'
+import store from '../../../../../redux'
 // var details
 var height1= Dimensions.get('window').height
 class Subjects extends React.Component{

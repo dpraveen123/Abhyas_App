@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Container, Header, Tab, Tabs, TabHeading, Icon, Text ,StyleProvider} from 'native-base';
 import {View} from 'react-native';
-import Students from './Students';
-import Report from './Report';
-import Subjects from './Subjects';
-import getTheme from '../native-base-theme/components';
-import material from '../native-base-theme/variables/material';
-import Attendance from '../attendence';
+import Students from './Students/Students';
+// import Report from '../../../../TEACHERS/Report';
+import Subjects from './Subjects/Subjects';
+import getTheme from '../../../../native-base-theme/components';
+import material from '../../../../native-base-theme/variables/material';
+import Attendance from './Reports/attendence'
 
 
 export default class Tabnav extends Component {

@@ -1,14 +1,14 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
-import TeachersTimeTbl from './TeachersTimeTbl'
+import TeachersTimeTbl from '../TeachersTimeTbl'
 // import TeacherDashboard from './TeacherDashboard';
-import EditProfile from '../Student-profile/Editprofile'
-import Modaling from '../Student-profile/modal'
+// import EditProfile from '../Student-profile/Editprofile'
+// import Modaling from '../Student-profile/modal'
 import TeacherBotNav from './TeacherBotNav';
-import FirstClass from './FirstClass';
-import TabNav from './Tabnav'
-import Attendence from './Attendence';
+// import FirstClass from './FirstClass';
+import TabNav from '../Teacher-Classes/Tabnav'
+// import Attendence from './Attendence';
 const Stack = createStackNavigator();
 function TeacherStack({props}) {
 console.log(props,"instack");
@@ -20,8 +20,8 @@ console.log(props,"instack");
       <Stack.Screen name="Home" component={TeacherBotNav} />
       <Stack.Screen name="TeachersTimeTbl" component={TeachersTimeTbl}/>
       <Stack.Screen name="Section" component={TabNav}/>
-      <Stack.Screen name="EditProfile" component={Modaling}/>
-      <Stack.Screen name="Attendence" component={Attendence}/>
+      {/* <Stack.Screen name="EditProfile" component={Modaling}/> */}
+      {/* <Stack.Screen name="Attendence" component={Attendence}/> */}
       {/* <Stack.Screen name="Notifications" component={Notifications} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Settings" component={Settings} /> */}

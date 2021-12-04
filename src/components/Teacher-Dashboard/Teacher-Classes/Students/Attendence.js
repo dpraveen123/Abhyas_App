@@ -4,12 +4,12 @@ import { StyleSheet, View, Text,TouchableOpacity,Image,Dimensions,ScrollView,Saf
 import {Card} from'react-native-elements';
 import pic from '../Images/student1.png';
 import pic1 from '../Images/stu.png';
-import Search from '../assets/Search';
+import Search from '../../../../../assets/Search';
 import { Icon } from 'react-native-elements';
 import { RadioButton} from 'react-native-paper'
-import Calender from '../assets/calender';
+import Calender from '../../../../../assets/calender';
 import firestore from '@react-native-firebase/firestore';
-import store from '../redux'
+import store from '../../../../../redux'
 import functions from '@react-native-firebase/functions';
 import auth from '@react-native-firebase/auth';
 var m=0

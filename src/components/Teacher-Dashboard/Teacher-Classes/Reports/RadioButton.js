@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet,Image } from 'react-native';
-import {circles} from './circle.png';
-import {circle2} from './circle2.png';
-import Example  from './Example';
-import RBSheet from 'react-native-raw-bottom-sheet'
+// import {circles} from './circle.png';
+// import {circle2} from './circle2.png';
+// import Example  from '../../../../../Example';
+// import RBSheet from 'react-native-raw-bottom-sheet'
 import firestore from '@react-native-firebase/firestore';
-import store from './redux'
+import store from '../../../../../redux'
 export default class RadioButton extends Component {
 	constructor(props)
     {

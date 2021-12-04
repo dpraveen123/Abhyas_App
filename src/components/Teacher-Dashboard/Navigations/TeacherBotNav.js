@@ -11,13 +11,13 @@ import {
   TouchableOpacity,
   Button
 } from 'react-native';
-import Home from '../Navigation/Icons/Home'
-import Bell from'../Navigation/Icons/Bell'
-import HomeIconPage from '../Navigation/Icons/Home'
-import TeacherDashboard from './TeacherDashboard'
-import BellIconPage from '../BellIconPage'
-import UserIconPage from '../UserIconPage'
-import User from '../Navigation/Icons/User'
+import Home from '../Icons/Home'
+import Bell from '../Icons/Bell'
+// import HomeIconPage from '../Navigation/Icons/Home'
+import TeacherDashboard from '../TeacherDashboard'
+import BellIconPage from '../../../../BellIconPage'
+import UserIconPage from '../../../../UserIconPage'
+import User from '../Icons/User'
 
 const Tab = createBottomTabNavigator();
 export default function TeacherBotNav(){

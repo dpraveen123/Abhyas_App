@@ -3,7 +3,7 @@ import { Button, View, TouchableOpacity, Text } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import RadioForm from "react-native-simple-radio-button";
 import firestore from '@react-native-firebase/firestore';
-import store from './redux'
+import store from '../../../../../redux'
 var ring = [
     { label: " ", value: 0 },
 ];

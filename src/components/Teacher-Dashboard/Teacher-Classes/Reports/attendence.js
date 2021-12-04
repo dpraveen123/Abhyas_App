@@ -8,14 +8,14 @@ import {
   Text
 } from 'react-native';
 import Svgpage from './Svg';
-import Svgpage2 from './assets/svg2';;
+import Svgpage2 from '../../../../../assets/svg2';;
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Pie from 'react-native-pie'
 import RadioButton from './RadioButton';
 import Example from './Example';
 import Switchbutton from './switchbutton'
 import firestore from '@react-native-firebase/firestore';
-import store from './redux'
+import store from '../../../../../redux'
 class Attendance extends React.Component {
   constructor(props) {
     super(props);

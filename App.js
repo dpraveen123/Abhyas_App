@@ -87,7 +87,9 @@ class App extends React.Component{
 /* <Editpick/> */
 // {/* <RunSheet/> */}
      
-      <Provider store={store}>
+      <Provider store={store}>  
+
+       
         {/* <Text>hello baabi</Text> */}
         {/* <SelectionButton/> */}
          <Authentication1 /> 

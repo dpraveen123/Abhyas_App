@@ -15,7 +15,7 @@ import {
 
   
 } from 'react-native';
-import store from '../redux'
+import store from '../../../../../redux'
 // import {Picker} from '@react-native-community/picker';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -108,7 +108,7 @@ render(){
                 <View style={{margin:20}}>
 
                   <View  style={{paddingLeft:115}}>  
-                  <Image source={require('../Images/profile.png')}  style={{
+                  <Image source={require('../../../../../Images/profile.png')}  style={{
                             height: 90,
                             width: 90,
                             

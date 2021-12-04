@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native'
-import Timetablesvg from './TimetableSvg'
+import Timetablesvg from '../../../TEACHERS/TimetableSvg'
 import LinearGradient from 'react-native-linear-gradient';
-import Timetable from '../Images/Timetable.jpg'
-import Continue from '../Images/Continue'
+import Timetable from '../../../Images/Timetable.jpg'
+import Continue from '../../../Images/Continue'
 import { Card } from 'react-native-elements';
-import Edit from '../assets/edit';
-const IC_ARR_DOWN = require('../assets/dropup.png');
-const IC_ARR_UP = require('../assets/dropdown.png');
+import Edit from '../../../assets/edit';
+const IC_ARR_DOWN = require('../../../assets/dropup.png');
+const IC_ARR_UP = require('../../../assets/dropdown.png');
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import functions from '@react-native-firebase/functions';
@@ -166,7 +166,7 @@ class TeacherDashboard extends Component {
                                 </View>
                                 <View style={{ paddingLeft: 30, paddingTop: 30 }}>
                                     <TouchableOpacity style={styles.continue}
-                                        onPress={() => navigation.navigate('TeachersTimeTbl')}
+                                        onPress={() => this.props.navigation.navigate('TeachersTimeTbl')}
                                     // console.log('timetable was pressed')}
                                     >
                                         <View style={{ flexDirection: 'row' }}>

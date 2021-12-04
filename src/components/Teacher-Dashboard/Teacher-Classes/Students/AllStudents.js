@@ -3,18 +3,18 @@ import { StyleSheet, View, Text,TouchableOpacity,Image,Dimensions,ScrollView,Saf
   TextInput,Button,Alert,title,TouchableHighlight,Modal} from 'react-native';
 import {Card} from 'react-native-elements';
 import RBSheet from 'react-native-raw-bottom-sheet';
-import pic from '../Images/student1.png';
-import pic1 from '../Images/stu.png';
-import Svgpages from '../assets/Svg';
-import Search from '../assets/Search';
+import pic from '../../../../../Images/student1.png';
+import pic1 from '../../../../../Images/stu.png';
+import Svgpages from '../../../../../assets/Svg';
+import Search from '../../../../../assets/Search';
 import { Icon } from 'react-native-elements';
-import AddStudent from '../src/components/Teacher-Dashboard/Teacher-Classes/Students/Addstudent';
+import AddStudent from './Addstudent';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import store from '../redux'
+import store from '../../../../../redux'
 import functions from '@react-native-firebase/functions';
-import NoStudent from '../src/components/Teacher-Dashboard/Teacher-Classes/Students/noStudentAdded';
-import StudentMenu from '../bottomSheet/StudentMenu';
+import NoStudent from './noStudentAdded';
+import StudentMenu from '../../../../../bottomSheet/StudentMenu';
 var width1= Dimensions.get('window').width
 var height1= Dimensions.get('window').height
 var Height = (273.5/640)*100;

@@ -29,7 +29,7 @@ import BotNav from '../BottomNav/BotNav'
 import DrawerIcon from '../Icons/DrawerIcon';
 import DrawerContent from '../DrawerNav/DrawerContent';
 // import ChooseClass from '../../ClassesDesign/ChooseClass';
-// import Addclass from '../../profile/Addclass'
+import Addclass from '../../profile/Addclass'
 // import Addclass from '../../profile/Addclass'
 // import TeacherDashboard from '../../TEACHERS/TeacherDashboard'
 const Stack = createStackNavigator();
@@ -85,10 +85,10 @@ const NavBar = ({ navigation }) => {
             <Stack.Screen name="Students" component={Students} />
             {/* <Stack.Screen name="Timetable" component={Timetable} /> */}
             {/* ...........teachersstacks.............. */}
-            {/* <Stack.Screen name="Add Teachers" component={Addclass} options={{ headerStyle:{
+            <Stack.Screen name="Add Teachers" component={Addclass} options={{ headerStyle:{
                     elevation:4,
     borderBottomWidth: 1,
-                }}} /> */}
+                }}} />
 
             {/* <Stack.Screen name="ChooseClass" component={ChooseClass}/> */}
         </Stack.Navigator>

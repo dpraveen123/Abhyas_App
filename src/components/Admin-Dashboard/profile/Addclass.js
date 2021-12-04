@@ -15,7 +15,7 @@ import {
 
 } from 'react-native';
 
-import store from '../redux'
+import store from '../../../../redux'
 import {
   Header,
   LearnMoreLinks,
@@ -26,7 +26,7 @@ import {
 
 
 import { Linking } from 'react-native';
-import { Picker } from '@react-native-community/picker';
+import {Picker} from '@react-native-picker/picker';
 import CheckBox from '@react-native-community/checkbox';
 import firestore from '@react-native-firebase/firestore';
 import functions from '@react-native-firebase/functions';
@@ -63,14 +63,14 @@ export default function Addclass() {
   const [mySubjects, setmySubjects] = useState([]);
 
   // console.log(isSelected, onChangeName, onChangeNumber, onChangeNumber, onChangeSection, onChangeSubject)
-  AddAnotherClass = () => {
+var  AddAnotherClass = () => {
     setonAddClass(onAddClass + 1);
     console.log(onAddClass);
   }
-  addMySubjects = (itemValue) => {
+   var addMySubjects = (itemValue) => {
     setmySubjects(mySubjects.concat(itemValue));
   }
-  Addclass = (itemvalue) => {
+ var Addclass = (itemvalue) => {
     console.log("adding classes");
     firestore()
       .collection('Schools').doc(store.getState().authdetails.uuid).collection('classes').doc(itemvalue)
@@ -91,14 +91,14 @@ export default function Addclass() {
         console.log(mySections, "sections")
       });
   }
-  uuidv4 = () => {
+ var uuidv4 = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
       var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
       return v.toString(16);
     });
   }
 
-  storeData = () => {
+ var storeData = () => {
     // firestore()
     //   .collection('Schools').doc('5a027b11-470c-4fb5-9355-989036cade8c').collection('Teachers').doc(`${onChangeNumber}`)
     //   .set({
@@ -162,7 +162,7 @@ export default function Addclass() {
     <ScrollView style={{ backgroundColor: 'white' }}>
       <View style={{ margin: 20, marginTop: 50, }}>
         <View style={{ flex: 1, paddingLeft: 120 }}>
-          <Image source={require('../Images/profile.png')} style={{
+          <Image source={require('../../../../Images/profile.png')} style={{
             height: 80,
             width: 80,
 
