@@ -13,8 +13,6 @@ function Teacher({props}) {
 
         <View style={{backgroundColor:'white'}}>
             <View style={{ marginLeft: 20 }}>
-
-
             </View>
             <View style={{ marginLeft: 80, marginTop: -33 }}>
                 <Text style={{ fontSize: 24, fontWeight: "500" }}>Teachers</Text>
