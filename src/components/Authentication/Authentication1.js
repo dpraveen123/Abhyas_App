@@ -1,18 +1,8 @@
 import React, { useState } from 'react';
 import auth from '@react-native-firebase/auth';
-// import PhoneNumber from './screens/PhoneNumber';
-// import VerifyCode from './screens/VerifyCode';
 import VerifyCode from './OtpPage';
-
-import Authenticated from '../../../screens/Authenticated';
-import PhoneNumber from './Logo/LandingPage'
+import PhoneNumber from './LandingPage'
 import firestore from '@react-native-firebase/firestore';
-// import OtpPage from '../../../OtpPage'
-// import LandingPage from './Logo/LandingPage'
-// import MyCourses from './Bsharp/mycourses'
-// import Example from './Bsharp/students'
-// import Hello from './Bsharp/Cards'
-// import SwitchExample from './Bsharp/dropdown'
 import {
     AppRegistry,
     StyleSheet,
@@ -26,32 +16,11 @@ import {
 } from 'react-native';
 import DrawerNav from '../Admin-Dashboard/Navigation/TopNav/NavBar'
 import { NavigationContainer } from '@react-navigation/native';
-// import AddNewClassesPage from '../../../ClassesDesign/AddNewClassesPage';
-// import ChooseClass from '../../../ClassesDesign/ChooseClass-2';
 import { connect } from 'react-redux';
 import TeacherStack from '../Teacher-Dashboard/Navigations/TeacherStack';
-// class App extends React.Component {
-//   render() {
-//     return (
-//       <View>
-//         <PhoneNumber />
-//         {/* <Hello /> */}
-//         {/* <MyCourses /> */}
-//         {/* <SwitchExample /> */}
-//         {/* <Example /> */}
-//       </View>
-//     )
-//   }
-// }
 
-// export default App;
 
 function Authentication1(props) {
-    // console.log("hloooooo")
-    // return (
-    //   // <OtpPage />
-    //   <LandingPage />
-    // )
 
     const [confirm, setConfirm] = useState(null);
     const [Roll, setRoll] = useState(null);
@@ -117,22 +86,12 @@ function Authentication1(props) {
       }
     }
 
-        
-        // <AddNewClassesPage/>
-        // <ChooseClass/>
-    
-
     if (confirm) return <VerifyCode onSubmit={confirmVerificationCode} />;
 
     return <PhoneNumber onSubmit={signIn} />;
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-
-        //   // dispatching plain actions
-        //   increment: () => dispatch({ type: 'INCREMENT' }),
-        //   decrement: () => dispatch({ type: 'DECREMENT' }),
-        //   reset: () => dispatch({ type: 'RESET' }),
         details: (l) => dispatch({ type: 'authdetails', payload: l })
     }
 }

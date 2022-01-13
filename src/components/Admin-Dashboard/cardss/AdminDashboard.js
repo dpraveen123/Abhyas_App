@@ -11,14 +11,13 @@ import {
   StyleSheet
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { shadow } from 'react-native-paper';
-import Svg, { G, Path } from 'react-native-svg'
-import Classroom from '../../../../Images/Classroom.jpg'
-import Teacher from '../../../../Images/teacher.jpg'
-import Student from '../../../../Images/students.jpg'
-import Graph from '../../../../Images/Graph.jpg'
-import Timetable from '../../../../Images/Timetable.jpg'
+import Classroom from '../../../assets/Images/Classroom.jpg'
+import Teacher from '../../../assets/Images/teacher.jpg'
+import Student from '../../../assets/Images/students.jpg'
+import Graph from '../../../assets/Images/Graph.jpg'
+import Timetable from '../../../assets/Images/Timetable.jpg'
 import Continue from '../../../../Images/Continue'
+import styles from './AdminDashboardCss'
 // import Rectangler from '../../../I/mages/Rectangle'
 const AdminDashboard = ({ navigation }) => {
   return (
@@ -27,58 +26,42 @@ const AdminDashboard = ({ navigation }) => {
     >
       <ScrollView >
         <View>
-          <View style={{ marginLeft: 16, marginTop: 20 }}>
-            <Text style={{ fontSize: 16,fontWeight:'bold' }}>Admin Dashboard</Text>
+          <View >
+            <Text style={styles.AdminDashboardText}>Admin Dashboard</Text>
           </View>
           <View>
-            <View style={{ flexDirection: "row" }}>
+            <View style={styles.cardContainer}>
               <TouchableOpacity
                 onPress={() => navigation.navigate('Classes')}
-                style={{ width: "43.09%", height: 130, backgroundColor: "white", borderRadius: 4, elevation: 5, justifyContent: "center", alignItems: "center", border: 5, marginLeft: 7, marginTop: 12, borderWidth: 1, borderColor: "#E1E8ED", shadowColor: "black",marginLeft:'4.39%' }}>
+                style={styles.classesCard}>
                 <Image source={Classroom} style={{ marginLeft: 5 }}>
                 </Image>
-                <Text style={{ fontSize: 14,fontWeight:'bold',marginTop:8 }}>Classes</Text>
+                <Text style={styles.cardText}>Classes</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => navigation.navigate('Teachers')}
-                style={{ width: "43.09%", height: 130, backgroundColor: "white", borderRadius: 4, elevation: 5, justifyContent: "center", alignItems: "center", marginLeft: 8, borderWidth: 1, borderColor: "#E1E8ED", shadowColor: "black", marginTop: 12, marginLeft: 8, marginRight: 16,marginLeft:'4.09%' }}>
+                style={styles.teachersCard}>
                 <Image source={Teacher} style={{ marginLeft: 5 }}>
                 </Image>
-                <Text style={{ fontSize: 14,fontWeight:'bold',marginTop:8 }}>Teachers</Text>
+                <Text style={styles.cardText}>Teachers</Text>
               </TouchableOpacity>
             </View>
           </View>
           <View>
-            <View style={{ flexDirection: "row" }}>
+            <View style={styles.cardContainer}>
               <TouchableOpacity
                 onPress={() => navigation.navigate('Reports')}
-                style={{ width: "43.09%", height: 130, backgroundColor: "white", borderRadius: 4, marginTop:15,elevation: 5, justifyContent: "center", alignItems: "center", border: 5, marginLeft: 7, borderWidth: 1, borderColor: "#E1E8ED", shadowColor: "black",marginLeft:'4.39%' }}>
+                style={styles.reportsCard}>
                 <Image source={Graph} style={{ marginLeft: 5 }}>
                 </Image>
-                <Text style={{ fontSize: 14,fontWeight:'bold',marginTop:8 }}>Reports</Text>
+                <Text style={styles.cardText}>Reports</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => navigation.navigate('Students')}
-                style={{
-                  width: "43.09%",
-                  height: 130,
-                  backgroundColor: "white",
-                  borderRadius: 4,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginLeft: 8,
-                  borderWidth: 1,
-                  borderColor: "#E1E8ED",
-                  shadowColor: "black",
-                  elevation: 5,
-                  marginTop: 15,
-                  marginLeft:'4.09%',
-                  // marginLeft: 8,
-                  marginRight: 16
-                }}>
+                style={styles.studentsCard}>
                 <Image source={Student} style={{ marginLeft: 5 }}>
                 </Image>
-                <Text style={{ fontSize: 14,fontWeight:'bold',marginTop:8 }}>Students</Text>
+                <Text style={styles.cardText}>Students</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -123,41 +106,5 @@ const AdminDashboard = ({ navigation }) => {
 
   );
 }
-const styles=StyleSheet.create({
-  card:{
-    width: 328,
-        height: 160,
-        borderRadius: 8,
-        justifyContent: "center",
-        alignItems: "center",
-        marginLeft: 15,
-        // borderWidth: 1,
-        // borderColor: "#4860DC",
-        // shadowColor: "black",
-        marginTop: 24.15,
-        elevation:10
-        // marginRight: 18,
-},
-text:{
-  color:'white',
-  fontSize:16,
-  fontWeight:'bold',
-  paddingLeft:30,
-},
-column:{
-  marginLeft:30,
-  width:130,
-  paddingTop:10
-},
-teachertext:{
-  color:'white',
-},
-continue:{
-  backgroundColor:'white',
-  width:148,
-  height:36,
-  justifyContent:'center',
-  borderRadius:120,
-}
-})
+
 export default AdminDashboard

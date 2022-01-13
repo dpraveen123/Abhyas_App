@@ -12,7 +12,9 @@ import {
     Button
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-import Home from './Bulb'
+import Home from './Logo/Bulb'
+import styles from './LandingPageCss'
+import AbhyasLandingPageLogo from '../../assets/Svg/AbhyasLandingPageLogo'
 var Loader = 0
 export default function LandingPage(props) {
     const titl = "send OTP"
@@ -53,10 +55,9 @@ export default function LandingPage(props) {
     return (
         <ScrollView>
 
-            {/* <Text>
-                hi pap's
-            </Text> */}
-            <Home />
+           
+            <AbhyasLandingPageLogo />
+
             <Text style={styles.text}>
                 Enter your Mobile number
             </Text>
@@ -110,11 +111,11 @@ export default function LandingPage(props) {
                         {
                             loader === false ? <Text style={styles.otp} >send OTP</Text>
                                 :
-                                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                                <View style={styles.sendingOtpContainer}>
                                     <ActivityIndicator
                                         color="white"
                                         size="small"
-                                    /><Text style={{ color: 'white' }} >Sending OTP</Text>
+                                    /><Text style={styles.sendingOtpColor} >Sending OTP</Text>
                                 </View>
 
                         }
@@ -123,8 +124,8 @@ export default function LandingPage(props) {
                 </TouchableOpacity>
                 <View>
                     {
-                        isRegisterdno===false?<View style={{width:'100%',alignItems:'center'}}>
-                        <Text style={{marginTop:24,color:'red',fontSize:14,}}>Mobile number not registered with us!</Text>
+                        isRegisterdno===false?<View style={styles.mobileNumberNotRegisteredContainer}>
+                        <Text style={styles.mobileNumberNotRegisteredContainerTextStylings}>Mobile number not registered with us!</Text>
                         </View>:<View></View>
                     }
                 </View>
@@ -140,43 +141,3 @@ export default function LandingPage(props) {
 }
 
 
-const styles = StyleSheet.create({
-    text: {
-        position: 'absolute',
-        color: '#657786',
-        left: 22.62,
-        top: 310,
-        fontWeight: '500',
-        fontSize: 14,
-        fontFamily: 'Roboto'
-    },
-    TextInputStyle: {
-        position: 'absolute',
-        width: 312,
-        height: 50,
-        left: 22.62,
-        top: 332,
-        fontFamily: 'Roboto',
-        fontWeight: 'bold',
-        fontSize: 20
-    },
-    button: {
-        backgroundColor: 'rgba(29, 161, 242, 0.5)',
-        // backgroundColor:${(props)=>}
-        width: 312,
-        height: 40,
-        borderRadius: 4,
-        marginTop: 240,
-        marginLeft: 22,
-        textAlign: 'center',
-        justifyContent: 'center'
-    },
-    otp: {
-        color: 'white',
-        // paddingLeft: 125
-    },
-    number: {
-
-        fontFamily: 'Roboto'
-    }
-})

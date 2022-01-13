@@ -17,9 +17,6 @@ import Menu from '../Icons/Menu'
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-// import BotNav from '../BottomNav/BotNav';
-// import BotNav from '../BottomNav'
-// import Card from '../../Card'
 import AddNewClassesPage from '../../ClassesDesign/AddNewClassesPage'
 import Teachers from '../../cardss/Teachers'
 import Students from '../../cardss/Students'
@@ -28,10 +25,7 @@ import Reports from '../../cardss/Reports'
 import BotNav from '../BottomNav/BotNav'
 import DrawerIcon from '../Icons/DrawerIcon';
 import DrawerContent from '../DrawerNav/DrawerContent';
-// import ChooseClass from '../../ClassesDesign/ChooseClass';
 import Addclass from '../../profile/Addclass'
-// import Addclass from '../../profile/Addclass'
-// import TeacherDashboard from '../../TEACHERS/TeacherDashboard'
 const Stack = createStackNavigator();
 
 const NavBar = ({ navigation }) => {
