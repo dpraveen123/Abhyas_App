@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import { Container, Header, Tab, Tabs, TabHeading, Icon, Text ,StyleProvider} from 'native-base';
 import {View} from 'react-native';
-import Tab1 from './Tab1';
-import AllClasses from './Classes';
+import Tab1 from '../profile/Tab1';
+import AllClasses from './AllClasses';
 import getTheme from '../../../../native-base-theme/components';
 import material from '../../../../native-base-theme/variables/material';
 

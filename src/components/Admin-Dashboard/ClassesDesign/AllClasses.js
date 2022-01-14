@@ -3,37 +3,22 @@ import { StyleSheet, View, Text,TouchableOpacity,Image,Dimensions,ScrollView,Saf
   TextInput,Button,Alert,title,TouchableHighlight} from 'react-native';
 import {Card} from'react-native-elements';
 import {Picker} from '@react-native-picker/picker';
-// import Drop from '../assets/dropdown';
-// import Classno from '../Images/Classno'
-// import Edit from '../assets/edit';
-// import Arr from '../assets/line';
-import Pick from './Picker';
-import Editpick from './Editpick';
+import Pick from '../profile/Picker';
 import Modal from 'react-native-modal';
-import Newone from './new1'
+import Newone from '../profile/new1'
 import { connect } from 'react-redux';
 import store from '../../../../redux'
-// import DropDownItem from '../react-native-drop-down-item';
 import functions from '@react-native-firebase/functions';
 import auth from '@react-native-firebase/auth';
-// import Edit from '../assets/edit';
-const IC_ARR_DOWN = require('../../../../assets/dropup.png');
-const IC_ARR_UP = require('../../../../assets/dropdown.png');
-const editpickup =require('../../../../assets/Editpick.png');
-const editpickdown =require('../../../../assets/Editpick.png');
+const IC_ARR_DOWN = require('../../../assets/Images/dropup.png');
+const IC_ARR_UP =  require('../../../assets/Images/dropup.png');
+const editpickup =require('../../../assets/Images/Editpick.png');
+const editpickdown =require('../../../assets/Images/Editpick.png');
 import firestore from '@react-native-firebase/firestore';
 import { Menu, MenuProvider, MenuOptions, MenuOption, MenuTrigger} from "react-native-popup-menu";
 import LinearGradient from 'react-native-linear-gradient';
-import { NavigationContainer } from '@react-navigation/native';
-import ChooseClass from '../ClassesDesign/ChooseClass'
-import { Input } from 'native-base';
-// import Delete from '../src/components/Authentication/Logo/Delete'
-// import Modal from 'react-native-modal';
-// import ModalTester from '../ClassesDesign/AddNewClassesPage'
-// import store from '../redux'
-// import Dropdown from '../profile/drop';
-// const viewmodel=false
-// const class = ''
+import AddNewClass from './AddNewClass'
+import styles from './AllClassesCss'
 class AllClasses extends React.Component {
  class=""
  section=""
@@ -358,9 +343,6 @@ deleteSection=(l,i,k)=>{
     const { modalVisible } = this.state;
     return (
       <View style={{flex:1}} >
-                {/* <View style={{}}>
-                <ModalTester props={this.state.data}/>
-                </View> */}
 
       {/* // <SafeAreaView style={{backgroundColor:'white' }}> */}
        <ScrollView style={{backgroundColor:'whitesmoke'}}>
@@ -384,25 +366,28 @@ deleteSection=(l,i,k)=>{
                    <View style={{borderRadius:0}} key={i}>
                      
                    <Card
-                   containerStyle={{borderRadius:8,elevation:3}}
+                   containerStyle={styles.cardContainerStyle}
                    >
-              <View style={{height:70}}>
             
-                 <View style={{flexDirection:'row'}}>
-                 {/* <View style={{width:64,height:64,backgroundColor:'whitesmoke'}}><Text>hii</Text></View> */}
-                 <View style={{width:64,height:64,backgroundColor:'whitesmoke'}}>
+                 <View style={styles.cardStylings}>
+
+                   {/* ..................................card class no(image) container ..................................... */}
+                 <View>
                  <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 0}} colors={[color1,color2]} style={styles.gradient1}>
                    <Text style={styles.name}>{classno}</Text>
                               
                             </LinearGradient>
                  
                  </View>
-               <View style={{marginLeft:16}}>
-                   <Text style={{fontSize:20,lineHeight:28}}>{l.class}</Text>
-                   <Text style={{color:'#AAB8C2',fontSize:14,lineHeight:28,marginTop:0}}>{l.sections.length} Sections</Text>
+   
+   {/* .................................................class names and section names container............................................ */}
+    
+               <View style={styles.classNamesContainer}>
+                   <Text style={styles.className}>{l.class}</Text>
+                   <Text style={styles.sectionName}>{l.sections.length} Sections</Text>
                </View>
-                <TouchableOpacity style={{justifyContent:'center',marginLeft:80}}
-                
+    {/* .......................................drop down arrow container.................................................... */}
+                <TouchableOpacity style={styles.dropdownContainer}
                 onPress={()=>{
                  this.openDrop(i)
                 }}
@@ -410,25 +395,27 @@ deleteSection=(l,i,k)=>{
                 <View >
                     <Image source={
                         this.state.darray1[i]===true?IC_ARR_DOWN:IC_ARR_UP
-                    } style={{width:10,height:10}}></Image>
+                    } style={styles.dropdown}></Image>
                 </View>
                 </TouchableOpacity>
-                <View style={{justifyContent:'center',marginLeft:14,width:1,height:'100%',borderWidth:0.5,borderColor:'#E1E8ED'}}>
+      {/* .................................................thin line container......................................................... */}
+                <View style={styles.thinLineContainer}>
               </View>
-                <View style={{justifyContent:'center',marginLeft:14}}>
+
+
+  {/* .................. 3 dots icon................ */}
+                <View style={styles.dotsContainer}>
                <TouchableOpacity onPress={()=>{
-                  console.log("huhuuhuhu")
-                    // this.Drop(i)
                     this.openEditView(i)
                     }}
-                    style={{width:50,height:20}}
+                    // style={{width:50,height:20}}
                     >
                    <Image source={
                         editpickup
-                    } style={{width:10,height:20}}></Image>
+                    } style={styles.dotsImageStylings}></Image>
                     </TouchableOpacity>
                 </View>
-  {/* .................. 3 dots icon................ */}
+
                 <View style={{width:'39.5%',backgroundColor:'white',position:"absolute",marginHorizontal:85,marginVertical:10}}>
                   {
                    <View>
@@ -486,6 +473,8 @@ deleteSection=(l,i,k)=>{
                                </View>
                              </View>
                            </Modal>
+
+
                          <Text style={{fontWeight:"500",fontFamily:"Roboto",fontSize:18,marginLeft:0}}>Delete Class</Text>
                          </TouchableOpacity>
                         <TouchableOpacity onPress={() =>{
@@ -530,7 +519,7 @@ deleteSection=(l,i,k)=>{
              }
 </View>
              </View>
-             </View>
+             {/* </View> */}
              </Card>
            <View style={{marginLeft:15,width:'91.5%',backgroundColor:'white'}}>
                   {
@@ -567,7 +556,7 @@ deleteSection=(l,i,k)=>{
                            >
                              <View style={{width:328,height:210,backgroundColor:'white',borderRadius:8,alignContent:'center',justifyContent:'center',alignItems:'center'}}>
                                <View>
-                               {/* <Delete/> */}delete icon
+                               {/* <Delete/>delete icon */}
                                </View>
                                <View style={{width:250,height:48}}>
                                  <Text style={{fontSize:16,textAlign:'center',lineHeight:24}}>Are you sure you wanted to delete  </Text>
@@ -599,6 +588,10 @@ deleteSection=(l,i,k)=>{
                                </View>
                              </View>
                            </Modal>
+
+
+
+
                          <Text style={{color:"#657786",paddingStart:10}}> Delete</Text>
                          
                          </TouchableOpacity>
@@ -622,23 +615,20 @@ deleteSection=(l,i,k)=>{
                }
              </View>
           }
-                 {/* <View style={{position:"absolute",marginTop:550,marginLeft:100}}>
-                <ModalTester props={this.state.data}/>
-                </View> */}
-
+               
                 {/* ................uptohere................................. */}
                 </View>
                 </ScrollView>
                 <View style={{position:"absolute",marginTop:height1-200,marginLeft:110}}>
                 <ModalTester props={{loadData:this.loadData}}/>
                 </View>
-               {/* <View style={{}}>
-                <ModalTester props={this.state.data}/>
-                </View> */}
        </View>
     );
   }
 }
+
+// ....................................................Add new class component...............................................
+
 const { width, height} = Dimensions.get("screen");
 var height1=Dimensions.get('window').height;
   class ModalTester extends React.Component{
@@ -697,14 +687,6 @@ console.log(this.state.classes,"thse are not added")
       this.loadData()
       this.setState({isModalVisible:!this.state.isModalVisible})
     }
-    
-    componentDidMount=()=>{
-
-
-      
-      // this.loadData()
-     
-    }
     render(){
       return(
          <View style={{elevation:10,alignItems:'center'}}>
@@ -716,7 +698,7 @@ console.log(this.state.classes,"thse are not added")
            <Modal isVisible={this.state.isModalVisible}>
              <TouchableOpacity onPress={this.toggleModal} style={{width:360,height:300,marginLeft:-20}}>
              </TouchableOpacity>
-           <ChooseClass props={{class:this.state.classes,modal:this.toggleModal,loadData:this.props.props.loadData}}/>
+           <AddNewClass props={{class:this.state.classes,modal:this.toggleModal,loadData:this.props.props.loadData}}/>
           </Modal>
       </View>
       )
@@ -728,133 +710,9 @@ console.log(this.state.classes,"thse are not added")
 
 
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 2,
-    paddingTop: 1,
-  },
-  Menu:{
-   marginLeft:250,
-    marginBottom:70,
-    elevation:5,
 
-  },
-
-    submitText:{
-    paddingTop:10,
-    paddingBottom:10,
-    color:'#fff',
-    textAlign:'center',
-    backgroundColor:"#1e90ff",
-    borderRadius: 20,
-    borderWidth: 1,
-    fontWeight:'bold',
-    borderColor: '#fff',
-
-},
-
-footer: {
-  // 
-  position: 'absolute',
-  flex:0.1,
-  left: 0,
-  right: 0,
-  bottom: -20,
-  
-  flexDirection:'row',
-  height:80,
-  alignItems:'center',
-  marginLeft:5,
-  
-},
-modalview:{
-   
-    backgroundColor:'white',
-        height:550,
-        width:357,
-        // marginTop:80,
-        marginLeft:-17,
-        borderTopLeftRadius:16,
-        borderTopRightRadius:16,
-        paddingTop:20
- 
-},
-modal:{
-  marginLeft:30,
-  fontWeight:'600',
-  fontSize:20,
-
-
-},
-gradient:{
-  width:64,
-  height:64,
-  borderRadius:4,
-  justifyContent:'center',
-  marginLeft:-20
-},
-name:{
-  color:'white',
-  fontSize:32,
-  paddingLeft:25
-},
-button:{
-  backgroundColor:"#1F85FF",
-  width:152,
-  height:48,
-  borderRadius:40,
-  justifyContent:'center',
-  
-},
-button1:{
-  backgroundColor:'#1F85FF',
-  paddingBottom:8,
-  borderRadius: 4,
-  width:308,
-  height:40 
-
-},
-gradient1:{
-  width:64,
-  height:64,
-  borderRadius:4,
-  justifyContent:'center',
-  marginLeft:-1
-},
-buttonText:{
-  color:'white',
-  alignSelf:'center',
-  fontSize:16,
-  fontFamily:"Roboto",
-  fontWeight: "bold",
-  paddingLeft:9,
-  paddingTop:10
-  
-},
-Class:{
-  color:'white',
-  fontFamily:'Roboto',
-  fontWeight:'500',
-  fontSize:16,
-  marginLeft:16
-},
-name:{
-  color:'white',
-  fontSize:32,
-  paddingLeft:25,
-  fontWeight:"500",
-  fontFamily:"Roboto"
-
-}
-})
 const mapDispatchToProps = (dispatch) => {
   return {
- 
-  //   // dispatching plain actions
-  //   increment: () => dispatch({ type: 'INCREMENT' }),
-  //   decrement: () => dispatch({ type: 'DECREMENT' }),
-  //   reset: () => dispatch({ type: 'RESET' }),
-  // details:(l)=>dispatch({type:'authdetails',payload:l})
   changevisible:()=>dispatch({type:'changevisible',payload:''})
   }
 }

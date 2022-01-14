@@ -17,7 +17,6 @@ import Menu from '../Icons/Menu'
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import AddNewClassesPage from '../../ClassesDesign/AddNewClassesPage'
 import Teachers from '../../cardss/Teachers'
 import Students from '../../cardss/Students'
 import Reports from '../../cardss/Reports'
@@ -25,6 +24,7 @@ import Reports from '../../cardss/Reports'
 import BotNav from '../BottomNav/BotNav'
 import DrawerIcon from '../Icons/DrawerIcon';
 import DrawerContent from '../DrawerNav/DrawerContent';
+import ClassesTabNav from '../../ClassesDesign/ClassesTabNav'
 import Addclass from '../../profile/Addclass'
 const Stack = createStackNavigator();
 
@@ -67,7 +67,7 @@ const NavBar = ({ navigation }) => {
                 
                 
             />
-            <Stack.Screen name="Classes" component={AddNewClassesPage} options={{ headerStyle:{
+            <Stack.Screen name="Classes" component={ClassesTabNav} options={{ headerStyle:{
                     elevation:4,
     borderBottomWidth: 1,
                 },}}/>

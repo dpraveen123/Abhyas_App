@@ -14,15 +14,12 @@ import {
     Modal
 } from 'react-native';
 import { Picker as SelectPicker } from '@react-native-picker/picker';
-import RNPickerSelect from 'react-native-picker-select';
-// import AfterClassPage from '../../AfterClassPage';
 var i=0;
 import Page from './NoSectionsAdded'
 import functions from '@react-native-firebase/functions';
-import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
 import store from '../../../../redux'
-export default class ChooseClass extends Component {
+import styles from './AddNewClassCss'
+export default class AddNewClass extends Component {
     constructor(props) {
         super(props)
     
@@ -257,16 +254,6 @@ render() {
                 selectedValue={this.state.pickervalue}
                 >
                     <SelectPicker.Item label="Select class" value="0"/>
-                    {/* <Picker.Item label="1st class" value="1st class"/>
-                    <Picker.Item label="2nd class" value="2nd class"/>
-                    <Picker.Item label="3rd class" value="3rd class"/>
-                    <Picker.Item label="4th class" value="4th class"/>
-                    <Picker.Item label="5th class" value="5th class"/>
-                    <Picker.Item label="6th class" value="6th class"/>
-                    <Picker.Item label="7th class" value="7th class"/>
-                    <Picker.Item label="8th class" value="8th class"/>
-                    <Picker.Item label="9th class" value="9th class"/>
-                    <Picker.Item label="10th class" value="10th class"/> */}
                     {
                         this.props.props.class.map((l,l1)=>{
                             return(
@@ -331,24 +318,22 @@ render() {
                  transparent={true}
                  visible={this.state.show}
                  >
-                    <View style={{backgroundColor:"#000000aa",flex:1}}>
-                        <View style={{backgroundColor:"#ffffff",margin:30,width:340,height:230.25,borderRadius:8,marginTop:208.75,marginLeft:22,marginRight:16}}>
-                            <View style={{marginTop:24.25,marginLeft:147.33}}>
-                            {/* <Info/> */}
-                            </View>
-                            {/* <Image source={Info} style={{marginTop:24.25,marginLeft:147.33}}></Image> */}
-                            <Text style={{textAlign:'center',fontSize:20,marginTop:19.33}}>No Sections Added!</Text>
-                            <Text style={{color:"#657786",textAlign:'center',marginTop:8}}>create class without section?</Text>
+                    <View style={styles.nsaContainer}>
+                        <View style={styles.nsaInnerContainer}>
+                         <View>
+                         <Text style={styles.nsaHeader}>No Sections Added!</Text>
+                            <Text style={styles.nsaQn}>create class without section?</Text>
                             <View>
                                 <View  style={{ flexDirection: "row" }}>
-                                 <TouchableOpacity style={{width:136,height:42,borderRadius:8,backgroundColor:"#e1e8e8",marginTop:24,marginLeft:20}}>
-                                     <Text style={{fontSize:16,color:"#657786",marginTop:9,marginLeft:20}} onPress={()=>{this.setState({show:false})}}>Add Sections</Text>
+                                 <TouchableOpacity style={styles.nsaFirstBtn}>
+                                     <Text style={styles.nsaFirstBtnText} onPress={()=>{this.setState({show:false})}}>Add Sections</Text>
                                      </TouchableOpacity>  
-                                     <TouchableOpacity style={{width:136,height:42,borderRadius:8,backgroundColor:"#1f85ff",marginTop:24,marginLeft:20}}>
-                                     <Text style={{fontSize:16,color:"white",marginTop:10,marginLeft:35.5}} onPress={()=>{this.setState({show:false})}}>Continue</Text>
+                                     <TouchableOpacity style={styles.nsaSecondBtn}>
+                                     <Text style={styles.nsaSecondBtnText} onPress={()=>{this.setState({show:false})}}>Continue</Text>
                                      </TouchableOpacity>   
                                 </View>
                             </View>
+                         </View>
                         </View>
                     </View>
                 </Modal>
@@ -357,70 +342,7 @@ render() {
         )
     }
 }
-const styles=StyleSheet.create({
-    Page:{
-        backgroundColor:'#E5E5E5',
-    },
-    PopUp:{
-        backgroundColor:'white',
-        height:540,
-        width:357,
-        marginTop:-88,
-        marginLeft:-17,
-        borderTopLeftRadius:16,
-        borderTopRightRadius:16
-    },
-    AddClass:{
-        fontFamily:'Roboto',
-        fontWeight:'500',
-        marginTop:16,
-        fontSize:20,
-        marginLeft:16,
-    },
-    ChooseClass:{
-        marginTop:16,
-        marginLeft:16,
-        fontFamily:'Roboto',
-        fontSize:14,
-        fontWeight:'500'
-    },
-    InputStyle:{
-        marginLeft:16,
-        marginTop:12,
-        borderWidth:2,
-        width:328,
-        height:40,
-        borderColor:'#E1E8ED',
-        borderRadius:4
-    },
-    button:{
-        position:'absolute',
-        width:328,
-        height:36,
-        opacity:50,
-        backgroundColor: 'rgba(29, 161, 242, 0.5)',
-        borderRadius:4,
-        marginLeft:16,
-        marginTop:480
-    },
-    buttonTxt:{
-        color:'white',
-        // marginTop:8,
-        // marginLeft:148,
-        textAlign:'center',
-        fontFamily:'Roboto',
-        fontSize:14,
-        fontWeight:'500'
-    },
-    aText:{
-      color:'#1F85FF',
-      fontFamily:'Roboto',
-      fontSize:14,
-      fontWeight:'500',
-      marginLeft:16,
-      marginTop:15
-    },
-})
+
 {/* <RNPickerSelect
                  placeholder={{label:'Select class'}}
                 // value='hiii'

@@ -12,7 +12,6 @@ import {
     Button
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-import Home from './Logo/Bulb'
 import styles from './LandingPageCss'
 import AbhyasLandingPageLogo from '../../assets/Svg/AbhyasLandingPageLogo'
 var Loader = 0
